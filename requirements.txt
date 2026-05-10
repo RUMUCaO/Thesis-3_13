@@ -1,0 +1,9 @@
+torch
+opencv-python
+numpy
+transformers
+sentence-transformers
+librosa
+ruptures
+pytest
+scipy
