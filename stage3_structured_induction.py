@@ -56,7 +56,30 @@ def build_structure(events, alpha=0.6, beta=0.3, gamma=0.1, top_k=3):
     n = len(events)
     embs = [get_embedding(ev) for ev in events]
     starts = [ev["start"] for ev in events]
-    nodes = [{"id": i, "start": events[i]["start"], "end": events[i]["end"], "n_bins": events[i].get("n_bins", 1)} for i in range(n)]
+    
+    # Create nodes with embedding and semantic information
+    nodes = []
+    for i in range(n):
+        node = {
+            "id": i, 
+            "start": events[i]["start"], 
+            "end": events[i]["end"], 
+            "n_bins": events[i].get("n_bins", 1)
+        }
+        # Preserve embedding for evaluation
+        if embs[i] is not None:
+            node["embedding"] = embs[i].tolist()
+        # Store event description if available
+        if events[i].get("description"):
+            node["description"] = events[i]["description"]
+        if events[i].get("text_emb") is not None:
+            node["text_emb"] = events[i].get("text_emb")
+        if events[i].get("visual_emb") is not None:
+            node["visual_emb"] = events[i].get("visual_emb")
+        if events[i].get("audio_emb") is not None:
+            node["audio_emb"] = events[i].get("audio_emb")
+        nodes.append(node)
+    
     edges = []
     for i in range(n):
         scores = []
