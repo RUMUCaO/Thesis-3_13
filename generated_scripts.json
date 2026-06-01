@@ -1,0 +1,1271 @@
+{
+  "metadata": {
+    "scene_count": 60,
+    "character_count": 0,
+    "use_script_hints": false
+  },
+  "characters": [],
+  "scenes": [
+    {
+      "scene_id": 0,
+      "start": 0.0,
+      "end": 19.019,
+      "heading": "SCENE 0 | 0.000s - 19.019s",
+      "cast": [],
+      "action": "No content available.",
+      "dialogue": [],
+      "text": "SCENE 0 | 0.000s - 19.019s\nACTION: No content available."
+    },
+    {
+      "scene_id": 1,
+      "start": 19.019,
+      "end": 22.022,
+      "heading": "SCENE 1 | 19.019s - 22.022s",
+      "cast": [],
+      "action": "A Mad Chance/Jaret Entertainment production production",
+      "dialogue": [],
+      "text": "SCENE 1 | 19.019s - 22.022s\nACTION: A Mad Chance/Jaret Entertainment production production"
+    },
+    {
+      "scene_id": 3,
+      "start": 26.026,
+      "end": 27.027,
+      "heading": "SCENE 3 | 26.026s - 27.027s",
+      "cast": [],
+      "action": "A cityscape with a prominent skyscraper and surrounding buildings. pan; zoom Relation: cityscape",
+      "dialogue": [],
+      "text": "SCENE 3 | 26.026s - 27.027s\nACTION: A cityscape with a prominent skyscraper and surrounding buildings. pan; zoom Relation: cityscape"
+    },
+    {
+      "scene_id": 5,
+      "start": 76.076,
+      "end": 79.079,
+      "heading": "SCENE 5 | 76.076s - 79.079s",
+      "cast": [],
+      "action": "A woman is driving a red car. driving Relation: in car",
+      "dialogue": [],
+      "text": "SCENE 5 | 76.076s - 79.079s\nACTION: A woman is driving a red car. driving Relation: in car"
+    },
+    {
+      "scene_id": 7,
+      "start": 82.082,
+      "end": 86.086,
+      "heading": "SCENE 7 | 82.082s - 86.086s",
+      "cast": [],
+      "action": "A young woman with curly hair looks over her shoulder in a car. looks over her shoulder; sits in a car Relation: in a car",
+      "dialogue": [],
+      "text": "SCENE 7 | 82.082s - 86.086s\nACTION: A young woman with curly hair looks over her shoulder in a car. looks over her shoulder; sits in a car Relation: in a car"
+    },
+    {
+      "scene_id": 8,
+      "start": 86.086,
+      "end": 89.089,
+      "heading": "SCENE 8 | 86.086s - 89.089s",
+      "cast": [],
+      "action": "KAT is discussing a past event with someone, mentioning that she was merely a spectator. continuing Relation: interested",
+      "dialogue": [],
+      "text": "SCENE 8 | 86.086s - 89.089s\nACTION: KAT is discussing a past event with someone, mentioning that she was merely a spectator. continuing Relation: interested"
+    },
+    {
+      "scene_id": 9,
+      "start": 89.089,
+      "end": 107.107,
+      "heading": "SCENE 9 | 89.089s - 107.107s",
+      "cast": [],
+      "action": "People playing hockey on roller blades in a public space. Roller blades; Hockey Relation: Playing",
+      "dialogue": [],
+      "text": "SCENE 9 | 89.089s - 107.107s\nACTION: People playing hockey on roller blades in a public space. Roller blades; Hockey Relation: Playing"
+    },
+    {
+      "scene_id": 13,
+      "start": 116.116,
+      "end": 125.125,
+      "heading": "SCENE 13 | 116.116s - 125.125s",
+      "cast": [],
+      "action": "Dialogue trace: I'll start with",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 122.786,
+          "end": 123.206,
+          "text": "I'll start with"
+        }
+      ],
+      "text": "SCENE 13 | 116.116s - 125.125s\nACTION: Dialogue trace: I'll start with\nNARRATOR: I'll start with"
+    },
+    {
+      "scene_id": 14,
+      "start": 125.125,
+      "end": 127.127,
+      "heading": "SCENE 14 | 125.125s - 127.127s",
+      "cast": [],
+      "action": "A woman is sitting at a desk with a computer, smiling. sitting; smiling Relation: neutral",
+      "dialogue": [],
+      "text": "SCENE 14 | 125.125s - 127.127s\nACTION: A woman is sitting at a desk with a computer, smiling. sitting; smiling Relation: neutral"
+    },
+    {
+      "scene_id": 31,
+      "start": 207.207,
+      "end": 210.21,
+      "heading": "SCENE 31 | 207.207s - 210.210s",
+      "cast": [],
+      "action": "A woman sits at a desk with text overlay. sitting; typing Relation: in office",
+      "dialogue": [],
+      "text": "SCENE 31 | 207.207s - 210.210s\nACTION: A woman sits at a desk with text overlay. sitting; typing Relation: in office"
+    },
+    {
+      "scene_id": 77,
+      "start": 551.551,
+      "end": 557.557,
+      "heading": "SCENE 77 | 551.551s - 557.557s",
+      "cast": [],
+      "action": "Blurred image of people in a room. Standing; Talking Relation: Indeterminate Dialogue trace: favorite.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 550.09,
+          "end": 557.053,
+          "text": "favorite."
+        }
+      ],
+      "text": "SCENE 77 | 551.551s - 557.557s\nACTION: Blurred image of people in a room. Standing; Talking Relation: Indeterminate Dialogue trace: favorite.\nNARRATOR: favorite."
+    },
+    {
+      "scene_id": 80,
+      "start": 654.654,
+      "end": 656.656,
+      "heading": "SCENE 80 | 654.654s - 656.656s",
+      "cast": [],
+      "action": "A man in a purple shirt is sitting in a convertible car. sitting; holding steering wheel Relation: in car Dialogue trace: you read last month's Cosmo? Run",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 654.725,
+          "end": 656.786,
+          "text": "read last month's Cosmo? Run"
+        }
+      ],
+      "text": "SCENE 80 | 654.654s - 656.656s\nACTION: A man in a purple shirt is sitting in a convertible car. sitting; holding steering wheel Relation: in car Dialogue trace: you read last month's Cosmo? Run\nNARRATOR: read last month's Cosmo? Run"
+    },
+    {
+      "scene_id": 83,
+      "start": 660.66,
+      "end": 661.661,
+      "heading": "SCENE 83 | 660.660s - 661.661s",
+      "cast": [],
+      "action": "A CAMERON is standing next to a red car with a license plate. Standing next to a car; Observing the car Relation: adjacent Dialogue trace: I know you",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 661.249,
+          "end": 661.649,
+          "text": "I know you"
+        }
+      ],
+      "text": "SCENE 83 | 660.660s - 661.661s\nACTION: A CAMERON is standing next to a red car with a license plate. Standing next to a car; Observing the car Relation: adjacent Dialogue trace: I know you\nNARRATOR: I know you"
+    },
+    {
+      "scene_id": 90,
+      "start": 695.695,
+      "end": 700.7,
+      "heading": "SCENE 90 | 695.695s - 700.700s",
+      "cast": [],
+      "action": "People are playing street hockey in a parking lot. playing street hockey; sweeping Relation: co-located Dialogue trace: okay? Yeah.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 695.367,
+          "end": 699.329,
+          "text": "okay? Yeah."
+        }
+      ],
+      "text": "SCENE 90 | 695.695s - 700.700s\nACTION: People are playing street hockey in a parking lot. playing street hockey; sweeping Relation: co-located Dialogue trace: okay? Yeah.\nNARRATOR: okay? Yeah."
+    },
+    {
+      "scene_id": 91,
+      "start": 700.7,
+      "end": 715.715,
+      "heading": "SCENE 91 | 700.700s - 715.715s",
+      "cast": [],
+      "action": "Two characters discuss a minor encounter with a sister. Discuss encounter; Stay cool Relation: Friendly Dialogue trace: Yeah. Just a minor encounter with the shrew. It's your girlfriend's sister. Wait, that's Bianca's sister? The mueling, rampalian wretch herself. Stay cool, bro. Yeah, see you later.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 701.27,
+          "end": 701.71,
+          "text": "Yeah."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 702.931,
+          "end": 704.872,
+          "text": "Just a minor encounter with the shrew."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 705.732,
+          "end": 706.733,
+          "text": "It's your girlfriend's sister."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 707.533,
+          "end": 711.935,
+          "text": "Wait, that's Bianca's sister? The mueling, rampalian wretch herself."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 713.496,
+          "end": 715.837,
+          "text": "Stay cool, bro. Yeah, see you later."
+        }
+      ],
+      "text": "SCENE 91 | 700.700s - 715.715s\nACTION: Two characters discuss a minor encounter with a sister. Discuss encounter; Stay cool Relation: Friendly Dialogue trace: Yeah. Just a minor encounter with the shrew. It's your girlfriend's sister. Wait, that's Bianca's sister? The mueling, rampalian wretch herself. Stay cool, bro. Yeah, see you later.\nNARRATOR: Yeah.\nNARRATOR: Just a minor encounter with the shrew.\nNARRATOR: It's your girlfriend's sister.\nNARRATOR: Wait, that's Bianca's sister? The mueling, rampalian wretch herself.\nNARRATOR: Stay cool, bro. Yeah, see you later."
+    },
+    {
+      "scene_id": 93,
+      "start": 716.716,
+      "end": 719.719,
+      "heading": "SCENE 93 | 716.716s - 719.719s",
+      "cast": [],
+      "action": "A man on a motorcycle is stopped by a car in a parking lot. stopped by car; parking lot Relation: interaction",
+      "dialogue": [],
+      "text": "SCENE 93 | 716.716s - 719.719s\nACTION: A man on a motorcycle is stopped by a car in a parking lot. stopped by car; parking lot Relation: interaction"
+    },
+    {
+      "scene_id": 130,
+      "start": 951.951,
+      "end": 954.954,
+      "heading": "SCENE 130 | 951.951s - 954.954s",
+      "cast": [],
+      "action": "Person reading a book. turning pages; reading Relation: reading",
+      "dialogue": [],
+      "text": "SCENE 130 | 951.951s - 954.954s\nACTION: Person reading a book. turning pages; reading Relation: reading"
+    },
+    {
+      "scene_id": 152,
+      "start": 1075.074,
+      "end": 1084.083,
+      "heading": "SCENE 152 | 1075.074s - 1084.083s",
+      "cast": [],
+      "action": "A brick building with windows and a wall in the foreground. Capture the image Relation: Foreground wall is in front of the building. Dialogue trace: Now, I have gathered a group of guys. Couldn't be more perfect. Paduous, finest.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 1075.694,
+          "end": 1086.083,
+          "text": "Now, I have gathered a group of guys. Couldn't be more perfect. Paduous, finest."
+        }
+      ],
+      "text": "SCENE 152 | 1075.074s - 1084.083s\nACTION: A brick building with windows and a wall in the foreground. Capture the image Relation: Foreground wall is in front of the building. Dialogue trace: Now, I have gathered a group of guys. Couldn't be more perfect. Paduous, finest.\nNARRATOR: Now, I have gathered a group of guys. Couldn't be more perfect. Paduous, finest."
+    },
+    {
+      "scene_id": 154,
+      "start": 1095.094,
+      "end": 1108.107,
+      "heading": "SCENE 154 | 1095.094s - 1108.107s",
+      "cast": [],
+      "action": "A character asks if there are sheep. speaking Dialogue trace: I'd never been that ripped. Maybe if we were the last two people alive, there were no sheep. Are there sheep?",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 1099.206,
+          "end": 1100.547,
+          "text": "I'd never been that ripped."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 1101.308,
+          "end": 1103.489,
+          "text": "Maybe if we were the last two people alive,"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 1104.35,
+          "end": 1105.11,
+          "text": "there were no sheep."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 1106.351,
+          "end": 1106.871,
+          "text": "Are there sheep?"
+        }
+      ],
+      "text": "SCENE 154 | 1095.094s - 1108.107s\nACTION: A character asks if there are sheep. speaking Dialogue trace: I'd never been that ripped. Maybe if we were the last two people alive, there were no sheep. Are there sheep?\nNARRATOR: I'd never been that ripped.\nNARRATOR: Maybe if we were the last two people alive,\nNARRATOR: there were no sheep.\nNARRATOR: Are there sheep?"
+    },
+    {
+      "scene_id": 163,
+      "start": 1161.16,
+      "end": 1173.172,
+      "heading": "SCENE 163 | 1161.160s - 1173.172s",
+      "cast": [],
+      "action": "Students work in a workshop setting, engaging in various crafts and projects. working on crafts; soldering Relation: collaborative learning environment",
+      "dialogue": [],
+      "text": "SCENE 163 | 1161.160s - 1173.172s\nACTION: Students work in a workshop setting, engaging in various crafts and projects. working on crafts; soldering Relation: collaborative learning environment"
+    },
+    {
+      "scene_id": 181,
+      "start": 1314.313,
+      "end": 1315.314,
+      "heading": "SCENE 181 | 1314.313s - 1315.314s",
+      "cast": [],
+      "action": "A blurred image of a window with a view of trees and water. Focus on the window frame; Adjust camera angle Relation: Blurred",
+      "dialogue": [],
+      "text": "SCENE 181 | 1314.313s - 1315.314s\nACTION: A blurred image of a window with a view of trees and water. Focus on the window frame; Adjust camera angle Relation: Blurred"
+    },
+    {
+      "scene_id": 182,
+      "start": 1315.314,
+      "end": 1324.323,
+      "heading": "SCENE 182 | 1315.314s - 1324.323s",
+      "cast": [],
+      "action": "CAMERON instructs a CAMERON to rip a golf ball. Instructs; Rips Relation: Teacher-Student Dialogue trace: Now remember, guys. Rip it. And? Rip it.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 1316.442,
+          "end": 1317.443,
+          "text": "Now remember, guys."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 1319.024,
+          "end": 1320.725,
+          "text": "Rip it. And? Rip it."
+        }
+      ],
+      "text": "SCENE 182 | 1315.314s - 1324.323s\nACTION: CAMERON instructs a CAMERON to rip a golf ball. Instructs; Rips Relation: Teacher-Student Dialogue trace: Now remember, guys. Rip it. And? Rip it.\nNARRATOR: Now remember, guys.\nNARRATOR: Rip it. And? Rip it."
+    },
+    {
+      "scene_id": 189,
+      "start": 1352.351,
+      "end": 1354.353,
+      "heading": "SCENE 189 | 1352.351s - 1354.353s",
+      "cast": [],
+      "action": "A girl in a yellow sports jersey stands with her arms crossed. Standing; Crossing arms Relation: Playing sports Dialogue trace: Yeah. That's",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 1353.109,
+          "end": 1353.309,
+          "text": "Yeah."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 1354.17,
+          "end": 1354.35,
+          "text": "That's"
+        }
+      ],
+      "text": "SCENE 189 | 1352.351s - 1354.353s\nACTION: A girl in a yellow sports jersey stands with her arms crossed. Standing; Crossing arms Relation: Playing sports Dialogue trace: Yeah. That's\nNARRATOR: Yeah.\nNARRATOR: That's"
+    },
+    {
+      "scene_id": 198,
+      "start": 1389.388,
+      "end": 1390.389,
+      "heading": "SCENE 198 | 1389.388s - 1390.389s",
+      "cast": [],
+      "action": "Soccer players in yellow and blue uniforms are on a field. running; kicking Relation: playing",
+      "dialogue": [],
+      "text": "SCENE 198 | 1389.388s - 1390.389s\nACTION: Soccer players in yellow and blue uniforms are on a field. running; kicking Relation: playing"
+    },
+    {
+      "scene_id": 214,
+      "start": 1503.502,
+      "end": 1531.53,
+      "heading": "SCENE 214 | 1503.502s - 1531.530s",
+      "cast": [],
+      "action": "CAMERON bends over in front of a mirror in a room with a table and lamp. bends over; looks in mirror Relation: interaction Dialogue trace: Have you ever considered a new look? I mean, seriously, you could have some definite potential buried under all this hostility. I'm not hostile. I'm annoyed. Why don't you try being nice? People wouldn't know what to think. You forget. I don't care what people think. Yes, you do. No, I don't. You don't always have to be who they want you to be, you know.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 1508.054,
+          "end": 1513.979,
+          "text": "Have you ever considered a new look? I mean, seriously, you could have some definite potential buried under all this hostility."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 1514.8,
+          "end": 1515.62,
+          "text": "I'm not hostile."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 1516.641,
+          "end": 1518.903,
+          "text": "I'm annoyed. Why don't you try being nice?"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 1519.744,
+          "end": 1520.845,
+          "text": "People wouldn't know what to think."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 1521.686,
+          "end": 1524.528,
+          "text": "You forget. I don't care what people think. Yes, you do."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 1525.849,
+          "end": 1526.41,
+          "text": "No, I don't."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 1528.694,
+          "end": 1530.555,
+          "text": "You don't always have to be who they want you to be, you know."
+        }
+      ],
+      "text": "SCENE 214 | 1503.502s - 1531.530s\nACTION: CAMERON bends over in front of a mirror in a room with a table and lamp. bends over; looks in mirror Relation: interaction Dialogue trace: Have you ever considered a new look? I mean, seriously, you could have some definite potential buried under all this hostility. I'm not hostile. I'm annoyed. Why don't you try being nice? People wouldn't know what to think. You forget. I don't care what people think. Yes, you do. No, I don't. You don't always have to be who they want you to be, you know.\nNARRATOR: Have you ever considered a new look? I mean, seriously, you could have some definite potential buried under all this hostility.\nNARRATOR: I'm not hostile.\nNARRATOR: I'm annoyed. Why don't you try being nice?\nNARRATOR: People wouldn't know what to think.\nNARRATOR: You forget. I don't care what people think. Yes, you do.\nNARRATOR: No, I don't.\nNARRATOR: You don't always have to be who they want you to be, you know."
+    },
+    {
+      "scene_id": 220,
+      "start": 1574.573,
+      "end": 1580.579,
+      "heading": "SCENE 220 | 1574.573s - 1580.579s",
+      "cast": [],
+      "action": "Dialogue trace: Not a big talk, huh? Depends on the topic. My Fenders don't really whip me into a verbal frenzy. You're",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 1575.127,
+          "end": 1575.908,
+          "text": "Not a big talk, huh?"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 1576.909,
+          "end": 1581.192,
+          "text": "Depends on the topic. My Fenders don't really whip me into a verbal frenzy. You're"
+        }
+      ],
+      "text": "SCENE 220 | 1574.573s - 1580.579s\nACTION: Dialogue trace: Not a big talk, huh? Depends on the topic. My Fenders don't really whip me into a verbal frenzy. You're\nNARRATOR: Not a big talk, huh?\nNARRATOR: Depends on the topic. My Fenders don't really whip me into a verbal frenzy. You're"
+    },
+    {
+      "scene_id": 222,
+      "start": 1597.596,
+      "end": 1612.611,
+      "heading": "SCENE 222 | 1597.596s - 1612.611s",
+      "cast": [],
+      "action": "A man and woman are standing next to a car. The man is speaking to the woman. standing; speaking Relation: interaction Dialogue trace: baby. What is it, asshole day? You mind? Not at all.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 1596.149,
+          "end": 1607.645,
+          "text": "baby. What is it, asshole day?"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 1609.608,
+          "end": 1610.969,
+          "text": "You mind? Not at all."
+        }
+      ],
+      "text": "SCENE 222 | 1597.596s - 1612.611s\nACTION: A man and woman are standing next to a car. The man is speaking to the woman. standing; speaking Relation: interaction Dialogue trace: baby. What is it, asshole day? You mind? Not at all.\nNARRATOR: baby. What is it, asshole day?\nNARRATOR: You mind? Not at all."
+    },
+    {
+      "scene_id": 229,
+      "start": 1625.624,
+      "end": 1629.628,
+      "heading": "SCENE 229 | 1625.624s - 1629.628s",
+      "cast": [],
+      "action": "Walter says 'Whoops.' Walter says 'Whoops.' Relation: Walter is speaking. Dialogue trace: Whoops.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 1629.366,
+          "end": 1629.846,
+          "text": "Whoops."
+        }
+      ],
+      "text": "SCENE 229 | 1625.624s - 1629.628s\nACTION: Walter says 'Whoops.' Walter says 'Whoops.' Relation: Walter is speaking. Dialogue trace: Whoops.\nNARRATOR: Whoops."
+    },
+    {
+      "scene_id": 249,
+      "start": 1832.831,
+      "end": 1837.836,
+      "heading": "SCENE 249 | 1832.831s - 1837.836s",
+      "cast": [],
+      "action": "Dialogue trace: this is going to be some party.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 1832.908,
+          "end": 1834.69,
+          "text": "this is going to be some party."
+        }
+      ],
+      "text": "SCENE 249 | 1832.831s - 1837.836s\nACTION: Dialogue trace: this is going to be some party.\nNARRATOR: this is going to be some party."
+    },
+    {
+      "scene_id": 252,
+      "start": 1849.848,
+      "end": 1866.865,
+      "heading": "SCENE 252 | 1849.848s - 1866.865s",
+      "cast": [],
+      "action": "People are throwing yellow papers in a stairwell. throwing; walking Relation: interaction Dialogue trace: Okay, now",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 1845.174,
+          "end": 1857.72,
+          "text": "Okay,"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 1866.004,
+          "end": 1866.924,
+          "text": "now"
+        }
+      ],
+      "text": "SCENE 252 | 1849.848s - 1866.865s\nACTION: People are throwing yellow papers in a stairwell. throwing; walking Relation: interaction Dialogue trace: Okay, now\nNARRATOR: Okay,\nNARRATOR: now"
+    },
+    {
+      "scene_id": 262,
+      "start": 1913.912,
+      "end": 1921.92,
+      "heading": "SCENE 262 | 1913.912s - 1921.920s",
+      "cast": [],
+      "action": "A bridge with traffic and a city skyline in the background. cross the bridge; drive on the bridge Relation: cityscape Dialogue trace: Have you heard about Buggie Lowenstein's party? Yes.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 1919.586,
+          "end": 1921.107,
+          "text": "Have you heard about Buggie Lowenstein's party?"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 1921.888,
+          "end": 1922.248,
+          "text": "Yes."
+        }
+      ],
+      "text": "SCENE 262 | 1913.912s - 1921.920s\nACTION: A bridge with traffic and a city skyline in the background. cross the bridge; drive on the bridge Relation: cityscape Dialogue trace: Have you heard about Buggie Lowenstein's party? Yes.\nNARRATOR: Have you heard about Buggie Lowenstein's party?\nNARRATOR: Yes."
+    },
+    {
+      "scene_id": 274,
+      "start": 2018.016,
+      "end": 2034.032,
+      "heading": "SCENE 274 | 2018.016s - 2034.032s",
+      "cast": [],
+      "action": "Nighttime scene with motorcycles parked outside a building. Motorcycles parked; People standing Relation: parked Dialogue trace: OK. Nice bike. Yeah, you think so?",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 2019.762,
+          "end": 2028.509,
+          "text": "OK. Nice bike. Yeah, you think so?"
+        }
+      ],
+      "text": "SCENE 274 | 2018.016s - 2034.032s\nACTION: Nighttime scene with motorcycles parked outside a building. Motorcycles parked; People standing Relation: parked Dialogue trace: OK. Nice bike. Yeah, you think so?\nNARRATOR: OK. Nice bike. Yeah, you think so?"
+    },
+    {
+      "scene_id": 316,
+      "start": 2337.335,
+      "end": 2339.337,
+      "heading": "SCENE 316 | 2337.335s - 2339.337s",
+      "cast": [],
+      "action": "A man in a sweater vest and button-up shirt is speaking indoors. speaking Relation: neutral Dialogue trace: Otherwise known as an orgy?",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 2337.203,
+          "end": 2338.523,
+          "text": "Otherwise known as an orgy?"
+        }
+      ],
+      "text": "SCENE 316 | 2337.335s - 2339.337s\nACTION: A man in a sweater vest and button-up shirt is speaking indoors. speaking Relation: neutral Dialogue trace: Otherwise known as an orgy?\nNARRATOR: Otherwise known as an orgy?"
+    },
+    {
+      "scene_id": 324,
+      "start": 2452.45,
+      "end": 2501.499,
+      "heading": "SCENE 324 | 2452.450s - 2501.499s",
+      "cast": [],
+      "action": "Patrick asks Michael for a compliment on his appearance. Michael compliments Patrick's appearance; Patrick asks for a second opinion Relation: Michael is being sarcastic. Dialogue trace: says that I was right that she didn't wear the Kenneth Coles with that dress because she thought that, you know, it was a mixing genres, right? And the fact that I noticed, and this is a direct quote, listen, really meant something. You told me that part already. Well, I've been thinking about it. You stopped being so self-involved for one minute. How do I look? You look like my great-uncle, Milton. You think I should lose the tie? Yeah. Maybe you're right. I'm just so nervous. I'm, you know, and I'm also very excited. I'm nervous, I'm excited. It's all very mixed up. I don't know, I don't know. Okay, all right, just calm, calm down, all right? Shh. The last party I went to was a chucky cheese. You want to talk about some fun? That's a good",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 2452.367,
+          "end": 2458.192,
+          "text": "says that I was right that she didn't wear the Kenneth Coles with that dress because she thought that, you know, it was a"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 2459.033,
+          "end": 2463.336,
+          "text": "mixing genres, right? And the fact that I noticed, and this is a direct quote, listen,"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 2464.437,
+          "end": 2467.76,
+          "text": "really meant something. You told me that part already."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 2469.782,
+          "end": 2473.205,
+          "text": "Well, I've been thinking about it. You stopped being so self-involved for one minute."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 2474.185,
+          "end": 2474.706,
+          "text": "How do I look?"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 2476.482,
+          "end": 2477.962,
+          "text": "You look like my great-uncle, Milton."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 2479.403,
+          "end": 2482.384,
+          "text": "You think I should lose the tie? Yeah. Maybe you're right."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 2483.244,
+          "end": 2495.027,
+          "text": "I'm just so nervous. I'm, you know, and I'm also very excited. I'm nervous, I'm excited. It's all very mixed up. I don't know, I don't know. Okay, all right, just calm, calm down, all right? Shh. The last party I went to was a chucky cheese."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 2496.068,
+          "end": 2497.968,
+          "text": "You want to talk about some fun? That's a good"
+        }
+      ],
+      "text": "SCENE 324 | 2452.450s - 2501.499s\nACTION: Patrick asks Michael for a compliment on his appearance. Michael compliments Patrick's appearance; Patrick asks for a second opinion Relation: Michael is being sarcastic. Dialogue trace: says that I was right that she didn't wear the Kenneth Coles with that dress because she thought that, you know, it was a mixing genres, right? And the fact that I noticed, and this is a direct quote, listen, really meant something. You told me that part already. Well, I've been thinking about it. You stopped being so self-involved for one minute. How do I look? You look like my great-uncle, Milton. You think I should lose the tie? Yeah. Maybe you're right. I'm just so nervous. I'm, you know, and I'm also very excited. I'm nervous, I'm excited. It's all very mixed up. I don't know, I don't know. Okay, all right, just calm, calm down, all right? Shh. The last party I went to was a chucky cheese. You want to talk about some fun? That's a good\nNARRATOR: says that I was right that she didn't wear the Kenneth Coles with that dress because she thought that, you know, it was a\nNARRATOR: mixing genres, right? And the fact that I noticed, and this is a direct quote, listen,\nNARRATOR: really meant something. You told me that part already.\nNARRATOR: Well, I've been thinking about it. You stopped being so self-involved for one minute.\nNARRATOR: How do I look?\nNARRATOR: You look like my great-uncle, Milton.\nNARRATOR: You think I should lose the tie? Yeah. Maybe you're right.\nNARRATOR: I'm just so nervous. I'm, you know, and I'm also very excited. I'm nervous, I'm excited. It's all very mixed up. I don't know, I don't know. Okay, all right, just calm, calm down, all right? Shh. The last party I went to was a chucky cheese.\nNARRATOR: You want to talk about some fun? That's a good"
+    },
+    {
+      "scene_id": 325,
+      "start": 2501.499,
+      "end": 2502.5,
+      "heading": "SCENE 325 | 2501.499s - 2502.500s",
+      "cast": [],
+      "action": "Dialogue trace: thing.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 2502.43,
+          "end": 2503.13,
+          "text": "thing."
+        }
+      ],
+      "text": "SCENE 325 | 2501.499s - 2502.500s\nACTION: Dialogue trace: thing.\nNARRATOR: thing."
+    },
+    {
+      "scene_id": 329,
+      "start": 2519.517,
+      "end": 2535.533,
+      "heading": "SCENE 329 | 2519.517s - 2535.533s",
+      "cast": [],
+      "action": "A wooden box contains various cigars with different labels. Open the box; Select a cigar Relation: cigars in a box Dialogue trace: Now remember guys, don't touch anything. What did I tell you? Must be Nigel with the brie.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 2523.106,
+          "end": 2530.277,
+          "text": "Now remember guys, don't touch anything. What did I tell you?"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 2533.142,
+          "end": 2534.844,
+          "text": "Must be Nigel with the brie."
+        }
+      ],
+      "text": "SCENE 329 | 2519.517s - 2535.533s\nACTION: A wooden box contains various cigars with different labels. Open the box; Select a cigar Relation: cigars in a box Dialogue trace: Now remember guys, don't touch anything. What did I tell you? Must be Nigel with the brie.\nNARRATOR: Now remember guys, don't touch anything. What did I tell you?\nNARRATOR: Must be Nigel with the brie."
+    },
+    {
+      "scene_id": 359,
+      "start": 2764.762,
+      "end": 2786.784,
+      "heading": "SCENE 359 | 2764.762s - 2786.784s",
+      "cast": [],
+      "action": "A hand is holding a can of Budweiser beer above two other cans. holding; stacking Relation: in hand Dialogue trace: You see what I did there? Uh-huh. That was underwear. I'll show you the bathing suit on again. Do you see the difference? All right, I'll show you. Oh!",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 2766.659,
+          "end": 2772.681,
+          "text": "You see what I did there?"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 2774.221,
+          "end": 2777.382,
+          "text": "Uh-huh. That was underwear. I'll show you the bathing suit on again."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 2781.41,
+          "end": 2786.396,
+          "text": "Do you see the difference? All right, I'll show you. Oh!"
+        }
+      ],
+      "text": "SCENE 359 | 2764.762s - 2786.784s\nACTION: A hand is holding a can of Budweiser beer above two other cans. holding; stacking Relation: in hand Dialogue trace: You see what I did there? Uh-huh. That was underwear. I'll show you the bathing suit on again. Do you see the difference? All right, I'll show you. Oh!\nNARRATOR: You see what I did there?\nNARRATOR: Uh-huh. That was underwear. I'll show you the bathing suit on again.\nNARRATOR: Do you see the difference? All right, I'll show you. Oh!"
+    },
+    {
+      "scene_id": 400,
+      "start": 3322.319,
+      "end": 3332.329,
+      "heading": "SCENE 400 | 3322.319s - 3332.329s",
+      "cast": [],
+      "action": "CAMERON in a classroom setting, standing in front of desks. Standing; Observing Relation: Teacher and students Dialogue trace: But how is everybody's weekend? Oh, I don't know. Maybe we should ask Cat. Unless",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 3327.542,
+          "end": 3331.064,
+          "text": "But how is everybody's weekend? Oh, I don't know. Maybe we should ask Cat."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 3332.305,
+          "end": 3332.545,
+          "text": "Unless"
+        }
+      ],
+      "text": "SCENE 400 | 3322.319s - 3332.329s\nACTION: CAMERON in a classroom setting, standing in front of desks. Standing; Observing Relation: Teacher and students Dialogue trace: But how is everybody's weekend? Oh, I don't know. Maybe we should ask Cat. Unless\nNARRATOR: But how is everybody's weekend? Oh, I don't know. Maybe we should ask Cat.\nNARRATOR: Unless"
+    },
+    {
+      "scene_id": 418,
+      "start": 3459.456,
+      "end": 3474.471,
+      "heading": "SCENE 418 | 3459.456s - 3474.471s",
+      "cast": [],
+      "action": "Students are playing a game on a sports field. running; throwing Relation: students playing Dialogue trace: What did you do to her? I didn't do anything. She would have been too drunk to remember. But the plan was working. What do you care? I thought you wanted out.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 3465.927,
+          "end": 3466.748,
+          "text": "What did you do to her?"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 3467.889,
+          "end": 3473.753,
+          "text": "I didn't do anything. She would have been too drunk to remember. But the plan was working. What do you care? I thought you wanted out."
+        }
+      ],
+      "text": "SCENE 418 | 3459.456s - 3474.471s\nACTION: Students are playing a game on a sports field. running; throwing Relation: students playing Dialogue trace: What did you do to her? I didn't do anything. She would have been too drunk to remember. But the plan was working. What do you care? I thought you wanted out.\nNARRATOR: What did you do to her?\nNARRATOR: I didn't do anything. She would have been too drunk to remember. But the plan was working. What do you care? I thought you wanted out."
+    },
+    {
+      "scene_id": 431,
+      "start": 3517.514,
+      "end": 3553.55,
+      "heading": "SCENE 431 | 3517.514s - 3553.550s",
+      "cast": [],
+      "action": "Two characters discuss an antiquated mating ritual. mentioning a dress; mentioning a band Relation: disagreement Dialogue trace: Hey, can you even imagine who the hell would go to that antiquated mating ritual? I would, but I don't have a thing. Do you really want to get all dressed up so some Dracar Noir wearing dexter with a boner can fill you up while you're forced to listen to a band that by definition blows? Oh, right. Oh, right. We won't go. Now look, I've got a dress in the way. You're looking at this from entirely the wrong perspective. You're making a mistake. Oh, goodie! Something new and different for us.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 3515.379,
+          "end": 3519.941,
+          "text": "Hey,"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 3521.762,
+          "end": 3547.791,
+          "text": "can you even imagine who the hell would go to that antiquated mating ritual? I would, but I don't have a thing. Do you really want to get all dressed up so some Dracar Noir wearing dexter with a boner can fill you up while you're forced to listen to a band that by definition blows? Oh, right. Oh, right. We won't go. Now look, I've got a dress in the way. You're looking at this from entirely the wrong perspective. You're making a mistake."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 3548.852,
+          "end": 3553.576,
+          "text": "Oh, goodie! Something new and different for us."
+        }
+      ],
+      "text": "SCENE 431 | 3517.514s - 3553.550s\nACTION: Two characters discuss an antiquated mating ritual. mentioning a dress; mentioning a band Relation: disagreement Dialogue trace: Hey, can you even imagine who the hell would go to that antiquated mating ritual? I would, but I don't have a thing. Do you really want to get all dressed up so some Dracar Noir wearing dexter with a boner can fill you up while you're forced to listen to a band that by definition blows? Oh, right. Oh, right. We won't go. Now look, I've got a dress in the way. You're looking at this from entirely the wrong perspective. You're making a mistake. Oh, goodie! Something new and different for us.\nNARRATOR: Hey,\nNARRATOR: can you even imagine who the hell would go to that antiquated mating ritual? I would, but I don't have a thing. Do you really want to get all dressed up so some Dracar Noir wearing dexter with a boner can fill you up while you're forced to listen to a band that by definition blows? Oh, right. Oh, right. We won't go. Now look, I've got a dress in the way. You're looking at this from entirely the wrong perspective. You're making a mistake.\nNARRATOR: Oh, goodie! Something new and different for us."
+    },
+    {
+      "scene_id": 489,
+      "start": 3956.953,
+      "end": 3962.959,
+      "heading": "SCENE 489 | 3956.953s - 3962.959s",
+      "cast": [],
+      "action": "Students sit at desks in a classroom setting. Sitting; Writing Relation: Detention Dialogue trace: Mr. Chapin, can I",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 3961.387,
+          "end": 3961.927,
+          "text": "Mr. Chapin,"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 3962.788,
+          "end": 3962.988,
+          "text": "can I"
+        }
+      ],
+      "text": "SCENE 489 | 3956.953s - 3962.959s\nACTION: Students sit at desks in a classroom setting. Sitting; Writing Relation: Detention Dialogue trace: Mr. Chapin, can I\nNARRATOR: Mr. Chapin,\nNARRATOR: can I"
+    },
+    {
+      "scene_id": 512,
+      "start": 4060.056,
+      "end": 4085.081,
+      "heading": "SCENE 512 | 4060.056s - 4085.081s",
+      "cast": [],
+      "action": "A boat is sailing on a body of water with a marina and buildings in the background. sailing; passing Relation: proximity Dialogue trace: OK. Hi. I can't thank you enough for helping me sneak out of detention. Very cool. No problem. I thought for sure I was busted when I was climbing out that window. I tell you. So how did you keep him distracted? I dazzled him with my wits. So what's your excuse? For? For acting the way we do.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 4060.727,
+          "end": 4061.027,
+          "text": "Hi."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4063.808,
+          "end": 4073.183,
+          "text": "I can't thank you enough for helping me sneak out of detention. Very cool. No problem. I thought for sure I was busted when I was climbing out that window. I tell you. So how did you keep him distracted?"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4074.363,
+          "end": 4076.984,
+          "text": "I dazzled him with my wits."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4080.666,
+          "end": 4081.526,
+          "text": "So what's your excuse?"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4082.346,
+          "end": 4084.627,
+          "text": "For? For acting the way we do."
+        }
+      ],
+      "text": "SCENE 512 | 4060.056s - 4085.081s\nACTION: A boat is sailing on a body of water with a marina and buildings in the background. sailing; passing Relation: proximity Dialogue trace: OK. Hi. I can't thank you enough for helping me sneak out of detention. Very cool. No problem. I thought for sure I was busted when I was climbing out that window. I tell you. So how did you keep him distracted? I dazzled him with my wits. So what's your excuse? For? For acting the way we do.\nNARRATOR: Hi.\nNARRATOR: I can't thank you enough for helping me sneak out of detention. Very cool. No problem. I thought for sure I was busted when I was climbing out that window. I tell you. So how did you keep him distracted?\nNARRATOR: I dazzled him with my wits.\nNARRATOR: So what's your excuse?\nNARRATOR: For? For acting the way we do."
+    },
+    {
+      "scene_id": 541,
+      "start": 4216.212,
+      "end": 4255.251,
+      "heading": "SCENE 541 | 4216.212s - 4255.251s",
+      "cast": [],
+      "action": "A green SUV is parked on a street in front of houses. parked Relation: static Dialogue trace: That stuff is true. State trooper. Fallacy. A dead guy in the parking lot. Rumor. The duck. You're safe. I'll be rich with balls. Fact. But he deserved it, and he tried to grope me in the lunch line. Fair enough. The accent. It's real. I, uh, lived in Australia until I was 10. With the pygmies? Close. With my mom. Where were you last year? I know the porn career is a lie. Do you?",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 4219.318,
+          "end": 4219.878,
+          "text": "That stuff is true."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4220.699,
+          "end": 4224.522,
+          "text": "State trooper. Fallacy. A dead guy in the parking lot. Rumor."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4225.602,
+          "end": 4231.787,
+          "text": "The duck. You're safe. I'll be rich with balls. Fact. But he deserved it, and he tried to grope me in the lunch line. Fair enough."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4232.767,
+          "end": 4234.328,
+          "text": "The accent. It's real."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4235.149,
+          "end": 4236.89,
+          "text": "I, uh, lived in Australia until I was 10."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4237.651,
+          "end": 4238.331,
+          "text": "With the pygmies?"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4239.452,
+          "end": 4239.792,
+          "text": "Close."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4240.693,
+          "end": 4241.153,
+          "text": "With my mom."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4243.855,
+          "end": 4247.297,
+          "text": "Where were you last year? I know the porn career is a lie. Do you?"
+        }
+      ],
+      "text": "SCENE 541 | 4216.212s - 4255.251s\nACTION: A green SUV is parked on a street in front of houses. parked Relation: static Dialogue trace: That stuff is true. State trooper. Fallacy. A dead guy in the parking lot. Rumor. The duck. You're safe. I'll be rich with balls. Fact. But he deserved it, and he tried to grope me in the lunch line. Fair enough. The accent. It's real. I, uh, lived in Australia until I was 10. With the pygmies? Close. With my mom. Where were you last year? I know the porn career is a lie. Do you?\nNARRATOR: That stuff is true.\nNARRATOR: State trooper. Fallacy. A dead guy in the parking lot. Rumor.\nNARRATOR: The duck. You're safe. I'll be rich with balls. Fact. But he deserved it, and he tried to grope me in the lunch line. Fair enough.\nNARRATOR: The accent. It's real.\nNARRATOR: I, uh, lived in Australia until I was 10.\nNARRATOR: With the pygmies?\nNARRATOR: Close.\nNARRATOR: With my mom.\nNARRATOR: Where were you last year? I know the porn career is a lie. Do you?"
+    },
+    {
+      "scene_id": 556,
+      "start": 4344.34,
+      "end": 4386.382,
+      "heading": "SCENE 556 | 4344.340s - 4386.382s",
+      "cast": [],
+      "action": "A boy offers a girl a parsnip in a library. offers parsnip; dialogue Relation: friendly Dialogue trace: Oui, je vous offre un navet. Pas de tout. Où est le crayon de mon oncle? Je ne sais pas. Peut-être dans ton truc de coup. Wait a minute. That's not on this play. Laisse-toi te demander en question, Cameron. Comme vous demanderez, tu te sortis avec toi.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 4344.258,
+          "end": 4347.279,
+          "text": "Oui, je vous offre un navet. Pas de tout."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4348.78,
+          "end": 4350.32,
+          "text": "Où est le crayon de mon oncle?"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4351.781,
+          "end": 4354.182,
+          "text": "Je ne sais pas. Peut-être dans ton truc de coup."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4357.383,
+          "end": 4359.744,
+          "text": "Wait a minute. That's not on this play."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4360.624,
+          "end": 4365.726,
+          "text": "Laisse-toi te demander en question, Cameron. Comme vous demanderez, tu te sortis avec toi."
+        }
+      ],
+      "text": "SCENE 556 | 4344.340s - 4386.382s\nACTION: A boy offers a girl a parsnip in a library. offers parsnip; dialogue Relation: friendly Dialogue trace: Oui, je vous offre un navet. Pas de tout. Où est le crayon de mon oncle? Je ne sais pas. Peut-être dans ton truc de coup. Wait a minute. That's not on this play. Laisse-toi te demander en question, Cameron. Comme vous demanderez, tu te sortis avec toi.\nNARRATOR: Oui, je vous offre un navet. Pas de tout.\nNARRATOR: Où est le crayon de mon oncle?\nNARRATOR: Je ne sais pas. Peut-être dans ton truc de coup.\nNARRATOR: Wait a minute. That's not on this play.\nNARRATOR: Laisse-toi te demander en question, Cameron. Comme vous demanderez, tu te sortis avec toi."
+    },
+    {
+      "scene_id": 557,
+      "start": 4386.382,
+      "end": 4393.389,
+      "heading": "SCENE 557 | 4386.382s - 4393.389s",
+      "cast": [],
+      "action": "A note asking someone to join them at the prom is attached to a dress. Read the note; Decide on a response",
+      "dialogue": [],
+      "text": "SCENE 557 | 4386.382s - 4393.389s\nACTION: A note asking someone to join them at the prom is attached to a dress. Read the note; Decide on a response"
+    },
+    {
+      "scene_id": 560,
+      "start": 4405.401,
+      "end": 4416.412,
+      "heading": "SCENE 560 | 4405.401s - 4416.412s",
+      "cast": [],
+      "action": "CAMERON lying on exercise mat next to exercise bike on deck. lying down; resting Relation: relaxed Dialogue trace: Now, as you know, it's the prom.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 4414.73,
+          "end": 4416.391,
+          "text": "Now, as you know, it's the prom."
+        }
+      ],
+      "text": "SCENE 560 | 4405.401s - 4416.412s\nACTION: CAMERON lying on exercise mat next to exercise bike on deck. lying down; resting Relation: relaxed Dialogue trace: Now, as you know, it's the prom.\nNARRATOR: Now, as you know, it's the prom."
+    },
+    {
+      "scene_id": 573,
+      "start": 4496.492,
+      "end": 4506.502,
+      "heading": "SCENE 573 | 4496.492s - 4506.502s",
+      "cast": [],
+      "action": "Two men in uniform are shown on a TV screen. Watch TV Relation: Neutral Dialogue trace: of love across this nation worldwide. Believe it. This is the true story. The real world.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 4496.459,
+          "end": 4499.941,
+          "text": "of love across this nation worldwide. Believe it."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 4502.398,
+          "end": 4506.7,
+          "text": "This is the true story. The real world."
+        }
+      ],
+      "text": "SCENE 573 | 4496.492s - 4506.502s\nACTION: Two men in uniform are shown on a TV screen. Watch TV Relation: Neutral Dialogue trace: of love across this nation worldwide. Believe it. This is the true story. The real world.\nNARRATOR: of love across this nation worldwide. Believe it.\nNARRATOR: This is the true story. The real world."
+    },
+    {
+      "scene_id": 586,
+      "start": 4684.68,
+      "end": 4686.682,
+      "heading": "SCENE 586 | 4684.680s - 4686.682s",
+      "cast": [],
+      "action": "A woman leans against a tree in a garden. leaning; resting Relation: relaxed Dialogue trace: cover-up.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 4684.68,
+          "end": 4686.682,
+          "text": "cover-up."
+        }
+      ],
+      "text": "SCENE 586 | 4684.680s - 4686.682s\nACTION: A woman leans against a tree in a garden. leaning; resting Relation: relaxed Dialogue trace: cover-up.\nNARRATOR: cover-up."
+    },
+    {
+      "scene_id": 591,
+      "start": 4732.728,
+      "end": 4733.729,
+      "heading": "SCENE 591 | 4732.728s - 4733.729s",
+      "cast": [],
+      "action": "A young man in a tuxedo looks through a doorway. looks; through Dialogue trace: Hi.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 4732.673,
+          "end": 4736.416,
+          "text": "Hi."
+        }
+      ],
+      "text": "SCENE 591 | 4732.728s - 4733.729s\nACTION: A young man in a tuxedo looks through a doorway. looks; through Dialogue trace: Hi.\nNARRATOR: Hi."
+    },
+    {
+      "scene_id": 600,
+      "start": 4782.778,
+      "end": 4786.782,
+      "heading": "SCENE 600 | 4782.778s - 4786.782s",
+      "cast": [],
+      "action": "A man is speaking to another person. speaking Dialogue trace: I want you",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 4783.198,
+          "end": 4784.109,
+          "text": "I want you"
+        }
+      ],
+      "text": "SCENE 600 | 4782.778s - 4786.782s\nACTION: A man is speaking to another person. speaking Dialogue trace: I want you\nNARRATOR: I want you"
+    },
+    {
+      "scene_id": 657,
+      "start": 5203.198,
+      "end": 5234.229,
+      "heading": "SCENE 657 | 5203.198s - 5234.229s",
+      "cast": [],
+      "action": "Dialogue trace: Are you sure you don't want to go sailing with us? It'll be fun. No, I'm fine.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 5227.554,
+          "end": 5230.175,
+          "text": "Are you sure you don't want to go sailing with us? It'll be fun."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 5231.796,
+          "end": 5232.396,
+          "text": "No, I'm fine."
+        }
+      ],
+      "text": "SCENE 657 | 5203.198s - 5234.229s\nACTION: Dialogue trace: Are you sure you don't want to go sailing with us? It'll be fun. No, I'm fine.\nNARRATOR: Are you sure you don't want to go sailing with us? It'll be fun.\nNARRATOR: No, I'm fine."
+    },
+    {
+      "scene_id": 663,
+      "start": 5345.34,
+      "end": 5349.344,
+      "heading": "SCENE 663 | 5345.340s - 5349.344s",
+      "cast": [],
+      "action": "A courtyard with people and tables in front of a large brick building. People walking and sitting; Tables and chairs arranged Relation: Building and courtyard interaction",
+      "dialogue": [],
+      "text": "SCENE 663 | 5345.340s - 5349.344s\nACTION: A courtyard with people and tables in front of a large brick building. People walking and sitting; Tables and chairs arranged Relation: Building and courtyard interaction"
+    },
+    {
+      "scene_id": 664,
+      "start": 5349.344,
+      "end": 5355.35,
+      "heading": "SCENE 664 | 5349.344s - 5355.350s",
+      "cast": [],
+      "action": "Mr. Donna has not completed their poem. Mr. Donna has not completed their poem Relation: Mr. Donna is a student in the class. Dialogue trace: Everyone has found time to complete their poem, except for Mr. Donna, who",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 5350.442,
+          "end": 5354.324,
+          "text": "Everyone has found time to complete their poem, except for Mr. Donna,"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 5355.225,
+          "end": 5355.685,
+          "text": "who"
+        }
+      ],
+      "text": "SCENE 664 | 5349.344s - 5355.350s\nACTION: Mr. Donna has not completed their poem. Mr. Donna has not completed their poem Relation: Mr. Donna is a student in the class. Dialogue trace: Everyone has found time to complete their poem, except for Mr. Donna, who\nNARRATOR: Everyone has found time to complete their poem, except for Mr. Donna,\nNARRATOR: who"
+    },
+    {
+      "scene_id": 666,
+      "start": 5357.352,
+      "end": 5361.356,
+      "heading": "SCENE 666 | 5357.352s - 5361.356s",
+      "cast": [],
+      "action": "SPEAKER_01 asks Chef to remove his glasses. ask; remove Relation: request Dialogue trace: Chef, lose the glasses.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 5359.027,
+          "end": 5359.387,
+          "text": "Chef,"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 5360.148,
+          "end": 5360.848,
+          "text": "lose the glasses."
+        }
+      ],
+      "text": "SCENE 666 | 5357.352s - 5361.356s\nACTION: SPEAKER_01 asks Chef to remove his glasses. ask; remove Relation: request Dialogue trace: Chef, lose the glasses.\nNARRATOR: Chef,\nNARRATOR: lose the glasses."
+    },
+    {
+      "scene_id": 683,
+      "start": 5685.68,
+      "end": 5712.707,
+      "heading": "SCENE 683 | 5685.680s - 5712.707s",
+      "cast": [],
+      "action": "Dialogue trace: I know everyone digs your sister and all, but she's without. You know? You're not as vile as I thought you were.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 5687.09,
+          "end": 5687.31,
+          "text": "I"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 5688.472,
+          "end": 5690.034,
+          "text": "know everyone digs your sister and all, but"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 5691.496,
+          "end": 5691.997,
+          "text": "she's without."
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 5695.021,
+          "end": 5695.382,
+          "text": "You know?"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 5697.184,
+          "end": 5698.326,
+          "text": "You're not as vile as I thought you were."
+        }
+      ],
+      "text": "SCENE 683 | 5685.680s - 5712.707s\nACTION: Dialogue trace: I know everyone digs your sister and all, but she's without. You know? You're not as vile as I thought you were.\nNARRATOR: I\nNARRATOR: know everyone digs your sister and all, but\nNARRATOR: she's without.\nNARRATOR: You know?\nNARRATOR: You're not as vile as I thought you were."
+    },
+    {
+      "scene_id": 685,
+      "start": 5715.71,
+      "end": 5739.734,
+      "heading": "SCENE 685 | 5715.710s - 5739.734s",
+      "cast": [],
+      "action": "Dialogue trace: No, I'm really looking forward to doing it. Go see Ms. Perky. What? Go, Perky's! Go, now. Once again, Perky's now is the second one. Perky's now, Perky's now! Right away, right away. Now, Perky's! Hey, hey, hey. Now, Perky's, Perky's now. Begin the shot. Perk, oh.",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 5718.747,
+          "end": 5739.801,
+          "text": "No, I'm really looking forward to doing it. Go see Ms. Perky. What? Go, Perky's! Go, now. Once again, Perky's now is the second one. Perky's now, Perky's now! Right away, right away. Now, Perky's! Hey, hey, hey. Now, Perky's, Perky's now. Begin the shot. Perk, oh."
+        }
+      ],
+      "text": "SCENE 685 | 5715.710s - 5739.734s\nACTION: Dialogue trace: No, I'm really looking forward to doing it. Go see Ms. Perky. What? Go, Perky's! Go, now. Once again, Perky's now is the second one. Perky's now, Perky's now! Right away, right away. Now, Perky's! Hey, hey, hey. Now, Perky's, Perky's now. Begin the shot. Perk, oh.\nNARRATOR: No, I'm really looking forward to doing it. Go see Ms. Perky. What? Go, Perky's! Go, now. Once again, Perky's now is the second one. Perky's now, Perky's now! Right away, right away. Now, Perky's! Hey, hey, hey. Now, Perky's, Perky's now. Begin the shot. Perk, oh."
+    },
+    {
+      "scene_id": 697,
+      "start": 5800.795,
+      "end": 5819.814,
+      "heading": "SCENE 697 | 5800.795s - 5819.814s",
+      "cast": [],
+      "action": "A couple is kissing in a scene. kissing Relation: romantic Dialogue trace: Could I get a prophylactic? A prophylactic?",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 5812.668,
+          "end": 5813.948,
+          "text": "Could I get a prophylactic?"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 5815.729,
+          "end": 5816.629,
+          "text": "A prophylactic?"
+        }
+      ],
+      "text": "SCENE 697 | 5800.795s - 5819.814s\nACTION: A couple is kissing in a scene. kissing Relation: romantic Dialogue trace: Could I get a prophylactic? A prophylactic?\nNARRATOR: Could I get a prophylactic?\nNARRATOR: A prophylactic?"
+    },
+    {
+      "scene_id": 698,
+      "start": 5819.814,
+      "end": 5827.822,
+      "heading": "SCENE 698 | 5819.814s - 5827.822s",
+      "cast": [],
+      "action": "A character is expressing their feelings about being set up. expressing feelings; questioning Relation: confused Dialogue trace: How did you set me up like that? Oh, God, I just wanted to... To completely damage me? To send me to therapy forever? What? No, I",
+      "dialogue": [
+        {
+          "speaker": "NARRATOR",
+          "start": 5820.258,
+          "end": 5821.319,
+          "text": "How did you set me up like that?"
+        },
+        {
+          "speaker": "NARRATOR",
+          "start": 5822.82,
+          "end": 5827.845,
+          "text": "Oh, God, I just wanted to... To completely damage me? To send me to therapy forever? What? No, I"
+        }
+      ],
+      "text": "SCENE 698 | 5819.814s - 5827.822s\nACTION: A character is expressing their feelings about being set up. expressing feelings; questioning Relation: confused Dialogue trace: How did you set me up like that? Oh, God, I just wanted to... To completely damage me? To send me to therapy forever? What? No, I\nNARRATOR: How did you set me up like that?\nNARRATOR: Oh, God, I just wanted to... To completely damage me? To send me to therapy forever? What? No, I"
+    },
+    {
+      "scene_id": 701,
+      "start": 5839.834,
+      "end": 5841.836,
+      "heading": "SCENE 701 | 5839.834s - 5841.836s",
+      "cast": [],
+      "action": "No content available.",
+      "dialogue": [],
+      "text": "SCENE 701 | 5839.834s - 5841.836s\nACTION: No content available."
+    },
+    {
+      "scene_id": 703,
+      "start": 5845.84,
+      "end": 5849.844,
+      "heading": "SCENE 703 | 5845.840s - 5849.844s",
+      "cast": [],
+      "action": "A bright light with the words 'Touchstone Pictures' in blue text. Light up; Display Relation: Brand Logo",
+      "dialogue": [],
+      "text": "SCENE 703 | 5845.840s - 5849.844s\nACTION: A bright light with the words 'Touchstone Pictures' in blue text. Light up; Display Relation: Brand Logo"
+    }
+  ],
+  "script_text": "SCENE 0 | 0.000s - 19.019s\nACTION: No content available.\n\nSCENE 1 | 19.019s - 22.022s\nACTION: A Mad Chance/Jaret Entertainment production production\n\nSCENE 3 | 26.026s - 27.027s\nACTION: A cityscape with a prominent skyscraper and surrounding buildings. pan; zoom Relation: cityscape\n\nSCENE 5 | 76.076s - 79.079s\nACTION: A woman is driving a red car. driving Relation: in car\n\nSCENE 7 | 82.082s - 86.086s\nACTION: A young woman with curly hair looks over her shoulder in a car. looks over her shoulder; sits in a car Relation: in a car\n\nSCENE 8 | 86.086s - 89.089s\nACTION: KAT is discussing a past event with someone, mentioning that she was merely a spectator. continuing Relation: interested\n\nSCENE 9 | 89.089s - 107.107s\nACTION: People playing hockey on roller blades in a public space. Roller blades; Hockey Relation: Playing\n\nSCENE 13 | 116.116s - 125.125s\nACTION: Dialogue trace: I'll start with\nNARRATOR: I'll start with\n\nSCENE 14 | 125.125s - 127.127s\nACTION: A woman is sitting at a desk with a computer, smiling. sitting; smiling Relation: neutral\n\nSCENE 31 | 207.207s - 210.210s\nACTION: A woman sits at a desk with text overlay. sitting; typing Relation: in office\n\nSCENE 77 | 551.551s - 557.557s\nACTION: Blurred image of people in a room. Standing; Talking Relation: Indeterminate Dialogue trace: favorite.\nNARRATOR: favorite.\n\nSCENE 80 | 654.654s - 656.656s\nACTION: A man in a purple shirt is sitting in a convertible car. sitting; holding steering wheel Relation: in car Dialogue trace: you read last month's Cosmo? Run\nNARRATOR: read last month's Cosmo? Run\n\nSCENE 83 | 660.660s - 661.661s\nACTION: A CAMERON is standing next to a red car with a license plate. Standing next to a car; Observing the car Relation: adjacent Dialogue trace: I know you\nNARRATOR: I know you\n\nSCENE 90 | 695.695s - 700.700s\nACTION: People are playing street hockey in a parking lot. playing street hockey; sweeping Relation: co-located Dialogue trace: okay? Yeah.\nNARRATOR: okay? Yeah.\n\nSCENE 91 | 700.700s - 715.715s\nACTION: Two characters discuss a minor encounter with a sister. Discuss encounter; Stay cool Relation: Friendly Dialogue trace: Yeah. Just a minor encounter with the shrew. It's your girlfriend's sister. Wait, that's Bianca's sister? The mueling, rampalian wretch herself. Stay cool, bro. Yeah, see you later.\nNARRATOR: Yeah.\nNARRATOR: Just a minor encounter with the shrew.\nNARRATOR: It's your girlfriend's sister.\nNARRATOR: Wait, that's Bianca's sister? The mueling, rampalian wretch herself.\nNARRATOR: Stay cool, bro. Yeah, see you later.\n\nSCENE 93 | 716.716s - 719.719s\nACTION: A man on a motorcycle is stopped by a car in a parking lot. stopped by car; parking lot Relation: interaction\n\nSCENE 130 | 951.951s - 954.954s\nACTION: Person reading a book. turning pages; reading Relation: reading\n\nSCENE 152 | 1075.074s - 1084.083s\nACTION: A brick building with windows and a wall in the foreground. Capture the image Relation: Foreground wall is in front of the building. Dialogue trace: Now, I have gathered a group of guys. Couldn't be more perfect. Paduous, finest.\nNARRATOR: Now, I have gathered a group of guys. Couldn't be more perfect. Paduous, finest.\n\nSCENE 154 | 1095.094s - 1108.107s\nACTION: A character asks if there are sheep. speaking Dialogue trace: I'd never been that ripped. Maybe if we were the last two people alive, there were no sheep. Are there sheep?\nNARRATOR: I'd never been that ripped.\nNARRATOR: Maybe if we were the last two people alive,\nNARRATOR: there were no sheep.\nNARRATOR: Are there sheep?\n\nSCENE 163 | 1161.160s - 1173.172s\nACTION: Students work in a workshop setting, engaging in various crafts and projects. working on crafts; soldering Relation: collaborative learning environment\n\nSCENE 181 | 1314.313s - 1315.314s\nACTION: A blurred image of a window with a view of trees and water. Focus on the window frame; Adjust camera angle Relation: Blurred\n\nSCENE 182 | 1315.314s - 1324.323s\nACTION: CAMERON instructs a CAMERON to rip a golf ball. Instructs; Rips Relation: Teacher-Student Dialogue trace: Now remember, guys. Rip it. And? Rip it.\nNARRATOR: Now remember, guys.\nNARRATOR: Rip it. And? Rip it.\n\nSCENE 189 | 1352.351s - 1354.353s\nACTION: A girl in a yellow sports jersey stands with her arms crossed. Standing; Crossing arms Relation: Playing sports Dialogue trace: Yeah. That's\nNARRATOR: Yeah.\nNARRATOR: That's\n\nSCENE 198 | 1389.388s - 1390.389s\nACTION: Soccer players in yellow and blue uniforms are on a field. running; kicking Relation: playing\n\nSCENE 214 | 1503.502s - 1531.530s\nACTION: CAMERON bends over in front of a mirror in a room with a table and lamp. bends over; looks in mirror Relation: interaction Dialogue trace: Have you ever considered a new look? I mean, seriously, you could have some definite potential buried under all this hostility. I'm not hostile. I'm annoyed. Why don't you try being nice? People wouldn't know what to think. You forget. I don't care what people think. Yes, you do. No, I don't. You don't always have to be who they want you to be, you know.\nNARRATOR: Have you ever considered a new look? I mean, seriously, you could have some definite potential buried under all this hostility.\nNARRATOR: I'm not hostile.\nNARRATOR: I'm annoyed. Why don't you try being nice?\nNARRATOR: People wouldn't know what to think.\nNARRATOR: You forget. I don't care what people think. Yes, you do.\nNARRATOR: No, I don't.\nNARRATOR: You don't always have to be who they want you to be, you know.\n\nSCENE 220 | 1574.573s - 1580.579s\nACTION: Dialogue trace: Not a big talk, huh? Depends on the topic. My Fenders don't really whip me into a verbal frenzy. You're\nNARRATOR: Not a big talk, huh?\nNARRATOR: Depends on the topic. My Fenders don't really whip me into a verbal frenzy. You're\n\nSCENE 222 | 1597.596s - 1612.611s\nACTION: A man and woman are standing next to a car. The man is speaking to the woman. standing; speaking Relation: interaction Dialogue trace: baby. What is it, asshole day? You mind? Not at all.\nNARRATOR: baby. What is it, asshole day?\nNARRATOR: You mind? Not at all.\n\nSCENE 229 | 1625.624s - 1629.628s\nACTION: Walter says 'Whoops.' Walter says 'Whoops.' Relation: Walter is speaking. Dialogue trace: Whoops.\nNARRATOR: Whoops.\n\nSCENE 249 | 1832.831s - 1837.836s\nACTION: Dialogue trace: this is going to be some party.\nNARRATOR: this is going to be some party.\n\nSCENE 252 | 1849.848s - 1866.865s\nACTION: People are throwing yellow papers in a stairwell. throwing; walking Relation: interaction Dialogue trace: Okay, now\nNARRATOR: Okay,\nNARRATOR: now\n\nSCENE 262 | 1913.912s - 1921.920s\nACTION: A bridge with traffic and a city skyline in the background. cross the bridge; drive on the bridge Relation: cityscape Dialogue trace: Have you heard about Buggie Lowenstein's party? Yes.\nNARRATOR: Have you heard about Buggie Lowenstein's party?\nNARRATOR: Yes.\n\nSCENE 274 | 2018.016s - 2034.032s\nACTION: Nighttime scene with motorcycles parked outside a building. Motorcycles parked; People standing Relation: parked Dialogue trace: OK. Nice bike. Yeah, you think so?\nNARRATOR: OK. Nice bike. Yeah, you think so?\n\nSCENE 316 | 2337.335s - 2339.337s\nACTION: A man in a sweater vest and button-up shirt is speaking indoors. speaking Relation: neutral Dialogue trace: Otherwise known as an orgy?\nNARRATOR: Otherwise known as an orgy?\n\nSCENE 324 | 2452.450s - 2501.499s\nACTION: Patrick asks Michael for a compliment on his appearance. Michael compliments Patrick's appearance; Patrick asks for a second opinion Relation: Michael is being sarcastic. Dialogue trace: says that I was right that she didn't wear the Kenneth Coles with that dress because she thought that, you know, it was a mixing genres, right? And the fact that I noticed, and this is a direct quote, listen, really meant something. You told me that part already. Well, I've been thinking about it. You stopped being so self-involved for one minute. How do I look? You look like my great-uncle, Milton. You think I should lose the tie? Yeah. Maybe you're right. I'm just so nervous. I'm, you know, and I'm also very excited. I'm nervous, I'm excited. It's all very mixed up. I don't know, I don't know. Okay, all right, just calm, calm down, all right? Shh. The last party I went to was a chucky cheese. You want to talk about some fun? That's a good\nNARRATOR: says that I was right that she didn't wear the Kenneth Coles with that dress because she thought that, you know, it was a\nNARRATOR: mixing genres, right? And the fact that I noticed, and this is a direct quote, listen,\nNARRATOR: really meant something. You told me that part already.\nNARRATOR: Well, I've been thinking about it. You stopped being so self-involved for one minute.\nNARRATOR: How do I look?\nNARRATOR: You look like my great-uncle, Milton.\nNARRATOR: You think I should lose the tie? Yeah. Maybe you're right.\nNARRATOR: I'm just so nervous. I'm, you know, and I'm also very excited. I'm nervous, I'm excited. It's all very mixed up. I don't know, I don't know. Okay, all right, just calm, calm down, all right? Shh. The last party I went to was a chucky cheese.\nNARRATOR: You want to talk about some fun? That's a good\n\nSCENE 325 | 2501.499s - 2502.500s\nACTION: Dialogue trace: thing.\nNARRATOR: thing.\n\nSCENE 329 | 2519.517s - 2535.533s\nACTION: A wooden box contains various cigars with different labels. Open the box; Select a cigar Relation: cigars in a box Dialogue trace: Now remember guys, don't touch anything. What did I tell you? Must be Nigel with the brie.\nNARRATOR: Now remember guys, don't touch anything. What did I tell you?\nNARRATOR: Must be Nigel with the brie.\n\nSCENE 359 | 2764.762s - 2786.784s\nACTION: A hand is holding a can of Budweiser beer above two other cans. holding; stacking Relation: in hand Dialogue trace: You see what I did there? Uh-huh. That was underwear. I'll show you the bathing suit on again. Do you see the difference? All right, I'll show you. Oh!\nNARRATOR: You see what I did there?\nNARRATOR: Uh-huh. That was underwear. I'll show you the bathing suit on again.\nNARRATOR: Do you see the difference? All right, I'll show you. Oh!\n\nSCENE 400 | 3322.319s - 3332.329s\nACTION: CAMERON in a classroom setting, standing in front of desks. Standing; Observing Relation: Teacher and students Dialogue trace: But how is everybody's weekend? Oh, I don't know. Maybe we should ask Cat. Unless\nNARRATOR: But how is everybody's weekend? Oh, I don't know. Maybe we should ask Cat.\nNARRATOR: Unless\n\nSCENE 418 | 3459.456s - 3474.471s\nACTION: Students are playing a game on a sports field. running; throwing Relation: students playing Dialogue trace: What did you do to her? I didn't do anything. She would have been too drunk to remember. But the plan was working. What do you care? I thought you wanted out.\nNARRATOR: What did you do to her?\nNARRATOR: I didn't do anything. She would have been too drunk to remember. But the plan was working. What do you care? I thought you wanted out.\n\nSCENE 431 | 3517.514s - 3553.550s\nACTION: Two characters discuss an antiquated mating ritual. mentioning a dress; mentioning a band Relation: disagreement Dialogue trace: Hey, can you even imagine who the hell would go to that antiquated mating ritual? I would, but I don't have a thing. Do you really want to get all dressed up so some Dracar Noir wearing dexter with a boner can fill you up while you're forced to listen to a band that by definition blows? Oh, right. Oh, right. We won't go. Now look, I've got a dress in the way. You're looking at this from entirely the wrong perspective. You're making a mistake. Oh, goodie! Something new and different for us.\nNARRATOR: Hey,\nNARRATOR: can you even imagine who the hell would go to that antiquated mating ritual? I would, but I don't have a thing. Do you really want to get all dressed up so some Dracar Noir wearing dexter with a boner can fill you up while you're forced to listen to a band that by definition blows? Oh, right. Oh, right. We won't go. Now look, I've got a dress in the way. You're looking at this from entirely the wrong perspective. You're making a mistake.\nNARRATOR: Oh, goodie! Something new and different for us.\n\nSCENE 489 | 3956.953s - 3962.959s\nACTION: Students sit at desks in a classroom setting. Sitting; Writing Relation: Detention Dialogue trace: Mr. Chapin, can I\nNARRATOR: Mr. Chapin,\nNARRATOR: can I\n\nSCENE 512 | 4060.056s - 4085.081s\nACTION: A boat is sailing on a body of water with a marina and buildings in the background. sailing; passing Relation: proximity Dialogue trace: OK. Hi. I can't thank you enough for helping me sneak out of detention. Very cool. No problem. I thought for sure I was busted when I was climbing out that window. I tell you. So how did you keep him distracted? I dazzled him with my wits. So what's your excuse? For? For acting the way we do.\nNARRATOR: Hi.\nNARRATOR: I can't thank you enough for helping me sneak out of detention. Very cool. No problem. I thought for sure I was busted when I was climbing out that window. I tell you. So how did you keep him distracted?\nNARRATOR: I dazzled him with my wits.\nNARRATOR: So what's your excuse?\nNARRATOR: For? For acting the way we do.\n\nSCENE 541 | 4216.212s - 4255.251s\nACTION: A green SUV is parked on a street in front of houses. parked Relation: static Dialogue trace: That stuff is true. State trooper. Fallacy. A dead guy in the parking lot. Rumor. The duck. You're safe. I'll be rich with balls. Fact. But he deserved it, and he tried to grope me in the lunch line. Fair enough. The accent. It's real. I, uh, lived in Australia until I was 10. With the pygmies? Close. With my mom. Where were you last year? I know the porn career is a lie. Do you?\nNARRATOR: That stuff is true.\nNARRATOR: State trooper. Fallacy. A dead guy in the parking lot. Rumor.\nNARRATOR: The duck. You're safe. I'll be rich with balls. Fact. But he deserved it, and he tried to grope me in the lunch line. Fair enough.\nNARRATOR: The accent. It's real.\nNARRATOR: I, uh, lived in Australia until I was 10.\nNARRATOR: With the pygmies?\nNARRATOR: Close.\nNARRATOR: With my mom.\nNARRATOR: Where were you last year? I know the porn career is a lie. Do you?\n\nSCENE 556 | 4344.340s - 4386.382s\nACTION: A boy offers a girl a parsnip in a library. offers parsnip; dialogue Relation: friendly Dialogue trace: Oui, je vous offre un navet. Pas de tout. Où est le crayon de mon oncle? Je ne sais pas. Peut-être dans ton truc de coup. Wait a minute. That's not on this play. Laisse-toi te demander en question, Cameron. Comme vous demanderez, tu te sortis avec toi.\nNARRATOR: Oui, je vous offre un navet. Pas de tout.\nNARRATOR: Où est le crayon de mon oncle?\nNARRATOR: Je ne sais pas. Peut-être dans ton truc de coup.\nNARRATOR: Wait a minute. That's not on this play.\nNARRATOR: Laisse-toi te demander en question, Cameron. Comme vous demanderez, tu te sortis avec toi.\n\nSCENE 557 | 4386.382s - 4393.389s\nACTION: A note asking someone to join them at the prom is attached to a dress. Read the note; Decide on a response\n\nSCENE 560 | 4405.401s - 4416.412s\nACTION: CAMERON lying on exercise mat next to exercise bike on deck. lying down; resting Relation: relaxed Dialogue trace: Now, as you know, it's the prom.\nNARRATOR: Now, as you know, it's the prom.\n\nSCENE 573 | 4496.492s - 4506.502s\nACTION: Two men in uniform are shown on a TV screen. Watch TV Relation: Neutral Dialogue trace: of love across this nation worldwide. Believe it. This is the true story. The real world.\nNARRATOR: of love across this nation worldwide. Believe it.\nNARRATOR: This is the true story. The real world.\n\nSCENE 586 | 4684.680s - 4686.682s\nACTION: A woman leans against a tree in a garden. leaning; resting Relation: relaxed Dialogue trace: cover-up.\nNARRATOR: cover-up.\n\nSCENE 591 | 4732.728s - 4733.729s\nACTION: A young man in a tuxedo looks through a doorway. looks; through Dialogue trace: Hi.\nNARRATOR: Hi.\n\nSCENE 600 | 4782.778s - 4786.782s\nACTION: A man is speaking to another person. speaking Dialogue trace: I want you\nNARRATOR: I want you\n\nSCENE 657 | 5203.198s - 5234.229s\nACTION: Dialogue trace: Are you sure you don't want to go sailing with us? It'll be fun. No, I'm fine.\nNARRATOR: Are you sure you don't want to go sailing with us? It'll be fun.\nNARRATOR: No, I'm fine.\n\nSCENE 663 | 5345.340s - 5349.344s\nACTION: A courtyard with people and tables in front of a large brick building. People walking and sitting; Tables and chairs arranged Relation: Building and courtyard interaction\n\nSCENE 664 | 5349.344s - 5355.350s\nACTION: Mr. Donna has not completed their poem. Mr. Donna has not completed their poem Relation: Mr. Donna is a student in the class. Dialogue trace: Everyone has found time to complete their poem, except for Mr. Donna, who\nNARRATOR: Everyone has found time to complete their poem, except for Mr. Donna,\nNARRATOR: who\n\nSCENE 666 | 5357.352s - 5361.356s\nACTION: SPEAKER_01 asks Chef to remove his glasses. ask; remove Relation: request Dialogue trace: Chef, lose the glasses.\nNARRATOR: Chef,\nNARRATOR: lose the glasses.\n\nSCENE 683 | 5685.680s - 5712.707s\nACTION: Dialogue trace: I know everyone digs your sister and all, but she's without. You know? You're not as vile as I thought you were.\nNARRATOR: I\nNARRATOR: know everyone digs your sister and all, but\nNARRATOR: she's without.\nNARRATOR: You know?\nNARRATOR: You're not as vile as I thought you were.\n\nSCENE 685 | 5715.710s - 5739.734s\nACTION: Dialogue trace: No, I'm really looking forward to doing it. Go see Ms. Perky. What? Go, Perky's! Go, now. Once again, Perky's now is the second one. Perky's now, Perky's now! Right away, right away. Now, Perky's! Hey, hey, hey. Now, Perky's, Perky's now. Begin the shot. Perk, oh.\nNARRATOR: No, I'm really looking forward to doing it. Go see Ms. Perky. What? Go, Perky's! Go, now. Once again, Perky's now is the second one. Perky's now, Perky's now! Right away, right away. Now, Perky's! Hey, hey, hey. Now, Perky's, Perky's now. Begin the shot. Perk, oh.\n\nSCENE 697 | 5800.795s - 5819.814s\nACTION: A couple is kissing in a scene. kissing Relation: romantic Dialogue trace: Could I get a prophylactic? A prophylactic?\nNARRATOR: Could I get a prophylactic?\nNARRATOR: A prophylactic?\n\nSCENE 698 | 5819.814s - 5827.822s\nACTION: A character is expressing their feelings about being set up. expressing feelings; questioning Relation: confused Dialogue trace: How did you set me up like that? Oh, God, I just wanted to... To completely damage me? To send me to therapy forever? What? No, I\nNARRATOR: How did you set me up like that?\nNARRATOR: Oh, God, I just wanted to... To completely damage me? To send me to therapy forever? What? No, I\n\nSCENE 701 | 5839.834s - 5841.836s\nACTION: No content available.\n\nSCENE 703 | 5845.840s - 5849.844s\nACTION: A bright light with the words 'Touchstone Pictures' in blue text. Light up; Display Relation: Brand Logo"
+}
