@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>Reference Candidate Clusters</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --panel-2: #0b1220;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --line: #243244;
+      --pass: #0f5132;
+      --fail: #3f1d1d;
+      --accent: #60a5fa;
+    }
+    body { margin: 0; background: linear-gradient(180deg, #0b1020, #111827 55%, #0f172a); color: var(--text); font-family: Segoe UI, Arial, sans-serif; }
+    .wrap { max-width: 1600px; margin: 0 auto; padding: 24px; }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    .meta { color: var(--muted); margin-bottom: 18px; }
+    .legend { display: flex; gap: 16px; align-items: center; margin-bottom: 12px; color: var(--muted); flex-wrap: wrap; }
+    .badge { padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--panel); }
+    .character-bank { margin: 14px 0 18px; padding: 14px; border: 1px solid var(--line); background: rgba(17,24,39,.75); border-radius: 14px; }
+    .character-bank h2 { margin: 0 0 10px; font-size: 16px; color: #dbeafe; }
+    .bank-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .bank-chip { border: 1px solid #35506f; background: linear-gradient(180deg, #17304a, #0f172a); color: #e2e8f0; border-radius: 999px; padding: 6px 10px; font-size: 12px; cursor: grab; user-select: none; }
+    .bank-chip:active { cursor: grabbing; }
+    .toolbar { display: flex; gap: 10px; flex-wrap: wrap; margin: 16px 0 14px; }
+    button { appearance: none; border: 1px solid var(--line); background: #172036; color: var(--text); padding: 10px 14px; border-radius: 10px; cursor: pointer; font-size: 14px; }
+    button:hover { border-color: var(--accent); }
+    button.primary { background: linear-gradient(180deg, #2563eb, #1d4ed8); border-color: #1d4ed8; }
+    button.ghost { background: #0b1220; }
+    table { width: 100%; border-collapse: collapse; background: rgba(15, 23, 42, 0.88); border: 1px solid var(--line); }
+    th, td { border-bottom: 1px solid var(--line); padding: 10px 8px; vertical-align: top; font-size: 13px; }
+    th { position: sticky; top: 0; background: #0f172a; z-index: 1; text-align: left; color: #cbd5e1; }
+    tr.pass { background: rgba(16, 185, 129, 0.08); }
+    tr.fail { background: rgba(239, 68, 68, 0.05); }
+    pre { margin: 0; white-space: pre-wrap; word-break: break-word; max-width: 340px; }
+    img { max-width: 220px; height: auto; display: block; border-radius: 10px; border: 1px solid var(--line); box-shadow: 0 2px 12px rgba(0,0,0,.25); }
+    .no-frame { color: var(--muted); font-style: italic; }
+    .sticky-note { margin: 14px 0 18px; padding: 12px 14px; border: 1px solid var(--line); background: rgba(17,24,39,.75); border-radius: 12px; color: var(--muted); }
+    a { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class='wrap'>
+    <h1>Reference Candidate Clusters</h1>
+    <div class='meta'>Sorted by `rank_score` descending. Green rows passed the reference thresholds.</div>
+    <div class='legend'>
+      <span class='badge'>dominant_share = main speaker / duration</span>
+      <span class='badge'>purity = main speaker / total overlap</span>
+      <span class='badge'>speaker_overlaps = diarization overlap by speaker</span>
+    </div>
+    <div class='toolbar'>
+      <button class='primary' onclick='selectRecommended()'>Select recommended rows</button>
+      <button class='ghost' onclick='clearSelections()'>Clear selection</button>
+      <button class='primary' onclick='autoMatchSelected()'>Auto match selected</button>
+      <button class='primary' onclick='downloadSelection()'>Export selected clusters JSON</button>
+    </div>
+    <div class='sticky-note'>Tip: start with the green rows. For multi-speaker clusters, put multiple names in <code>character_id</code> separated by commas (for example: <code>PATRICK, ELLIE</code>). The first name is exported as the primary <code>character_id</code>.</div>
+    <div class='character-bank'>
+      <h2>Parsed Characters</h2>
+      <div class='bank-list' id='character-bank'></div>
+    </div>
+    <datalist id='character-list'></datalist>
+    <table>
+      <thead>
+        <tr>
+          <th>pick</th>
+          <th>character_id</th>
+          <th>#</th>
+          <th>cluster</th>
+          <th>start</th>
+          <th>end</th>
+          <th>duration</th>
+          <th>samples</th>
+          <th>speakers</th>
+          <th>dominant_share</th>
+          <th>purity</th>
+          <th>rank_score</th>
+          <th>overlap_count</th>
+          <th>speaker_overlaps</th>
+          <th>frame</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='2569' ></td>
+              <td><input type='text' class='char-input' data-cluster='2569' value='' placeholder='KAT'></td>
+              <td>1</td>
+              <td><strong>2569</strong></td>
+              <td>2435.433</td>
+              <td>2482.814</td>
+              <td>47.381</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0.676</td>
+              <td>1.000</td>
+              <td>48.767</td>
+              <td>2</td>
+              <td><pre>{&quot;11&quot;: 32.04359374999967}</pre></td>
+              <td><a href='../candidates/cluster_2569.jpg' target='_blank'><img src='../candidates/cluster_2569.jpg' alt='cluster 2569'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='2570' ></td>
+              <td><input type='text' class='char-input' data-cluster='2570' value='' placeholder='KAT'></td>
+              <td>2</td>
+              <td><strong>2570</strong></td>
+              <td>2439.771</td>
+              <td>2482.814</td>
+              <td>43.043</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0.658</td>
+              <td>1.000</td>
+              <td>43.623</td>
+              <td>2</td>
+              <td><pre>{&quot;11&quot;: 28.3331249999992}</pre></td>
+              <td><a href='../candidates/cluster_2570.jpg' target='_blank'><img src='../candidates/cluster_2570.jpg' alt='cluster 2570'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='4236' ></td>
+              <td><input type='text' class='char-input' data-cluster='4236' value='' placeholder='KAT'></td>
+              <td>3</td>
+              <td><strong>4236</strong></td>
+              <td>4448.110</td>
+              <td>4491.821</td>
+              <td>43.710</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0.392</td>
+              <td>1.000</td>
+              <td>40.935</td>
+              <td>0</td>
+              <td><pre>{&quot;11&quot;: 17.130322916667865}</pre></td>
+              <td><a href='../candidates/cluster_4236.jpg' target='_blank'><img src='../candidates/cluster_4236.jpg' alt='cluster 4236'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='3284' ></td>
+              <td><input type='text' class='char-input' data-cluster='3284' value='' placeholder='KAT'></td>
+              <td>4</td>
+              <td><strong>3284</strong></td>
+              <td>3640.971</td>
+              <td>3677.007</td>
+              <td>36.036</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0.492</td>
+              <td>1.000</td>
+              <td>37.541</td>
+              <td>0</td>
+              <td><pre>{&quot;13&quot;: 17.735625000000255}</pre></td>
+              <td><a href='../candidates/cluster_3284.jpg' target='_blank'><img src='../candidates/cluster_3284.jpg' alt='cluster 3284'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='2568' ></td>
+              <td><input type='text' class='char-input' data-cluster='2568' value='' placeholder='KAT'></td>
+              <td>5</td>
+              <td><strong>2568</strong></td>
+              <td>2434.432</td>
+              <td>2482.814</td>
+              <td>48.382</td>
+              <td>0</td>
+              <td>2</td>
+              <td>0.663</td>
+              <td>0.975</td>
+              <td>35.859</td>
+              <td>2</td>
+              <td><pre>{&quot;11&quot;: 32.06249999999909, &quot;22&quot;: 0.8133437500000582}</pre></td>
+              <td><a href='../candidates/cluster_2568.jpg' target='_blank'><img src='../candidates/cluster_2568.jpg' alt='cluster 2568'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='320' ></td>
+              <td><input type='text' class='char-input' data-cluster='320' value='' placeholder='KAT'></td>
+              <td>6</td>
+              <td><strong>320</strong></td>
+              <td>601.601</td>
+              <td>641.975</td>
+              <td>40.374</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0.252</td>
+              <td>1.000</td>
+              <td>28.966</td>
+              <td>1</td>
+              <td><pre>{&quot;7&quot;: 10.158750000000055}</pre></td>
+              <td><a href='../candidates/cluster_320.jpg' target='_blank'><img src='../candidates/cluster_320.jpg' alt='cluster 320'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='2615' ></td>
+              <td><input type='text' class='char-input' data-cluster='2615' value='' placeholder='KAT'></td>
+              <td>7</td>
+              <td><strong>2615</strong></td>
+              <td>2494.492</td>
+              <td>2528.526</td>
+              <td>34.034</td>
+              <td>0</td>
+              <td>2</td>
+              <td>0.533</td>
+              <td>0.829</td>
+              <td>24.209</td>
+              <td>0</td>
+              <td><pre>{&quot;11&quot;: 3.7477187499994216, &quot;25&quot;: 18.123749999998836}</pre></td>
+              <td><a href='../candidates/cluster_2615.jpg' target='_blank'><img src='../candidates/cluster_2615.jpg' alt='cluster 2615'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='2567' ></td>
+              <td><input type='text' class='char-input' data-cluster='2567' value='' placeholder='KAT'></td>
+              <td>8</td>
+              <td><strong>2567</strong></td>
+              <td>2404.402</td>
+              <td>2434.098</td>
+              <td>29.696</td>
+              <td>0</td>
+              <td>3</td>
+              <td>0.489</td>
+              <td>0.809</td>
+              <td>15.837</td>
+              <td>0</td>
+              <td><pre>{&quot;10&quot;: 1.265625, &quot;12&quot;: 14.529375000000073, &quot;3&quot;: 2.1599999999998545}</pre></td>
+              <td><a href='../candidates/cluster_2567.jpg' target='_blank'><img src='../candidates/cluster_2567.jpg' alt='cluster 2567'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='870' ></td>
+              <td><input type='text' class='char-input' data-cluster='870' value='' placeholder='KAT'></td>
+              <td>9</td>
+              <td><strong>870</strong></td>
+              <td>1129.462</td>
+              <td>1168.501</td>
+              <td>39.039</td>
+              <td>0</td>
+              <td>3</td>
+              <td>0.401</td>
+              <td>0.587</td>
+              <td>15.756</td>
+              <td>0</td>
+              <td><pre>{&quot;11&quot;: 15.67305208333346, &quot;13&quot;: 2.5421979166662823, &quot;7&quot;: 8.47125000000051}</pre></td>
+              <td><a href='../candidates/cluster_870.jpg' target='_blank'><img src='../candidates/cluster_870.jpg' alt='cluster 870'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='2528' ></td>
+              <td><input type='text' class='char-input' data-cluster='2528' value='' placeholder='KAT'></td>
+              <td>10</td>
+              <td><strong>2528</strong></td>
+              <td>2203.201</td>
+              <td>2246.911</td>
+              <td>43.710</td>
+              <td>0</td>
+              <td>3</td>
+              <td>0.319</td>
+              <td>0.669</td>
+              <td>15.676</td>
+              <td>1</td>
+              <td><pre>{&quot;11&quot;: 13.9556249999996, &quot;7&quot;: 4.7834895833316295, &quot;9&quot;: 2.109375}</pre></td>
+              <td><a href='../candidates/cluster_2528.jpg' target='_blank'><img src='../candidates/cluster_2528.jpg' alt='cluster 2528'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='2529' ></td>
+              <td><input type='text' class='char-input' data-cluster='2529' value='' placeholder='KAT'></td>
+              <td>11</td>
+              <td><strong>2529</strong></td>
+              <td>2205.203</td>
+              <td>2246.911</td>
+              <td>41.708</td>
+              <td>0</td>
+              <td>3</td>
+              <td>0.335</td>
+              <td>0.692</td>
+              <td>15.537</td>
+              <td>1</td>
+              <td><pre>{&quot;11&quot;: 13.9556249999996, &quot;7&quot;: 4.0916145833321025, &quot;9&quot;: 2.109375}</pre></td>
+              <td><a href='../candidates/cluster_2529.jpg' target='_blank'><img src='../candidates/cluster_2529.jpg' alt='cluster 2529'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='4272' ></td>
+              <td><input type='text' class='char-input' data-cluster='4272' value='' placeholder='KAT'></td>
+              <td>12</td>
+              <td><strong>4272</strong></td>
+              <td>4520.182</td>
+              <td>4557.887</td>
+              <td>37.704</td>
+              <td>0</td>
+              <td>3</td>
+              <td>0.293</td>
+              <td>0.705</td>
+              <td>14.839</td>
+              <td>0</td>
+              <td><pre>{&quot;11&quot;: 3.1218750000007276, &quot;2&quot;: 1.5018749999999272, &quot;25&quot;: 11.053124999996726}</pre></td>
+              <td><a href='../candidates/cluster_4272.jpg' target='_blank'><img src='../candidates/cluster_4272.jpg' alt='cluster 4272'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='4200' ></td>
+              <td><input type='text' class='char-input' data-cluster='4200' value='' placeholder='KAT'></td>
+              <td>13</td>
+              <td><strong>4200</strong></td>
+              <td>4369.699</td>
+              <td>4439.101</td>
+              <td>69.403</td>
+              <td>0</td>
+              <td>4</td>
+              <td>0.635</td>
+              <td>0.878</td>
+              <td>14.820</td>
+              <td>0</td>
+              <td><pre>{&quot;11&quot;: 44.04374999999891, &quot;29&quot;: 1.6537499999994907, &quot;4&quot;: 1.6706250000006548, &quot;9&quot;: 2.8012499999986176}</pre></td>
+              <td><a href='../candidates/cluster_4200.jpg' target='_blank'><img src='../candidates/cluster_4200.jpg' alt='cluster 4200'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='2741' ></td>
+              <td><input type='text' class='char-input' data-cluster='2741' value='' placeholder='KAT'></td>
+              <td>14</td>
+              <td><strong>2741</strong></td>
+              <td>2657.655</td>
+              <td>2690.354</td>
+              <td>32.699</td>
+              <td>0</td>
+              <td>2</td>
+              <td>0.293</td>
+              <td>0.654</td>
+              <td>14.106</td>
+              <td>1</td>
+              <td><pre>{&quot;26&quot;: 9.577739583333369, &quot;7&quot;: 5.0625}</pre></td>
+              <td><a href='../candidates/cluster_2741.jpg' target='_blank'><img src='../candidates/cluster_2741.jpg' alt='cluster 2741'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='537' ></td>
+              <td><input type='text' class='char-input' data-cluster='537' value='' placeholder='KAT'></td>
+              <td>15</td>
+              <td><strong>537</strong></td>
+              <td>866.532</td>
+              <td>897.897</td>
+              <td>31.365</td>
+              <td>0</td>
+              <td>3</td>
+              <td>0.384</td>
+              <td>0.611</td>
+              <td>12.684</td>
+              <td>0</td>
+              <td><pre>{&quot;11&quot;: 12.031874999999673, &quot;22&quot;: 1.518750000000182, &quot;25&quot;: 6.125624999999673}</pre></td>
+              <td><a href='../candidates/cluster_537.jpg' target='_blank'><img src='../candidates/cluster_537.jpg' alt='cluster 537'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='1279' ></td>
+              <td><input type='text' class='char-input' data-cluster='1279' value='' placeholder='KAT'></td>
+              <td>16</td>
+              <td><strong>1279</strong></td>
+              <td>1761.093</td>
+              <td>1826.158</td>
+              <td>65.065</td>
+              <td>0</td>
+              <td>2</td>
+              <td>0.206</td>
+              <td>0.851</td>
+              <td>8.775</td>
+              <td>1</td>
+              <td><pre>{&quot;10&quot;: 2.3456250000001546, &quot;3&quot;: 13.398750000000291}</pre></td>
+              <td><a href='../candidates/cluster_1279.jpg' target='_blank'><img src='../candidates/cluster_1279.jpg' alt='cluster 1279'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='4499' ></td>
+              <td><input type='text' class='char-input' data-cluster='4499' value='' placeholder='KAT'></td>
+              <td>17</td>
+              <td><strong>4499</strong></td>
+              <td>5100.762</td>
+              <td>5169.831</td>
+              <td>69.069</td>
+              <td>0</td>
+              <td>5</td>
+              <td>0.360</td>
+              <td>0.838</td>
+              <td>8.423</td>
+              <td>1</td>
+              <td><pre>{&quot;11&quot;: 1.2561354166673482, &quot;20&quot;: 0.7256250000009459, &quot;5&quot;: 1.9912499999991269, &quot;7&quot;: 24.840000000000146, &quot;8&quot;: 0.84375}</pre></td>
+              <td><a href='../candidates/cluster_4499.jpg' target='_blank'><img src='../candidates/cluster_4499.jpg' alt='cluster 4499'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='1281' ></td>
+              <td><input type='text' class='char-input' data-cluster='1281' value='' placeholder='KAT'></td>
+              <td>18</td>
+              <td><strong>1281</strong></td>
+              <td>1766.431</td>
+              <td>1821.486</td>
+              <td>55.055</td>
+              <td>0</td>
+              <td>2</td>
+              <td>0.233</td>
+              <td>0.845</td>
+              <td>7.673</td>
+              <td>1</td>
+              <td><pre>{&quot;10&quot;: 2.3456250000001546, &quot;3&quot;: 12.808125000000246}</pre></td>
+              <td><a href='../candidates/cluster_1281.jpg' target='_blank'><img src='../candidates/cluster_1281.jpg' alt='cluster 1281'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='316' ></td>
+              <td><input type='text' class='char-input' data-cluster='316' value='' placeholder='KAT'></td>
+              <td>19</td>
+              <td><strong>316</strong></td>
+              <td>598.932</td>
+              <td>646.646</td>
+              <td>47.714</td>
+              <td>0</td>
+              <td>2</td>
+              <td>0.213</td>
+              <td>0.900</td>
+              <td>6.734</td>
+              <td>1</td>
+              <td><pre>{&quot;7&quot;: 10.158750000000055, &quot;9&quot;: 1.130625000000009}</pre></td>
+              <td><a href='../candidates/cluster_316.jpg' target='_blank'><img src='../candidates/cluster_316.jpg' alt='cluster 316'></a></td>
+            </tr>
+        
+
+            <tr class='fail'>
+              <td><input type='checkbox' class='pick-box' data-cluster='2892' ></td>
+              <td><input type='text' class='char-input' data-cluster='2892' value='' placeholder='KAT'></td>
+              <td>20</td>
+              <td><strong>2892</strong></td>
+              <td>2900.898</td>
+              <td>2975.973</td>
+              <td>75.075</td>
+              <td>0</td>
+              <td>3</td>
+              <td>0.165</td>
+              <td>0.553</td>
+              <td>6.494</td>
+              <td>0</td>
+              <td><pre>{&quot;10&quot;: 12.403124999998909, &quot;27&quot;: 1.1306249999997817, &quot;3&quot;: 8.910000000001673}</pre></td>
+              <td><a href='../candidates/cluster_2892.jpg' target='_blank'><img src='../candidates/cluster_2892.jpg' alt='cluster 2892'></a></td>
+            </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  <script>
+    const CANDIDATES = [{"cluster": 2569, "start": 2435.433, "end": 2482.8136666666664, "duration": 47.38066666666646, "num_samples": 0, "overlap_count": 2, "active_speakers": 1, "score": 69.66740885416613, "rank_score": 48.76718619791629, "passes_thresholds": false, "dominant_share": 0.6763010317147602, "purity": 1.0, "dominant_speaker_overlap": 32.04359374999967, "second_speaker_overlap": 0.0, "speaker_overlaps": {"11": 32.04359374999967}, "representative_frame": "candidates\\cluster_2569.jpg", "resolved_frame_path": "../candidates/cluster_2569.jpg"}, {"cluster": 2570, "start": 2439.7706666666663, "end": 2482.8136666666664, "duration": 43.04300000000012, "num_samples": 0, "overlap_count": 2, "active_speakers": 1, "score": 62.318281249999075, "rank_score": 43.62279687499935, "passes_thresholds": false, "dominant_share": 0.658251632088821, "purity": 1.0, "dominant_speaker_overlap": 28.3331249999992, "second_speaker_overlap": 0.0, "speaker_overlaps": {"11": 28.3331249999992}, "representative_frame": "candidates\\cluster_2570.jpg", "resolved_frame_path": "../candidates/cluster_2570.jpg"}, {"cluster": 4236, "start": 4448.110333333333, "end": 4491.8206666666665, "duration": 43.71033333333344, "num_samples": 0, "overlap_count": 0, "active_speakers": 1, "score": 58.47823437500187, "rank_score": 40.93476406250131, "passes_thresholds": false, "dominant_share": 0.391905565808264, "purity": 1.0, "dominant_speaker_overlap": 17.130322916667865, "second_speaker_overlap": 0.0, "speaker_overlaps": {"11": 17.130322916667865}, "representative_frame": "candidates\\cluster_4236.jpg", "resolved_frame_path": "../candidates/cluster_4236.jpg"}, {"cluster": 3284, "start": 3640.9706666666666, "end": 3677.006666666666, "duration": 36.0359999999996, "num_samples": 0, "overlap_count": 0, "active_speakers": 1, "score": 53.63043750000008, "rank_score": 37.541306250000055, "passes_thresholds": false, "dominant_share": 0.4921640859140984, "purity": 1.0, "dominant_speaker_overlap": 17.735625000000255, "second_speaker_overlap": 0.0, "speaker_overlaps": {"13": 17.735625000000255}, "representative_frame": "candidates\\cluster_3284.jpg", "resolved_frame_path": "../candidates/cluster_3284.jpg"}, {"cluster": 2568, "start": 2434.432, "end": 2482.8136666666664, "duration": 48.38166666666666, "num_samples": 0, "overlap_count": 2, "active_speakers": 2, "score": 51.22734595433726, "rank_score": 35.85914216803608, "passes_thresholds": false, "dominant_share": 0.6626993695959026, "purity": 0.9752601406617867, "dominant_speaker_overlap": 32.06249999999909, "second_speaker_overlap": 0.8133437500000582, "speaker_overlaps": {"22": 0.8133437500000582, "11": 32.06249999999909}, "representative_frame": "candidates\\cluster_2568.jpg", "resolved_frame_path": "../candidates/cluster_2568.jpg"}, {"cluster": 320, "start": 601.601, "end": 641.9746666666666, "duration": 40.37366666666662, "num_samples": 0, "overlap_count": 1, "active_speakers": 1, "score": 41.380340909090954, "rank_score": 28.966238636363666, "passes_thresholds": false, "dominant_share": 0.2516182164942512, "purity": 1.0, "dominant_speaker_overlap": 10.158750000000055, "second_speaker_overlap": 0.0, "speaker_overlaps": {"7": 10.158750000000055}, "representative_frame": "candidates\\cluster_320.jpg", "resolved_frame_path": "../candidates/cluster_320.jpg"}, {"cluster": 2615, "start": 2494.4919999999997, "end": 2528.526, "duration": 34.034000000000106, "num_samples": 0, "overlap_count": 0, "active_speakers": 2, "score": 34.58495487035953, "rank_score": 24.20946840925167, "passes_thresholds": false, "dominant_share": 0.5325189516365628, "purity": 0.8286480531857413, "dominant_speaker_overlap": 18.123749999998836, "second_speaker_overlap": 3.7477187499994216, "speaker_overlaps": {"11": 3.7477187499994216, "25": 18.123749999998836}, "representative_frame": "candidates\\cluster_2615.jpg", "resolved_frame_path": "../candidates/cluster_2615.jpg"}, {"cluster": 2567, "start": 2404.402, "end": 2434.0983333333334, "duration": 29.696333333333314, "num_samples": 0, "overlap_count": 0, "active_speakers": 3, "score": 22.624345168988825, "rank_score": 15.837041618292176, "passes_thresholds": false, "dominant_share": 0.4892649485346142, "purity": 0.8092105263157968, "dominant_speaker_overlap": 14.529375000000073, "second_speaker_overlap": 2.1599999999998545, "speaker_overlaps": {"12": 14.529375000000073, "3": 2.1599999999998545, "10": 1.265625}, "representative_frame": "candidates\\cluster_2567.jpg", "resolved_frame_path": "../candidates/cluster_2567.jpg"}, {"cluster": 870, "start": 1129.4616666666666, "end": 1168.5006666666666, "duration": 39.03899999999999, "num_samples": 0, "overlap_count": 0, "active_speakers": 3, "score": 22.508797074825114, "rank_score": 15.75615795237758, "passes_thresholds": false, "dominant_share": 0.4014716586832005, "purity": 0.5873026467814555, "dominant_speaker_overlap": 15.67305208333346, "second_speaker_overlap": 8.47125000000051, "speaker_overlaps": {"11": 15.67305208333346, "7": 8.47125000000051, "13": 2.5421979166662823}, "representative_frame": "candidates\\cluster_870.jpg", "resolved_frame_path": "../candidates/cluster_870.jpg"}, {"cluster": 2528, "start": 2203.201, "end": 2246.911333333333, "duration": 43.71033333333298, "num_samples": 0, "overlap_count": 1, "active_speakers": 3, "score": 22.393867297131248, "rank_score": 15.675707107991872, "passes_thresholds": false, "dominant_share": 0.31927519045839, "purity": 0.6693830238501973, "dominant_speaker_overlap": 13.9556249999996, "second_speaker_overlap": 4.7834895833316295, "speaker_overlaps": {"7": 4.7834895833316295, "11": 13.9556249999996, "9": 2.109375}, "representative_frame": "candidates\\cluster_2528.jpg", "resolved_frame_path": "../candidates/cluster_2528.jpg"}, {"cluster": 2529, "start": 2205.203, "end": 2246.911333333333, "duration": 41.70833333333303, "num_samples": 0, "overlap_count": 1, "active_speakers": 3, "score": 22.195608670499208, "rank_score": 15.536926069349445, "passes_thresholds": false, "dominant_share": 0.33460039960039245, "purity": 0.6923595697235813, "dominant_speaker_overlap": 13.9556249999996, "second_speaker_overlap": 4.0916145833321025, "speaker_overlaps": {"11": 13.9556249999996, "7": 4.0916145833321025, "9": 2.109375}, "representative_frame": "candidates\\cluster_2529.jpg", "resolved_frame_path": "../candidates/cluster_2529.jpg"}, {"cluster": 4272, "start": 4520.182333333333, "end": 4557.886666666666, "duration": 37.704333333333125, "num_samples": 0, "overlap_count": 0, "active_speakers": 3, "score": 21.198615855649358, "rank_score": 14.83903109895455, "passes_thresholds": false, "dominant_share": 0.2931526438162754, "purity": 0.705059203444473, "dominant_speaker_overlap": 11.053124999996726, "second_speaker_overlap": 3.1218750000007276, "speaker_overlaps": {"25": 11.053124999996726, "11": 3.1218750000007276, "2": 1.5018749999999272}, "representative_frame": "candidates\\cluster_4272.jpg", "resolved_frame_path": "../candidates/cluster_4272.jpg"}, {"cluster": 4200, "start": 4369.698666666666, "end": 4439.101333333333, "duration": 69.40266666666685, "num_samples": 0, "overlap_count": 0, "active_speakers": 4, "score": 52.92826230792586, "rank_score": 14.81991344621924, "passes_thresholds": false, "dominant_share": 0.6346117824483035, "purity": 0.8779011099899282, "dominant_speaker_overlap": 44.04374999999891, "second_speaker_overlap": 2.8012499999986176, "speaker_overlaps": {"29": 1.6537499999994907, "11": 44.04374999999891, "9": 2.8012499999986176, "4": 1.6706250000006548}, "representative_frame": "candidates\\cluster_4200.jpg", "resolved_frame_path": "../candidates/cluster_4200.jpg"}, {"cluster": 2741, "start": 2657.6549999999997, "end": 2690.354333333333, "duration": 32.69933333333347, "num_samples": 0, "overlap_count": 1, "active_speakers": 2, "score": 20.15190590332864, "rank_score": 14.106334132330046, "passes_thresholds": false, "dominant_share": 0.29290320648739, "purity": 0.6542064785768115, "dominant_speaker_overlap": 9.577739583333369, "second_speaker_overlap": 5.0625, "speaker_overlaps": {"26": 9.577739583333369, "7": 5.0625}, "representative_frame": "candidates\\cluster_2741.jpg", "resolved_frame_path": "../candidates/cluster_2741.jpg"}, {"cluster": 537, "start": 866.5323333333333, "end": 897.8969999999999, "duration": 31.364666666666608, "num_samples": 0, "overlap_count": 0, "active_speakers": 3, "score": 18.120075673493833, "rank_score": 12.684052971445682, "passes_thresholds": false, "dominant_share": 0.3836123982400481, "purity": 0.6114922813036001, "dominant_speaker_overlap": 12.031874999999673, "second_speaker_overlap": 6.125624999999673, "speaker_overlaps": {"11": 12.031874999999673, "25": 6.125624999999673, "22": 1.518750000000182}, "representative_frame": "candidates\\cluster_537.jpg", "resolved_frame_path": "../candidates/cluster_537.jpg"}, {"cluster": 1279, "start": 1761.0926666666664, "end": 1826.1576666666665, "duration": 65.06500000000005, "num_samples": 0, "overlap_count": 1, "active_speakers": 2, "score": 41.787175524447875, "rank_score": 8.775306860134053, "passes_thresholds": false, "dominant_share": 0.20592868669792178, "purity": 0.8510182207931348, "dominant_speaker_overlap": 13.398750000000291, "second_speaker_overlap": 2.3456250000001546, "speaker_overlaps": {"3": 13.398750000000291, "10": 2.3456250000001546}, "representative_frame": "candidates\\cluster_1279.jpg", "resolved_frame_path": "../candidates/cluster_1279.jpg"}, {"cluster": 4499, "start": 5100.762333333333, "end": 5169.831333333333, "duration": 69.0689999999995, "num_samples": 0, "overlap_count": 1, "active_speakers": 5, "score": 30.082698907850297, "rank_score": 8.423155694198082, "passes_thresholds": false, "dominant_share": 0.35964035964036434, "purity": 0.8375830552968851, "dominant_speaker_overlap": 24.840000000000146, "second_speaker_overlap": 1.9912499999991269, "speaker_overlaps": {"11": 1.2561354166673482, "7": 24.840000000000146, "20": 0.7256250000009459, "8": 0.84375, "5": 1.9912499999991269}, "representative_frame": "candidates\\cluster_4499.jpg", "resolved_frame_path": "../candidates/cluster_4499.jpg"}, {"cluster": 1281, "start": 1766.4313333333332, "end": 1821.4863333333333, "duration": 55.055000000000064, "num_samples": 0, "overlap_count": 1, "active_speakers": 2, "score": 36.53868679369801, "rank_score": 7.673124226676582, "passes_thresholds": false, "dominant_share": 0.23264235764236182, "purity": 0.8452115812917533, "dominant_speaker_overlap": 12.808125000000246, "second_speaker_overlap": 2.3456250000001546, "speaker_overlaps": {"3": 12.808125000000246, "10": 2.3456250000001546}, "representative_frame": "candidates\\cluster_1281.jpg", "resolved_frame_path": "../candidates/cluster_1281.jpg"}, {"cluster": 316, "start": 598.9316666666666, "end": 646.646, "duration": 47.71433333333334, "num_samples": 0, "overlap_count": 1, "active_speakers": 2, "score": 32.06545369825145, "rank_score": 6.7337452766328045, "passes_thresholds": false, "dominant_share": 0.2129077216489815, "purity": 0.8998505231689086, "dominant_speaker_overlap": 10.158750000000055, "second_speaker_overlap": 1.130625000000009, "speaker_overlaps": {"7": 10.158750000000055, "9": 1.130625000000009}, "representative_frame": "candidates\\cluster_316.jpg", "resolved_frame_path": "../candidates/cluster_316.jpg"}, {"cluster": 2892, "start": 2900.8979999999997, "end": 2975.973, "duration": 75.07500000000027, "num_samples": 0, "overlap_count": 0, "active_speakers": 3, "score": 30.922987616096794, "rank_score": 6.493827399380327, "passes_thresholds": false, "dominant_share": 0.16520979020977508, "purity": 0.5526315789473109, "dominant_speaker_overlap": 12.403124999998909, "second_speaker_overlap": 8.910000000001673, "speaker_overlaps": {"3": 8.910000000001673, "10": 12.403124999998909, "27": 1.1306249999997817}, "representative_frame": "candidates\\cluster_2892.jpg", "resolved_frame_path": "../candidates/cluster_2892.jpg"}];
+    const SCRIPT_CHARACTERS = ["ALISON", "ALL", "AMANDA", "AUNT ANITA", "AUNT BETSY", "BOTH", "BUS DRIVER", "CHURCH ORGAN", "DOUCHE", "EVERY", "EXPLOSION OF MANY", "MAN", "MARTIN", "MCKENZIE", "NARRATOR", "NARRATOR (V.O.)", "NIGHT", "PAUL", "RACHEL", "RACHEL (CONT'D)", "REBECCA", "SARAH", "SARAH (O.S.)", "SUMMER", "SUMMER (V.O.)", "THE END", "TOM", "TOM (V.O.)", "VANCE", "WRITTEN BY"];
+    const AUTO_SUGGESTIONS = new Map();
+
+    function setCharacterValue(input, value, source='manual') {
+      if (!input) return;
+      input.dataset.pendingSetSource = source;
+      input.value = value;
+      input.focus();
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+
+    function renderCharacterBank() {
+      const bank = document.getElementById('character-bank');
+      const list = document.getElementById('character-list');
+      if (!bank) return;
+      bank.innerHTML = '';
+      if (list) list.innerHTML = '';
+      SCRIPT_CHARACTERS.forEach(name => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'bank-chip';
+        chip.textContent = name;
+        chip.draggable = true;
+        chip.addEventListener('dragstart', event => {
+          event.dataTransfer.setData('text/plain', name);
+          event.dataTransfer.effectAllowed = 'copy';
+        });
+        chip.addEventListener('click', () => {
+          const active = document.activeElement;
+          if (active && active.classList && active.classList.contains('char-input')) {
+            setCharacterValue(active, name);
+          }
+        });
+        bank.appendChild(chip);
+
+        if (list) {
+          const option = document.createElement('option');
+          option.value = name;
+          list.appendChild(option);
+        }
+      });
+    }
+
+    function wireCharacterInputs() {
+      document.querySelectorAll('.char-input').forEach(input => {
+        input.setAttribute('list', 'character-list');
+        input.dataset.userEdited = input.value.trim() ? '1' : '0';
+        input.addEventListener('input', () => {
+          const source = input.dataset.pendingSetSource || '';
+          if (source === 'auto') {
+            if (input.dataset.userEdited !== '1') input.dataset.userEdited = '0';
+          } else {
+            input.dataset.userEdited = '1';
+          }
+          delete input.dataset.pendingSetSource;
+        });
+        input.addEventListener('dragover', event => event.preventDefault());
+        input.addEventListener('drop', event => {
+          event.preventDefault();
+          const name = event.dataTransfer.getData('text/plain');
+          if (name) setCharacterValue(input, name);
+        });
+      });
+    }
+
+    function speakerPeakShare(item) {
+      const overlaps = item.speaker_overlaps || {};
+      const values = Object.values(overlaps).map(value => Number(value) || 0).filter(value => value > 0);
+      if (!values.length) return 0;
+      const total = values.reduce((sum, value) => sum + value, 0);
+      if (total <= 0) return 0;
+      return Math.max(...values) / total;
+    }
+
+    function matchQuality(item) {
+      const rankScore = Math.log1p(Math.max(0, Number(item.rank_score) || 0));
+      const purity = Number(item.purity) || 0;
+      const dominantShare = Number(item.dominant_share) || 0;
+      const samples = Math.log1p(Math.max(0, Number(item.num_samples) || 0));
+      const activeSpeakers = Number(item.active_speakers) || 0;
+      const overlapCount = Number(item.overlap_count) || 0;
+      const peakShare = speakerPeakShare(item);
+      const thresholdBonus = item.passes_thresholds ? 1.0 : -1.5;
+
+      return (
+        rankScore * 2.0 +
+        purity * 3.0 +
+        dominantShare * 2.0 +
+        peakShare * 2.5 +
+        samples * 0.35 -
+        activeSpeakers * 0.6 -
+        overlapCount * 0.12 +
+        thresholdBonus
+      );
+    }
+
+    function parseCharacterIds(rawValue) {
+      if (!rawValue) return [];
+      return String(rawValue)
+        .split(/[;,|]/)
+        .map(x => x.trim())
+        .filter(Boolean);
+    }
+
+    function autoMatchSelected() {
+      const selectedItems = Array.from(document.querySelectorAll('.pick-box:checked'))
+        .map(box => {
+          const row = box.closest('tr');
+          if (!row) return null;
+          const cluster = Number(box.dataset.cluster);
+          const item = CANDIDATES.find(entry => Number(entry.cluster) === cluster);
+          const input = row.querySelector('.char-input');
+          return { row, cluster, item, input };
+        })
+        .filter(entry => entry && entry.item && entry.input);
+
+      if (!selectedItems.length) {
+        alert('No rows selected. Pick one or more clusters first.');
+        return;
+      }
+
+      const emptyTargets = selectedItems
+        .filter(entry => !entry.input.value.trim())
+        .sort((a, b) => matchQuality(b.item) - matchQuality(a.item));
+
+      const names = SCRIPT_CHARACTERS.slice();
+
+      if (!names.length) {
+        alert('No parsed script characters available. Load script_structured.json first.');
+        return;
+      }
+
+      let cursor = 0;
+      emptyTargets.forEach((entry) => {
+        const speakerCount = Math.max(1, Math.min(3, Number(entry.item.active_speakers) || 1));
+        const picked = [];
+        for (let i = 0; i < speakerCount && cursor < names.length; i += 1) {
+          picked.push(names[cursor]);
+          cursor += 1;
+        }
+        if (picked.length) {
+          AUTO_SUGGESTIONS.set(Number(entry.cluster), picked.slice());
+          setCharacterValue(entry.input, picked.join(', '), 'auto');
+        }
+      });
+
+      alert('Auto match filled suggested labels for selected rows. You can drag or type to manually confirm/override before export.');
+    }
+
+    renderCharacterBank();
+    wireCharacterInputs();
+
+    function selectRecommended() {
+      document.querySelectorAll('.pick-box').forEach(box => {
+        const row = box.closest('tr');
+        const isRecommended = row && row.classList.contains('pass');
+        box.checked = isRecommended;
+      });
+    }
+
+    function clearSelections() {
+      document.querySelectorAll('.pick-box').forEach(box => box.checked = false);
+    }
+
+    function buildSelection() {
+      const checked = new Set(Array.from(document.querySelectorAll('.pick-box:checked')).map(box => Number(box.dataset.cluster)));
+      const inputMap = new Map(Array.from(document.querySelectorAll('.char-input')).map(input => [Number(input.dataset.cluster), input]));
+      return CANDIDATES.filter(item => checked.has(Number(item.cluster))).map(item => {
+        const cluster = Number(item.cluster);
+        const input = inputMap.get(cluster);
+        const rawLabel = input ? input.value.trim() : '';
+        const labels = parseCharacterIds(rawLabel);
+        const suggestedLabels = AUTO_SUGGESTIONS.get(cluster) || [];
+        const userEdited = input ? input.dataset.userEdited === '1' : false;
+        const source = labels.length
+          ? (userEdited ? 'manual_confirmed' : 'auto_suggested')
+          : (suggestedLabels.length ? 'auto_suggested' : 'unassigned');
+        return {
+          cluster,
+          character_id: labels.length ? labels[0] : null,
+          character_ids: labels,
+          suggested_character_id: suggestedLabels.length ? suggestedLabels[0] : null,
+          suggested_character_ids: suggestedLabels,
+          character_id_source: source,
+          start: item.start,
+          end: item.end,
+          duration: item.duration,
+          num_samples: item.num_samples,
+          dominant_share: item.dominant_share,
+          purity: item.purity,
+          rank_score: item.rank_score,
+          passes_thresholds: item.passes_thresholds,
+          speaker_overlaps: item.speaker_overlaps,
+          representative_frame: item.resolved_frame_path || item.representative_frame || null,
+        };
+      });
+    }
+
+    function downloadSelection() {
+      const selection = buildSelection();
+      const blob = new Blob([JSON.stringify(selection, null, 2)], {type: 'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'selected_reference_clusters.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>

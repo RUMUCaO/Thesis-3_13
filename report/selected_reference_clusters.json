@@ -1,0 +1,433 @@
+[
+  {
+    "cluster": 2569,
+    "character_id": "ALISON",
+    "character_ids": [
+      "ALISON"
+    ],
+    "suggested_character_id": "ALISON",
+    "suggested_character_ids": [
+      "ALISON"
+    ],
+    "character_id_source": "auto_suggested",
+    "start": 2435.433,
+    "end": 2482.8136666666664,
+    "duration": 47.38066666666646,
+    "num_samples": 0,
+    "dominant_share": 0.6763010317147602,
+    "purity": 1,
+    "rank_score": 48.76718619791629,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "11": 32.04359374999967
+    },
+    "representative_frame": "../candidates/cluster_2569.jpg"
+  },
+  {
+    "cluster": 4236,
+    "character_id": "AMANDA",
+    "character_ids": [
+      "AMANDA"
+    ],
+    "suggested_character_id": "AMANDA",
+    "suggested_character_ids": [
+      "AMANDA"
+    ],
+    "character_id_source": "auto_suggested",
+    "start": 4448.110333333333,
+    "end": 4491.8206666666665,
+    "duration": 43.71033333333344,
+    "num_samples": 0,
+    "dominant_share": 0.391905565808264,
+    "purity": 1,
+    "rank_score": 40.93476406250131,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "11": 17.130322916667865
+    },
+    "representative_frame": "../candidates/cluster_4236.jpg"
+  },
+  {
+    "cluster": 3284,
+    "character_id": "ALL",
+    "character_ids": [
+      "ALL"
+    ],
+    "suggested_character_id": "ALL",
+    "suggested_character_ids": [
+      "ALL"
+    ],
+    "character_id_source": "auto_suggested",
+    "start": 3640.9706666666666,
+    "end": 3677.006666666666,
+    "duration": 36.0359999999996,
+    "num_samples": 0,
+    "dominant_share": 0.4921640859140984,
+    "purity": 1,
+    "rank_score": 37.541306250000055,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "13": 17.735625000000255
+    },
+    "representative_frame": "../candidates/cluster_3284.jpg"
+  },
+  {
+    "cluster": 320,
+    "character_id": "AUNT ANITA",
+    "character_ids": [
+      "AUNT ANITA"
+    ],
+    "suggested_character_id": "AUNT ANITA",
+    "suggested_character_ids": [
+      "AUNT ANITA"
+    ],
+    "character_id_source": "auto_suggested",
+    "start": 601.601,
+    "end": 641.9746666666666,
+    "duration": 40.37366666666662,
+    "num_samples": 0,
+    "dominant_share": 0.2516182164942512,
+    "purity": 1,
+    "rank_score": 28.966238636363666,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "7": 10.158750000000055
+    },
+    "representative_frame": "../candidates/cluster_320.jpg"
+  },
+  {
+    "cluster": 2615,
+    "character_id": "AUNT BETSY",
+    "character_ids": [
+      "AUNT BETSY",
+      "BOTH"
+    ],
+    "suggested_character_id": "AUNT BETSY",
+    "suggested_character_ids": [
+      "AUNT BETSY",
+      "BOTH"
+    ],
+    "character_id_source": "auto_suggested",
+    "start": 2494.4919999999997,
+    "end": 2528.526,
+    "duration": 34.034000000000106,
+    "num_samples": 0,
+    "dominant_share": 0.5325189516365628,
+    "purity": 0.8286480531857413,
+    "rank_score": 24.20946840925167,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "11": 3.7477187499994216,
+      "25": 18.123749999998836
+    },
+    "representative_frame": "../candidates/cluster_2615.jpg"
+  },
+  {
+    "cluster": 2567,
+    "character_id": "BUS DRIVER",
+    "character_ids": [
+      "BUS DRIVER",
+      "CHURCH ORGAN",
+      "DOUCHE"
+    ],
+    "suggested_character_id": "BUS DRIVER",
+    "suggested_character_ids": [
+      "BUS DRIVER",
+      "CHURCH ORGAN",
+      "DOUCHE"
+    ],
+    "character_id_source": "auto_suggested",
+    "start": 2404.402,
+    "end": 2434.0983333333334,
+    "duration": 29.696333333333314,
+    "num_samples": 0,
+    "dominant_share": 0.4892649485346142,
+    "purity": 0.8092105263157968,
+    "rank_score": 15.837041618292176,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "3": 2.1599999999998545,
+      "10": 1.265625,
+      "12": 14.529375000000073
+    },
+    "representative_frame": "../candidates/cluster_2567.jpg"
+  },
+  {
+    "cluster": 870,
+    "character_id": "SUMMER (V.O.)",
+    "character_ids": [
+      "SUMMER (V.O.)",
+      "THE END",
+      "TOM"
+    ],
+    "suggested_character_id": "SUMMER (V.O.)",
+    "suggested_character_ids": [
+      "SUMMER (V.O.)",
+      "THE END",
+      "TOM"
+    ],
+    "character_id_source": "auto_suggested",
+    "start": 1129.4616666666666,
+    "end": 1168.5006666666666,
+    "duration": 39.03899999999999,
+    "num_samples": 0,
+    "dominant_share": 0.4014716586832005,
+    "purity": 0.5873026467814555,
+    "rank_score": 15.75615795237758,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "7": 8.47125000000051,
+      "11": 15.67305208333346,
+      "13": 2.5421979166662823
+    },
+    "representative_frame": "../candidates/cluster_870.jpg"
+  },
+  {
+    "cluster": 2529,
+    "character_id": "PAUL",
+    "character_ids": [
+      "PAUL",
+      "RACHEL",
+      "RACHEL (CONT'D)"
+    ],
+    "suggested_character_id": "PAUL",
+    "suggested_character_ids": [
+      "PAUL",
+      "RACHEL",
+      "RACHEL (CONT'D)"
+    ],
+    "character_id_source": "auto_suggested",
+    "start": 2205.203,
+    "end": 2246.911333333333,
+    "duration": 41.70833333333303,
+    "num_samples": 0,
+    "dominant_share": 0.33460039960039245,
+    "purity": 0.6923595697235813,
+    "rank_score": 15.536926069349445,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "7": 4.0916145833321025,
+      "9": 2.109375,
+      "11": 13.9556249999996
+    },
+    "representative_frame": "../candidates/cluster_2529.jpg"
+  },
+  {
+    "cluster": 4272,
+    "character_id": "NARRATOR",
+    "character_ids": [
+      "NARRATOR",
+      "NARRATOR (V.O.)",
+      "NIGHT"
+    ],
+    "suggested_character_id": "NARRATOR",
+    "suggested_character_ids": [
+      "NARRATOR",
+      "NARRATOR (V.O.)",
+      "NIGHT"
+    ],
+    "character_id_source": "auto_suggested",
+    "start": 4520.182333333333,
+    "end": 4557.886666666666,
+    "duration": 37.704333333333125,
+    "num_samples": 0,
+    "dominant_share": 0.2931526438162754,
+    "purity": 0.705059203444473,
+    "rank_score": 14.83903109895455,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "2": 1.5018749999999272,
+      "11": 3.1218750000007276,
+      "25": 11.053124999996726
+    },
+    "representative_frame": "../candidates/cluster_4272.jpg"
+  },
+  {
+    "cluster": 4200,
+    "character_id": "EVERY",
+    "character_ids": [
+      "EVERY",
+      "EXPLOSION OF MANY",
+      "MAN"
+    ],
+    "suggested_character_id": "EVERY",
+    "suggested_character_ids": [
+      "EVERY",
+      "EXPLOSION OF MANY",
+      "MAN"
+    ],
+    "character_id_source": "auto_suggested",
+    "start": 4369.698666666666,
+    "end": 4439.101333333333,
+    "duration": 69.40266666666685,
+    "num_samples": 0,
+    "dominant_share": 0.6346117824483035,
+    "purity": 0.8779011099899282,
+    "rank_score": 14.81991344621924,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "4": 1.6706250000006548,
+      "9": 2.8012499999986176,
+      "11": 44.04374999999891,
+      "29": 1.6537499999994907
+    },
+    "representative_frame": "../candidates/cluster_4200.jpg"
+  },
+  {
+    "cluster": 2741,
+    "character_id": "MARTIN",
+    "character_ids": [
+      "MARTIN",
+      "MCKENZIE"
+    ],
+    "suggested_character_id": "MARTIN",
+    "suggested_character_ids": [
+      "MARTIN",
+      "MCKENZIE"
+    ],
+    "character_id_source": "auto_suggested",
+    "start": 2657.6549999999997,
+    "end": 2690.354333333333,
+    "duration": 32.69933333333347,
+    "num_samples": 0,
+    "dominant_share": 0.29290320648739,
+    "purity": 0.6542064785768115,
+    "rank_score": 14.106334132330046,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "7": 5.0625,
+      "26": 9.577739583333369
+    },
+    "representative_frame": "../candidates/cluster_2741.jpg"
+  },
+  {
+    "cluster": 537,
+    "character_id": "TOM (V.O.)",
+    "character_ids": [
+      "TOM (V.O.)",
+      "VANCE",
+      "WRITTEN BY"
+    ],
+    "suggested_character_id": "TOM (V.O.)",
+    "suggested_character_ids": [
+      "TOM (V.O.)",
+      "VANCE",
+      "WRITTEN BY"
+    ],
+    "character_id_source": "auto_suggested",
+    "start": 866.5323333333333,
+    "end": 897.8969999999999,
+    "duration": 31.364666666666608,
+    "num_samples": 0,
+    "dominant_share": 0.3836123982400481,
+    "purity": 0.6114922813036001,
+    "rank_score": 12.684052971445682,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "11": 12.031874999999673,
+      "22": 1.518750000000182,
+      "25": 6.125624999999673
+    },
+    "representative_frame": "../candidates/cluster_537.jpg"
+  },
+  {
+    "cluster": 4499,
+    "character_id": null,
+    "character_ids": [],
+    "suggested_character_id": null,
+    "suggested_character_ids": [],
+    "character_id_source": "unassigned",
+    "start": 5100.762333333333,
+    "end": 5169.831333333333,
+    "duration": 69.0689999999995,
+    "num_samples": 0,
+    "dominant_share": 0.35964035964036434,
+    "purity": 0.8375830552968851,
+    "rank_score": 8.423155694198082,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "5": 1.9912499999991269,
+      "7": 24.840000000000146,
+      "8": 0.84375,
+      "11": 1.2561354166673482,
+      "20": 0.7256250000009459
+    },
+    "representative_frame": "../candidates/cluster_4499.jpg"
+  },
+  {
+    "cluster": 1281,
+    "character_id": "SARAH (O.S.)",
+    "character_ids": [
+      "SARAH (O.S.)",
+      "SUMMER"
+    ],
+    "suggested_character_id": "SARAH (O.S.)",
+    "suggested_character_ids": [
+      "SARAH (O.S.)",
+      "SUMMER"
+    ],
+    "character_id_source": "auto_suggested",
+    "start": 1766.4313333333332,
+    "end": 1821.4863333333333,
+    "duration": 55.055000000000064,
+    "num_samples": 0,
+    "dominant_share": 0.23264235764236182,
+    "purity": 0.8452115812917533,
+    "rank_score": 7.673124226676582,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "3": 12.808125000000246,
+      "10": 2.3456250000001546
+    },
+    "representative_frame": "../candidates/cluster_1281.jpg"
+  },
+  {
+    "cluster": 316,
+    "character_id": "REBECCA",
+    "character_ids": [
+      "REBECCA",
+      "SARAH"
+    ],
+    "suggested_character_id": "REBECCA",
+    "suggested_character_ids": [
+      "REBECCA",
+      "SARAH"
+    ],
+    "character_id_source": "auto_suggested",
+    "start": 598.9316666666666,
+    "end": 646.646,
+    "duration": 47.71433333333334,
+    "num_samples": 0,
+    "dominant_share": 0.2129077216489815,
+    "purity": 0.8998505231689086,
+    "rank_score": 6.7337452766328045,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "7": 10.158750000000055,
+      "9": 1.130625000000009
+    },
+    "representative_frame": "../candidates/cluster_316.jpg"
+  },
+  {
+    "cluster": 2892,
+    "character_id": null,
+    "character_ids": [],
+    "suggested_character_id": null,
+    "suggested_character_ids": [],
+    "character_id_source": "unassigned",
+    "start": 2900.8979999999997,
+    "end": 2975.973,
+    "duration": 75.07500000000027,
+    "num_samples": 0,
+    "dominant_share": 0.16520979020977508,
+    "purity": 0.5526315789473109,
+    "rank_score": 6.493827399380327,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "3": 8.910000000001673,
+      "10": 12.403124999998909,
+      "27": 1.1306249999997817
+    },
+    "representative_frame": "../candidates/cluster_2892.jpg"
+  }
+]

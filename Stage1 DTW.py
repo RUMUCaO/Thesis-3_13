@@ -6,8 +6,8 @@ Goal:
 - Align script text segments with video segments (two modalities only).
 
 Inputs:
-- video file
-- script file (.txt/.json/.csv/.srt)
+- video file (.mp4)
+- script file (.pdf)
 
 Output:
 - zt_bins.json containing script-aligned temporal bins.
@@ -1790,48 +1790,46 @@ def jump_size_mean(path):
     jumps = np.abs(path[1:] - path[:-1])
     return float(np.mean(jumps))
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--video", required=True)
-    parser.add_argument("--script", required=True, help="Script path (.txt/.json/.csv/.srt/.pdf)")
-    parser.add_argument("--out", default="zt_bins.json")
-    parser.add_argument("--sample_fps", type=float, default=2.0)
-    parser.add_argument("--window_sec", type=float, default=2.0)
-    parser.add_argument("--stride_sec", type=float, default=None, help="Sliding window stride in seconds; defaults to window_sec (no overlap)")
-    parser.add_argument("--image_batch_size", type=int, default=16)
-    parser.add_argument("--text_batch_size", type=int, default=32)
-    parser.add_argument("--frame_rerank", action="store_true", help="Run frame-level reranking inside matched windows for finer timestamps")
-    parser.add_argument("--score_threshold", type=float, default=None, help="Minimum cosine score to accept alignment; else window_index set to None")
-    parser.add_argument("--neighbor_script_radius", type=int, default=4, help="How many neighboring script segments to include when exporting local score profiles")
-    parser.add_argument("--video_local_radius_sec", type=float, default=8.0, help="Local ASR-centered radius in seconds for video refinement")
-    parser.add_argument("--video_time_penalty", type=float, default=0.02, help="Penalty for video windows that are far from the ASR time anchor")
-    parser.add_argument("--video_continuity_weight", type=float, default=0.12, help="Weight for local video embedding continuity")
-    parser.add_argument("--video_transition_penalty", type=float, default=0.02, help="Penalty for jump mismatch between consecutive video windows")
-    parser.add_argument("--asr_local_window_sec", type=float, default=None, help="Optional hard cap for ASR DP local search window in seconds")
-    parser.add_argument("--asr_local_window_ratio", type=float, default=0.05, help="Fallback ASR DP local window ratio of movie duration")
-    parser.add_argument("--device", default="auto")
-    parser.add_argument("--transcription", default=None, help="SRT transcription path for text-to-text timeline alignment")
-    parser.add_argument("--text_encoder", default="sentence-transformers/all-mpnet-base-v2", help="Sentence embedding model for script/transcription matching")
-    parser.add_argument("--clip_model", default="MCG-NJU/video-clip", help="Optional HuggingFace CLIP model id to use for visual+text encoding (default tries a VideoCLIP id, falls back to stronger CLIP then openai/clip)")
-    parser.add_argument("--alignment_mode", default="nw", choices=["dp","nw"], help="Alignment algorithm: 'dp' (monotonic DP) or 'nw' (Needleman-Wunsch allowing many-to-many). Default: nw (one-to-many)")
-    parser.add_argument("--context_radius", type=int, default=1, help="Neighbor radius for contextual text embeddings")
-    parser.add_argument("--candidate_top_k", type=int, default=8, help="Top-k transcription candidates per script segment")
-    parser.add_argument("--null_penalty", type=float, default=-0.12, help="Penalty for aligning a script segment to NULL")
-    parser.add_argument("--jump_penalty", type=float, default=0.03, help="Penalty for large forward jumps between transcript matches")
-    parser.add_argument("--time_penalty", type=float, default=0.02, help="Penalty for transcript time gaps that deviate from the local prior")
-    parser.add_argument("--global_time_penalty", type=float, default=0.02, help="Penalty for deviating from the expected absolute transcript position")
-    parser.add_argument("--debug_indices", type=str, default=None, help="Comma-separated script indices to print debug diagnostics for, e.g. '1,3,5'")
-    parser.add_argument("--extract_audio_emb", action="store_true", help="Extract MFCC audio embeddings for output bins")
-    parser.add_argument("--audio_sr", type=int, default=16000, help="Sample rate for audio embedding extraction")
-    parser.add_argument("--audio_n_mfcc", type=int, default=40, help="MFCC dimension for audio embeddings")
-    args = parser.parse_args()
+def main(
+    video: str,
+    script: str,
+    out: str = "zt_bins.json",
+    sample_fps: float = 2.0,
+    window_sec: float = 2.0,
+    stride_sec: float = None,
+    image_batch_size: int = 16,
+    text_batch_size: int = 32,
+    frame_rerank: bool = False,
+    score_threshold: float = None,
+    neighbor_script_radius: int = 4,          # defined but not used in the body – kept for completeness
+    video_local_radius_sec: float = 8.0,
+    video_time_penalty: float = 0.02,
+    video_continuity_weight: float = 0.12,
+    video_transition_penalty: float = 0.02,
+    asr_local_window_sec: float = None,
+    asr_local_window_ratio: float = 0.05,
+    device: str = "auto",
+    transcription: str = None,
+    text_encoder: str = "sentence-transformers/all-mpnet-base-v2",
+    clip_model: str = "MCG-NJU/video-clip",
+    alignment_mode: str = "nw",
+    context_radius: int = 1,
+    candidate_top_k: int = 8,
+    null_penalty: float = -0.12,
+    jump_penalty: float = 0.03,
+    time_penalty: float = 0.02,
+    global_time_penalty: float = 0.02,
+    debug_indices: str = None,
+    extract_audio_emb: bool = False,
+    audio_sr: int = 16000,
+    audio_n_mfcc: int = 40,
+):
+    script_path = script
 
-    script_path = args.script
-
-    if torch is not None and args.device == "auto":
-        args.device = "cuda" if torch.cuda.is_available() else "cpu"
-    elif args.device == "auto":
-        args.device = "cpu"
+    if torch is not None and device == "auto":
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+    elif device == "auto":
+        device = "cpu"
 
     script_segments = parse_script(script_path)
     if not script_segments:
@@ -1843,39 +1841,39 @@ def main():
     model = None
     use_asr_backbone = False
 
-    if args.transcription:
-        trans_tuples = parse_srt(args.transcription)
+    if transcription:
+        trans_tuples = parse_srt(transcription)
         if not trans_tuples:
-            raise ValueError(f"No transcription segments found in {args.transcription}")
+            raise ValueError(f"No transcription segments found in {transcription}")
         print(f"[INFO] Parsed {len(trans_tuples)} transcription segments")
-        text_encoder = load_text_encoder(args.text_encoder, args.device)
-        processor, model = load_clip(args.device, model_name=args.clip_model)
+        text_encoder_model = load_text_encoder(text_encoder, device)
+        processor, model = load_clip(device, model_name=clip_model)
         debug_idx_list = None
-        if getattr(args, 'debug_indices', None):
+        if debug_indices:
             try:
-                debug_idx_list = [int(x) for x in args.debug_indices.split(",") if x.strip()]
+                debug_idx_list = [int(x) for x in debug_indices.split(",") if x.strip()]
             except Exception:
                 debug_idx_list = None
 
         script_segments = align_script_to_transcription_dp(
             script_segments,
             trans_tuples,
-            text_encoder,
+            text_encoder_model,
             clip_processor=processor,
             clip_model=model,
-            alignment_mode=args.alignment_mode,
-            device=args.device,
-            context_radius=args.context_radius,
-            top_k_candidates=args.candidate_top_k,
-            null_penalty=args.null_penalty,
-            jump_penalty=args.jump_penalty,
-            time_penalty=args.time_penalty,
-            global_time_penalty=args.global_time_penalty,
-            score_threshold=args.score_threshold if args.score_threshold is not None else 0.30,
-            local_window_sec=args.asr_local_window_sec,
-            local_window_ratio=args.asr_local_window_ratio,
+            alignment_mode=alignment_mode,
+            device=device,
+            context_radius=context_radius,
+            top_k_candidates=candidate_top_k,
+            null_penalty=null_penalty,
+            jump_penalty=jump_penalty,
+            time_penalty=time_penalty,
+            global_time_penalty=global_time_penalty,
+            score_threshold=score_threshold if score_threshold is not None else 0.30,
+            local_window_sec=asr_local_window_sec,
+            local_window_ratio=asr_local_window_ratio,
             debug_indices=debug_idx_list,
-            video_path=args.video,
+            video_path=video,
         )
         use_asr_backbone = True
 
@@ -1883,22 +1881,22 @@ def main():
         raise ValueError("This pipeline now requires --transcription; global video DTW has been removed.")
 
     if processor is None or model is None:
-        processor, model = load_clip(args.device)
+        processor, model = load_clip(device)
 
-    windows = sample_video_windows(args.video, window_sec=args.window_sec, sample_fps=args.sample_fps, stride_sec=args.stride_sec)
+    windows = sample_video_windows(video, window_sec=window_sec, sample_fps=sample_fps, stride_sec=stride_sec)
     print(f"[INFO] Built {len(windows)} video windows")
 
     frame_embs_per_window, visual_embs = compute_frame_and_window_embeddings(
-        args.video,
+        video,
         windows,
         processor,
         model,
-        device=args.device,
-        image_batch_size=args.image_batch_size,
-        sample_fps=args.sample_fps,
-        store_frame_embeddings=args.frame_rerank,
+        device=device,
+        image_batch_size=image_batch_size,
+        sample_fps=sample_fps,
+        store_frame_embeddings=frame_rerank,
     )
-    text_embs = compute_script_text_embeddings(script_segments, processor, model, device=args.device, batch_size=args.text_batch_size)
+    text_embs = compute_script_text_embeddings(script_segments, processor, model, device=device, batch_size=text_batch_size)
 
     bins, quality = refine_video_from_asr(
         script_segments,
@@ -1906,36 +1904,42 @@ def main():
         frame_embs_per_window,
         visual_embs,
         text_embs,
-        local_radius_sec=args.video_local_radius_sec,
-        local_time_penalty=args.video_time_penalty,
-        continuity_weight=args.video_continuity_weight,
-        transition_penalty=args.video_transition_penalty,
-        frame_rerank=args.frame_rerank,
+        local_radius_sec=video_local_radius_sec,
+        local_time_penalty=video_time_penalty,
+        continuity_weight=video_continuity_weight,
+        transition_penalty=video_transition_penalty,
+        frame_rerank=frame_rerank,
     )
 
-    if args.extract_audio_emb:
+    if extract_audio_emb:
         print("[INFO] Extracting audio embeddings for bins...")
         audio_embs = compute_audio_embeddings_for_bins(
-            args.video,
+            video,
             bins,
-            sr=int(args.audio_sr),
-            n_mfcc=int(args.audio_n_mfcc),
+            sr=int(audio_sr),
+            n_mfcc=int(audio_n_mfcc),
         )
         for i in range(len(bins)):
             bins[i]["audio_emb"] = audio_embs[i]
 
-    out_dir = os.path.dirname(args.out)
+    out_dir = os.path.dirname(out)
     if out_dir:
         os.makedirs(out_dir, exist_ok=True)
 
-    with open(args.out, "w", encoding="utf-8") as f:
-        json.dump({"video": args.video, "script": script_path, "bins": bins, "quality": quality}, f, ensure_ascii=False, indent=2)
+    with open(out, "w", encoding="utf-8") as f:
+        json.dump({"video": video, "script": script_path, "bins": bins, "quality": quality}, f, ensure_ascii=False, indent=2)
 
-    print(f"[INFO] Wrote {args.out} with {len(bins)} aligned bins")
+    print(f"[INFO] Wrote {out} with {len(bins)} aligned bins")
 
     print("[EVAL] Quality:", quality)
     print("[EVAL] NCC:", compute_local_coherence(visual_embs))
 
-
 if __name__ == "__main__":
-    main()
+    # Example direct call (replace with actual values)
+    main(
+        video="500D.mp4",
+        script="02_500_Days_of_Summer.pdf",
+        transcription="500D.srt",
+        out="output.json",
+        # ... other arguments as needed
+    )
