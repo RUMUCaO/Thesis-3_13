@@ -401,7 +401,7 @@ Generate the script for this single scene. Start with the scene header "SCENE {i
 
 if __name__ == "__main__":
     import os
-    API_KEY = os.environ.get("DEEPSEEK_API_KEY", "sk-ced541df54664f858fa1ff0f1b916422")
+    API_KEY = os.environ.get("DEEPSEEK_API_KEY", "")
     prepare_llm_payload(
 		scenes_path="scene_level_results.json",
 		whisperx_path="whisperx_results.json",
