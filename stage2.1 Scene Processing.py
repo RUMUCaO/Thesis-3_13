@@ -51,7 +51,7 @@ def repair_video_with_ffmpeg(input_path: Path, output_path: Path = None, crf: in
 # =========================
 # paths
 # =========================
-VIDEO_PATH = Path("500D.mp4")
+VIDEO_PATH = Path("PW.mp4")
 SCENE_JSON = Path("stage2_TransNetV2_scenes.json")
 SEMANTIC_JSON = Path("semantic_scenes.json")
 
@@ -60,7 +60,7 @@ SEMANTIC_JSON = Path("semantic_scenes.json")
 # CLIP model
 # =========================
 device = "cuda" if torch.cuda.is_available() else "cpu"
-
+ 
 clip_model, _, preprocess = open_clip.create_model_and_transforms(
     "ViT-B-32",
     pretrained="laion2b_s34b_b79k"
@@ -99,32 +99,22 @@ def get_scenes_with_scenedetect(video_path: Path, threshold=30):
         })
     return scenes
 
-def extract_audio(video_path: Path, out_wav="temp.wav"):
-    import subprocess
-    subprocess.run([
-        "ffmpeg", "-y",
-        "-i", str(video_path),
-        "-ac", "1",
-        "-ar", "16000",
-        out_wav
-    ], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    return out_wav
+def extract_full_audio(video_path: Path, out_wav: str = "full_audio.wav"):
+    """提取整个视频的音频到 wav 文件，返回音频数组和采样率"""
+    cmd = [
+        "ffmpeg", "-y", "-i", str(video_path),
+        "-ac", "1", "-ar", "16000", out_wav
+    ]
+    subprocess.run(cmd, check=True, capture_output=True)
+    audio, sr = torchaudio.load(out_wav)
+    Path(out_wav).unlink()  # 删除临时文件
+    return audio, sr
 
-
-def audio_embedding_whisper(video_path: Path):
-    wav = extract_audio(video_path)
-    result = whisper_model.transcribe(wav)
-    return result["text"]
-
-
-def audio_embedding_clap(text: str):
-    # 简化版 CLAP embedding（用 CLIP text encoder替代）
-    tokens = open_clip.tokenize([text]).to(device)
-    with torch.no_grad():
-        feat = clip_model.encode_text(tokens)
-        feat = feat / feat.norm(dim=-1, keepdim=True)
-    return feat.squeeze(0).cpu().numpy()
-
+def get_audio_segment(full_audio, sr, start_sec, end_sec):
+    """从完整音频中截取片段"""
+    start_sample = int(start_sec * sr)
+    end_sample = int(end_sec * sr)
+    return full_audio[:, start_sample:end_sample]
 
 # =========================
 # multi-frame CLIP (核心升级🔥)
@@ -176,33 +166,22 @@ def load_scenes():
 # =========================
 # semantic merge (fusion版🔥)
 # =========================
-def merge_scenes(scenes, visual_embs, audio_emb, alpha=0.7):
-    """
-    alpha: visual vs audio weight
-    """
-
+def merge_scenes(scenes, visual_embs, audio_embs, alpha=0.7, threshold=0.75):
     def sim(a, b):
         return float(np.dot(a, b))
-
     groups = []
     cur = [scenes[0]]
-
     for i in range(1, len(scenes)):
-
-        v_sim = sim(visual_embs[i - 1], visual_embs[i])
-
-        # audio is global bias (same for all scenes here)
-        score = alpha * v_sim + (1 - alpha) * 0.5
-
-        if score > 0.88:
+        v_sim = sim(visual_embs[i-1], visual_embs[i])
+        a_sim = sim(audio_embs[i-1], audio_embs[i])
+        score = alpha * v_sim + (1 - alpha) * a_sim
+        if score > threshold:
             cur.append(scenes[i])
         else:
             groups.append(cur)
             cur = [scenes[i]]
-
     groups.append(cur)
     return groups
-
 
 def to_semantic(groups):
     return [
@@ -215,10 +194,9 @@ def to_semantic(groups):
         for i, g in enumerate(groups)
     ]
 
-
 # =========================
 # main
-# =========================
+# ========================= 
 def main():
     print("Detecting scenes with scenedetect...")
     repaired_video_path = repair_video_with_ffmpeg(VIDEO_PATH)# 尝试修复视频，避免解码错误导致的场景检测失败
@@ -246,21 +224,62 @@ def main():
     # 2. audio embedding
     # -------------------------
     print("Extracting audio semantic signal...")
-    text = audio_embedding_whisper(repaired_video_path)
-    audio_emb = audio_embedding_clap(text)
+    full_audio, audio_sr = extract_full_audio(repaired_video_path)
+    audio_embs = []
+
+    for s in scenes:
+        start = s["start_seconds"]
+        end = s["end_seconds"]
+        if end - start < 0.5:   # 太短的片段直接给零向量
+            audio_embs.append(np.zeros(512))
+            continue
+        
+        segment = get_audio_segment(full_audio, audio_sr, start, end)
+        
+        # 1. 转为单声道 (如果 segment 是多通道)
+        if segment.dim() > 1 and segment.shape[0] > 1:
+            segment = segment.mean(dim=0, keepdim=True).squeeze()
+        else:
+            segment = segment.squeeze()
+        
+        # 2. 转成 float32 numpy
+        audio_np = segment.cpu().numpy().astype(np.float32)
+        
+        # 3. 重采样到 16000 Hz (如果原始采样率不是 16000)
+        if audio_sr != 16000:
+            import torchaudio
+            # 先转回 tensor
+            audio_tensor = torch.from_numpy(audio_np)
+            # torchaudio 重采样
+            resampler = torchaudio.transforms.Resample(orig_freq=audio_sr, new_freq=16000)
+            audio_np = resampler(audio_tensor).numpy()
+        
+        # 4. 关键：填充/裁剪到 30 秒 (480000 个采样点)
+        audio_30s = whisper.pad_or_trim(torch.from_numpy(audio_np))   # 输出 shape (480000,)
+        
+        # 5. 计算梅尔谱 (shape: 80, 3000)
+        mel = whisper.log_mel_spectrogram(audio_30s)   # 注意：不要 unsqueeze 在这里
+        
+        # 6. 添加 batch 维度并送入 encoder
+        mel_batch = mel.unsqueeze(0).to(device)        # shape (1, 80, 3000)
+        with torch.no_grad():
+            features = whisper_model.encoder(mel_batch)   # shape (1, 1500, 512)
+        
+        # 7. 取时间维度的平均作为片段嵌入
+        emb = features.mean(dim=1).squeeze().cpu().numpy()  # shape (512,)
+        audio_embs.append(emb)
 
     # -------------------------
     # 3. semantic merge
     # -------------------------
     print("Merging semantic scenes...")
-    groups = merge_scenes(scenes, visual_embs, audio_emb)
+    groups = merge_scenes(scenes, visual_embs, audio_embs, alpha=0.7, threshold=0.75)
 
     semantic = to_semantic(groups)
 
     SEMANTIC_JSON.write_text(
         json.dumps({
             "video": repaired_video_path.name,
-            "audio_text": text,
             "semantic_scenes": semantic
         }, indent=2),
         encoding="utf-8"

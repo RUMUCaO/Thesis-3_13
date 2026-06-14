@@ -180,61 +180,6 @@ def parse_time_to_sec(raw: Any) -> Optional[float]:
     return hh * 3600 + mm * 60 + ss + ms / 1000.0
 
 
-def _parse_script_srt(script_path: str) -> List[Dict[str, Any]]:
-    return [{"text": text, "start": start, "end": end} for (start, end, text) in parse_srt(script_path) if text]
-
-
-def _parse_script_json(script_path: str) -> List[Dict[str, Any]]:
-    with open(script_path, "r", encoding="utf-8", errors="ignore") as f:
-        data = json.load(f)
-
-    if isinstance(data, dict):
-        data = data.get("segments", data.get("bins", []))
-    if not isinstance(data, list):
-        raise ValueError("JSON script must be a list or have 'segments' key")
-
-    out = []
-    for item in data:
-        if isinstance(item, str):
-            txt = item.strip()
-            if txt:
-                out.append({"text": txt, "start": None, "end": None})
-            continue
-        if not isinstance(item, dict):
-            continue
-
-        txt = str(item.get("text", item.get("dialogue", ""))).strip()
-        if not txt:
-            continue
-
-        out.append(
-            {
-                "text": txt,
-                "start": parse_time_to_sec(item.get("start")),
-                "end": parse_time_to_sec(item.get("end")),
-            }
-        )
-    return out
-
-
-def _parse_script_csv(script_path: str) -> List[Dict[str, Any]]:
-    out = []
-    with open(script_path, "r", encoding="utf-8", errors="ignore", newline="") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            text = (row.get("text") or row.get("dialogue") or row.get("line") or "").strip()
-            if not text:
-                continue
-            out.append(
-                {
-                    "text": text,
-                    "start": parse_time_to_sec(row.get("start") or row.get("start_sec")),
-                    "end": parse_time_to_sec(row.get("end") or row.get("end_sec")),
-                }
-            )
-    return out
-
-
 def _parse_script_pdf(script_path: str) -> List[Dict[str, Any]]:
     try:
         pypdf = importlib.import_module("pypdf")
@@ -382,15 +327,6 @@ def _parse_script_plain(script_path: str) -> List[Dict[str, Any]]:
 def parse_script(script_path: str) -> List[Dict[str, Any]]:
     """Parse script into [{'text': str, 'start': float|None, 'end': float|None}, ...]."""
     lower = script_path.lower()
-
-    if lower.endswith(".srt"):
-        return _parse_script_srt(script_path)
-
-    if lower.endswith(".json"):
-        return _parse_script_json(script_path)
-
-    if lower.endswith(".csv"):
-        return _parse_script_csv(script_path)
 
     if lower.endswith(".pdf"):
         return _parse_script_pdf(script_path)
@@ -545,7 +481,8 @@ def compute_frame_and_window_embeddings(
         for k, v in inputs.items():
             inputs[k] = v.to(device)
         with torch.no_grad():
-            feats = model.get_image_features(**inputs)
+            outputs = model.get_image_features(**inputs)
+            feats = outputs.pooler_output
             feats = feats / feats.norm(p=2, dim=-1, keepdim=True).clamp(min=1e-12)
         arr = feats.detach().cpu().numpy()
         for local_idx, vec in enumerate(arr):
@@ -772,8 +709,16 @@ def compute_script_text_embeddings(script_segments, processor, model, device="cp
         for k, v in inputs.items():
             inputs[k] = v.to(device)
         with torch.no_grad():
-            feats = model.get_text_features(**inputs)
-            feats = feats / feats.norm(p=2, dim=-1, keepdim=True).clamp(min=1e-12)
+            outputs = model.get_text_features(**inputs)
+
+            if hasattr(outputs, "pooler_output") and outputs.pooler_output is not None:
+                feats = outputs.pooler_output
+            elif torch.is_tensor(outputs):
+                feats = outputs
+            else:
+                raise TypeError(f"Unexpected output type: {type(outputs)}")
+
+            feats = torch.nn.functional.normalize(feats, p=2, dim=-1)
         arr = feats.cpu().numpy()
         for j, vec in enumerate(arr):
             out[i + j] = vec.tolist()
@@ -1825,6 +1770,7 @@ def main(
     audio_n_mfcc: int = 40,
 ):
     script_path = script
+    print(script_path) 
 
     if torch is not None and device == "auto":
         device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -1834,6 +1780,7 @@ def main(
     script_segments = parse_script(script_path)
     if not script_segments:
         raise ValueError("No script segments found")
+    
 
     print(f"[INFO] Parsed {len(script_segments)} script segments")
 
@@ -1937,9 +1884,9 @@ def main(
 if __name__ == "__main__":
     # Example direct call (replace with actual values)
     main(
-        video="500D.mp4",
-        script="02_500_Days_of_Summer.pdf",
-        transcription="500D.srt",
+        video="PW.mp4",
+        script="11_Pretty_Woman.pdf",
+        transcription="PW.srt",
         out="output.json",
         # ... other arguments as needed
     )

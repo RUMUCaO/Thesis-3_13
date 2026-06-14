@@ -24,12 +24,34 @@ from pathlib import Path
 from statistics import mean
 from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Tuple
 import numpy as np
+from sentence_transformers import SentenceTransformer
+import numpy as np
 
 try:
 	from scipy.optimize import linear_sum_assignment
 except Exception:  # pragma: no cover - optional dependency
 	linear_sum_assignment = None
+ 
+# 全局模型（只加载一次）
+_SBERT_MODEL = None
 
+def get_sbert_model():
+    global _SBERT_MODEL
+    if _SBERT_MODEL is None:
+        _SBERT_MODEL = SentenceTransformer('all-mpnet-base-v2')
+    return _SBERT_MODEL
+
+def sbert_encode(text: str) -> np.ndarray:
+    """返回归一化的嵌入向量（已归一化，点积即余弦相似度）"""
+    model = get_sbert_model()
+    return model.encode(text, normalize_embeddings=True)
+
+def sbert_similarity(text_a: str, text_b: str) -> float:
+    """使用 Sentence-BERT 计算两个文本的余弦相似度"""
+    model = get_sbert_model()
+    emb_a = model.encode(text_a, normalize_embeddings=True)   # 已归一化，点积即余弦
+    emb_b = model.encode(text_b, normalize_embeddings=True)
+    return float(np.dot(emb_a, emb_b))
 
 TOKEN_RE = re.compile(r"[A-Za-z0-9']+")
 HYPHEN_RE = re.compile(r"\s*[-–—]\s*")
@@ -103,52 +125,31 @@ def scene_heading(scene: Dict[str, Any]) -> str:
 
 
 def scene_text(scene: Dict[str, Any]) -> str:
-	for key in ("text", "raw_text", "transcript_text"):
-		value = scene.get(key)
-		if value:
-			return normalize_whitespace(str(value))
-
-	pieces: List[str] = []
-	heading = scene_heading(scene)
-	if heading:
-		pieces.append(heading)
-
-	for key in ("action", "summary", "description"):
-		value = scene.get(key)
-		if isinstance(value, dict):
-			pieces.extend(str(v) for v in value.values() if v)
-		elif value:
-			pieces.append(str(value))
-
-	for key in ("dialogue", "dialogue_blocks", "action_blocks", "cast"):
-		value = scene.get(key)
-		if isinstance(value, list):
-			for item in value:
-				if isinstance(item, dict):
-					for inner_key in ("speaker", "text", "value"):
-						if item.get(inner_key):
-							pieces.append(str(item[inner_key]))
-				elif item:
-					pieces.append(str(item))
-
-	llm_extraction = scene.get("llm_extraction")
-	if isinstance(llm_extraction, dict):
-		if llm_extraction.get("heading"):
-			pieces.append(str(llm_extraction["heading"]))
-		for key in ("characters", "action_blocks"):
-			for item in as_list(llm_extraction.get(key)):
-				if item:
-					pieces.append(str(item))
-		for block in as_list(llm_extraction.get("dialogue_blocks")):
-			if isinstance(block, dict):
-				speaker = block.get("speaker")
-				text = block.get("text")
-				if speaker:
-					pieces.append(str(speaker))
-				if text:
-					pieces.append(str(text))
-
-	return normalize_whitespace(" ".join(pieces))
+    # 优先使用 llm_extraction 构建完整文本
+    llm_extraction = scene.get("llm_extraction")
+    if isinstance(llm_extraction, dict):
+        pieces = []
+        if llm_extraction.get("heading"):
+            pieces.append(str(llm_extraction["heading"]))
+        for block in as_list(llm_extraction.get("action_blocks")):
+            pieces.append(str(block))
+        for block in as_list(llm_extraction.get("dialogue_blocks")):
+            if isinstance(block, dict):
+                speaker = block.get("speaker")
+                text = block.get("text")
+                if speaker:
+                    pieces.append(f"{speaker}: {text}" if text else speaker)
+                elif text:
+                    pieces.append(text)
+        if pieces:
+            return normalize_whitespace(" ".join(pieces))
+    
+    # 回退到原始字段
+    for key in ("text", "raw_text_span", "transcript_text"):
+        value = scene.get(key)
+        if value:
+            return normalize_whitespace(str(value))
+    return ""
 
 
 def extract_characters(scene: Dict[str, Any]) -> List[str]:
@@ -287,61 +288,10 @@ def scene_records_from_payload(payload: Any, source: str) -> List[SceneRecord]:
 		)
 	return records
 
-
 def combined_text(scene: SceneRecord) -> str:
-	parts = [scene.heading, scene.text, " ".join(scene.characters), " ".join(scene.dialogue), " ".join(scene.action)]
-	return normalize_whitespace(" ".join(part for part in parts if part))
-
-
-def build_idf(corpus: Sequence[str]) -> Dict[str, float]:
-	doc_count = len(corpus)
-	if doc_count == 0:
-		return {}
-	df: Counter[str] = Counter()
-	for text in corpus:
-		df.update(set(tokenize(text)))
-	return {token: math.log((1.0 + doc_count) / (1.0 + count)) + 1.0 for token, count in df.items()}
-
-
-def vectorize(text: str, idf: Dict[str, float]) -> Dict[str, float]:
-	counts = Counter(tokenize(text))
-	total = sum(counts.values()) or 1
-	return {token: (count / total) * idf.get(token, 1.0) for token, count in counts.items()}
-
-
-def cosine_similarity(left: Dict[str, float], right: Dict[str, float]) -> float:
-	if not left or not right:
-		return 0.0
-	common = set(left) & set(right)
-	numerator = sum(left[token] * right[token] for token in common)
-	left_norm = math.sqrt(sum(value * value for value in left.values()))
-	right_norm = math.sqrt(sum(value * value for value in right.values()))
-	if left_norm == 0.0 or right_norm == 0.0:
-		return 0.0
-	return numerator / (left_norm * right_norm)
-
-
-def jaccard(left: Iterable[str], right: Iterable[str]) -> float:
-	left_set = {item for item in left if item}
-	right_set = {item for item in right if item}
-	if not left_set and not right_set:
-		return 1.0
-	union = left_set | right_set
-	if not union:
-		return 0.0
-	return len(left_set & right_set) / len(union)
-
-
-def overlap_ratio(left: Iterable[str], right: Iterable[str]) -> float:
-	left_tokens = set(tokenize(" ".join(left)))
-	right_tokens = set(tokenize(" ".join(right)))
-	if not left_tokens and not right_tokens:
-		return 1.0
-	union = left_tokens | right_tokens
-	if not union:
-		return 0.0
-	return len(left_tokens & right_tokens) / len(union)
-
+    # 只拼接 heading 和 text（text 已包含角色、对话、动作）
+    parts = [scene.heading, scene.text]
+    return normalize_whitespace(" ".join(part for part in parts if part))
 
 def positional_index_map(records: Sequence[SceneRecord]) -> Dict[int, float]:
 	ordered = sorted(records, key=lambda item: (item.start is None, item.start if item.start is not None else item.scene_id, item.scene_id))
@@ -384,108 +334,46 @@ def match_scene_pairs(
 	matches.sort(key=lambda item: item[0].scene_id)
 	return matches
 
-
-def scene_similarity(g_scene: SceneRecord, r_scene: SceneRecord, idf: Dict[str, float]) -> float:
-	text_score = cosine_similarity(vectorize(combined_text(g_scene), idf), vectorize(combined_text(r_scene), idf))
-	char_score = jaccard(g_scene.characters, r_scene.characters)
-	dialog_score = overlap_ratio(g_scene.dialogue, r_scene.dialogue)
-	action_score = overlap_ratio(g_scene.action, r_scene.action)
-	return 0.5 * text_score + 0.2 * char_score + 0.15 * dialog_score + 0.15 * action_score
-
-
-def compute_temporal_metrics(
-	generated: Sequence[SceneRecord],
-	reference: Sequence[SceneRecord],
-	matches: Sequence[Tuple[SceneRecord, SceneRecord, float]],
-) -> Dict[str, float]:
-	if not matches:
-		return {"alignment_retrieval_map": 0.0, "multimodal_semantic_similarity": 0.0}
-
-	gen_pos = positional_index_map(generated)
-	ref_pos = positional_index_map(reference)
-	window = 0.5 / max(len(generated), len(reference), 1)
-
-	pair_positions: List[Tuple[float, float]] = []
-	distances: List[float] = []
-	semantic_scores: List[float] = []
-
-	for g_scene, r_scene, score in matches:
-		g_pos = gen_pos.get(g_scene.scene_id, 0.0)
-		r_pos = ref_pos.get(r_scene.scene_id, 0.0)
-		pair_positions.append((g_pos, r_pos))
-		distances.append(abs(g_pos - r_pos))
-		semantic_scores.append(score)
-
-	concordant = 0
-	discordant = 0
-	for left_index in range(len(pair_positions)):
-		for right_index in range(left_index + 1, len(pair_positions)):
-			left_g, left_r = pair_positions[left_index]
-			right_g, right_r = pair_positions[right_index]
-			order_g = left_g - right_g
-			order_r = left_r - right_r
-			if order_g == 0 or order_r == 0:
-				continue
-			if order_g * order_r > 0:
-				concordant += 1
-			else:
-				discordant += 1
-
-	shared_idf = build_idf([combined_text(scene) for scene in list(generated) + list(reference)])
-	reference_vectors = [vectorize(combined_text(scene), shared_idf) for scene in reference]
-	generated_vectors = [vectorize(combined_text(scene), shared_idf) for scene in generated]
-	reference_index_by_id = {scene.scene_id: index for index, scene in enumerate(reference)}
-	average_precisions: List[float] = []
-	for g_scene, r_scene, _score in matches:
-		g_vector = generated_vectors[[scene.scene_id for scene in generated].index(g_scene.scene_id)]
-		ranked = sorted(
-			enumerate(reference_vectors),
-			key=lambda item: cosine_similarity(g_vector, item[1]),
-			reverse=True,
-		)
-		target_index = reference_index_by_id.get(r_scene.scene_id)
-		if target_index is None:
-			continue
-		for rank, (candidate_index, _) in enumerate(ranked, start=1):
-			if candidate_index == target_index:
-				average_precisions.append(1.0 / rank)
-				break
-
-	return {
-		"alignment_retrieval_map": mean(average_precisions) if average_precisions else 0.0,
-		"multimodal_semantic_similarity": mean(semantic_scores) if semantic_scores else 0.0,
-	}
+def scene_similarity(g_scene: SceneRecord, r_scene: SceneRecord, _idf=None) -> float:
+    """
+    使用 Sentence-BERT 计算组合文本的语义相似度。
+    _idf 参数保留仅为兼容原有调用，实际不使用。
+    """
+    text_g = combined_text(g_scene)
+    text_r = combined_text(r_scene)
+    return sbert_similarity(text_g, text_r)
  
-def dtw_distance(seq_a: Sequence[SceneRecord], seq_b: Sequence[SceneRecord], idf: Dict[str, float]) -> float:
-	"""
-	Classic DTW over scene embeddings using cosine distance.
-	Lower is better.
-	"""
-	if not seq_a or not seq_b:
-		return float("inf")
+def dtw_distance(seq_a: Sequence[SceneRecord], seq_b: Sequence[SceneRecord]) -> float:
+    """
+    DTW over SBERT scene embeddings using cosine distance.
+    Lower is better.
+    """
+    if not seq_a or not seq_b:
+        return float("inf")
 
-	n, m = len(seq_a), len(seq_b)
+    n, m = len(seq_a), len(seq_b)
 
-	# precompute embeddings
-	a_vecs = [vectorize(combined_text(s), idf) for s in seq_a]
-	b_vecs = [vectorize(combined_text(s), idf) for s in seq_b]
+    # 预计算嵌入（每个场景的 combined_text）
+    a_vecs = [sbert_encode(combined_text(s)) for s in seq_a]
+    b_vecs = [sbert_encode(combined_text(s)) for s in seq_b]
 
-	def cost(i: int, j: int) -> float:
-		return 1.0 - cosine_similarity(a_vecs[i], b_vecs[j])
+    def cost(i: int, j: int) -> float:
+        # 余弦距离 = 1 - 余弦相似度
+        return 1.0 - float(np.dot(a_vecs[i], b_vecs[j]))
 
-	dp = [[float("inf")] * (m + 1) for _ in range(n + 1)]
-	dp[0][0] = 0.0
+    dp = [[float("inf")] * (m + 1) for _ in range(n + 1)]
+    dp[0][0] = 0.0
 
-	for i in range(1, n + 1):
-		for j in range(1, m + 1):
-			c = cost(i - 1, j - 1)
-			dp[i][j] = c + min(
-				dp[i - 1][j],     # insertion
-				dp[i][j - 1],     # deletion
-				dp[i - 1][j - 1]  # match
-			)
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            c = cost(i - 1, j - 1)
+            dp[i][j] = c + min(
+                dp[i - 1][j],     # insertion
+                dp[i][j - 1],     # deletion
+                dp[i - 1][j - 1]  # match
+            )
 
-	return dp[n][m] / (n + m)
+    return dp[n][m] / (n + m)
 
 
 def extract_event_tuple(scene: SceneRecord) -> Dict[str, List[str]]:
@@ -502,19 +390,24 @@ def extract_event_tuple(scene: SceneRecord) -> Dict[str, List[str]]:
 		"time": [time_of_day] if time_of_day else [],
 	}
 
-def event_embedding(scene: SceneRecord, idf: Dict[str, float]) -> Dict[str, float]:
-	return vectorize(combined_text(scene), idf)
-
 def align_views(left: Sequence[SceneRecord], right: Sequence[SceneRecord]) -> float:
-	if not left or not right:
-		return 0.0
-	shared_idf = build_idf([combined_text(scene) for scene in list(left) + list(right)])
-	left_embeddings = [event_embedding(scene, shared_idf) for scene in left]
-	right_embeddings = [event_embedding(scene, shared_idf) for scene in right]
-	scores = []
-	for embedding in left_embeddings:
-		scores.append(max(cosine_similarity(embedding, candidate) for candidate in right_embeddings))
-	return mean(scores) if scores else 0.0
+    """
+    计算两个视图（场景序列）之间的平均最大相似度。
+    每个视图内的场景用 SBERT 嵌入表示。
+    """
+    if not left or not right:
+        return 0.0
+    
+    # 预计算嵌入
+    left_emb = [sbert_encode(combined_text(s)) for s in left]
+    right_emb = [sbert_encode(combined_text(s)) for s in right]
+    
+    scores = []
+    for lv in left_emb:
+        # 计算当前左视图场景与所有右视图场景的最大余弦相似度
+        best = max(np.dot(lv, rv) for rv in right_emb)
+        scores.append(best)
+    return float(np.mean(scores)) if scores else 0.0
 
 def consensus_score(views: Sequence[Sequence[SceneRecord]]) -> Dict[str, float]:
 	if len(views) < 2:
@@ -534,7 +427,7 @@ def compute_np_metric(
     k: int = 5,
 ) -> float:
     """
-    Neighborhood Preservation (NP) metric.
+    Neighborhood Preservation (NP) metric using SBERT embeddings.
 
     For each matched pair (g, r), compute the Jaccard overlap between
     the top-k nearest neighbors of g in the generated scene set and
@@ -543,39 +436,29 @@ def compute_np_metric(
     if not matches:
         return 0.0
 
-    # Build shared IDF and vectorize all scenes
-    all_scenes = list(generated) + list(reference)
-    idf = build_idf([combined_text(s) for s in all_scenes])
+    # Encode all scenes using SBERT (normalized embeddings)
+    gen_texts = [combined_text(s) for s in generated]
+    ref_texts = [combined_text(s) for s in reference]
+    
+    # Batch encode for efficiency
+    all_texts = gen_texts + ref_texts
+    all_embeddings = get_sbert_model().encode(all_texts, normalize_embeddings=True)
+    
+    n_gen = len(gen_texts)
+    gen_vecs = all_embeddings[:n_gen]        # (n_gen, dim)
+    ref_vecs = all_embeddings[n_gen:]        # (n_ref, dim)
 
-    gen_vecs = [vectorize(combined_text(s), idf) for s in generated]
-    ref_vecs = [vectorize(combined_text(s), idf) for s in reference]
+    # Compute cosine similarity matrices (dot product since vectors are normalized)
+    gen_sim = np.dot(gen_vecs, gen_vecs.T)   # (n_gen, n_gen)
+    ref_sim = np.dot(ref_vecs, ref_vecs.T)   # (n_ref, n_ref)
 
-    # Precompute similarity matrices for fast neighbor retrieval
-    n_gen = len(gen_vecs)
-    n_ref = len(ref_vecs)
-
-    gen_sim = np.zeros((n_gen, n_gen), dtype=np.float32)
-    for i in range(n_gen):
-        for j in range(i, n_gen):
-            sim = cosine_similarity(gen_vecs[i], gen_vecs[j])
-            gen_sim[i, j] = sim
-            gen_sim[j, i] = sim
-
-    ref_sim = np.zeros((n_ref, n_ref), dtype=np.float32)
-    for i in range(n_ref):
-        for j in range(i, n_ref):
-            sim = cosine_similarity(ref_vecs[i], ref_vecs[j])
-            ref_sim[i, j] = sim
-            ref_sim[j, i] = sim
-
-    # Get top-k neighbors (excluding self)
+    # Get top-k neighbors (excluding self) for each scene
     def topk_neighbors(sim_matrix: np.ndarray, k: int) -> List[Set[int]]:
         n = sim_matrix.shape[0]
         neighbors = []
         for i in range(n):
-            # Sort indices by similarity descending, skip self
+            # argsort descending, skip self (similarity[i,i] = 1.0)
             indices = np.argsort(-sim_matrix[i])
-            # remove self (similarity 1.0)
             topk = [int(idx) for idx in indices if idx != i][:k]
             neighbors.append(set(topk))
         return neighbors
@@ -583,7 +466,7 @@ def compute_np_metric(
     gen_neighbors = topk_neighbors(gen_sim, k)
     ref_neighbors = topk_neighbors(ref_sim, k)
 
-    # Map scene objects back to their index in the lists
+    # Map scene_id -> index in the respective list
     gen_index_map = {s.scene_id: i for i, s in enumerate(generated)}
     ref_index_map = {s.scene_id: i for i, s in enumerate(reference)}
 
@@ -595,78 +478,111 @@ def compute_np_metric(
             continue
         set_g = gen_neighbors[g_idx]
         set_r = ref_neighbors[r_idx]
+        inter = len(set_g & set_r)
         union = len(set_g | set_r)
-        if union == 0:
-            jac = 0.0
-        else:
-            jac = len(set_g & set_r) / union
+        jac = inter / union if union > 0 else 0.0
         jaccards.append(jac)
 
     return float(np.mean(jaccards)) if jaccards else 0.0
 
+def order_correlation(matches, gen_seq, ref_seq):
+    # matches 是 (gen_scene, ref_scene, score) 列表
+    gen_ranks = {}
+    ref_ranks = {}
+    for idx, scene in enumerate(gen_seq):
+        gen_ranks[scene.scene_id] = idx
+    for idx, scene in enumerate(ref_seq):
+        ref_ranks[scene.scene_id] = idx
+    
+    # 只考虑匹配上的场景
+    gen_positions = []
+    ref_positions = []
+    for g_scene, r_scene, _ in matches:
+        gen_positions.append(gen_ranks[g_scene.scene_id])
+        ref_positions.append(ref_ranks[r_scene.scene_id])
+    
+    # 计算 Spearman 相关系数
+    from scipy.stats import spearmanr
+    corr, _ = spearmanr(gen_positions, ref_positions)
+    return corr
+
 def evaluate_sce(
-	generated_payload: Any,
-	reference_payload: Any,
-	identity_payload: Optional[Any] = None,
+    generated_payload: Any,
+    reference_payload: Any,
+    identity_payload: Optional[Any] = None,
+    threshold: float = 0.7,
 ) -> Dict[str, Any]:
-	generated = scene_records_from_payload(generated_payload, source="generated")
-	reference = scene_records_from_payload(reference_payload, source="reference")
-	identity = identity_payload if isinstance(identity_payload, dict) else None
+    generated = scene_records_from_payload(generated_payload, source="generated")
+    reference = scene_records_from_payload(reference_payload, source="reference")
 
-	shared_idf = build_idf([combined_text(scene) for scene in list(generated) + list(reference)])
-	similarity_fn = lambda left, right: scene_similarity(left, right, shared_idf)
-	matches = match_scene_pairs(generated, reference, similarity_fn, threshold=0.05, one_to_one=True)
-	np_score = compute_np_metric(generated, reference, matches, k=5)
-	dtw_score = dtw_distance(generated, reference, shared_idf)
+    similarity_fn = lambda g, r: scene_similarity(g, r)
+    matches = match_scene_pairs(generated, reference, similarity_fn, threshold=threshold, one_to_one=True)
+    np_score = compute_np_metric(generated, reference, matches, k=5)
+    dtw_score = dtw_distance(generated, reference)
+    order_corr = order_correlation(matches, generated, reference)
 
-	results: Dict[str, Any] = {
-		"counts": {
-			"generated_scenes": len(generated),
-			"reference_scenes": len(reference),
-			"matched_scenes": len(matches),
-		},
-		"temporal_ordering_agreement": compute_temporal_metrics(generated, reference, matches),
-		"cross_view_event_alignment": {
-			"align_score": mean(score for _, _, score in matches) if matches else 0.0,
-		},
-		"consensus": consensus_score([generated, reference]),
-		"dtw_distance": dtw_score,
-		"np_metric": np_score,
-		"matched_pairs": [
-			{
-				"generated_scene_id": g_scene.scene_id,
-				"reference_scene_id": r_scene.scene_id,
-				"similarity": score,
-			}
-			for g_scene, r_scene, score in matches[:20]
-		],
-	}
-	return results
-
+    results = {
+        "threshold": threshold,
+        "counts": {
+            "generated_scenes": len(generated),
+            "reference_scenes": len(reference),
+            "matched_scenes": len(matches),
+        },
+        "Multimodal Semantic Similarity": {
+            "Multimodal Semantic Similarity": mean(score for _, _, score in matches) if matches else 0.0,
+        },
+        "Weak Event Alignment": {
+            "consensus_score": consensus_score([generated, reference])["consensus_score"],
+        },
+        "dtw_distance": dtw_score,
+        "np_metric": np_score,
+        "matched_pairs": [
+            {
+                "generated_scene_id": g_scene.scene_id,
+                "reference_scene_id": r_scene.scene_id,
+                "similarity": score,
+            }
+            for g_scene, r_scene, score in matches[:20]
+        ],
+        "order_correlation": order_corr,
+    }
+    return results
 
 def parse_args() -> argparse.Namespace:
-	parser = argparse.ArgumentParser(description="Evaluate Structural Consensus Evaluation metrics.")
-	parser.add_argument("--generated", type=Path, default=Path("generated_scripts.json"), help="Path to the generated scene JSON.")
-	parser.add_argument("--reference", type=Path, default=Path("script_structured.json"), help="Path to the reference scene JSON.")
-	parser.add_argument("--identity", type=Path, default=Path("identity_reconciliation.json"), help="Optional identity reconciliation JSON.")
-	parser.add_argument("--corpus", type=Path, default=None, help="Optional corpus JSON for perplexity estimation.")
-	parser.add_argument("--output", type=Path, default=Path("report/stage4_evaluation_report.json"), help="Output JSON report path.")
-	parser.add_argument("--print", dest="print_report", action="store_true", help="Print the report to stdout.")
-	return parser.parse_args()
-
+    parser = argparse.ArgumentParser(description="Evaluate Structural Consensus Evaluation metrics.")
+    parser.add_argument("--generated", type=Path, default=Path("generated_scripts.json"), help="Path to the generated scene JSON.")
+    parser.add_argument("--reference", type=Path, default=Path("script_structured.json"), help="Path to the reference scene JSON.")
+    parser.add_argument("--identity", type=Path, default=Path("identity_reconciliation.json"), help="Optional identity reconciliation JSON.")
+    parser.add_argument("--corpus", type=Path, default=None, help="Optional corpus JSON for perplexity estimation.")
+    parser.add_argument("--output", type=Path, default=Path("report/stage4_evaluation_report.json"), help="Output JSON report path.")
+    parser.add_argument("--print", dest="print_report", action="store_true", help="Print the report to stdout.")
+    parser.add_argument("--threshold", type=float, default=0.7, help="Similarity threshold for greedy matching (default: 0.6)")
+    return parser.parse_args()
 
 def main() -> None:
-	args = parse_args()
-	generated_payload = load_json(args.generated)
-	reference_payload = load_json(args.reference)
-	identity_payload = load_json(args.identity) if args.identity.exists() else None
+    args = parse_args()
+    generated_payload = load_json(args.generated)
+    reference_payload = load_json(args.reference)
+    identity_payload = load_json(args.identity) if args.identity.exists() else None
 
-	report = evaluate_sce(generated_payload, reference_payload, identity_payload)
+    report = evaluate_sce(
+        generated_payload,
+        reference_payload,
+        identity_payload,
+        threshold=args.threshold,
+    )
 
-	save_json(args.output, report)
-	if args.print_report:
-		print(json.dumps(report, ensure_ascii=False, indent=2))
+    # 输出文件自动包含阈值后缀（若阈值不是默认值 0.6 则加上后缀；也可总是加）
+    output_path = args.output
+    # 可选择：如果阈值不是 0.6，添加后缀；或者总是添加
+    if args.threshold != 0.6:
+        stem = output_path.stem
+        suffix = output_path.suffix
+        output_path = output_path.parent / f"{stem}_th{args.threshold}{suffix}"
+    save_json(output_path, report)
 
+    if args.print_report:
+        print(json.dumps(report, ensure_ascii=False, indent=2))
 
 if __name__ == "__main__":
-	main()
+    main()

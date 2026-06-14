@@ -12,7 +12,7 @@ from collections import OrderedDict, deque, Counter
 from PIL import Image
 from scipy.optimize import linear_sum_assignment
 
-from transformers import CLIPVisionModel
+from transformers import CLIPVisionModel98
 
 try:
     from transformers import Qwen2VLForConditionalGeneration
@@ -33,7 +33,7 @@ except Exception:
 # ----------------------------
 # CONFIG
 # ----------------------------
-VIDEO_PATH = "output_0.5x.mp4"
+VIDEO_PATH = "10THAU.mp4"
 SCENE_JSON_PATH = "semantic_scenes.json"
 RESULTS_JSON_PATH = "scene_level_results.json"
 SCORES_JSON_PATH = "scene_scores.json"
@@ -48,7 +48,7 @@ SELECTED_REFERENCE_CLUSTERS_PATHS = [
 ]
 
 ENABLE_MULTIMODAL_PRIOR = True
-ENABLE_IDENTITY_RECONCILIATION = True
+ENABLE_IDENTITY_RECONCILIATION = False
 TEXT_BOUNDARY_WEIGHT = 0.35
 FACE_BOUNDARY_WEIGHT = 0.20
 TEXT_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
@@ -266,15 +266,17 @@ def load_scenes(path):
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    if isinstance(data, dict) and "scenes" in data:
-        return data["scenes"]
+    if isinstance(data, dict) and "semantic_scenes" in data:
+        return data["semantic_scenes"]
     return data
 
 
 def scene_id_of(scene, fallback):
+
     for key in ("index", "scene_id", "id"):
         if key in scene:
             return int(scene[key])
+
     return int(fallback)
 
 
@@ -557,40 +559,32 @@ def span_scene_ids(start, end, scene_ranges):
 
 
 def build_text_embeddings(texts):
+    import numpy as np
+
     prepared = [text if isinstance(text, str) and text.strip() else " " for text in texts]
-    if not prepared:
+
+    if len(prepared) == 0:
         return np.zeros((0, 0), dtype=np.float32), "empty"
 
-    try:
-        from sentence_transformers import SentenceTransformer
+    from sentence_transformers import SentenceTransformer
 
-        model = SentenceTransformer(TEXT_EMBEDDING_MODEL, device="cpu")
-        embeddings = model.encode(
-            prepared,
-            batch_size=16,
-            show_progress_bar=False,
-            convert_to_numpy=True,
-            normalize_embeddings=True,
-        )
-        return np.asarray(embeddings, dtype=np.float32), "sentence-transformers"
-    except Exception as embed_e:
-        print(f"[identity] sentence-transformers unavailable, using TF-IDF fallback: {embed_e}")
+    model = SentenceTransformer(TEXT_EMBEDDING_MODEL, device="cpu")
 
-    try:
-        from sklearn.feature_extraction.text import TfidfVectorizer
+    embeddings = model.encode(
+        prepared,
+        batch_size=16,
+        show_progress_bar=False,
+        convert_to_numpy=True,
+        normalize_embeddings=True,
+    )
 
-        vectorizer = TfidfVectorizer(ngram_range=(1, 2), stop_words="english", max_features=2048)
-        matrix = np.asarray(vectorizer.fit_transform(prepared).todense(), dtype=np.float32)
-        norms = np.linalg.norm(matrix, axis=1, keepdims=True)
-        norms[norms == 0] = 1.0
-        matrix = matrix / norms
-        return matrix, "tfidf"
-    except Exception as tfidf_e:
-        print(f"[identity] TF-IDF fallback unavailable, using zero vectors: {tfidf_e}")
-        width = max(1, len(set(normalize_tokens(" ".join(prepared)))))
-        return np.zeros((len(prepared), width), dtype=np.float32), "zeros"
+    embeddings = np.asarray(embeddings, dtype=np.float32)
 
+    print(f"[embed] sentence-transformers output shape: {embeddings.shape}")
+    assert embeddings.shape[0] == len(texts)
 
+    return embeddings, "sentence-transformers"
+    
 def cosine_similarity_matrix(a, b):
     if a.size == 0 or b.size == 0:
         return np.zeros((a.shape[0], b.shape[0]), dtype=np.float32)
@@ -1575,23 +1569,23 @@ def describe_scene(frames, scene_id, start, end):
         "Return ONLY compact JSON with keys summary, actions, relation_state. "
         "Keep summary under 25 words, actions to at most 2 items, and avoid extra keys or markdown."
     )
+    
+    #context_lines = []
+    #ctx = SCENE_CONTEXT
+    #if rec_transcript_text := ctx.get("transcript_text", ""):
+    #    context_lines.append(f"transcript: {rec_transcript_text[:400]}")
+    #if rec_speakers := ctx.get("speakers", []):
+    #    context_lines.append("speakers: " + ", ".join(map(str, rec_speakers[:6])))
+    #if rec_faces := ctx.get("face_clusters", []):
+    #    context_lines.append("face_clusters: " + ", ".join(map(str, rec_faces[:6])))
+    #if rec_identity_ids := ctx.get("unified_character_ids", []):
+    #    context_lines.append("unified_character_ids: " + ", ".join(map(str, rec_identity_ids[:6])))
+    #    context_lines.append("prefer these character labels instead of generic person labels when describing visible people")
+    #if rec_script_hint := ctx.get("script_hint", ""):
+    #    context_lines.append(f"script_hint: {rec_script_hint[:300]}")
 
-    context_lines = []
-    ctx = SCENE_CONTEXT
-    if rec_transcript_text := ctx.get("transcript_text", ""):
-        context_lines.append(f"transcript: {rec_transcript_text[:400]}")
-    if rec_speakers := ctx.get("speakers", []):
-        context_lines.append("speakers: " + ", ".join(map(str, rec_speakers[:6])))
-    if rec_faces := ctx.get("face_clusters", []):
-        context_lines.append("face_clusters: " + ", ".join(map(str, rec_faces[:6])))
-    if rec_identity_ids := ctx.get("unified_character_ids", []):
-        context_lines.append("unified_character_ids: " + ", ".join(map(str, rec_identity_ids[:6])))
-        context_lines.append("prefer these character labels instead of generic person labels when describing visible people")
-    if rec_script_hint := ctx.get("script_hint", ""):
-        context_lines.append(f"script_hint: {rec_script_hint[:300]}")
-
-    if context_lines:
-        prompt = prompt + "\nUse the following context as anchor evidence (do not invent missing facts):\n" + "\n".join(context_lines)
+    #if context_lines:
+    #    prompt = prompt + "\nUse the following context as anchor evidence (do not invent missing facts):\n" + "\n".join(context_lines)
 
     preprocess_start = time.perf_counter()
     
@@ -1757,8 +1751,8 @@ def contiguous_scene_segments(records):
 # ----------------------------
 def main():
     total_start = time.perf_counter()
-    scenes = load_scenes("stage2_TransNetV2_scenes.json")
-    frame_store = VideoFrameStore("500D.mp4")
+    scenes = load_scenes("semantic_scenes.json")
+    frame_store = VideoFrameStore(video_path=VIDEO_PATH)
 
     records = []
     whisper_words = collect_whisperx_words(WHISPERX_JSON_PATH) if ENABLE_MULTIMODAL_PRIOR else []
@@ -1859,7 +1853,7 @@ def main():
         cached_desc = vlm_cache.get(scene_key)
         if cached_desc is not None:
             scene_stage_start = time.perf_counter()
-            cached_desc = normalize_vlm_description(cached_desc, rec)
+            #cached_desc = normalize_vlm_description(cached_desc, rec)
             vlm_cache[scene_key] = cached_desc
             desc = {
                 "scene_id": rec["scene_id"],
@@ -1875,17 +1869,17 @@ def main():
             log_timing(f"scene {rec['scene_id']} frame sampling", frame_start)
             infer_start = time.perf_counter()
             SCENE_CONTEXT.clear()
-            SCENE_CONTEXT.update(
-                {
-                    "transcript_text": rec.get("transcript_text", ""),
-                    "speakers": rec.get("speakers", []),
-                    "face_clusters": rec.get("face_clusters", []),
-                    "unified_character_ids": rec.get("unified_character_ids", []),
-                    "script_hint": rec.get("script_hint", ""),
-                }
-            )
+            #SCENE_CONTEXT.update(
+            #    {
+            #        "transcript_text": rec.get("transcript_text", ""),
+            #        "speakers": rec.get("speakers", []),
+            #        "face_clusters": rec.get("face_clusters", []),
+            #        "unified_character_ids": rec.get("unified_character_ids", []),
+            #        "script_hint": rec.get("script_hint", ""),
+            #    }
+            #)
             desc = describe_scene(frames, rec["scene_id"], rec["start"], rec["end"])
-            desc["description"] = normalize_vlm_description(desc.get("description", {}), rec)
+            #desc["description"] = normalize_vlm_description(desc.get("description", {}), rec)
             log_timing(f"scene {rec['scene_id']} VLM inference", infer_start)
             vlm_cache[scene_key] = desc["description"]
             log_timing(f"scene {rec['scene_id']} total VLM path", scene_stage_start)

@@ -4,11 +4,13 @@ import importlib
 import os
 import re
 from typing import Any
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction._stop_words import ENGLISH_STOP_WORDS
 
 # ----------------------------
 # CONFIG
 # ----------------------------
-PDF_PATH = "02_500_Days_of_Summer.pdf"
+PDF_PATH = "01_10_Things_I_Hate_About_You.pdf"
 OUTPUT_JSON = "script_structured.json"
 DEFAULT_LLM_MODEL = os.environ.get("SCRIPT_PARSER_LLM_MODEL", "deepseek-v4-pro")
 LLM_CHUNK_CHAR_LIMIT = int(os.environ.get("SCRIPT_PARSER_LLM_CHUNK_CHAR_LIMIT", "2800"))
@@ -54,7 +56,19 @@ def clean_text(text):
     for raw_line in text.splitlines():
         normalized = re.sub(r"[ \t]+", " ", raw_line).strip()
         lines.append(normalized)
-    cleaned = "\n".join(lines)
+
+    page_pattern = re.compile(
+        r"^(?:"
+        r"Page\s*\d+(?:\s+of\s+\d+)?\s*|"   # Page 1, Page 1 of 130
+        r"\d+\s*\.?\s*|"                     # 1. or 2 
+        r"\d+\s+of\s+\d+\s*|"                # 1 of 10
+        r"\[\d+\]\s*"                        # [1]
+        r")$",
+        flags=re.IGNORECASE
+    )
+    filtered_lines = [line for line in lines if not page_pattern.match(line)]
+
+    cleaned = "\n".join(filtered_lines)
     cleaned = re.sub(r"\n{3,}", "\n\n", cleaned)
     return cleaned.strip()
 
