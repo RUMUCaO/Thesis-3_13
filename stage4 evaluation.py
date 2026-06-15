@@ -32,7 +32,7 @@ try:
 except Exception:  # pragma: no cover - optional dependency
 	linear_sum_assignment = None
  
-# 全局模型（只加载一次）
+# Global model (loaded only once)
 _SBERT_MODEL = None
 
 def get_sbert_model():
@@ -42,14 +42,14 @@ def get_sbert_model():
     return _SBERT_MODEL
 
 def sbert_encode(text: str) -> np.ndarray:
-    """返回归一化的嵌入向量（已归一化，点积即余弦相似度）"""
+    """Returns the normalized embedding vectors (already normalized, the dot product is the cosine similarity)"""
     model = get_sbert_model()
     return model.encode(text, normalize_embeddings=True)
 
 def sbert_similarity(text_a: str, text_b: str) -> float:
-    """使用 Sentence-BERT 计算两个文本的余弦相似度"""
+    """Use Sentence-BERT to calculate the cosine similarity between two texts"""
     model = get_sbert_model()
-    emb_a = model.encode(text_a, normalize_embeddings=True)   # 已归一化，点积即余弦
+    emb_a = model.encode(text_a, normalize_embeddings=True)   # Normalized, dot product equals cosine
     emb_b = model.encode(text_b, normalize_embeddings=True)
     return float(np.dot(emb_a, emb_b))
 
@@ -125,7 +125,7 @@ def scene_heading(scene: Dict[str, Any]) -> str:
 
 
 def scene_text(scene: Dict[str, Any]) -> str:
-    # 优先使用 llm_extraction 构建完整文本
+    # Prefer using llm_extraction to build the complete text
     llm_extraction = scene.get("llm_extraction")
     if isinstance(llm_extraction, dict):
         pieces = []
@@ -144,7 +144,7 @@ def scene_text(scene: Dict[str, Any]) -> str:
         if pieces:
             return normalize_whitespace(" ".join(pieces))
     
-    # 回退到原始字段
+    # Revert to the original field
     for key in ("text", "raw_text_span", "transcript_text"):
         value = scene.get(key)
         if value:
@@ -289,7 +289,7 @@ def scene_records_from_payload(payload: Any, source: str) -> List[SceneRecord]:
 	return records
 
 def combined_text(scene: SceneRecord) -> str:
-    # 只拼接 heading 和 text（text 已包含角色、对话、动作）
+    # Only concatenate the heading and text (the text already includes the character, dialogue, and actions)
     parts = [scene.heading, scene.text]
     return normalize_whitespace(" ".join(part for part in parts if part))
 
@@ -336,8 +336,8 @@ def match_scene_pairs(
 
 def scene_similarity(g_scene: SceneRecord, r_scene: SceneRecord, _idf=None) -> float:
     """
-    使用 Sentence-BERT 计算组合文本的语义相似度。
-    _idf 参数保留仅为兼容原有调用，实际不使用。
+    Use Sentence-BERT to calculate the semantic similarity between combined texts.
+    The _idf parameter is kept for compatibility with existing calls, but not actually used.
     """
     text_g = combined_text(g_scene)
     text_r = combined_text(r_scene)
@@ -353,12 +353,12 @@ def dtw_distance(seq_a: Sequence[SceneRecord], seq_b: Sequence[SceneRecord]) -> 
 
     n, m = len(seq_a), len(seq_b)
 
-    # 预计算嵌入（每个场景的 combined_text）
+    # Pre-computed embeddings (combined_text for each scene)
     a_vecs = [sbert_encode(combined_text(s)) for s in seq_a]
     b_vecs = [sbert_encode(combined_text(s)) for s in seq_b]
 
     def cost(i: int, j: int) -> float:
-        # 余弦距离 = 1 - 余弦相似度
+        # Cosine distance = 1 - Cosine similarity
         return 1.0 - float(np.dot(a_vecs[i], b_vecs[j]))
 
     dp = [[float("inf")] * (m + 1) for _ in range(n + 1)]
@@ -392,19 +392,19 @@ def extract_event_tuple(scene: SceneRecord) -> Dict[str, List[str]]:
 
 def align_views(left: Sequence[SceneRecord], right: Sequence[SceneRecord]) -> float:
     """
-    计算两个视图（场景序列）之间的平均最大相似度。
-    每个视图内的场景用 SBERT 嵌入表示。
+    Calculate the average maximum similarity between two views (scene sequences).
+    Each scene within a view is represented by its SBERT embedding.
     """
     if not left or not right:
         return 0.0
     
-    # 预计算嵌入
+    # Pre-computed embeddings
     left_emb = [sbert_encode(combined_text(s)) for s in left]
     right_emb = [sbert_encode(combined_text(s)) for s in right]
     
     scores = []
     for lv in left_emb:
-        # 计算当前左视图场景与所有右视图场景的最大余弦相似度
+        # Calculate the maximum cosine similarity between the current left view scene and all right view scenes
         best = max(np.dot(lv, rv) for rv in right_emb)
         scores.append(best)
     return float(np.mean(scores)) if scores else 0.0
@@ -486,7 +486,7 @@ def compute_np_metric(
     return float(np.mean(jaccards)) if jaccards else 0.0
 
 def order_correlation(matches, gen_seq, ref_seq):
-    # matches 是 (gen_scene, ref_scene, score) 列表
+    # Matches is a list of (gen_scene, ref_scene, score).
     gen_ranks = {}
     ref_ranks = {}
     for idx, scene in enumerate(gen_seq):
@@ -494,14 +494,14 @@ def order_correlation(matches, gen_seq, ref_seq):
     for idx, scene in enumerate(ref_seq):
         ref_ranks[scene.scene_id] = idx
     
-    # 只考虑匹配上的场景
+    # Only consider matching scenarios
     gen_positions = []
     ref_positions = []
     for g_scene, r_scene, _ in matches:
         gen_positions.append(gen_ranks[g_scene.scene_id])
         ref_positions.append(ref_ranks[r_scene.scene_id])
     
-    # 计算 Spearman 相关系数
+    # Calculate the Spearman correlation coefficient
     from scipy.stats import spearmanr
     corr, _ = spearmanr(gen_positions, ref_positions)
     return corr
@@ -572,9 +572,9 @@ def main() -> None:
         threshold=args.threshold,
     )
 
-    # 输出文件自动包含阈值后缀（若阈值不是默认值 0.6 则加上后缀；也可总是加）
+    # The output file will automatically include a threshold suffix (if the threshold is not the default value of 0.6, the suffix will be added; it can also always be added).
     output_path = args.output
-    # 可选择：如果阈值不是 0.6，添加后缀；或者总是添加
+    # Optional: Add a suffix if the threshold is not 0.6; or always add a suffix.
     if args.threshold != 0.6:
         stem = output_path.stem
         suffix = output_path.suffix

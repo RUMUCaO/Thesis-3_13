@@ -36,7 +36,7 @@ def run_asr(audio_path, device="cuda"):
     import whisper
     model = whisper.load_model("small", device=device)
     result = model.transcribe(audio_path, language="en")
-    return result["segments"]   # 格式与 whisperx 兼容
+    return result["segments"]   # Format compatible with WhisperX
 
 # =========================
 # DIARIZATION
@@ -51,8 +51,8 @@ def run_diarization(audio_input, hf_token, device="cuda"):
     )
     pipeline.to(torch.device(device))
 
-    output = pipeline(audio_input)          # DiarizeOutput 对象
-    diar = output.speaker_diarization       # Annotation 对象
+    output = pipeline(audio_input)          # DiarizeOutput object
+    diar = output.speaker_diarization       # Annotation object
 
     segments = []
     for turn, _, speaker in diar.itertracks(yield_label=True):
@@ -70,12 +70,12 @@ def extract_speaker_embeddings_pyannote(audio_input, diar, device="cuda", hf_tok
     from collections import defaultdict
     from pyannote.core import Segment
 
-    # 获取音频时长
+    # Get audio duration
     waveform = audio_input["waveform"]
     sample_rate = audio_input["sample_rate"]
     audio_duration = waveform.shape[1] / sample_rate
 
-    # 加载模型
+    # Loading Model
     model = Model.from_pretrained("pyannote/embedding", use_auth_token=hf_token)
     model.to(device)
     inference = Inference(model, window="whole")
@@ -84,7 +84,7 @@ def extract_speaker_embeddings_pyannote(audio_input, diar, device="cuda", hf_tok
     for turn, _, speaker in diar.itertracks(yield_label=True):
         if turn.duration < 0.5:
             continue
-        # 边界裁剪，防止超出
+        # Boundary clipping to prevent overflow
         start = max(turn.start, 0.0)
         end = min(turn.end, audio_duration - 1e-6)
         if end <= start:
@@ -94,7 +94,7 @@ def extract_speaker_embeddings_pyannote(audio_input, diar, device="cuda", hf_tok
             emb = inference.crop(audio_input, safe_seg)
             spk_embeddings[speaker].append(emb)
         except Exception as e:
-            print(f"警告：片段 {start:.2f}-{end:.2f} 提取失败: {e}")
+            print(f"Warning: Clip {start:.2f}-{end:.2f} Extraction failed: {e}")
             continue
 
     speaker_emb = {}
@@ -174,7 +174,7 @@ def compute_iou(box1, box2):
     
 def face_tracking_with_time(video_path, target_fps=3):
     """
-    人脸跟踪，按目标帧率采样处理（默认每秒3帧）
+    Face tracking is performed by sampling at the target frame rate (3 frames per second by default).
     """
     import insightface
     import cv2
@@ -188,23 +188,23 @@ def face_tracking_with_time(video_path, target_fps=3):
     cap = cv2.VideoCapture(video_path)
     fps = cap.get(cv2.CAP_PROP_FPS)
     if fps <= 0:
-        fps = 25.0  # 降级
+        fps = 25.0  # downgrade
 
-    # 计算处理间隔（例如 fps=30, target_fps=3 → 间隔=10帧）
+    # Calculate the processing interval (e.g., fps=30, target_fps=3 → interval=10 frames).
     frame_interval = max(1, int(round(fps / target_fps)))
 
     tracks = []
     next_id = 0
-    frame_id = 0   # 原始帧计数（用于时间戳和丢失判断）
+    frame_id = 0   # Original frame count (for timestamp and loss detection)
 
     while True:
         ret, frame = cap.read()
         if not ret:
             break
 
-        timestamp = frame_id / fps   # 当前帧的真实时间（秒）
+        timestamp = frame_id / fps   # Current frame's real time (seconds)
 
-        # 是否处理这一帧（跳帧）
+        # Whether to process this frame (skipping frames)
         if frame_id % frame_interval == 0:
             faces = app.get(frame)
 
@@ -215,7 +215,7 @@ def face_tracking_with_time(video_path, target_fps=3):
                 best_track = None
                 best_score = 0
                 for t in tracks:
-                    # 丢失超过1秒的轨迹暂不参与匹配（保留轨迹但不更新）
+                    # Tracks lost for more than 1 second will not be included in the matching process (tracks will be retained but not updated).
                     if frame_id - t["last_seen"] > fps * 3.0:
                         continue
                     sim = 1 - cosine(emb, t["embedding"])
@@ -226,7 +226,7 @@ def face_tracking_with_time(video_path, target_fps=3):
                         best_track = t
 
                 if best_score > 0.4:
-                    # 匹配成功，更新已有轨迹
+                    # Match successful, update existing trajectory
                     t = best_track
                     t["embedding"] = 0.85 * t["embedding"] + 0.1 * emb
                     t["end_time"] = timestamp
@@ -234,7 +234,7 @@ def face_tracking_with_time(video_path, target_fps=3):
                     t["last_seen"] = frame_id
                     t["last_bbox"] = bbox
                 else:
-                    # 创建新轨迹
+                    # Create a new trajectory
                     tracks.append({
                         "id": next_id,
                         "embedding": emb,
@@ -250,7 +250,7 @@ def face_tracking_with_time(video_path, target_fps=3):
 
     cap.release()
 
-    # 输出结果（与原逻辑一致）
+    # Output result (consistent with the original logic)
     face_tracks = []
     for t in tracks:
         stability = min(1.0, len(t["embeddings"]) / 30.0)
@@ -263,9 +263,9 @@ def face_tracking_with_time(video_path, target_fps=3):
             "embedding": t["embedding"].tolist(),
             "stability": stability
         })
-    print("返回前检查:", type(face_tracks), len(face_tracks))
+    print("Check before returning:", type(face_tracks), len(face_tracks))
     if face_tracks:
-        print("首元素类型:", type(face_tracks[0]))
+        print("First element type:", type(face_tracks[0]))
     return face_tracks
 
 # =========================
@@ -417,7 +417,7 @@ class SpeakerEncoder:
         from pyannote.audio import Inference
         from pyannote.audio.core.model import Model
         self.device = device if torch.cuda.is_available() and device == "cuda" else "cpu"
-        # 显式加载模型
+        # Explicit loading model
         model = Model.from_pretrained(model_name, use_auth_token=hf_token)
         model.to(self.device)
         self.inference = Inference(model, window="whole")
@@ -428,12 +428,12 @@ class SpeakerEncoder:
 
     def extract(self, audio_input, start, end):
         if self._audio_input is None:
-            raise ValueError("必须先调用 set_audio() 设置音频")
+            raise ValueError("You must first call set_audio() to set the audio.")
         from pyannote.core import Segment
         waveform = self._audio_input["waveform"]
         sample_rate = self._audio_input["sample_rate"]
         duration = waveform.shape[1] / sample_rate
-        # 边界保护
+        # Boundary protection
         start = max(0.0, min(start, duration - 1e-6))
         end = max(start, min(end, duration - 1e-6))
         from pyannote.core import Segment
@@ -506,20 +506,20 @@ def unified_score(spk_emb, face_emb,
 
 def build_joint_similarity(diar, faces, spk_mem, face_mem, cooccurrence):
     """
-    返回 joint_sim[i,j] ∈ [0,1]，越高表示 spk_i 与 face_j 越可能同一人
+    Returns joint_sim[i,j] ∈ [0,1], where a higher value indicates that spk_i and face_j are more likely to be the same person.
     """
     speakers = list({d["speaker"] for d in diar})
     face_ids = list({f["cluster"] for f in faces})
     n_spk, n_face = len(speakers), len(face_ids)
     S = np.zeros((n_spk, n_face))
 
-    # 预计算每个 speaker 的总时长（用于重叠归一化）
+    # Pre-calculate the total duration for each speaker (for overlap normalization).
     spk_duration = {}
     for d in diar:
         spk = d["speaker"]
         spk_duration[spk] = spk_duration.get(spk, 0.0) + (d["end"] - d["start"])
     
-    # 预计算每个 face 的总时长
+    # Pre-calculate the total duration for each face
     face_duration = {}
     for f in faces:
         fid = f["cluster"]
@@ -533,21 +533,21 @@ def build_joint_similarity(diar, faces, spk_mem, face_mem, cooccurrence):
             face_duration[fid] = face_duration.get(fid, 0) + dur
 
     for i, spk in enumerate(speakers):
-        spk_emb = spk_mem.get(spk)          # 可能为 None
-        spk_conf = spk_mem.confidence(spk)  # 已修复命名
+        spk_emb = spk_mem.get(spk)          # It could be None
+        spk_conf = spk_mem.confidence(spk) 
 
         for j, fid in enumerate(face_ids):
             face_emb = face_mem.get(fid)
             face_stab = next((f["stability"] for f in faces if f["cluster"] == fid), 0.0)
             
-            # 1. 嵌入相似度（概率化）
+            # 1. Embedding similarity (probabilistic)
             if spk_emb is not None and face_emb is not None:
                 cos_sim = 1 - cosine(spk_emb, face_emb)
-                emb_prob = (cos_sim + 1) / 2   # 映射到 [0,1]
+                emb_prob = (cos_sim + 1) / 2   # Mapped to [0,1]
             else:
                 emb_prob = 0.5
 
-            # 2. 时间重叠比例（严格归一化）
+            # 2. Time overlap ratio (strictly normalized)
             total_overlap = 0.0
             for d in diar:
                 if d["speaker"] != spk:
@@ -555,28 +555,28 @@ def build_joint_similarity(diar, faces, spk_mem, face_mem, cooccurrence):
                 for f in faces:
                     if f["cluster"] != fid:
                         continue
-                    # 时间段重叠
+                    # Overlapping time periods
                     start = max(d["start"], f.get("start_time", 0))
                     end = min(d["end"], f.get("end_time", float('inf')))
                     overlap = max(0, end - start)
                     total_overlap += overlap
-            # 用 speaker 总时长和 face 总时长的最大值归一化
+            # Normalize using the maximum of the speaker's total duration and the face's total duration.
             denom = max(spk_duration.get(spk, 0.0), face_duration.get(fid, 0.0), 1e-6)
             overlap_prob = min(1.0, total_overlap / denom)
 
-            # 3. 置信度乘积（概率化）
-            conf_product = spk_conf * face_stab   # 两者都在 [0,1] 附近
-            conf_prob = 1.0 / (1.0 + np.exp(-5*(conf_product - 0.5)))  # sigmoid 中心化
+            # 3. Confidence product (probabilistic)
+            conf_product = spk_conf * face_stab   # Both are near [0,1].
+            conf_prob = 1.0 / (1.0 + np.exp(-5*(conf_product - 0.5)))  # sigmoid centralization
 
-            # 4. 组合（加权几何平均更概率化，但线性也 OK）
+            # 4. Combinations (weighted geometric mean is more probabilistic, but linear is also okay)
             S[i, j] = 0.4 * emb_prob + 0.3 * overlap_prob + 0.3 * conf_prob
 
-    # 5. 乘上 co-occurrence 先验（已经归一化）
+    # 5. Multiply by the co-occurrence prior (which has already been normalized).
     S = S * (cooccurrence + 1e-6)
     return S, speakers, face_ids
 
 def sinkhorn_normalize(K, iters=10, eps=1e-6):
-    """双随机归一化，产生联合概率分布"""
+    "Double randomization normalization generates a joint probability distribution."
     K = K.copy()
     for _ in range(iters):
         K = K / (K.sum(axis=1, keepdims=True) + eps)
@@ -585,20 +585,20 @@ def sinkhorn_normalize(K, iters=10, eps=1e-6):
 
 def global_assignment(diar, faces, spk_mem, face_mem, cooccurrence):
     S, speakers, face_ids = build_joint_similarity(diar, faces, spk_mem, face_mem, cooccurrence)
-    P = sinkhorn_normalize(S)           # P[i,j] 是联合概率
-    # 硬分配：argmax（也可保留软分配用于 EM）
-    row_ind, col_ind = linear_sum_assignment(-P)   # 最小化负概率
+    P = sinkhorn_normalize(S)           # P[i,j] is the joint probability
+    # Hard assignment: argmax (soft assignment can also be kept for EM)
+    row_ind, col_ind = linear_sum_assignment(-P)   # Minimize negative probability
     mapping = {speakers[i]: face_ids[j] for i, j in zip(row_ind, col_ind)}
     return mapping, P
 
 def probabilistic_merge(asr_segments, diar, mapping, P=None, temperature=1.0):
     """
-    将 ASR 片段与说话人关联，基于重叠比例 + softmax (带温度)
-    :param asr_segments: ASR 片段列表，每个包含 start, end, text
-    :param diar: 说话人时段列表，每个包含 start, end, speaker
-    :param mapping: speaker -> face 的硬映射
-    :param P: 联合概率矩阵 (未使用，保留接口)
-    :param temperature: softmax 温度，越大越平滑，越小越尖锐
+    Associating ASR segments with speakers based on overlap ratio + softmax (with temperature):
+    :param asr_segments: List of ASR segments, each containing start, end, and text
+    :param diar: List of speaker time segments, each containing start, end, and speaker
+    :param mapping: Hard mapping from speaker to face
+    :param P: Joint probability matrix (unused, reserved interface)
+    :param temperature: Softmax temperature; higher values ​​result in smoother text, lower values ​​result in sharper text.
     """
     spk_to_face = mapping
     out = []
@@ -612,7 +612,7 @@ def probabilistic_merge(asr_segments, diar, mapping, P=None, temperature=1.0):
         for d in diar:
             overlap = max(0, min(seg_end, d["end"]) - max(seg_start, d["start"]))
             if overlap > 0:
-                # 使用重叠比例，而不是绝对秒数
+                # Use the overlap ratio instead of absolute seconds.
                 ratio = overlap / seg_dur
                 spk_scores[d["speaker"]] += ratio
         
@@ -620,10 +620,10 @@ def probabilistic_merge(asr_segments, diar, mapping, P=None, temperature=1.0):
             best_spk = None
         else:
             scores = np.array(list(spk_scores.values()))
-            # 应用温度：除以 temperature 后再 softmax
+            #Application temperature: Divide by temperature and then softmax.
             if temperature != 1.0:
                 scores = scores / temperature
-            # 数值稳定 softmax
+            # Numerical stability softmax
             max_score = np.max(scores)
             exp_scores = np.exp(scores - max_score)
             prob = exp_scores / (np.sum(exp_scores) + 1e-8)
@@ -651,7 +651,7 @@ def em_refine(diar, faces, mapping, spk_mem, face_mem, asr_segments, audio_input
     speakers = list({d["speaker"] for d in diar})
     face_ids = list(set(f["cluster"] for f in faces))
 
-    # 构建时间区间
+    # Construct time interval
     spk_intervals = defaultdict(list)
     for d in diar:
         spk_intervals[d["speaker"]].append((d["start"], d["end"]))
@@ -662,14 +662,14 @@ def em_refine(diar, faces, mapping, spk_mem, face_mem, asr_segments, audio_input
         face_intervals[fid].append((f.get("start_time", 0), f.get("end_time", 0)))
 
     n_spk, n_face = len(speakers), len(face_ids)
-    Q = np.zeros((n_spk, n_face))          # 初始化后验矩阵
+    Q = np.zeros((n_spk, n_face))          # Initialize the posterior matrix
 
-    # ---------- E-step: 计算后验 P(spk|face) ----------
+    # ---------- E-step: Computational posterior P(spk|face) ----------
     temperature = 0.5
     raw_scores = np.zeros((n_spk, n_face))
     for i, spk in enumerate(speakers):
         for j, fid in enumerate(face_ids):
-            # 1. 时间重叠度
+            # 1. Time overlap
             overlap_sum = 0.0
             for s_start, s_end in spk_intervals[spk]:
                 for f_start, f_end in face_intervals[fid]:
@@ -681,7 +681,7 @@ def em_refine(diar, faces, mapping, spk_mem, face_mem, asr_segments, audio_input
             denom = max(spk_total, face_total, 1e-6)
             time_prob = min(1.0, overlap_sum / denom)
 
-            # 2. 嵌入相似度 -> 似然
+            # 2. Embedding similarity -> Likelihood
             spk_emb = spk_mem.get(spk)
             face_emb = face_mem.get(fid)
             if spk_emb is not None and face_emb is not None:
@@ -691,20 +691,20 @@ def em_refine(diar, faces, mapping, spk_mem, face_mem, asr_segments, audio_input
                 emb_lik = 1.0
             time_factor = time_prob + 0.1
             raw_scores[i, j] = emb_lik * time_factor
-            # 3. 组合似然（时间因子平滑）
-    prior = 1.0 / n_spk   # 均匀分布
-    posterior = raw_scores * prior   # 形状 (n_spk, n_face)
+            # 3. Combinatorial likelihood (time factor smoothing)
+    prior = 1.0 / n_spk   # Uniform distribution
+    posterior = raw_scores * prior   # Shape (n_spk, n_face)
 
-    # 对每个 face 列做 softmax（假设均匀先验）
+    # Perform softmax on each face column (assuming uniform prior).
     for j in range(n_face):
         col = raw_scores[:, j]
         col = np.exp(col - np.max(col))
         posterior[:, j] = col / (col.sum() + 1e-8)
-    # 对每个 face (列) 做 softmax，得到 P(spk|face)\
-    Q = posterior   # 后验矩阵
+    # Perform softmax on each face (column) to obtain P(spk|face)
+    Q = posterior   # Posterior matrix
 
-    # ---------- M-step: 更新嵌入 ----------
-    # 更新 speaker 嵌入（从音频片段）
+    # ---------- M-step: Update Embedded ----------
+    # Update speaker embedding (from audio clip)
     for i, spk in enumerate(speakers):
         weighted_emb = None
         total_weight = 0.0
@@ -723,7 +723,7 @@ def em_refine(diar, faces, mapping, spk_mem, face_mem, asr_segments, audio_input
             new_emb = weighted_emb / total_weight
             spk_mem.update(spk, new_emb)
 
-    # 更新 face 嵌入（从 speaker 记忆）
+    # Update the face embedding (from speaker memory).
     for j, fid in enumerate(face_ids):
         weighted_emb = None
         total_weight = 0.0
@@ -741,39 +741,39 @@ def em_refine(diar, faces, mapping, spk_mem, face_mem, asr_segments, audio_input
             face_mem.update(fid, new_emb)
                 
 def build_cooccurrence_matrix(diar, faces):
-    """基于时间重叠统计每个 speaker 与每个 face 的共现强度，优化版"""
-    # 按 speaker 分组时间区间
+    """Based on temporal overlap statistics, the co-occurrence intensity of each speaker and each face is analyzed; this is an optimized version."""
+    # Group time ranges by speaker
     spk_intervals = defaultdict(list)
     for d in diar:
         spk_intervals[d["speaker"]].append((d["start"], d["end"]))
     
-    # 按 face cluster 分组时间区间
+    # Group time ranges by face cluster
     face_intervals = defaultdict(list)
     for f in faces:
         fid = f["cluster"]
         start = f.get("start_time", 0)
         end = f.get("end_time", 0)
-        if end > start:  # 只添加有效区间
+        if end > start:  # Only add valid intervals
             face_intervals[fid].append((start, end))
     
     speakers = list(spk_intervals.keys())
     face_ids = list(face_intervals.keys())
     C = np.zeros((len(speakers), len(face_ids)))
     
-    # 辅助函数：计算两个区间列表的总重叠时间
+    # Helper function: calculate the total overlapping time of two interval lists
     def total_overlap(intervals_a, intervals_b):
-        # 假设两个列表未排序，先排序
+        # Assume both lists are not sorted, sort them first
         a = sorted(intervals_a, key=lambda x: x[0])
         b = sorted(intervals_b, key=lambda x: x[0])
         i = j = 0
         total = 0.0
         while i < len(a) and j < len(b):
-            # 计算当前两个区间的重叠
+            # Calculate the overlap of the current two intervals
             start = max(a[i][0], b[j][0])
             end = min(a[i][1], b[j][1])
             if end > start:
                 total += end - start
-            # 移动结束时间较早的指针
+            # Move the pointer of the interval that ends earlier
             if a[i][1] < b[j][1]:
                 i += 1
             else:
@@ -787,7 +787,7 @@ def build_cooccurrence_matrix(diar, faces):
             overlap = total_overlap(spk_ivals, face_ivals)
             C[i, j] = overlap
     
-    # 行归一化
+    # Row normalization
     row_sums = C.sum(axis=1, keepdims=True)
     C = C / (row_sums + 1e-6)
     return C, speakers, face_ids
@@ -849,57 +849,58 @@ def run(video, hf_token, device="cuda"):
 
         with tempfile.TemporaryDirectory() as td:
             audio_path = os.path.join(td, "a.wav")
-            extract_audio(video, audio_path)          # 从视频中提取音频到临时文件
+            extract_audio(video, audio_path)          # Extract audio from video to a temporary file
 
-            # ---- 预加载音频（避开 torchcodec）----
+            # ---- Preload audio (avoid torchcodec) ----
             waveform, sr = librosa.load(audio_path, sr=16000, mono=True)
             waveform_tensor = torch.from_numpy(waveform).unsqueeze(0)  # (1, T)
             audio_input = {"waveform": waveform_tensor, "sample_rate": sr}
 
-            # 1. 基础模块（传入 audio_input 而不是文件路径）
-            diar_segments, diar_object = run_diarization(audio_input, hf_token, device)   # 说话人时段
-            asr = run_asr(audio_path, device)                      # ASR 片段（仍用路径，因为 whisperx 内部用文件）
-            faces = face_tracking_with_time(video)                 # 人脸轨迹（含 start/end）
-            # 后处理：限制轨迹数量
+            # 1. Basic module (pass in audio_input instead of file path)
+            diar_segments, diar_object = run_diarization(audio_input, hf_token, device)   # Speaker's time period
+            asr = run_asr(audio_path, device)                      # ASR fragment (still using paths, because whisperx internally uses files)
+            faces = face_tracking_with_time(video)                 # Face trajectory (including start/end)
+            # Post-processing: Limiting the number of trajectories
             MAX_FACES = 300
             if len(faces) > MAX_FACES:
-                print(f"警告：检测到过多的人脸轨迹 ({len(faces)} > {MAX_FACES})，将保留持续时间最长的前20个轨迹。")
-                # 按持续时间降序排序，取前20
+                print(f"Warning: Too many face trajectories detected ({len(faces)} > {MAX_FACES}), keeping the top 20 longest ones.")
+                # Sort by duration in descending order and keep the top 20
                 faces.sort(key=lambda x: x.get("duration", 0), reverse=True)
                 faces = faces[:30]
 
-            # 2. 记忆模型
+            # 2. Memory Model
             spk_mem = SpeakerMemory()
             face_mem = FaceMemory()
             
-            # 说话人编码器（需要修改为使用 audio_input 的版本，见下文）
+            # Speaker encoder (requires modification to use the audio_input version, see below)
             speaker_encoder = SpeakerEncoder(device=device, hf_token=hf_token)
-            speaker_encoder.set_audio(audio_input)   # 新增方法：预设置音频字典
+            speaker_encoder.set_audio(audio_input)   # New feature: Preset audio dictionary
 
-            # 提取说话人嵌入（传入 audio_input 而非路径）
+            # Extract the speaker embedding (pass in audio_input instead of the path).
             speaker_embeddings = extract_speaker_embeddings_pyannote(audio_input, diar_object, device, hf_token)
 
-            # ----- 初始化记忆 -----
+            # ----- Initialize memory -----
             for face in faces:
                 face_mem.update(face["cluster"], np.array(face["embedding"]))
             for spk_label, emb in speaker_embeddings.items():
                 spk_id = int(spk_label.split("_")[-1])
                 spk_mem.update(spk_id, emb)
 
-            # 3. 构建共现矩阵
-            print("类型检查：", type(faces), len(faces))
+            # 3. Constructing a co-occurrence matrix
+            print("Type check:", type(faces), len(faces))
             if faces:
-                print("第一个元素类型：", type(faces[0]))
-                print("第一个元素内容：", faces[0])
+                print("First element type:", type(faces[0]))
+                print("First element content:", faces[0])
             normalized_faces = []
             for f in faces:
                 if isinstance(f, dict):
                     normalized_faces.append(f)
                 elif isinstance(f, tuple):
-                    # 假设元组格式：(cluster, start_time, end_time, embedding, ...)
-                    # 根据实际输出调整索引（先打印看看）
-                    print("发现元组格式:", f)
-                    # 临时转换（示例：假设 f[0]=cluster, f[1]=start_time, f[2]=end_time）
+                    # Assuming the tuple format is: (cluster, start_time, end_time, embedding, ...)
+
+                    # Adjust the indexes based on the actual output (print it out first).）
+                    print("Find the tuple format:", f)
+                    # Temporary conversion (Example: Assume f[0]=cluster, f[1]=start_time, f[2]=end_time)
                     d = {
                         "cluster": f[0],
                         "start_time": f[1] if len(f) > 1 else 0,
@@ -908,14 +909,14 @@ def run(video, hf_token, device="cuda"):
                     }
                     normalized_faces.append(d)
                 else:
-                    raise TypeError(f"未知类型: {type(f)}")
+                    raise TypeError(f"Unknown type:{type(f)}")
             faces = normalized_faces
             cooccur, _, _ = build_cooccurrence_matrix(diar_segments, faces)
 
-            # 5. 初始全局匹配
+            # 5. Initial global matching
             mapping, P = global_assignment(diar_segments, faces, spk_mem, face_mem, cooccur)
 
-            # 6. EM 迭代优化
+            # 6. EM Iterative Optimization
             for _ in range(3):
                 em_refine(
                     diar=diar_segments,
@@ -924,13 +925,13 @@ def run(video, hf_token, device="cuda"):
                     spk_mem=spk_mem,
                     face_mem=face_mem,
                     asr_segments=asr,
-                    audio_input=audio_input,          # 改为传递 audio_input
+                    audio_input=audio_input,          # Pass audio_input instead
                     speaker_encoder=speaker_encoder
                 )
                 cooccur, _, _ = build_cooccurrence_matrix(diar_segments, faces)
                 mapping, P = global_assignment(diar_segments, faces, spk_mem, face_mem, cooccur)
 
-            # 7. 最终合并
+            # 7. Final merge
             merged = probabilistic_merge(asr, diar_segments, mapping, P, temperature=0.8)
 
             return {
@@ -941,10 +942,10 @@ def run(video, hf_token, device="cuda"):
                 "result": merged
             }
     except Exception as e:
-        print("发生错误:", e)
+        print("Error occurred:", e)
         import traceback
         traceback.print_exc()
-        raise   # 仍然抛出，但你能看到具体错误
+        raise   # It will still throw an error, but you can see the specific error.
 # =========================
 # MAIN
 # ========================= 

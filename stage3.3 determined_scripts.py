@@ -182,12 +182,12 @@ def scene_action_text(scene: Dict[str, Any], include_script_hints: bool = False)
 
 def extract_whisperx_words(whisperx_data: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
-    从 WhisperX 输出中提取句子/片段级别的文本（text），而非单词。
-    支持以下几种输入结构：
-      1. 顶层 "segments" 列表（标准 WhisperX 输出）
-      2. 顶层 "result" 列表（类似你提供的示例，包含 speaker、character_cluster）
-      3. 向后兼容旧结构 "transcription_aligned.segments"
-    返回的每个字典包含：start, end, text, speaker(可选), character_cluster(可选)
+	Extracts sentence/segment level text from WhisperX output, instead of words.
+	Supports the following input structures:
+	1. Top-level "segments" list (standard WhisperX output)
+	2. Top-level "result" list (similar to your provided example, containing speaker and character_cluster)
+	3. Backward-compatible legacy structure "transcription_aligned.segments"
+	Each returned dictionary contains: start, end, text, speaker (optional), character_cluster (optional)
     """
     items: List[Dict[str, Any]] = []
     seen = set()
@@ -195,7 +195,7 @@ def extract_whisperx_words(whisperx_data: Dict[str, Any]) -> List[Dict[str, Any]
     def add_item(start: Any, end: Any, text: str, speaker: Any = None, character_cluster: Any = None) -> None:
         if start is None or end is None or not text:
             return
-        # 转为浮点数并四舍五入到3位小数，便于去重
+        # Convert to floating-point numbers and round to 3 decimal places for easy deduplication.
         start_f = round(float(start), 3)
         end_f = round(float(end), 3)
         key = (start_f, end_f, text)
@@ -206,14 +206,14 @@ def extract_whisperx_words(whisperx_data: Dict[str, Any]) -> List[Dict[str, Any]
         if speaker is not None:
             item["speaker"] = str(speaker)
         if character_cluster is not None:
-            # 参考你的示例，将 character_cluster 转为整数或 None
+            # Referring to your example, convert character_cluster to an integer or None.
             try:
                 item["character_cluster"] = int(character_cluster) if character_cluster is not None else None
             except (ValueError, TypeError):
                 item["character_cluster"] = None
         items.append(item)
 
-    # 1) 优先处理 "result" 结构（你提供的示例格式）
+    # 1) Prioritize processing "result" structures
     result = whisperx_data.get("result")
     if isinstance(result, list):
         for seg in result:
@@ -223,15 +223,15 @@ def extract_whisperx_words(whisperx_data: Dict[str, Any]) -> List[Dict[str, Any]
             end = seg.get("end")
             text = normalize_whitespace(str(seg.get("text", "")))
             speaker = seg.get("speaker")
-            # 兼容 "character_cluster" 或 "character" 字段
+            # Compatible with "character_cluster" or "character" fields
             character_cluster = seg.get("character_cluster") or seg.get("character")
             add_item(start, end, text, speaker, character_cluster)
-        # 如果 result 存在且非空，直接返回（避免重复解析其他字段）
+        # If result exists and is not empty, return it directly (to avoid repeatedly parsing other fields).
         if items:
             items.sort(key=lambda x: (x["start"], x["end"]))
             return items
 
-    # 2) 处理顶层 "segments"（标准 WhisperX 输出）
+    # 2) Process top-level "segments" (standard WhisperX output).
     top_segments = whisperx_data.get("segments")
     if isinstance(top_segments, list):
         for seg in top_segments:
@@ -240,11 +240,11 @@ def extract_whisperx_words(whisperx_data: Dict[str, Any]) -> List[Dict[str, Any]
             start = seg.get("start")
             end = seg.get("end")
             text = normalize_whitespace(str(seg.get("text", "")))
-            # 标准 segments 可能带有 speaker，也可提取
+            # Standard segments may include speaker information, which can also be extracted.
             speaker = seg.get("speaker")
             add_item(start, end, text, speaker)
 
-    # 3) 向后兼容：transcription_aligned.segments
+    # 3) Backward compatibility: transcription_aligned.segments
     aligned = whisperx_data.get("transcription_aligned", {})
     if isinstance(aligned, dict):
         aligned_segments = aligned.get("segments")

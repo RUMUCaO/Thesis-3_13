@@ -14,38 +14,40 @@ from scenedetect import detect, ContentDetector, SceneManager, open_video
 
 def repair_video_with_ffmpeg(input_path: Path, output_path: Path = None, crf: int = 23) -> Path:
     """
-    用 FFmpeg 强制重新编码视频，修复损坏的 H.264 数据流。
-    
-    参数:
-        input_path: 原始视频文件路径
-        output_path: 修复后视频保存路径（若为 None，则自动生成临时文件）
-        crf: 画质参数 (默认 23，越小画质越好但文件越大)
-    
-    返回:
-        修复后的视频文件路径
+    Use FFmpeg to force a re-encode of the video, repairing a corrupted H.264 data stream.
+
+    Parameters:
+    input_path: Path to the original video file
+
+    output_path: Path to save the repaired video (if None, a temporary file will be automatically generated)
+
+    crf: Quality parameter (default 23, lower values ​​result in better quality but larger file size)
+
+    Return:
+    Path to the repaired video file
     """
     if output_path is None:
-        # 使用临时文件，避免污染原始文件
+        # Use temporary files to avoid contaminating the original files.
         fd, output_path = tempfile.mkstemp(suffix=".mp4", prefix="repaired_")
         output_path = Path(output_path)
-        # 关闭文件描述符，ffmpeg 会覆盖它
+        # Close the file descriptor; ffmpeg will overwrite it.
         import os
         os.close(fd)
     
-    # 构建 ffmpeg 命令：重新编码视频（H.264），音频（AAC），覆盖输出
+    # Build the ffmpeg command: re-encode the video (H.264), audio (AAC), and overwrite the output
     cmd = [
         "ffmpeg", "-i", str(input_path),
         "-c:v", "libx264", "-crf", str(crf), "-preset", "fast",
         "-c:a", "aac", "-b:a", "128k",
         "-y", str(output_path)
     ]
-    print(f"正在修复视频（重新编码）: {input_path.name} -> {output_path.name}")
+    print(f"Video being repaired (re-encoded): {input_path.name} -> {output_path.name}")
     try:
         subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        print("修复完成")
+        print("Repair complete")
         return output_path
     except subprocess.CalledProcessError as e:
-        print(f"修复失败: {e}")
+        print(f"Repair failed: {e}")
         raise
 
 # =========================
@@ -83,8 +85,9 @@ whisper_model = whisper.load_model("base")
 
 def get_scenes_with_scenedetect(video_path: Path, threshold=30):
     """
-    使用 scenedetect 检测镜头边界，返回场景列表，格式与 TransNetV2 兼容。
-    threshold: 内容检测灵敏度（越低越敏感）。
+    Use scenedetect to detect camera boundaries and return a list of scenes in a format compatible with TransNetV2.
+
+    threshold: Content detection sensitivity (lower values ​​indicate greater sensitivity).
     """
     from scenedetect import detect, ContentDetector
     scene_list = detect(str(video_path), ContentDetector(threshold=threshold))
@@ -100,24 +103,24 @@ def get_scenes_with_scenedetect(video_path: Path, threshold=30):
     return scenes
 
 def extract_full_audio(video_path: Path, out_wav: str = "full_audio.wav"):
-    """提取整个视频的音频到 wav 文件，返回音频数组和采样率"""
+    """Extract the entire video's audio to a wav file, returning the audio array and sampling rate."""
     cmd = [
         "ffmpeg", "-y", "-i", str(video_path),
         "-ac", "1", "-ar", "16000", out_wav
     ]
     subprocess.run(cmd, check=True, capture_output=True)
     audio, sr = torchaudio.load(out_wav)
-    Path(out_wav).unlink()  # 删除临时文件
+    Path(out_wav).unlink()  # Delete the temporary file
     return audio, sr
 
 def get_audio_segment(full_audio, sr, start_sec, end_sec):
-    """从完整音频中截取片段"""
+    """Extract a segment from the full audio."""
     start_sample = int(start_sec * sr)
     end_sample = int(end_sec * sr)
     return full_audio[:, start_sample:end_sample]
 
 # =========================
-# multi-frame CLIP (核心升级🔥)
+# multi-frame CLIP 
 # =========================
 def get_frame(video_path, t):
     cap = cv2.VideoCapture(str(video_path))
@@ -136,7 +139,7 @@ def get_frame(video_path, t):
 
 def multi_frame_embedding(video_path, scene, n=5):
     """
-    ⭐ 关键升级：scene级 embedding
+    ⭐ Key Upgrade: Scene-level embedding
     """
     start = scene["start_seconds"]
     end = scene["end_seconds"]
@@ -164,7 +167,7 @@ def load_scenes():
 
 
 # =========================
-# semantic merge (fusion版🔥)
+# semantic merge
 # =========================
 def merge_scenes(scenes, visual_embs, audio_embs, alpha=0.7, threshold=0.75):
     def sim(a, b):
@@ -199,13 +202,13 @@ def to_semantic(groups):
 # ========================= 
 def main():
     print("Detecting scenes with scenedetect...")
-    repaired_video_path = repair_video_with_ffmpeg(VIDEO_PATH)# 尝试修复视频，避免解码错误导致的场景检测失败
-    scenes = get_scenes_with_scenedetect(repaired_video_path, threshold=30)   # 可调
+    repaired_video_path = repair_video_with_ffmpeg(VIDEO_PATH)# Attempt to repair the video to avoid scene detection failures caused by decoding errors.
+    scenes = get_scenes_with_scenedetect(repaired_video_path, threshold=30)   # Adjustable
     if not scenes:
         print("No scenes detected, abort.")
         return
     
-    # 可选：保存原始场景（方便复查）
+    # Optional: Save the original scene (for easy review).
     SCENE_JSON.write_text(json.dumps({"scenes": scenes}, indent=2), encoding="utf-8")
 
     # -------------------------
@@ -230,42 +233,42 @@ def main():
     for s in scenes:
         start = s["start_seconds"]
         end = s["end_seconds"]
-        if end - start < 0.5:   # 太短的片段直接给零向量
+        if end - start < 0.5:   # For segments that are too short, directly assign the zero vector.
             audio_embs.append(np.zeros(512))
             continue
         
         segment = get_audio_segment(full_audio, audio_sr, start, end)
         
-        # 1. 转为单声道 (如果 segment 是多通道)
+        # 1. Convert to mono (if the segment is multi-channel)
         if segment.dim() > 1 and segment.shape[0] > 1:
             segment = segment.mean(dim=0, keepdim=True).squeeze()
         else:
             segment = segment.squeeze()
         
-        # 2. 转成 float32 numpy
+        # 2. Convert to float32 numpy
         audio_np = segment.cpu().numpy().astype(np.float32)
         
-        # 3. 重采样到 16000 Hz (如果原始采样率不是 16000)
+        # 3. Resample to 16000 Hz (if the original sampling rate is not 16000).
         if audio_sr != 16000:
             import torchaudio
-            # 先转回 tensor
+            # First convert back to tensor
             audio_tensor = torch.from_numpy(audio_np)
-            # torchaudio 重采样
+            # torchaudio resample
             resampler = torchaudio.transforms.Resample(orig_freq=audio_sr, new_freq=16000)
             audio_np = resampler(audio_tensor).numpy()
         
-        # 4. 关键：填充/裁剪到 30 秒 (480000 个采样点)
-        audio_30s = whisper.pad_or_trim(torch.from_numpy(audio_np))   # 输出 shape (480000,)
+        # 4. Key: Pad or trim to 30 seconds (480000 samples)
+        audio_30s = whisper.pad_or_trim(torch.from_numpy(audio_np))   # Output shape (480000,)
         
-        # 5. 计算梅尔谱 (shape: 80, 3000)
-        mel = whisper.log_mel_spectrogram(audio_30s)   # 注意：不要 unsqueeze 在这里
+        # 5. Calculate the Mel spectrum (shape: 80, 3000)
+        mel = whisper.log_mel_spectrogram(audio_30s)   # Note: Do not use unsqueeze here.
         
-        # 6. 添加 batch 维度并送入 encoder
+        # 6. Use the Whisper encoder to get the embedding (shape: 1500, 512)
         mel_batch = mel.unsqueeze(0).to(device)        # shape (1, 80, 3000)
         with torch.no_grad():
             features = whisper_model.encoder(mel_batch)   # shape (1, 1500, 512)
         
-        # 7. 取时间维度的平均作为片段嵌入
+        # 7. Take the average of the time dimension as the fragment embedding
         emb = features.mean(dim=1).squeeze().cpu().numpy()  # shape (512,)
         audio_embs.append(emb)
 

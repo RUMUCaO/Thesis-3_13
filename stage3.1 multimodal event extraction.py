@@ -48,7 +48,7 @@ SELECTED_REFERENCE_CLUSTERS_PATHS = [
 ]
 
 ENABLE_MULTIMODAL_PRIOR = True
-ENABLE_IDENTITY_RECONCILIATION = False
+ENABLE_IDENTITY_RECONCILIATION = True
 TEXT_BOUNDARY_WEIGHT = 0.35
 FACE_BOUNDARY_WEIGHT = 0.20
 TEXT_EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
@@ -774,7 +774,7 @@ def build_identity_reconciliation(scenes, whisper_words, script_data):
         for i, speaker_id in enumerate(speaker_ids):
             profile = speaker_profiles[speaker_id]
             word_count = int(profile["word_count"])
-            # 只要出现至少 1 个词就尝试匹配（可调整）
+            # Attempt to match if at least one word is present (adjustable).
             if word_count >= 1:
                 strong_speaker_rows.append(i)
 
@@ -852,7 +852,7 @@ def build_identity_reconciliation(scenes, whisper_words, script_data):
         if spk and best_char and spk != "None" and best_char != "None":
             if spk not in speaker_to_character:
                 speaker_to_character[spk] = best_char
-                speaker_character_scores[spk] = u.get("confidence", 0.0)  # 保留原置信度供参考
+                speaker_character_scores[spk] = u.get("confidence", 0.0)  # The original confidence level is retained for reference.
 
     if face_ids:
         face_visual_text_support = np.zeros((len(face_ids), len(character_ids)), dtype=np.float32)
@@ -1570,22 +1570,22 @@ def describe_scene(frames, scene_id, start, end):
         "Keep summary under 25 words, actions to at most 2 items, and avoid extra keys or markdown."
     )
     
-    #context_lines = []
-    #ctx = SCENE_CONTEXT
-    #if rec_transcript_text := ctx.get("transcript_text", ""):
-    #    context_lines.append(f"transcript: {rec_transcript_text[:400]}")
-    #if rec_speakers := ctx.get("speakers", []):
-    #    context_lines.append("speakers: " + ", ".join(map(str, rec_speakers[:6])))
-    #if rec_faces := ctx.get("face_clusters", []):
-    #    context_lines.append("face_clusters: " + ", ".join(map(str, rec_faces[:6])))
-    #if rec_identity_ids := ctx.get("unified_character_ids", []):
-    #    context_lines.append("unified_character_ids: " + ", ".join(map(str, rec_identity_ids[:6])))
-    #    context_lines.append("prefer these character labels instead of generic person labels when describing visible people")
-    #if rec_script_hint := ctx.get("script_hint", ""):
-    #    context_lines.append(f"script_hint: {rec_script_hint[:300]}")
+    context_lines = []
+    ctx = SCENE_CONTEXT
+    if rec_transcript_text := ctx.get("transcript_text", ""):
+        context_lines.append(f"transcript: {rec_transcript_text[:400]}")
+    if rec_speakers := ctx.get("speakers", []):
+        context_lines.append("speakers: " + ", ".join(map(str, rec_speakers[:6])))
+    if rec_faces := ctx.get("face_clusters", []):
+        context_lines.append("face_clusters: " + ", ".join(map(str, rec_faces[:6])))
+    if rec_identity_ids := ctx.get("unified_character_ids", []):
+       context_lines.append("unified_character_ids: " + ", ".join(map(str, rec_identity_ids[:6])))
+        context_lines.append("prefer these character labels instead of generic person labels when describing visible people")
+    if rec_script_hint := ctx.get("script_hint", ""):
+        context_lines.append(f"script_hint: {rec_script_hint[:300]}")
 
-    #if context_lines:
-    #    prompt = prompt + "\nUse the following context as anchor evidence (do not invent missing facts):\n" + "\n".join(context_lines)
+    if context_lines:
+        prompt = prompt + "\nUse the following context as anchor evidence (do not invent missing facts):\n" + "\n".join(context_lines)
 
     preprocess_start = time.perf_counter()
     
