@@ -1,0 +1,6799 @@
+{
+  "total_scenes": 876,
+  "selected_scenes": 60,
+  "boundary_count": 10,
+  "top_k_select": 60,
+  "cluster_similarity_threshold": 0.85,
+  "estimated_narrative_segments": 754,
+  "segments": [
+    {
+      "segment_id": 1,
+      "scene_count": 1,
+      "start_scene_id": 0,
+      "end_scene_id": 0,
+      "start_time": 0.0,
+      "end_time": 8.174833,
+      "avg_importance": 1.0
+    },
+    {
+      "segment_id": 2,
+      "scene_count": 1,
+      "start_scene_id": 1,
+      "end_scene_id": 1,
+      "start_time": 8.174833,
+      "end_time": 78.870458,
+      "avg_importance": 0.633619
+    },
+    {
+      "segment_id": 3,
+      "scene_count": 1,
+      "start_scene_id": 2,
+      "end_scene_id": 2,
+      "start_time": 78.870458,
+      "end_time": 81.664917,
+      "avg_importance": 0.646128
+    },
+    {
+      "segment_id": 4,
+      "scene_count": 1,
+      "start_scene_id": 3,
+      "end_scene_id": 3,
+      "start_time": 81.664917,
+      "end_time": 85.502083,
+      "avg_importance": 0.553941
+    },
+    {
+      "segment_id": 5,
+      "scene_count": 1,
+      "start_scene_id": 4,
+      "end_scene_id": 4,
+      "start_time": 85.502083,
+      "end_time": 88.129708,
+      "avg_importance": 0.185668
+    },
+    {
+      "segment_id": 6,
+      "scene_count": 1,
+      "start_scene_id": 5,
+      "end_scene_id": 5,
+      "start_time": 88.129708,
+      "end_time": 106.6065,
+      "avg_importance": 0.540891
+    },
+    {
+      "segment_id": 7,
+      "scene_count": 1,
+      "start_scene_id": 6,
+      "end_scene_id": 6,
+      "start_time": 106.6065,
+      "end_time": 110.86075,
+      "avg_importance": 0.420693
+    },
+    {
+      "segment_id": 8,
+      "scene_count": 1,
+      "start_scene_id": 7,
+      "end_scene_id": 7,
+      "start_time": 110.86075,
+      "end_time": 112.278833,
+      "avg_importance": 0.335654
+    },
+    {
+      "segment_id": 9,
+      "scene_count": 1,
+      "start_scene_id": 8,
+      "end_scene_id": 8,
+      "start_time": 112.278833,
+      "end_time": 116.032583,
+      "avg_importance": 0.252305
+    },
+    {
+      "segment_id": 10,
+      "scene_count": 1,
+      "start_scene_id": 9,
+      "end_scene_id": 9,
+      "start_time": 116.032583,
+      "end_time": 118.910458,
+      "avg_importance": 0.325736
+    },
+    {
+      "segment_id": 11,
+      "scene_count": 1,
+      "start_scene_id": 10,
+      "end_scene_id": 10,
+      "start_time": 118.910458,
+      "end_time": 121.412958,
+      "avg_importance": 0.576318
+    },
+    {
+      "segment_id": 12,
+      "scene_count": 1,
+      "start_scene_id": 11,
+      "end_scene_id": 11,
+      "start_time": 121.412958,
+      "end_time": 123.37325,
+      "avg_importance": 0.420213
+    },
+    {
+      "segment_id": 13,
+      "scene_count": 1,
+      "start_scene_id": 12,
+      "end_scene_id": 12,
+      "start_time": 123.37325,
+      "end_time": 124.833042,
+      "avg_importance": 0.164324
+    },
+    {
+      "segment_id": 14,
+      "scene_count": 1,
+      "start_scene_id": 13,
+      "end_scene_id": 13,
+      "start_time": 124.833042,
+      "end_time": 126.084292,
+      "avg_importance": 0.3845
+    },
+    {
+      "segment_id": 15,
+      "scene_count": 1,
+      "start_scene_id": 14,
+      "end_scene_id": 14,
+      "start_time": 126.084292,
+      "end_time": 132.590792,
+      "avg_importance": 0.534363
+    },
+    {
+      "segment_id": 16,
+      "scene_count": 1,
+      "start_scene_id": 15,
+      "end_scene_id": 15,
+      "start_time": 132.590792,
+      "end_time": 143.226417,
+      "avg_importance": 0.356209
+    },
+    {
+      "segment_id": 17,
+      "scene_count": 1,
+      "start_scene_id": 16,
+      "end_scene_id": 16,
+      "start_time": 143.226417,
+      "end_time": 144.811333,
+      "avg_importance": 0.143362
+    },
+    {
+      "segment_id": 18,
+      "scene_count": 1,
+      "start_scene_id": 17,
+      "end_scene_id": 17,
+      "start_time": 144.811333,
+      "end_time": 145.89575,
+      "avg_importance": 0.191301
+    },
+    {
+      "segment_id": 19,
+      "scene_count": 1,
+      "start_scene_id": 18,
+      "end_scene_id": 18,
+      "start_time": 145.89575,
+      "end_time": 147.605792,
+      "avg_importance": 0.083595
+    },
+    {
+      "segment_id": 20,
+      "scene_count": 1,
+      "start_scene_id": 19,
+      "end_scene_id": 19,
+      "start_time": 147.605792,
+      "end_time": 155.155,
+      "avg_importance": 0.251704
+    },
+    {
+      "segment_id": 21,
+      "scene_count": 1,
+      "start_scene_id": 20,
+      "end_scene_id": 20,
+      "start_time": 155.155,
+      "end_time": 161.035875,
+      "avg_importance": 0.0976
+    },
+    {
+      "segment_id": 22,
+      "scene_count": 1,
+      "start_scene_id": 21,
+      "end_scene_id": 21,
+      "start_time": 161.035875,
+      "end_time": 166.124292,
+      "avg_importance": 0.316613
+    },
+    {
+      "segment_id": 23,
+      "scene_count": 1,
+      "start_scene_id": 22,
+      "end_scene_id": 22,
+      "start_time": 166.124292,
+      "end_time": 174.465958,
+      "avg_importance": 0.236883
+    },
+    {
+      "segment_id": 24,
+      "scene_count": 1,
+      "start_scene_id": 23,
+      "end_scene_id": 23,
+      "start_time": 174.465958,
+      "end_time": 177.969458,
+      "avg_importance": 0.313585
+    },
+    {
+      "segment_id": 25,
+      "scene_count": 1,
+      "start_scene_id": 24,
+      "end_scene_id": 24,
+      "start_time": 177.969458,
+      "end_time": 182.6825,
+      "avg_importance": 0.323515
+    },
+    {
+      "segment_id": 26,
+      "scene_count": 1,
+      "start_scene_id": 25,
+      "end_scene_id": 25,
+      "start_time": 182.6825,
+      "end_time": 188.313125,
+      "avg_importance": 0.312382
+    },
+    {
+      "segment_id": 27,
+      "scene_count": 1,
+      "start_scene_id": 26,
+      "end_scene_id": 26,
+      "start_time": 188.313125,
+      "end_time": 191.232708,
+      "avg_importance": 0.253688
+    },
+    {
+      "segment_id": 28,
+      "scene_count": 3,
+      "start_scene_id": 27,
+      "end_scene_id": 29,
+      "start_time": 191.232708,
+      "end_time": 209.626083,
+      "avg_importance": 0.112001
+    },
+    {
+      "segment_id": 29,
+      "scene_count": 1,
+      "start_scene_id": 30,
+      "end_scene_id": 30,
+      "start_time": 209.626083,
+      "end_time": 217.300417,
+      "avg_importance": 0.208325
+    },
+    {
+      "segment_id": 30,
+      "scene_count": 1,
+      "start_scene_id": 31,
+      "end_scene_id": 31,
+      "start_time": 217.300417,
+      "end_time": 248.915333,
+      "avg_importance": 0.308329
+    },
+    {
+      "segment_id": 31,
+      "scene_count": 1,
+      "start_scene_id": 32,
+      "end_scene_id": 32,
+      "start_time": 248.915333,
+      "end_time": 256.214292,
+      "avg_importance": 0.325722
+    },
+    {
+      "segment_id": 32,
+      "scene_count": 1,
+      "start_scene_id": 33,
+      "end_scene_id": 33,
+      "start_time": 256.214292,
+      "end_time": 257.131875,
+      "avg_importance": 0.442728
+    },
+    {
+      "segment_id": 33,
+      "scene_count": 1,
+      "start_scene_id": 34,
+      "end_scene_id": 34,
+      "start_time": 257.131875,
+      "end_time": 259.467542,
+      "avg_importance": 0.475545
+    },
+    {
+      "segment_id": 34,
+      "scene_count": 1,
+      "start_scene_id": 35,
+      "end_scene_id": 35,
+      "start_time": 259.467542,
+      "end_time": 264.7645,
+      "avg_importance": 0.382609
+    },
+    {
+      "segment_id": 35,
+      "scene_count": 1,
+      "start_scene_id": 36,
+      "end_scene_id": 36,
+      "start_time": 264.7645,
+      "end_time": 280.321708,
+      "avg_importance": 0.347591
+    },
+    {
+      "segment_id": 36,
+      "scene_count": 1,
+      "start_scene_id": 37,
+      "end_scene_id": 37,
+      "start_time": 280.321708,
+      "end_time": 298.381417,
+      "avg_importance": 0.310663
+    },
+    {
+      "segment_id": 37,
+      "scene_count": 1,
+      "start_scene_id": 38,
+      "end_scene_id": 38,
+      "start_time": 298.381417,
+      "end_time": 331.789792,
+      "avg_importance": 0.307344
+    },
+    {
+      "segment_id": 38,
+      "scene_count": 1,
+      "start_scene_id": 39,
+      "end_scene_id": 39,
+      "start_time": 331.789792,
+      "end_time": 344.469125,
+      "avg_importance": 0.282634
+    },
+    {
+      "segment_id": 39,
+      "scene_count": 1,
+      "start_scene_id": 40,
+      "end_scene_id": 40,
+      "start_time": 344.469125,
+      "end_time": 354.8545,
+      "avg_importance": 0.361249
+    },
+    {
+      "segment_id": 40,
+      "scene_count": 2,
+      "start_scene_id": 41,
+      "end_scene_id": 42,
+      "start_time": 354.8545,
+      "end_time": 361.8615,
+      "avg_importance": 0.119019
+    },
+    {
+      "segment_id": 41,
+      "scene_count": 1,
+      "start_scene_id": 43,
+      "end_scene_id": 43,
+      "start_time": 361.8615,
+      "end_time": 363.696667,
+      "avg_importance": 0.339854
+    },
+    {
+      "segment_id": 42,
+      "scene_count": 2,
+      "start_scene_id": 44,
+      "end_scene_id": 45,
+      "start_time": 363.696667,
+      "end_time": 369.660958,
+      "avg_importance": 0.170641
+    },
+    {
+      "segment_id": 43,
+      "scene_count": 1,
+      "start_scene_id": 46,
+      "end_scene_id": 46,
+      "start_time": 369.660958,
+      "end_time": 370.661958,
+      "avg_importance": 0.290418
+    },
+    {
+      "segment_id": 44,
+      "scene_count": 1,
+      "start_scene_id": 47,
+      "end_scene_id": 47,
+      "start_time": 370.661958,
+      "end_time": 372.12175,
+      "avg_importance": 0.192788
+    },
+    {
+      "segment_id": 45,
+      "scene_count": 1,
+      "start_scene_id": 48,
+      "end_scene_id": 48,
+      "start_time": 372.12175,
+      "end_time": 373.456417,
+      "avg_importance": 0.082624
+    },
+    {
+      "segment_id": 46,
+      "scene_count": 1,
+      "start_scene_id": 49,
+      "end_scene_id": 49,
+      "start_time": 373.456417,
+      "end_time": 374.8745,
+      "avg_importance": 0.176505
+    },
+    {
+      "segment_id": 47,
+      "scene_count": 1,
+      "start_scene_id": 50,
+      "end_scene_id": 50,
+      "start_time": 374.8745,
+      "end_time": 376.709667,
+      "avg_importance": 0.084504
+    },
+    {
+      "segment_id": 48,
+      "scene_count": 2,
+      "start_scene_id": 51,
+      "end_scene_id": 52,
+      "start_time": 376.709667,
+      "end_time": 381.8815,
+      "avg_importance": 0.123869
+    },
+    {
+      "segment_id": 49,
+      "scene_count": 3,
+      "start_scene_id": 53,
+      "end_scene_id": 55,
+      "start_time": 381.8815,
+      "end_time": 390.8905,
+      "avg_importance": 0.09352
+    },
+    {
+      "segment_id": 50,
+      "scene_count": 1,
+      "start_scene_id": 56,
+      "end_scene_id": 56,
+      "start_time": 390.8905,
+      "end_time": 393.601542,
+      "avg_importance": 0.268004
+    },
+    {
+      "segment_id": 51,
+      "scene_count": 1,
+      "start_scene_id": 57,
+      "end_scene_id": 57,
+      "start_time": 393.601542,
+      "end_time": 395.603542,
+      "avg_importance": 0.092586
+    },
+    {
+      "segment_id": 52,
+      "scene_count": 2,
+      "start_scene_id": 58,
+      "end_scene_id": 59,
+      "start_time": 395.603542,
+      "end_time": 402.026625,
+      "avg_importance": 0.127626
+    },
+    {
+      "segment_id": 53,
+      "scene_count": 1,
+      "start_scene_id": 60,
+      "end_scene_id": 60,
+      "start_time": 402.026625,
+      "end_time": 404.821083,
+      "avg_importance": 0.105307
+    },
+    {
+      "segment_id": 54,
+      "scene_count": 1,
+      "start_scene_id": 61,
+      "end_scene_id": 61,
+      "start_time": 404.821083,
+      "end_time": 406.531125,
+      "avg_importance": 0.131447
+    },
+    {
+      "segment_id": 55,
+      "scene_count": 3,
+      "start_scene_id": 62,
+      "end_scene_id": 64,
+      "start_time": 406.531125,
+      "end_time": 425.258167,
+      "avg_importance": 0.069805
+    },
+    {
+      "segment_id": 56,
+      "scene_count": 2,
+      "start_scene_id": 65,
+      "end_scene_id": 66,
+      "start_time": 425.258167,
+      "end_time": 428.9285,
+      "avg_importance": 0.207726
+    },
+    {
+      "segment_id": 57,
+      "scene_count": 1,
+      "start_scene_id": 67,
+      "end_scene_id": 67,
+      "start_time": 428.9285,
+      "end_time": 431.139042,
+      "avg_importance": 0.213786
+    },
+    {
+      "segment_id": 58,
+      "scene_count": 1,
+      "start_scene_id": 68,
+      "end_scene_id": 68,
+      "start_time": 431.139042,
+      "end_time": 432.557125,
+      "avg_importance": 0.084102
+    },
+    {
+      "segment_id": 59,
+      "scene_count": 1,
+      "start_scene_id": 69,
+      "end_scene_id": 69,
+      "start_time": 432.557125,
+      "end_time": 434.851083,
+      "avg_importance": 0.255929
+    },
+    {
+      "segment_id": 60,
+      "scene_count": 1,
+      "start_scene_id": 70,
+      "end_scene_id": 70,
+      "start_time": 434.851083,
+      "end_time": 436.352583,
+      "avg_importance": 0.244839
+    },
+    {
+      "segment_id": 61,
+      "scene_count": 1,
+      "start_scene_id": 71,
+      "end_scene_id": 71,
+      "start_time": 436.352583,
+      "end_time": 437.979208,
+      "avg_importance": 0.099124
+    },
+    {
+      "segment_id": 62,
+      "scene_count": 1,
+      "start_scene_id": 72,
+      "end_scene_id": 72,
+      "start_time": 437.979208,
+      "end_time": 439.647542,
+      "avg_importance": 0.143919
+    },
+    {
+      "segment_id": 63,
+      "scene_count": 2,
+      "start_scene_id": 73,
+      "end_scene_id": 74,
+      "start_time": 439.647542,
+      "end_time": 472.430292,
+      "avg_importance": 0.109147
+    },
+    {
+      "segment_id": 64,
+      "scene_count": 1,
+      "start_scene_id": 75,
+      "end_scene_id": 75,
+      "start_time": 472.430292,
+      "end_time": 473.931792,
+      "avg_importance": 0.300185
+    },
+    {
+      "segment_id": 65,
+      "scene_count": 1,
+      "start_scene_id": 76,
+      "end_scene_id": 76,
+      "start_time": 473.931792,
+      "end_time": 477.477,
+      "avg_importance": 0.344154
+    },
+    {
+      "segment_id": 66,
+      "scene_count": 2,
+      "start_scene_id": 77,
+      "end_scene_id": 78,
+      "start_time": 477.477,
+      "end_time": 483.73325,
+      "avg_importance": 0.14359
+    },
+    {
+      "segment_id": 67,
+      "scene_count": 1,
+      "start_scene_id": 79,
+      "end_scene_id": 79,
+      "start_time": 483.73325,
+      "end_time": 486.861375,
+      "avg_importance": 0.185291
+    },
+    {
+      "segment_id": 68,
+      "scene_count": 3,
+      "start_scene_id": 80,
+      "end_scene_id": 82,
+      "start_time": 486.861375,
+      "end_time": 505.963792,
+      "avg_importance": 0.102143
+    },
+    {
+      "segment_id": 69,
+      "scene_count": 1,
+      "start_scene_id": 83,
+      "end_scene_id": 83,
+      "start_time": 505.963792,
+      "end_time": 509.0085,
+      "avg_importance": 0.173967
+    },
+    {
+      "segment_id": 70,
+      "scene_count": 1,
+      "start_scene_id": 84,
+      "end_scene_id": 84,
+      "start_time": 509.0085,
+      "end_time": 515.056208,
+      "avg_importance": 0.145217
+    },
+    {
+      "segment_id": 71,
+      "scene_count": 1,
+      "start_scene_id": 85,
+      "end_scene_id": 85,
+      "start_time": 515.056208,
+      "end_time": 517.683833,
+      "avg_importance": 0.135612
+    },
+    {
+      "segment_id": 72,
+      "scene_count": 2,
+      "start_scene_id": 86,
+      "end_scene_id": 87,
+      "start_time": 517.683833,
+      "end_time": 524.857667,
+      "avg_importance": 0.069468
+    },
+    {
+      "segment_id": 73,
+      "scene_count": 1,
+      "start_scene_id": 88,
+      "end_scene_id": 88,
+      "start_time": 524.857667,
+      "end_time": 527.401875,
+      "avg_importance": 0.124377
+    },
+    {
+      "segment_id": 74,
+      "scene_count": 1,
+      "start_scene_id": 89,
+      "end_scene_id": 89,
+      "start_time": 527.401875,
+      "end_time": 530.071208,
+      "avg_importance": 0.08128
+    },
+    {
+      "segment_id": 75,
+      "scene_count": 1,
+      "start_scene_id": 90,
+      "end_scene_id": 90,
+      "start_time": 530.071208,
+      "end_time": 531.989792,
+      "avg_importance": 0.154272
+    },
+    {
+      "segment_id": 76,
+      "scene_count": 1,
+      "start_scene_id": 91,
+      "end_scene_id": 91,
+      "start_time": 531.989792,
+      "end_time": 533.658125,
+      "avg_importance": 0.128055
+    },
+    {
+      "segment_id": 77,
+      "scene_count": 1,
+      "start_scene_id": 92,
+      "end_scene_id": 92,
+      "start_time": 533.658125,
+      "end_time": 535.826958,
+      "avg_importance": 0.156527
+    },
+    {
+      "segment_id": 78,
+      "scene_count": 1,
+      "start_scene_id": 93,
+      "end_scene_id": 93,
+      "start_time": 535.826958,
+      "end_time": 538.621417,
+      "avg_importance": 0.144211
+    },
+    {
+      "segment_id": 79,
+      "scene_count": 1,
+      "start_scene_id": 94,
+      "end_scene_id": 94,
+      "start_time": 538.621417,
+      "end_time": 543.084208,
+      "avg_importance": 0.321472
+    },
+    {
+      "segment_id": 80,
+      "scene_count": 1,
+      "start_scene_id": 95,
+      "end_scene_id": 95,
+      "start_time": 543.084208,
+      "end_time": 548.339458,
+      "avg_importance": 0.281758
+    },
+    {
+      "segment_id": 81,
+      "scene_count": 1,
+      "start_scene_id": 96,
+      "end_scene_id": 96,
+      "start_time": 548.339458,
+      "end_time": 551.217333,
+      "avg_importance": 0.070228
+    },
+    {
+      "segment_id": 82,
+      "scene_count": 1,
+      "start_scene_id": 97,
+      "end_scene_id": 97,
+      "start_time": 551.217333,
+      "end_time": 552.218333,
+      "avg_importance": 0.405457
+    },
+    {
+      "segment_id": 83,
+      "scene_count": 1,
+      "start_scene_id": 98,
+      "end_scene_id": 98,
+      "start_time": 552.218333,
+      "end_time": 572.196625,
+      "avg_importance": 0.31465
+    },
+    {
+      "segment_id": 84,
+      "scene_count": 1,
+      "start_scene_id": 99,
+      "end_scene_id": 99,
+      "start_time": 572.196625,
+      "end_time": 591.924667,
+      "avg_importance": 0.258887
+    },
+    {
+      "segment_id": 85,
+      "scene_count": 2,
+      "start_scene_id": 100,
+      "end_scene_id": 101,
+      "start_time": 591.924667,
+      "end_time": 647.355042,
+      "avg_importance": 0.215908
+    },
+    {
+      "segment_id": 86,
+      "scene_count": 1,
+      "start_scene_id": 102,
+      "end_scene_id": 102,
+      "start_time": 647.355042,
+      "end_time": 654.111792,
+      "avg_importance": 0.401308
+    },
+    {
+      "segment_id": 87,
+      "scene_count": 1,
+      "start_scene_id": 103,
+      "end_scene_id": 103,
+      "start_time": 654.111792,
+      "end_time": 656.280625,
+      "avg_importance": 0.382737
+    },
+    {
+      "segment_id": 88,
+      "scene_count": 1,
+      "start_scene_id": 104,
+      "end_scene_id": 104,
+      "start_time": 656.280625,
+      "end_time": 657.948958,
+      "avg_importance": 0.298432
+    },
+    {
+      "segment_id": 89,
+      "scene_count": 1,
+      "start_scene_id": 105,
+      "end_scene_id": 105,
+      "start_time": 657.948958,
+      "end_time": 660.993667,
+      "avg_importance": 0.220746
+    },
+    {
+      "segment_id": 90,
+      "scene_count": 1,
+      "start_scene_id": 106,
+      "end_scene_id": 106,
+      "start_time": 660.993667,
+      "end_time": 669.669,
+      "avg_importance": 0.248387
+    },
+    {
+      "segment_id": 91,
+      "scene_count": 1,
+      "start_scene_id": 107,
+      "end_scene_id": 107,
+      "start_time": 669.669,
+      "end_time": 670.92025,
+      "avg_importance": 0.236092
+    },
+    {
+      "segment_id": 92,
+      "scene_count": 1,
+      "start_scene_id": 108,
+      "end_scene_id": 108,
+      "start_time": 670.92025,
+      "end_time": 673.756417,
+      "avg_importance": 0.431864
+    },
+    {
+      "segment_id": 93,
+      "scene_count": 1,
+      "start_scene_id": 109,
+      "end_scene_id": 109,
+      "start_time": 673.756417,
+      "end_time": 678.344333,
+      "avg_importance": 0.265889
+    },
+    {
+      "segment_id": 94,
+      "scene_count": 1,
+      "start_scene_id": 110,
+      "end_scene_id": 110,
+      "start_time": 678.344333,
+      "end_time": 680.137792,
+      "avg_importance": 0.31904
+    },
+    {
+      "segment_id": 95,
+      "scene_count": 1,
+      "start_scene_id": 111,
+      "end_scene_id": 111,
+      "start_time": 680.137792,
+      "end_time": 684.642292,
+      "avg_importance": 0.24572
+    },
+    {
+      "segment_id": 96,
+      "scene_count": 1,
+      "start_scene_id": 112,
+      "end_scene_id": 112,
+      "start_time": 684.642292,
+      "end_time": 690.356333,
+      "avg_importance": 0.333253
+    },
+    {
+      "segment_id": 97,
+      "scene_count": 1,
+      "start_scene_id": 113,
+      "end_scene_id": 113,
+      "start_time": 690.356333,
+      "end_time": 695.611583,
+      "avg_importance": 0.187422
+    },
+    {
+      "segment_id": 98,
+      "scene_count": 1,
+      "start_scene_id": 114,
+      "end_scene_id": 114,
+      "start_time": 695.611583,
+      "end_time": 700.282917,
+      "avg_importance": 0.343023
+    },
+    {
+      "segment_id": 99,
+      "scene_count": 1,
+      "start_scene_id": 115,
+      "end_scene_id": 115,
+      "start_time": 700.282917,
+      "end_time": 715.131083,
+      "avg_importance": 0.329796
+    },
+    {
+      "segment_id": 100,
+      "scene_count": 1,
+      "start_scene_id": 116,
+      "end_scene_id": 116,
+      "start_time": 715.131083,
+      "end_time": 718.46775,
+      "avg_importance": 0.284292
+    },
+    {
+      "segment_id": 101,
+      "scene_count": 1,
+      "start_scene_id": 117,
+      "end_scene_id": 117,
+      "start_time": 718.46775,
+      "end_time": 719.719,
+      "avg_importance": 0.458782
+    },
+    {
+      "segment_id": 102,
+      "scene_count": 1,
+      "start_scene_id": 118,
+      "end_scene_id": 118,
+      "start_time": 719.719,
+      "end_time": 720.553167,
+      "avg_importance": 0.506264
+    },
+    {
+      "segment_id": 103,
+      "scene_count": 1,
+      "start_scene_id": 119,
+      "end_scene_id": 119,
+      "start_time": 720.553167,
+      "end_time": 721.637583,
+      "avg_importance": 0.349408
+    },
+    {
+      "segment_id": 104,
+      "scene_count": 1,
+      "start_scene_id": 120,
+      "end_scene_id": 120,
+      "start_time": 721.637583,
+      "end_time": 722.847125,
+      "avg_importance": 0.252136
+    },
+    {
+      "segment_id": 105,
+      "scene_count": 1,
+      "start_scene_id": 121,
+      "end_scene_id": 121,
+      "start_time": 722.847125,
+      "end_time": 723.931542,
+      "avg_importance": 0.223021
+    },
+    {
+      "segment_id": 106,
+      "scene_count": 1,
+      "start_scene_id": 122,
+      "end_scene_id": 122,
+      "start_time": 723.931542,
+      "end_time": 725.641583,
+      "avg_importance": 0.247767
+    },
+    {
+      "segment_id": 107,
+      "scene_count": 1,
+      "start_scene_id": 123,
+      "end_scene_id": 123,
+      "start_time": 725.641583,
+      "end_time": 727.852125,
+      "avg_importance": 0.407538
+    },
+    {
+      "segment_id": 108,
+      "scene_count": 1,
+      "start_scene_id": 124,
+      "end_scene_id": 124,
+      "start_time": 727.852125,
+      "end_time": 729.353625,
+      "avg_importance": 0.403927
+    },
+    {
+      "segment_id": 109,
+      "scene_count": 1,
+      "start_scene_id": 125,
+      "end_scene_id": 125,
+      "start_time": 729.353625,
+      "end_time": 730.896833,
+      "avg_importance": 0.227303
+    },
+    {
+      "segment_id": 110,
+      "scene_count": 1,
+      "start_scene_id": 126,
+      "end_scene_id": 126,
+      "start_time": 730.896833,
+      "end_time": 738.320917,
+      "avg_importance": 0.367206
+    },
+    {
+      "segment_id": 111,
+      "scene_count": 1,
+      "start_scene_id": 127,
+      "end_scene_id": 127,
+      "start_time": 738.320917,
+      "end_time": 754.128375,
+      "avg_importance": 0.327816
+    },
+    {
+      "segment_id": 112,
+      "scene_count": 1,
+      "start_scene_id": 128,
+      "end_scene_id": 128,
+      "start_time": 754.128375,
+      "end_time": 790.164375,
+      "avg_importance": 0.4231
+    },
+    {
+      "segment_id": 113,
+      "scene_count": 1,
+      "start_scene_id": 129,
+      "end_scene_id": 129,
+      "start_time": 790.164375,
+      "end_time": 804.011542,
+      "avg_importance": 0.343186
+    },
+    {
+      "segment_id": 114,
+      "scene_count": 1,
+      "start_scene_id": 130,
+      "end_scene_id": 130,
+      "start_time": 804.011542,
+      "end_time": 805.930125,
+      "avg_importance": 0.265562
+    },
+    {
+      "segment_id": 115,
+      "scene_count": 1,
+      "start_scene_id": 131,
+      "end_scene_id": 131,
+      "start_time": 805.930125,
+      "end_time": 808.55775,
+      "avg_importance": 0.352449
+    },
+    {
+      "segment_id": 116,
+      "scene_count": 1,
+      "start_scene_id": 132,
+      "end_scene_id": 132,
+      "start_time": 808.55775,
+      "end_time": 815.731583,
+      "avg_importance": 0.206773
+    },
+    {
+      "segment_id": 117,
+      "scene_count": 1,
+      "start_scene_id": 133,
+      "end_scene_id": 133,
+      "start_time": 815.731583,
+      "end_time": 838.003833,
+      "avg_importance": 0.264043
+    },
+    {
+      "segment_id": 118,
+      "scene_count": 1,
+      "start_scene_id": 134,
+      "end_scene_id": 134,
+      "start_time": 838.003833,
+      "end_time": 840.381208,
+      "avg_importance": 0.301199
+    },
+    {
+      "segment_id": 119,
+      "scene_count": 1,
+      "start_scene_id": 135,
+      "end_scene_id": 135,
+      "start_time": 840.381208,
+      "end_time": 845.553042,
+      "avg_importance": 0.182154
+    },
+    {
+      "segment_id": 120,
+      "scene_count": 2,
+      "start_scene_id": 136,
+      "end_scene_id": 137,
+      "start_time": 845.553042,
+      "end_time": 854.854,
+      "avg_importance": 0.123136
+    },
+    {
+      "segment_id": 121,
+      "scene_count": 1,
+      "start_scene_id": 138,
+      "end_scene_id": 138,
+      "start_time": 854.854,
+      "end_time": 860.3595,
+      "avg_importance": 0.295254
+    },
+    {
+      "segment_id": 122,
+      "scene_count": 1,
+      "start_scene_id": 139,
+      "end_scene_id": 139,
+      "start_time": 860.3595,
+      "end_time": 863.3625,
+      "avg_importance": 0.211838
+    },
+    {
+      "segment_id": 123,
+      "scene_count": 1,
+      "start_scene_id": 140,
+      "end_scene_id": 140,
+      "start_time": 863.3625,
+      "end_time": 871.036833,
+      "avg_importance": 0.086854
+    },
+    {
+      "segment_id": 124,
+      "scene_count": 1,
+      "start_scene_id": 141,
+      "end_scene_id": 141,
+      "start_time": 871.036833,
+      "end_time": 875.165958,
+      "avg_importance": 0.199358
+    },
+    {
+      "segment_id": 125,
+      "scene_count": 2,
+      "start_scene_id": 142,
+      "end_scene_id": 143,
+      "start_time": 875.165958,
+      "end_time": 884.508625,
+      "avg_importance": 0.117086
+    },
+    {
+      "segment_id": 126,
+      "scene_count": 4,
+      "start_scene_id": 144,
+      "end_scene_id": 147,
+      "start_time": 884.508625,
+      "end_time": 896.186958,
+      "avg_importance": 0.107645
+    },
+    {
+      "segment_id": 127,
+      "scene_count": 1,
+      "start_scene_id": 148,
+      "end_scene_id": 148,
+      "start_time": 896.186958,
+      "end_time": 901.066833,
+      "avg_importance": 0.081408
+    },
+    {
+      "segment_id": 128,
+      "scene_count": 1,
+      "start_scene_id": 149,
+      "end_scene_id": 149,
+      "start_time": 901.066833,
+      "end_time": 907.907,
+      "avg_importance": 0.174091
+    },
+    {
+      "segment_id": 129,
+      "scene_count": 1,
+      "start_scene_id": 150,
+      "end_scene_id": 150,
+      "start_time": 907.907,
+      "end_time": 912.995417,
+      "avg_importance": 0.107998
+    },
+    {
+      "segment_id": 130,
+      "scene_count": 2,
+      "start_scene_id": 151,
+      "end_scene_id": 152,
+      "start_time": 912.995417,
+      "end_time": 916.874292,
+      "avg_importance": 0.122708
+    },
+    {
+      "segment_id": 131,
+      "scene_count": 1,
+      "start_scene_id": 153,
+      "end_scene_id": 153,
+      "start_time": 916.874292,
+      "end_time": 926.17525,
+      "avg_importance": 0.287742
+    },
+    {
+      "segment_id": 132,
+      "scene_count": 2,
+      "start_scene_id": 154,
+      "end_scene_id": 155,
+      "start_time": 926.17525,
+      "end_time": 947.154542,
+      "avg_importance": 0.167574
+    },
+    {
+      "segment_id": 133,
+      "scene_count": 1,
+      "start_scene_id": 156,
+      "end_scene_id": 156,
+      "start_time": 947.154542,
+      "end_time": 949.281667,
+      "avg_importance": 0.273421
+    },
+    {
+      "segment_id": 134,
+      "scene_count": 1,
+      "start_scene_id": 157,
+      "end_scene_id": 157,
+      "start_time": 949.281667,
+      "end_time": 951.283667,
+      "avg_importance": 0.236321
+    },
+    {
+      "segment_id": 135,
+      "scene_count": 1,
+      "start_scene_id": 158,
+      "end_scene_id": 158,
+      "start_time": 951.283667,
+      "end_time": 980.72975,
+      "avg_importance": 0.433539
+    },
+    {
+      "segment_id": 136,
+      "scene_count": 1,
+      "start_scene_id": 159,
+      "end_scene_id": 159,
+      "start_time": 980.72975,
+      "end_time": 984.066417,
+      "avg_importance": 0.311747
+    },
+    {
+      "segment_id": 137,
+      "scene_count": 2,
+      "start_scene_id": 160,
+      "end_scene_id": 161,
+      "start_time": 984.066417,
+      "end_time": 994.785458,
+      "avg_importance": 0.195405
+    },
+    {
+      "segment_id": 138,
+      "scene_count": 1,
+      "start_scene_id": 162,
+      "end_scene_id": 162,
+      "start_time": 994.785458,
+      "end_time": 1000.916583,
+      "avg_importance": 0.169774
+    },
+    {
+      "segment_id": 139,
+      "scene_count": 1,
+      "start_scene_id": 163,
+      "end_scene_id": 163,
+      "start_time": 1000.916583,
+      "end_time": 1006.5055,
+      "avg_importance": 0.075296
+    },
+    {
+      "segment_id": 140,
+      "scene_count": 4,
+      "start_scene_id": 164,
+      "end_scene_id": 167,
+      "start_time": 1006.5055,
+      "end_time": 1016.640625,
+      "avg_importance": 0.090166
+    },
+    {
+      "segment_id": 141,
+      "scene_count": 1,
+      "start_scene_id": 168,
+      "end_scene_id": 168,
+      "start_time": 1016.640625,
+      "end_time": 1019.977292,
+      "avg_importance": 0.06068
+    },
+    {
+      "segment_id": 142,
+      "scene_count": 1,
+      "start_scene_id": 169,
+      "end_scene_id": 169,
+      "start_time": 1019.977292,
+      "end_time": 1021.729042,
+      "avg_importance": 0.092175
+    },
+    {
+      "segment_id": 143,
+      "scene_count": 1,
+      "start_scene_id": 170,
+      "end_scene_id": 170,
+      "start_time": 1021.729042,
+      "end_time": 1024.314958,
+      "avg_importance": 0.08964
+    },
+    {
+      "segment_id": 144,
+      "scene_count": 2,
+      "start_scene_id": 171,
+      "end_scene_id": 172,
+      "start_time": 1024.314958,
+      "end_time": 1038.037,
+      "avg_importance": 0.096228
+    },
+    {
+      "segment_id": 145,
+      "scene_count": 2,
+      "start_scene_id": 173,
+      "end_scene_id": 174,
+      "start_time": 1038.037,
+      "end_time": 1043.834458,
+      "avg_importance": 0.091515
+    },
+    {
+      "segment_id": 146,
+      "scene_count": 1,
+      "start_scene_id": 175,
+      "end_scene_id": 175,
+      "start_time": 1043.834458,
+      "end_time": 1050.340958,
+      "avg_importance": 0.078278
+    },
+    {
+      "segment_id": 147,
+      "scene_count": 1,
+      "start_scene_id": 176,
+      "end_scene_id": 176,
+      "start_time": 1050.340958,
+      "end_time": 1052.134417,
+      "avg_importance": 0.041608
+    },
+    {
+      "segment_id": 148,
+      "scene_count": 1,
+      "start_scene_id": 177,
+      "end_scene_id": 177,
+      "start_time": 1052.134417,
+      "end_time": 1058.724333,
+      "avg_importance": 0.143082
+    },
+    {
+      "segment_id": 149,
+      "scene_count": 1,
+      "start_scene_id": 178,
+      "end_scene_id": 178,
+      "start_time": 1058.724333,
+      "end_time": 1062.478083,
+      "avg_importance": 0.060217
+    },
+    {
+      "segment_id": 150,
+      "scene_count": 1,
+      "start_scene_id": 179,
+      "end_scene_id": 179,
+      "start_time": 1062.478083,
+      "end_time": 1064.438375,
+      "avg_importance": 0.06334
+    },
+    {
+      "segment_id": 151,
+      "scene_count": 2,
+      "start_scene_id": 180,
+      "end_scene_id": 181,
+      "start_time": 1064.438375,
+      "end_time": 1074.114708,
+      "avg_importance": 0.213139
+    },
+    {
+      "segment_id": 152,
+      "scene_count": 1,
+      "start_scene_id": 182,
+      "end_scene_id": 182,
+      "start_time": 1074.114708,
+      "end_time": 1090.255833,
+      "avg_importance": 0.041942
+    },
+    {
+      "segment_id": 153,
+      "scene_count": 1,
+      "start_scene_id": 183,
+      "end_scene_id": 183,
+      "start_time": 1090.255833,
+      "end_time": 1094.176417,
+      "avg_importance": 0.300438
+    },
+    {
+      "segment_id": 154,
+      "scene_count": 1,
+      "start_scene_id": 184,
+      "end_scene_id": 184,
+      "start_time": 1094.176417,
+      "end_time": 1107.189417,
+      "avg_importance": 0.39248
+    },
+    {
+      "segment_id": 155,
+      "scene_count": 1,
+      "start_scene_id": 185,
+      "end_scene_id": 185,
+      "start_time": 1107.189417,
+      "end_time": 1108.190417,
+      "avg_importance": 0.297297
+    },
+    {
+      "segment_id": 156,
+      "scene_count": 1,
+      "start_scene_id": 186,
+      "end_scene_id": 186,
+      "start_time": 1108.190417,
+      "end_time": 1111.485375,
+      "avg_importance": 0.578716
+    },
+    {
+      "segment_id": 157,
+      "scene_count": 1,
+      "start_scene_id": 187,
+      "end_scene_id": 187,
+      "start_time": 1111.485375,
+      "end_time": 1114.696917,
+      "avg_importance": 0.394172
+    },
+    {
+      "segment_id": 158,
+      "scene_count": 1,
+      "start_scene_id": 188,
+      "end_scene_id": 188,
+      "start_time": 1114.696917,
+      "end_time": 1119.243125,
+      "avg_importance": 0.187165
+    },
+    {
+      "segment_id": 159,
+      "scene_count": 1,
+      "start_scene_id": 189,
+      "end_scene_id": 189,
+      "start_time": 1119.243125,
+      "end_time": 1120.786333,
+      "avg_importance": 0.184143
+    },
+    {
+      "segment_id": 160,
+      "scene_count": 1,
+      "start_scene_id": 190,
+      "end_scene_id": 190,
+      "start_time": 1120.786333,
+      "end_time": 1123.789333,
+      "avg_importance": 0.11369
+    },
+    {
+      "segment_id": 161,
+      "scene_count": 1,
+      "start_scene_id": 191,
+      "end_scene_id": 191,
+      "start_time": 1123.789333,
+      "end_time": 1125.87475,
+      "avg_importance": 0.305089
+    },
+    {
+      "segment_id": 162,
+      "scene_count": 1,
+      "start_scene_id": 192,
+      "end_scene_id": 192,
+      "start_time": 1125.87475,
+      "end_time": 1134.508375,
+      "avg_importance": 0.312424
+    },
+    {
+      "segment_id": 163,
+      "scene_count": 1,
+      "start_scene_id": 193,
+      "end_scene_id": 193,
+      "start_time": 1134.508375,
+      "end_time": 1136.844042,
+      "avg_importance": 0.129789
+    },
+    {
+      "segment_id": 164,
+      "scene_count": 1,
+      "start_scene_id": 194,
+      "end_scene_id": 194,
+      "start_time": 1136.844042,
+      "end_time": 1144.226417,
+      "avg_importance": 0.171493
+    },
+    {
+      "segment_id": 165,
+      "scene_count": 1,
+      "start_scene_id": 195,
+      "end_scene_id": 195,
+      "start_time": 1144.226417,
+      "end_time": 1145.477667,
+      "avg_importance": 0.138142
+    },
+    {
+      "segment_id": 166,
+      "scene_count": 1,
+      "start_scene_id": 196,
+      "end_scene_id": 196,
+      "start_time": 1145.477667,
+      "end_time": 1149.982167,
+      "avg_importance": 0.261569
+    },
+    {
+      "segment_id": 167,
+      "scene_count": 1,
+      "start_scene_id": 197,
+      "end_scene_id": 197,
+      "start_time": 1149.982167,
+      "end_time": 1154.278125,
+      "avg_importance": 0.11143
+    },
+    {
+      "segment_id": 168,
+      "scene_count": 1,
+      "start_scene_id": 198,
+      "end_scene_id": 198,
+      "start_time": 1154.278125,
+      "end_time": 1155.6545,
+      "avg_importance": 0.194409
+    },
+    {
+      "segment_id": 169,
+      "scene_count": 1,
+      "start_scene_id": 199,
+      "end_scene_id": 199,
+      "start_time": 1155.6545,
+      "end_time": 1158.490667,
+      "avg_importance": 0.193269
+    },
+    {
+      "segment_id": 170,
+      "scene_count": 2,
+      "start_scene_id": 200,
+      "end_scene_id": 201,
+      "start_time": 1158.490667,
+      "end_time": 1172.504667,
+      "avg_importance": 0.133003
+    },
+    {
+      "segment_id": 171,
+      "scene_count": 2,
+      "start_scene_id": 202,
+      "end_scene_id": 203,
+      "start_time": 1172.504667,
+      "end_time": 1175.007167,
+      "avg_importance": 0.225109
+    },
+    {
+      "segment_id": 172,
+      "scene_count": 1,
+      "start_scene_id": 204,
+      "end_scene_id": 204,
+      "start_time": 1175.007167,
+      "end_time": 1176.550375,
+      "avg_importance": 0.393342
+    },
+    {
+      "segment_id": 173,
+      "scene_count": 1,
+      "start_scene_id": 205,
+      "end_scene_id": 205,
+      "start_time": 1176.550375,
+      "end_time": 1179.261417,
+      "avg_importance": 0.198969
+    },
+    {
+      "segment_id": 174,
+      "scene_count": 2,
+      "start_scene_id": 206,
+      "end_scene_id": 207,
+      "start_time": 1179.261417,
+      "end_time": 1183.223708,
+      "avg_importance": 0.146944
+    },
+    {
+      "segment_id": 175,
+      "scene_count": 1,
+      "start_scene_id": 208,
+      "end_scene_id": 208,
+      "start_time": 1183.223708,
+      "end_time": 1183.93275,
+      "avg_importance": 0.389353
+    },
+    {
+      "segment_id": 176,
+      "scene_count": 1,
+      "start_scene_id": 209,
+      "end_scene_id": 209,
+      "start_time": 1183.93275,
+      "end_time": 1207.414542,
+      "avg_importance": 0.353579
+    },
+    {
+      "segment_id": 177,
+      "scene_count": 1,
+      "start_scene_id": 210,
+      "end_scene_id": 210,
+      "start_time": 1207.414542,
+      "end_time": 1220.594375,
+      "avg_importance": 0.404354
+    },
+    {
+      "segment_id": 178,
+      "scene_count": 1,
+      "start_scene_id": 211,
+      "end_scene_id": 211,
+      "start_time": 1220.594375,
+      "end_time": 1224.514958,
+      "avg_importance": 0.240122
+    },
+    {
+      "segment_id": 179,
+      "scene_count": 1,
+      "start_scene_id": 212,
+      "end_scene_id": 212,
+      "start_time": 1224.514958,
+      "end_time": 1226.683792,
+      "avg_importance": 0.238638
+    },
+    {
+      "segment_id": 180,
+      "scene_count": 1,
+      "start_scene_id": 213,
+      "end_scene_id": 213,
+      "start_time": 1226.683792,
+      "end_time": 1228.7275,
+      "avg_importance": 0.138774
+    },
+    {
+      "segment_id": 181,
+      "scene_count": 1,
+      "start_scene_id": 214,
+      "end_scene_id": 214,
+      "start_time": 1228.7275,
+      "end_time": 1231.104875,
+      "avg_importance": 0.227825
+    },
+    {
+      "segment_id": 182,
+      "scene_count": 1,
+      "start_scene_id": 215,
+      "end_scene_id": 215,
+      "start_time": 1231.104875,
+      "end_time": 1235.150583,
+      "avg_importance": 0.194402
+    },
+    {
+      "segment_id": 183,
+      "scene_count": 1,
+      "start_scene_id": 216,
+      "end_scene_id": 216,
+      "start_time": 1235.150583,
+      "end_time": 1241.24,
+      "avg_importance": 0.076313
+    },
+    {
+      "segment_id": 184,
+      "scene_count": 1,
+      "start_scene_id": 217,
+      "end_scene_id": 217,
+      "start_time": 1241.24,
+      "end_time": 1248.49725,
+      "avg_importance": 0.208538
+    },
+    {
+      "segment_id": 185,
+      "scene_count": 2,
+      "start_scene_id": 218,
+      "end_scene_id": 219,
+      "start_time": 1248.49725,
+      "end_time": 1259.633375,
+      "avg_importance": 0.136259
+    },
+    {
+      "segment_id": 186,
+      "scene_count": 1,
+      "start_scene_id": 220,
+      "end_scene_id": 220,
+      "start_time": 1259.633375,
+      "end_time": 1263.053458,
+      "avg_importance": 0.30279
+    },
+    {
+      "segment_id": 187,
+      "scene_count": 1,
+      "start_scene_id": 221,
+      "end_scene_id": 221,
+      "start_time": 1263.053458,
+      "end_time": 1266.7655,
+      "avg_importance": 0.289504
+    },
+    {
+      "segment_id": 188,
+      "scene_count": 1,
+      "start_scene_id": 222,
+      "end_scene_id": 222,
+      "start_time": 1266.7655,
+      "end_time": 1269.643375,
+      "avg_importance": 0.166769
+    },
+    {
+      "segment_id": 189,
+      "scene_count": 1,
+      "start_scene_id": 223,
+      "end_scene_id": 223,
+      "start_time": 1269.643375,
+      "end_time": 1271.937333,
+      "avg_importance": 0.122269
+    },
+    {
+      "segment_id": 190,
+      "scene_count": 1,
+      "start_scene_id": 224,
+      "end_scene_id": 224,
+      "start_time": 1271.937333,
+      "end_time": 1276.942333,
+      "avg_importance": 0.117026
+    },
+    {
+      "segment_id": 191,
+      "scene_count": 1,
+      "start_scene_id": 225,
+      "end_scene_id": 225,
+      "start_time": 1276.942333,
+      "end_time": 1281.822208,
+      "avg_importance": 0.112845
+    },
+    {
+      "segment_id": 192,
+      "scene_count": 1,
+      "start_scene_id": 226,
+      "end_scene_id": 226,
+      "start_time": 1281.822208,
+      "end_time": 1286.952333,
+      "avg_importance": 0.078067
+    },
+    {
+      "segment_id": 193,
+      "scene_count": 1,
+      "start_scene_id": 227,
+      "end_scene_id": 227,
+      "start_time": 1286.952333,
+      "end_time": 1287.828208,
+      "avg_importance": 0.123605
+    },
+    {
+      "segment_id": 194,
+      "scene_count": 1,
+      "start_scene_id": 228,
+      "end_scene_id": 228,
+      "start_time": 1287.828208,
+      "end_time": 1294.001042,
+      "avg_importance": 0.084628
+    },
+    {
+      "segment_id": 195,
+      "scene_count": 1,
+      "start_scene_id": 229,
+      "end_scene_id": 229,
+      "start_time": 1294.001042,
+      "end_time": 1314.396417,
+      "avg_importance": 0.29887
+    },
+    {
+      "segment_id": 196,
+      "scene_count": 1,
+      "start_scene_id": 230,
+      "end_scene_id": 230,
+      "start_time": 1314.396417,
+      "end_time": 1331.07975,
+      "avg_importance": 0.369746
+    },
+    {
+      "segment_id": 197,
+      "scene_count": 1,
+      "start_scene_id": 231,
+      "end_scene_id": 231,
+      "start_time": 1331.07975,
+      "end_time": 1344.09275,
+      "avg_importance": 0.363666
+    },
+    {
+      "segment_id": 198,
+      "scene_count": 2,
+      "start_scene_id": 232,
+      "end_scene_id": 233,
+      "start_time": 1344.09275,
+      "end_time": 1351.433417,
+      "avg_importance": 0.184781
+    },
+    {
+      "segment_id": 199,
+      "scene_count": 1,
+      "start_scene_id": 234,
+      "end_scene_id": 234,
+      "start_time": 1351.433417,
+      "end_time": 1353.685667,
+      "avg_importance": 0.287424
+    },
+    {
+      "segment_id": 200,
+      "scene_count": 1,
+      "start_scene_id": 235,
+      "end_scene_id": 235,
+      "start_time": 1353.685667,
+      "end_time": 1360.10875,
+      "avg_importance": 0.280714
+    },
+    {
+      "segment_id": 201,
+      "scene_count": 2,
+      "start_scene_id": 236,
+      "end_scene_id": 237,
+      "start_time": 1360.10875,
+      "end_time": 1368.408708,
+      "avg_importance": 0.198455
+    },
+    {
+      "segment_id": 202,
+      "scene_count": 1,
+      "start_scene_id": 238,
+      "end_scene_id": 238,
+      "start_time": 1368.408708,
+      "end_time": 1372.079042,
+      "avg_importance": 0.186739
+    },
+    {
+      "segment_id": 203,
+      "scene_count": 4,
+      "start_scene_id": 239,
+      "end_scene_id": 242,
+      "start_time": 1372.079042,
+      "end_time": 1389.13775,
+      "avg_importance": 0.126751
+    },
+    {
+      "segment_id": 204,
+      "scene_count": 1,
+      "start_scene_id": 243,
+      "end_scene_id": 243,
+      "start_time": 1389.13775,
+      "end_time": 1390.055333,
+      "avg_importance": 0.302105
+    },
+    {
+      "segment_id": 205,
+      "scene_count": 1,
+      "start_scene_id": 244,
+      "end_scene_id": 244,
+      "start_time": 1390.055333,
+      "end_time": 1392.808083,
+      "avg_importance": 0.168439
+    },
+    {
+      "segment_id": 206,
+      "scene_count": 1,
+      "start_scene_id": 245,
+      "end_scene_id": 245,
+      "start_time": 1392.808083,
+      "end_time": 1396.8955,
+      "avg_importance": 0.252029
+    },
+    {
+      "segment_id": 207,
+      "scene_count": 1,
+      "start_scene_id": 246,
+      "end_scene_id": 246,
+      "start_time": 1396.8955,
+      "end_time": 1404.9035,
+      "avg_importance": 0.174253
+    },
+    {
+      "segment_id": 208,
+      "scene_count": 1,
+      "start_scene_id": 247,
+      "end_scene_id": 247,
+      "start_time": 1404.9035,
+      "end_time": 1419.251167,
+      "avg_importance": 0.224427
+    },
+    {
+      "segment_id": 209,
+      "scene_count": 1,
+      "start_scene_id": 248,
+      "end_scene_id": 248,
+      "start_time": 1419.251167,
+      "end_time": 1421.67025,
+      "avg_importance": 0.206834
+    },
+    {
+      "segment_id": 210,
+      "scene_count": 2,
+      "start_scene_id": 249,
+      "end_scene_id": 250,
+      "start_time": 1421.67025,
+      "end_time": 1427.342583,
+      "avg_importance": 0.155058
+    },
+    {
+      "segment_id": 211,
+      "scene_count": 1,
+      "start_scene_id": 251,
+      "end_scene_id": 251,
+      "start_time": 1427.342583,
+      "end_time": 1429.010917,
+      "avg_importance": 0.122378
+    },
+    {
+      "segment_id": 212,
+      "scene_count": 1,
+      "start_scene_id": 252,
+      "end_scene_id": 252,
+      "start_time": 1429.010917,
+      "end_time": 1443.567125,
+      "avg_importance": 0.43014
+    },
+    {
+      "segment_id": 213,
+      "scene_count": 2,
+      "start_scene_id": 253,
+      "end_scene_id": 254,
+      "start_time": 1443.567125,
+      "end_time": 1449.364583,
+      "avg_importance": 0.152766
+    },
+    {
+      "segment_id": 214,
+      "scene_count": 1,
+      "start_scene_id": 255,
+      "end_scene_id": 255,
+      "start_time": 1449.364583,
+      "end_time": 1452.075625,
+      "avg_importance": 0.318596
+    },
+    {
+      "segment_id": 215,
+      "scene_count": 1,
+      "start_scene_id": 256,
+      "end_scene_id": 256,
+      "start_time": 1452.075625,
+      "end_time": 1458.331875,
+      "avg_importance": 0.21962
+    },
+    {
+      "segment_id": 216,
+      "scene_count": 1,
+      "start_scene_id": 257,
+      "end_scene_id": 257,
+      "start_time": 1458.331875,
+      "end_time": 1481.396583,
+      "avg_importance": 0.24715
+    },
+    {
+      "segment_id": 217,
+      "scene_count": 1,
+      "start_scene_id": 258,
+      "end_scene_id": 258,
+      "start_time": 1481.396583,
+      "end_time": 1497.704542,
+      "avg_importance": 0.248224
+    },
+    {
+      "segment_id": 218,
+      "scene_count": 1,
+      "start_scene_id": 259,
+      "end_scene_id": 259,
+      "start_time": 1497.704542,
+      "end_time": 1500.665833,
+      "avg_importance": 0.313121
+    },
+    {
+      "segment_id": 219,
+      "scene_count": 1,
+      "start_scene_id": 260,
+      "end_scene_id": 260,
+      "start_time": 1500.665833,
+      "end_time": 1503.126625,
+      "avg_importance": 0.207966
+    },
+    {
+      "segment_id": 220,
+      "scene_count": 1,
+      "start_scene_id": 261,
+      "end_scene_id": 261,
+      "start_time": 1503.126625,
+      "end_time": 1524.981792,
+      "avg_importance": 0.378948
+    },
+    {
+      "segment_id": 221,
+      "scene_count": 2,
+      "start_scene_id": 262,
+      "end_scene_id": 263,
+      "start_time": 1524.981792,
+      "end_time": 1535.242042,
+      "avg_importance": 0.256078
+    },
+    {
+      "segment_id": 222,
+      "scene_count": 1,
+      "start_scene_id": 264,
+      "end_scene_id": 264,
+      "start_time": 1535.242042,
+      "end_time": 1537.494292,
+      "avg_importance": 0.173192
+    },
+    {
+      "segment_id": 223,
+      "scene_count": 3,
+      "start_scene_id": 265,
+      "end_scene_id": 267,
+      "start_time": 1537.494292,
+      "end_time": 1544.79325,
+      "avg_importance": 0.176285
+    },
+    {
+      "segment_id": 224,
+      "scene_count": 1,
+      "start_scene_id": 268,
+      "end_scene_id": 268,
+      "start_time": 1544.79325,
+      "end_time": 1546.878667,
+      "avg_importance": 0.156066
+    },
+    {
+      "segment_id": 225,
+      "scene_count": 1,
+      "start_scene_id": 269,
+      "end_scene_id": 269,
+      "start_time": 1546.878667,
+      "end_time": 1549.422875,
+      "avg_importance": 0.148838
+    },
+    {
+      "segment_id": 226,
+      "scene_count": 1,
+      "start_scene_id": 270,
+      "end_scene_id": 270,
+      "start_time": 1549.422875,
+      "end_time": 1551.29975,
+      "avg_importance": 0.063178
+    },
+    {
+      "segment_id": 227,
+      "scene_count": 1,
+      "start_scene_id": 271,
+      "end_scene_id": 271,
+      "start_time": 1551.29975,
+      "end_time": 1555.387167,
+      "avg_importance": 0.049149
+    },
+    {
+      "segment_id": 228,
+      "scene_count": 1,
+      "start_scene_id": 272,
+      "end_scene_id": 272,
+      "start_time": 1555.387167,
+      "end_time": 1557.347458,
+      "avg_importance": 0.045089
+    },
+    {
+      "segment_id": 229,
+      "scene_count": 1,
+      "start_scene_id": 273,
+      "end_scene_id": 273,
+      "start_time": 1557.347458,
+      "end_time": 1559.391167,
+      "avg_importance": 0.207521
+    },
+    {
+      "segment_id": 230,
+      "scene_count": 1,
+      "start_scene_id": 274,
+      "end_scene_id": 274,
+      "start_time": 1559.391167,
+      "end_time": 1580.495583,
+      "avg_importance": 0.296947
+    },
+    {
+      "segment_id": 231,
+      "scene_count": 1,
+      "start_scene_id": 275,
+      "end_scene_id": 275,
+      "start_time": 1580.495583,
+      "end_time": 1582.372458,
+      "avg_importance": 0.28201
+    },
+    {
+      "segment_id": 232,
+      "scene_count": 3,
+      "start_scene_id": 276,
+      "end_scene_id": 278,
+      "start_time": 1582.372458,
+      "end_time": 1596.678417,
+      "avg_importance": 0.131507
+    },
+    {
+      "segment_id": 233,
+      "scene_count": 1,
+      "start_scene_id": 279,
+      "end_scene_id": 279,
+      "start_time": 1596.678417,
+      "end_time": 1605.687417,
+      "avg_importance": 0.385625
+    },
+    {
+      "segment_id": 234,
+      "scene_count": 1,
+      "start_scene_id": 280,
+      "end_scene_id": 280,
+      "start_time": 1605.687417,
+      "end_time": 1607.981375,
+      "avg_importance": 0.370894
+    },
+    {
+      "segment_id": 235,
+      "scene_count": 1,
+      "start_scene_id": 281,
+      "end_scene_id": 281,
+      "start_time": 1607.981375,
+      "end_time": 1612.402458,
+      "avg_importance": 0.288016
+    },
+    {
+      "segment_id": 236,
+      "scene_count": 1,
+      "start_scene_id": 282,
+      "end_scene_id": 282,
+      "start_time": 1612.402458,
+      "end_time": 1617.157208,
+      "avg_importance": 0.229491
+    },
+    {
+      "segment_id": 237,
+      "scene_count": 1,
+      "start_scene_id": 283,
+      "end_scene_id": 283,
+      "start_time": 1617.157208,
+      "end_time": 1619.451167,
+      "avg_importance": 0.30699
+    },
+    {
+      "segment_id": 238,
+      "scene_count": 1,
+      "start_scene_id": 284,
+      "end_scene_id": 284,
+      "start_time": 1619.451167,
+      "end_time": 1620.994375,
+      "avg_importance": 0.422768
+    },
+    {
+      "segment_id": 239,
+      "scene_count": 1,
+      "start_scene_id": 285,
+      "end_scene_id": 285,
+      "start_time": 1620.994375,
+      "end_time": 1624.789833,
+      "avg_importance": 0.270361
+    },
+    {
+      "segment_id": 240,
+      "scene_count": 1,
+      "start_scene_id": 286,
+      "end_scene_id": 286,
+      "start_time": 1624.789833,
+      "end_time": 1629.002375,
+      "avg_importance": 0.263382
+    },
+    {
+      "segment_id": 241,
+      "scene_count": 1,
+      "start_scene_id": 287,
+      "end_scene_id": 287,
+      "start_time": 1629.002375,
+      "end_time": 1631.671708,
+      "avg_importance": 0.349244
+    },
+    {
+      "segment_id": 242,
+      "scene_count": 1,
+      "start_scene_id": 288,
+      "end_scene_id": 288,
+      "start_time": 1631.671708,
+      "end_time": 1634.38275,
+      "avg_importance": 0.373927
+    },
+    {
+      "segment_id": 243,
+      "scene_count": 1,
+      "start_scene_id": 289,
+      "end_scene_id": 289,
+      "start_time": 1634.38275,
+      "end_time": 1636.301333,
+      "avg_importance": 0.30609
+    },
+    {
+      "segment_id": 244,
+      "scene_count": 1,
+      "start_scene_id": 290,
+      "end_scene_id": 290,
+      "start_time": 1636.301333,
+      "end_time": 1645.018375,
+      "avg_importance": 0.264419
+    },
+    {
+      "segment_id": 245,
+      "scene_count": 1,
+      "start_scene_id": 291,
+      "end_scene_id": 291,
+      "start_time": 1645.018375,
+      "end_time": 1646.770125,
+      "avg_importance": 0.272477
+    },
+    {
+      "segment_id": 246,
+      "scene_count": 1,
+      "start_scene_id": 292,
+      "end_scene_id": 292,
+      "start_time": 1646.770125,
+      "end_time": 1649.481167,
+      "avg_importance": 0.269728
+    },
+    {
+      "segment_id": 247,
+      "scene_count": 1,
+      "start_scene_id": 293,
+      "end_scene_id": 293,
+      "start_time": 1649.481167,
+      "end_time": 1651.483167,
+      "avg_importance": 0.04004
+    },
+    {
+      "segment_id": 248,
+      "scene_count": 1,
+      "start_scene_id": 294,
+      "end_scene_id": 294,
+      "start_time": 1651.483167,
+      "end_time": 1653.526875,
+      "avg_importance": 0.071979
+    },
+    {
+      "segment_id": 249,
+      "scene_count": 1,
+      "start_scene_id": 295,
+      "end_scene_id": 295,
+      "start_time": 1653.526875,
+      "end_time": 1655.487167,
+      "avg_importance": 0.114871
+    },
+    {
+      "segment_id": 250,
+      "scene_count": 1,
+      "start_scene_id": 296,
+      "end_scene_id": 296,
+      "start_time": 1655.487167,
+      "end_time": 1658.657,
+      "avg_importance": 0.085393
+    },
+    {
+      "segment_id": 251,
+      "scene_count": 1,
+      "start_scene_id": 297,
+      "end_scene_id": 297,
+      "start_time": 1658.657,
+      "end_time": 1660.1585,
+      "avg_importance": 0.103776
+    },
+    {
+      "segment_id": 252,
+      "scene_count": 1,
+      "start_scene_id": 298,
+      "end_scene_id": 298,
+      "start_time": 1660.1585,
+      "end_time": 1663.953958,
+      "avg_importance": 0.232956
+    },
+    {
+      "segment_id": 253,
+      "scene_count": 1,
+      "start_scene_id": 299,
+      "end_scene_id": 299,
+      "start_time": 1663.953958,
+      "end_time": 1668.083083,
+      "avg_importance": 0.174026
+    },
+    {
+      "segment_id": 254,
+      "scene_count": 2,
+      "start_scene_id": 300,
+      "end_scene_id": 301,
+      "start_time": 1668.083083,
+      "end_time": 1675.757417,
+      "avg_importance": 0.154429
+    },
+    {
+      "segment_id": 255,
+      "scene_count": 1,
+      "start_scene_id": 302,
+      "end_scene_id": 302,
+      "start_time": 1675.757417,
+      "end_time": 1690.313625,
+      "avg_importance": 0.226061
+    },
+    {
+      "segment_id": 256,
+      "scene_count": 1,
+      "start_scene_id": 303,
+      "end_scene_id": 303,
+      "start_time": 1690.313625,
+      "end_time": 1702.659292,
+      "avg_importance": 0.310971
+    },
+    {
+      "segment_id": 257,
+      "scene_count": 1,
+      "start_scene_id": 304,
+      "end_scene_id": 304,
+      "start_time": 1702.659292,
+      "end_time": 1706.663292,
+      "avg_importance": 0.259992
+    },
+    {
+      "segment_id": 258,
+      "scene_count": 1,
+      "start_scene_id": 305,
+      "end_scene_id": 305,
+      "start_time": 1706.663292,
+      "end_time": 1708.873833,
+      "avg_importance": 0.331918
+    },
+    {
+      "segment_id": 259,
+      "scene_count": 1,
+      "start_scene_id": 306,
+      "end_scene_id": 306,
+      "start_time": 1708.873833,
+      "end_time": 1709.749708,
+      "avg_importance": 0.275544
+    },
+    {
+      "segment_id": 260,
+      "scene_count": 1,
+      "start_scene_id": 307,
+      "end_scene_id": 307,
+      "start_time": 1709.749708,
+      "end_time": 1717.048667,
+      "avg_importance": 0.284635
+    },
+    {
+      "segment_id": 261,
+      "scene_count": 2,
+      "start_scene_id": 308,
+      "end_scene_id": 309,
+      "start_time": 1717.048667,
+      "end_time": 1721.428042,
+      "avg_importance": 0.142808
+    },
+    {
+      "segment_id": 262,
+      "scene_count": 1,
+      "start_scene_id": 310,
+      "end_scene_id": 310,
+      "start_time": 1721.428042,
+      "end_time": 1728.852125,
+      "avg_importance": 0.198087
+    },
+    {
+      "segment_id": 263,
+      "scene_count": 1,
+      "start_scene_id": 311,
+      "end_scene_id": 311,
+      "start_time": 1728.852125,
+      "end_time": 1731.47975,
+      "avg_importance": 0.099003
+    },
+    {
+      "segment_id": 264,
+      "scene_count": 1,
+      "start_scene_id": 312,
+      "end_scene_id": 312,
+      "start_time": 1731.47975,
+      "end_time": 1797.04525,
+      "avg_importance": 0.386098
+    },
+    {
+      "segment_id": 265,
+      "scene_count": 2,
+      "start_scene_id": 313,
+      "end_scene_id": 314,
+      "start_time": 1797.04525,
+      "end_time": 1811.976833,
+      "avg_importance": 0.208039
+    },
+    {
+      "segment_id": 266,
+      "scene_count": 2,
+      "start_scene_id": 315,
+      "end_scene_id": 316,
+      "start_time": 1811.976833,
+      "end_time": 1824.781292,
+      "avg_importance": 0.14154
+    },
+    {
+      "segment_id": 267,
+      "scene_count": 2,
+      "start_scene_id": 317,
+      "end_scene_id": 318,
+      "start_time": 1824.781292,
+      "end_time": 1832.497333,
+      "avg_importance": 0.125058
+    },
+    {
+      "segment_id": 268,
+      "scene_count": 1,
+      "start_scene_id": 319,
+      "end_scene_id": 319,
+      "start_time": 1832.497333,
+      "end_time": 1849.3475,
+      "avg_importance": 0.164963
+    },
+    {
+      "segment_id": 269,
+      "scene_count": 1,
+      "start_scene_id": 320,
+      "end_scene_id": 320,
+      "start_time": 1849.3475,
+      "end_time": 1866.406208,
+      "avg_importance": 0.481005
+    },
+    {
+      "segment_id": 270,
+      "scene_count": 1,
+      "start_scene_id": 321,
+      "end_scene_id": 321,
+      "start_time": 1866.406208,
+      "end_time": 1874.914708,
+      "avg_importance": 0.349114
+    },
+    {
+      "segment_id": 271,
+      "scene_count": 1,
+      "start_scene_id": 322,
+      "end_scene_id": 322,
+      "start_time": 1874.914708,
+      "end_time": 1878.543333,
+      "avg_importance": 0.269714
+    },
+    {
+      "segment_id": 272,
+      "scene_count": 1,
+      "start_scene_id": 323,
+      "end_scene_id": 323,
+      "start_time": 1878.543333,
+      "end_time": 1881.421208,
+      "avg_importance": 0.261705
+    },
+    {
+      "segment_id": 273,
+      "scene_count": 3,
+      "start_scene_id": 324,
+      "end_scene_id": 326,
+      "start_time": 1881.421208,
+      "end_time": 1890.889,
+      "avg_importance": 0.115161
+    },
+    {
+      "segment_id": 274,
+      "scene_count": 1,
+      "start_scene_id": 327,
+      "end_scene_id": 327,
+      "start_time": 1890.889,
+      "end_time": 1895.101542,
+      "avg_importance": 0.220291
+    },
+    {
+      "segment_id": 275,
+      "scene_count": 3,
+      "start_scene_id": 328,
+      "end_scene_id": 330,
+      "start_time": 1895.101542,
+      "end_time": 1905.486917,
+      "avg_importance": 0.104308
+    },
+    {
+      "segment_id": 276,
+      "scene_count": 1,
+      "start_scene_id": 331,
+      "end_scene_id": 331,
+      "start_time": 1905.486917,
+      "end_time": 1906.779875,
+      "avg_importance": 0.150514
+    },
+    {
+      "segment_id": 277,
+      "scene_count": 1,
+      "start_scene_id": 332,
+      "end_scene_id": 332,
+      "start_time": 1906.779875,
+      "end_time": 1913.494917,
+      "avg_importance": 0.280508
+    },
+    {
+      "segment_id": 278,
+      "scene_count": 1,
+      "start_scene_id": 333,
+      "end_scene_id": 333,
+      "start_time": 1913.494917,
+      "end_time": 1921.544625,
+      "avg_importance": 0.490234
+    },
+    {
+      "segment_id": 279,
+      "scene_count": 1,
+      "start_scene_id": 334,
+      "end_scene_id": 334,
+      "start_time": 1921.544625,
+      "end_time": 1940.563625,
+      "avg_importance": 0.35019
+    },
+    {
+      "segment_id": 280,
+      "scene_count": 1,
+      "start_scene_id": 335,
+      "end_scene_id": 335,
+      "start_time": 1940.563625,
+      "end_time": 1943.983708,
+      "avg_importance": 0.283183
+    },
+    {
+      "segment_id": 281,
+      "scene_count": 1,
+      "start_scene_id": 336,
+      "end_scene_id": 336,
+      "start_time": 1943.983708,
+      "end_time": 1947.19525,
+      "avg_importance": 0.225784
+    },
+    {
+      "segment_id": 282,
+      "scene_count": 1,
+      "start_scene_id": 337,
+      "end_scene_id": 337,
+      "start_time": 1947.19525,
+      "end_time": 1952.533917,
+      "avg_importance": 0.166436
+    },
+    {
+      "segment_id": 283,
+      "scene_count": 1,
+      "start_scene_id": 338,
+      "end_scene_id": 338,
+      "start_time": 1952.533917,
+      "end_time": 1955.036417,
+      "avg_importance": 0.332306
+    },
+    {
+      "segment_id": 284,
+      "scene_count": 2,
+      "start_scene_id": 339,
+      "end_scene_id": 340,
+      "start_time": 1955.036417,
+      "end_time": 1966.297667,
+      "avg_importance": 0.068346
+    },
+    {
+      "segment_id": 285,
+      "scene_count": 1,
+      "start_scene_id": 341,
+      "end_scene_id": 341,
+      "start_time": 1966.297667,
+      "end_time": 1979.310667,
+      "avg_importance": 0.475132
+    },
+    {
+      "segment_id": 286,
+      "scene_count": 1,
+      "start_scene_id": 342,
+      "end_scene_id": 342,
+      "start_time": 1979.310667,
+      "end_time": 1982.438792,
+      "avg_importance": 0.359122
+    },
+    {
+      "segment_id": 287,
+      "scene_count": 1,
+      "start_scene_id": 343,
+      "end_scene_id": 343,
+      "start_time": 1982.438792,
+      "end_time": 1986.275958,
+      "avg_importance": 0.389023
+    },
+    {
+      "segment_id": 288,
+      "scene_count": 1,
+      "start_scene_id": 344,
+      "end_scene_id": 344,
+      "start_time": 1986.275958,
+      "end_time": 1988.361375,
+      "avg_importance": 0.333737
+    },
+    {
+      "segment_id": 289,
+      "scene_count": 1,
+      "start_scene_id": 345,
+      "end_scene_id": 345,
+      "start_time": 1988.361375,
+      "end_time": 1991.656333,
+      "avg_importance": 0.230812
+    },
+    {
+      "segment_id": 290,
+      "scene_count": 1,
+      "start_scene_id": 346,
+      "end_scene_id": 346,
+      "start_time": 1991.656333,
+      "end_time": 1993.992,
+      "avg_importance": 0.162627
+    },
+    {
+      "segment_id": 291,
+      "scene_count": 1,
+      "start_scene_id": 347,
+      "end_scene_id": 347,
+      "start_time": 1993.992,
+      "end_time": 1997.203542,
+      "avg_importance": 0.244212
+    },
+    {
+      "segment_id": 292,
+      "scene_count": 1,
+      "start_scene_id": 348,
+      "end_scene_id": 348,
+      "start_time": 1997.203542,
+      "end_time": 2004.002,
+      "avg_importance": 0.21108
+    },
+    {
+      "segment_id": 293,
+      "scene_count": 1,
+      "start_scene_id": 349,
+      "end_scene_id": 349,
+      "start_time": 2004.002,
+      "end_time": 2006.379375,
+      "avg_importance": 0.349787
+    },
+    {
+      "segment_id": 294,
+      "scene_count": 1,
+      "start_scene_id": 350,
+      "end_scene_id": 350,
+      "start_time": 2006.379375,
+      "end_time": 2008.131125,
+      "avg_importance": 0.167928
+    },
+    {
+      "segment_id": 295,
+      "scene_count": 2,
+      "start_scene_id": 351,
+      "end_scene_id": 352,
+      "start_time": 2008.131125,
+      "end_time": 2017.140125,
+      "avg_importance": 0.167586
+    },
+    {
+      "segment_id": 296,
+      "scene_count": 2,
+      "start_scene_id": 353,
+      "end_scene_id": 354,
+      "start_time": 2017.140125,
+      "end_time": 2033.5315,
+      "avg_importance": 0.304476
+    },
+    {
+      "segment_id": 297,
+      "scene_count": 1,
+      "start_scene_id": 355,
+      "end_scene_id": 355,
+      "start_time": 2033.5315,
+      "end_time": 2063.603208,
+      "avg_importance": 0.283547
+    },
+    {
+      "segment_id": 298,
+      "scene_count": 1,
+      "start_scene_id": 356,
+      "end_scene_id": 356,
+      "start_time": 2063.603208,
+      "end_time": 2088.753333,
+      "avg_importance": 0.318526
+    },
+    {
+      "segment_id": 299,
+      "scene_count": 1,
+      "start_scene_id": 357,
+      "end_scene_id": 357,
+      "start_time": 2088.753333,
+      "end_time": 2098.096,
+      "avg_importance": 0.237116
+    },
+    {
+      "segment_id": 300,
+      "scene_count": 4,
+      "start_scene_id": 358,
+      "end_scene_id": 361,
+      "start_time": 2098.096,
+      "end_time": 2110.900458,
+      "avg_importance": 0.131511
+    },
+    {
+      "segment_id": 301,
+      "scene_count": 2,
+      "start_scene_id": 362,
+      "end_scene_id": 363,
+      "start_time": 2110.900458,
+      "end_time": 2121.494375,
+      "avg_importance": 0.142868
+    },
+    {
+      "segment_id": 302,
+      "scene_count": 1,
+      "start_scene_id": 364,
+      "end_scene_id": 364,
+      "start_time": 2121.494375,
+      "end_time": 2124.831042,
+      "avg_importance": 0.071573
+    },
+    {
+      "segment_id": 303,
+      "scene_count": 2,
+      "start_scene_id": 365,
+      "end_scene_id": 366,
+      "start_time": 2124.831042,
+      "end_time": 2137.051583,
+      "avg_importance": 0.1423
+    },
+    {
+      "segment_id": 304,
+      "scene_count": 1,
+      "start_scene_id": 367,
+      "end_scene_id": 367,
+      "start_time": 2137.051583,
+      "end_time": 2139.303833,
+      "avg_importance": 0.086351
+    },
+    {
+      "segment_id": 305,
+      "scene_count": 2,
+      "start_scene_id": 368,
+      "end_scene_id": 369,
+      "start_time": 2139.303833,
+      "end_time": 2149.772625,
+      "avg_importance": 0.094498
+    },
+    {
+      "segment_id": 306,
+      "scene_count": 1,
+      "start_scene_id": 370,
+      "end_scene_id": 370,
+      "start_time": 2149.772625,
+      "end_time": 2151.607792,
+      "avg_importance": 0.093289
+    },
+    {
+      "segment_id": 307,
+      "scene_count": 1,
+      "start_scene_id": 371,
+      "end_scene_id": 371,
+      "start_time": 2151.607792,
+      "end_time": 2154.40225,
+      "avg_importance": 0.071479
+    },
+    {
+      "segment_id": 308,
+      "scene_count": 1,
+      "start_scene_id": 372,
+      "end_scene_id": 372,
+      "start_time": 2154.40225,
+      "end_time": 2157.822333,
+      "avg_importance": 0.160494
+    },
+    {
+      "segment_id": 309,
+      "scene_count": 1,
+      "start_scene_id": 373,
+      "end_scene_id": 373,
+      "start_time": 2157.822333,
+      "end_time": 2159.323833,
+      "avg_importance": 0.037311
+    },
+    {
+      "segment_id": 310,
+      "scene_count": 1,
+      "start_scene_id": 374,
+      "end_scene_id": 374,
+      "start_time": 2159.323833,
+      "end_time": 2160.741917,
+      "avg_importance": 0.066671
+    },
+    {
+      "segment_id": 311,
+      "scene_count": 1,
+      "start_scene_id": 375,
+      "end_scene_id": 375,
+      "start_time": 2160.741917,
+      "end_time": 2209.999458,
+      "avg_importance": 0.274434
+    },
+    {
+      "segment_id": 312,
+      "scene_count": 1,
+      "start_scene_id": 376,
+      "end_scene_id": 376,
+      "start_time": 2209.999458,
+      "end_time": 2212.001458,
+      "avg_importance": 0.448627
+    },
+    {
+      "segment_id": 313,
+      "scene_count": 1,
+      "start_scene_id": 377,
+      "end_scene_id": 377,
+      "start_time": 2212.001458,
+      "end_time": 2219.675792,
+      "avg_importance": 0.432029
+    },
+    {
+      "segment_id": 314,
+      "scene_count": 2,
+      "start_scene_id": 378,
+      "end_scene_id": 379,
+      "start_time": 2219.675792,
+      "end_time": 2239.278708,
+      "avg_importance": 0.143124
+    },
+    {
+      "segment_id": 315,
+      "scene_count": 1,
+      "start_scene_id": 380,
+      "end_scene_id": 380,
+      "start_time": 2239.278708,
+      "end_time": 2244.575667,
+      "avg_importance": 0.265588
+    },
+    {
+      "segment_id": 316,
+      "scene_count": 1,
+      "start_scene_id": 381,
+      "end_scene_id": 381,
+      "start_time": 2244.575667,
+      "end_time": 2249.7475,
+      "avg_importance": 0.247002
+    },
+    {
+      "segment_id": 317,
+      "scene_count": 1,
+      "start_scene_id": 382,
+      "end_scene_id": 382,
+      "start_time": 2249.7475,
+      "end_time": 2290.454833,
+      "avg_importance": 0.308377
+    },
+    {
+      "segment_id": 318,
+      "scene_count": 1,
+      "start_scene_id": 383,
+      "end_scene_id": 383,
+      "start_time": 2290.454833,
+      "end_time": 2293.582958,
+      "avg_importance": 0.236818
+    },
+    {
+      "segment_id": 319,
+      "scene_count": 1,
+      "start_scene_id": 384,
+      "end_scene_id": 384,
+      "start_time": 2293.582958,
+      "end_time": 2297.086458,
+      "avg_importance": 0.172235
+    },
+    {
+      "segment_id": 320,
+      "scene_count": 1,
+      "start_scene_id": 385,
+      "end_scene_id": 385,
+      "start_time": 2297.086458,
+      "end_time": 2297.878917,
+      "avg_importance": 0.229531
+    },
+    {
+      "segment_id": 321,
+      "scene_count": 1,
+      "start_scene_id": 386,
+      "end_scene_id": 386,
+      "start_time": 2297.878917,
+      "end_time": 2301.7995,
+      "avg_importance": 0.214757
+    },
+    {
+      "segment_id": 322,
+      "scene_count": 1,
+      "start_scene_id": 387,
+      "end_scene_id": 387,
+      "start_time": 2301.7995,
+      "end_time": 2304.510542,
+      "avg_importance": 0.086419
+    },
+    {
+      "segment_id": 323,
+      "scene_count": 1,
+      "start_scene_id": 388,
+      "end_scene_id": 388,
+      "start_time": 2304.510542,
+      "end_time": 2307.388417,
+      "avg_importance": 0.208495
+    },
+    {
+      "segment_id": 324,
+      "scene_count": 1,
+      "start_scene_id": 389,
+      "end_scene_id": 389,
+      "start_time": 2307.388417,
+      "end_time": 2308.889917,
+      "avg_importance": 0.147675
+    },
+    {
+      "segment_id": 325,
+      "scene_count": 1,
+      "start_scene_id": 390,
+      "end_scene_id": 390,
+      "start_time": 2308.889917,
+      "end_time": 2312.643667,
+      "avg_importance": 0.240171
+    },
+    {
+      "segment_id": 326,
+      "scene_count": 2,
+      "start_scene_id": 391,
+      "end_scene_id": 392,
+      "start_time": 2312.643667,
+      "end_time": 2319.734083,
+      "avg_importance": 0.190973
+    },
+    {
+      "segment_id": 327,
+      "scene_count": 1,
+      "start_scene_id": 393,
+      "end_scene_id": 393,
+      "start_time": 2319.734083,
+      "end_time": 2336.8345,
+      "avg_importance": 0.24491
+    },
+    {
+      "segment_id": 328,
+      "scene_count": 4,
+      "start_scene_id": 394,
+      "end_scene_id": 397,
+      "start_time": 2336.8345,
+      "end_time": 2374.580542,
+      "avg_importance": 0.124872
+    },
+    {
+      "segment_id": 329,
+      "scene_count": 1,
+      "start_scene_id": 398,
+      "end_scene_id": 398,
+      "start_time": 2374.580542,
+      "end_time": 2376.248875,
+      "avg_importance": 0.214991
+    },
+    {
+      "segment_id": 330,
+      "scene_count": 2,
+      "start_scene_id": 399,
+      "end_scene_id": 400,
+      "start_time": 2376.248875,
+      "end_time": 2385.299583,
+      "avg_importance": 0.183227
+    },
+    {
+      "segment_id": 331,
+      "scene_count": 2,
+      "start_scene_id": 401,
+      "end_scene_id": 402,
+      "start_time": 2385.299583,
+      "end_time": 2391.472417,
+      "avg_importance": 0.123047
+    },
+    {
+      "segment_id": 332,
+      "scene_count": 1,
+      "start_scene_id": 403,
+      "end_scene_id": 403,
+      "start_time": 2391.472417,
+      "end_time": 2393.766375,
+      "avg_importance": 0.277436
+    },
+    {
+      "segment_id": 333,
+      "scene_count": 1,
+      "start_scene_id": 404,
+      "end_scene_id": 404,
+      "start_time": 2393.766375,
+      "end_time": 2398.187458,
+      "avg_importance": 0.32879
+    },
+    {
+      "segment_id": 334,
+      "scene_count": 2,
+      "start_scene_id": 405,
+      "end_scene_id": 406,
+      "start_time": 2398.187458,
+      "end_time": 2437.601833,
+      "avg_importance": 0.182788
+    },
+    {
+      "segment_id": 335,
+      "scene_count": 1,
+      "start_scene_id": 407,
+      "end_scene_id": 407,
+      "start_time": 2437.601833,
+      "end_time": 2439.979208,
+      "avg_importance": 0.238317
+    },
+    {
+      "segment_id": 336,
+      "scene_count": 1,
+      "start_scene_id": 408,
+      "end_scene_id": 408,
+      "start_time": 2439.979208,
+      "end_time": 2443.232458,
+      "avg_importance": 0.178952
+    },
+    {
+      "segment_id": 337,
+      "scene_count": 1,
+      "start_scene_id": 409,
+      "end_scene_id": 409,
+      "start_time": 2443.232458,
+      "end_time": 2445.359583,
+      "avg_importance": 0.264118
+    },
+    {
+      "segment_id": 338,
+      "scene_count": 1,
+      "start_scene_id": 410,
+      "end_scene_id": 410,
+      "start_time": 2445.359583,
+      "end_time": 2447.445,
+      "avg_importance": 0.127455
+    },
+    {
+      "segment_id": 339,
+      "scene_count": 1,
+      "start_scene_id": 411,
+      "end_scene_id": 411,
+      "start_time": 2447.445,
+      "end_time": 2449.405292,
+      "avg_importance": 0.330267
+    },
+    {
+      "segment_id": 340,
+      "scene_count": 1,
+      "start_scene_id": 412,
+      "end_scene_id": 412,
+      "start_time": 2449.405292,
+      "end_time": 2451.407292,
+      "avg_importance": 0.122357
+    },
+    {
+      "segment_id": 341,
+      "scene_count": 1,
+      "start_scene_id": 413,
+      "end_scene_id": 413,
+      "start_time": 2451.407292,
+      "end_time": 2500.9985,
+      "avg_importance": 0.370874
+    },
+    {
+      "segment_id": 342,
+      "scene_count": 1,
+      "start_scene_id": 414,
+      "end_scene_id": 414,
+      "start_time": 2500.9985,
+      "end_time": 2517.806958,
+      "avg_importance": 0.491559
+    },
+    {
+      "segment_id": 343,
+      "scene_count": 1,
+      "start_scene_id": 415,
+      "end_scene_id": 415,
+      "start_time": 2517.806958,
+      "end_time": 2520.935083,
+      "avg_importance": 0.400423
+    },
+    {
+      "segment_id": 344,
+      "scene_count": 1,
+      "start_scene_id": 416,
+      "end_scene_id": 416,
+      "start_time": 2520.935083,
+      "end_time": 2541.455583,
+      "avg_importance": 0.554844
+    },
+    {
+      "segment_id": 345,
+      "scene_count": 1,
+      "start_scene_id": 417,
+      "end_scene_id": 417,
+      "start_time": 2541.455583,
+      "end_time": 2544.250042,
+      "avg_importance": 0.310247
+    },
+    {
+      "segment_id": 346,
+      "scene_count": 1,
+      "start_scene_id": 418,
+      "end_scene_id": 418,
+      "start_time": 2544.250042,
+      "end_time": 2549.171625,
+      "avg_importance": 0.273449
+    },
+    {
+      "segment_id": 347,
+      "scene_count": 1,
+      "start_scene_id": 419,
+      "end_scene_id": 419,
+      "start_time": 2549.171625,
+      "end_time": 2552.883667,
+      "avg_importance": 0.268075
+    },
+    {
+      "segment_id": 348,
+      "scene_count": 1,
+      "start_scene_id": 420,
+      "end_scene_id": 420,
+      "start_time": 2552.883667,
+      "end_time": 2590.629708,
+      "avg_importance": 0.287386
+    },
+    {
+      "segment_id": 349,
+      "scene_count": 1,
+      "start_scene_id": 421,
+      "end_scene_id": 421,
+      "start_time": 2590.629708,
+      "end_time": 2621.1185,
+      "avg_importance": 0.268668
+    },
+    {
+      "segment_id": 350,
+      "scene_count": 1,
+      "start_scene_id": 422,
+      "end_scene_id": 422,
+      "start_time": 2621.1185,
+      "end_time": 2627.207917,
+      "avg_importance": 0.266954
+    },
+    {
+      "segment_id": 351,
+      "scene_count": 1,
+      "start_scene_id": 423,
+      "end_scene_id": 423,
+      "start_time": 2627.207917,
+      "end_time": 2635.38275,
+      "avg_importance": 0.349611
+    },
+    {
+      "segment_id": 352,
+      "scene_count": 1,
+      "start_scene_id": 424,
+      "end_scene_id": 424,
+      "start_time": 2635.38275,
+      "end_time": 2679.301625,
+      "avg_importance": 0.193232
+    },
+    {
+      "segment_id": 353,
+      "scene_count": 1,
+      "start_scene_id": 425,
+      "end_scene_id": 425,
+      "start_time": 2679.301625,
+      "end_time": 2716.255208,
+      "avg_importance": 0.328893
+    },
+    {
+      "segment_id": 354,
+      "scene_count": 1,
+      "start_scene_id": 426,
+      "end_scene_id": 426,
+      "start_time": 2716.255208,
+      "end_time": 2720.843125,
+      "avg_importance": 0.30045
+    },
+    {
+      "segment_id": 355,
+      "scene_count": 1,
+      "start_scene_id": 427,
+      "end_scene_id": 427,
+      "start_time": 2720.843125,
+      "end_time": 2724.346625,
+      "avg_importance": 0.285006
+    },
+    {
+      "segment_id": 356,
+      "scene_count": 1,
+      "start_scene_id": 428,
+      "end_scene_id": 428,
+      "start_time": 2724.346625,
+      "end_time": 2728.559167,
+      "avg_importance": 0.202782
+    },
+    {
+      "segment_id": 357,
+      "scene_count": 1,
+      "start_scene_id": 429,
+      "end_scene_id": 429,
+      "start_time": 2728.559167,
+      "end_time": 2734.98225,
+      "avg_importance": 0.25527
+    },
+    {
+      "segment_id": 358,
+      "scene_count": 1,
+      "start_scene_id": 430,
+      "end_scene_id": 430,
+      "start_time": 2734.98225,
+      "end_time": 2737.109375,
+      "avg_importance": 0.303367
+    },
+    {
+      "segment_id": 359,
+      "scene_count": 1,
+      "start_scene_id": 431,
+      "end_scene_id": 431,
+      "start_time": 2737.109375,
+      "end_time": 2739.737,
+      "avg_importance": 0.242901
+    },
+    {
+      "segment_id": 360,
+      "scene_count": 1,
+      "start_scene_id": 432,
+      "end_scene_id": 432,
+      "start_time": 2739.737,
+      "end_time": 2747.077667,
+      "avg_importance": 0.088707
+    },
+    {
+      "segment_id": 361,
+      "scene_count": 1,
+      "start_scene_id": 433,
+      "end_scene_id": 433,
+      "start_time": 2747.077667,
+      "end_time": 2763.969542,
+      "avg_importance": 0.290353
+    },
+    {
+      "segment_id": 362,
+      "scene_count": 1,
+      "start_scene_id": 434,
+      "end_scene_id": 434,
+      "start_time": 2763.969542,
+      "end_time": 2786.658875,
+      "avg_importance": 0.394448
+    },
+    {
+      "segment_id": 363,
+      "scene_count": 1,
+      "start_scene_id": 435,
+      "end_scene_id": 435,
+      "start_time": 2786.658875,
+      "end_time": 2805.427625,
+      "avg_importance": 0.347413
+    },
+    {
+      "segment_id": 364,
+      "scene_count": 1,
+      "start_scene_id": 436,
+      "end_scene_id": 436,
+      "start_time": 2805.427625,
+      "end_time": 2809.431625,
+      "avg_importance": 0.243754
+    },
+    {
+      "segment_id": 365,
+      "scene_count": 1,
+      "start_scene_id": 437,
+      "end_scene_id": 437,
+      "start_time": 2809.431625,
+      "end_time": 2812.55975,
+      "avg_importance": 0.239256
+    },
+    {
+      "segment_id": 366,
+      "scene_count": 1,
+      "start_scene_id": 438,
+      "end_scene_id": 438,
+      "start_time": 2812.55975,
+      "end_time": 2815.187375,
+      "avg_importance": 0.202449
+    },
+    {
+      "segment_id": 367,
+      "scene_count": 1,
+      "start_scene_id": 439,
+      "end_scene_id": 439,
+      "start_time": 2815.187375,
+      "end_time": 2821.527042,
+      "avg_importance": 0.172191
+    },
+    {
+      "segment_id": 368,
+      "scene_count": 1,
+      "start_scene_id": 440,
+      "end_scene_id": 440,
+      "start_time": 2821.527042,
+      "end_time": 2840.254083,
+      "avg_importance": 0.298106
+    },
+    {
+      "segment_id": 369,
+      "scene_count": 1,
+      "start_scene_id": 441,
+      "end_scene_id": 441,
+      "start_time": 2840.254083,
+      "end_time": 2861.316792,
+      "avg_importance": 0.220816
+    },
+    {
+      "segment_id": 370,
+      "scene_count": 1,
+      "start_scene_id": 442,
+      "end_scene_id": 442,
+      "start_time": 2861.316792,
+      "end_time": 2863.986125,
+      "avg_importance": 0.315755
+    },
+    {
+      "segment_id": 371,
+      "scene_count": 1,
+      "start_scene_id": 443,
+      "end_scene_id": 443,
+      "start_time": 2863.986125,
+      "end_time": 2866.488625,
+      "avg_importance": 0.264721
+    },
+    {
+      "segment_id": 372,
+      "scene_count": 1,
+      "start_scene_id": 444,
+      "end_scene_id": 444,
+      "start_time": 2866.488625,
+      "end_time": 2869.324792,
+      "avg_importance": 0.343862
+    },
+    {
+      "segment_id": 373,
+      "scene_count": 2,
+      "start_scene_id": 445,
+      "end_scene_id": 446,
+      "start_time": 2869.324792,
+      "end_time": 2874.246375,
+      "avg_importance": 0.090441
+    },
+    {
+      "segment_id": 374,
+      "scene_count": 1,
+      "start_scene_id": 447,
+      "end_scene_id": 447,
+      "start_time": 2874.246375,
+      "end_time": 2876.582042,
+      "avg_importance": 0.247244
+    },
+    {
+      "segment_id": 375,
+      "scene_count": 2,
+      "start_scene_id": 448,
+      "end_scene_id": 449,
+      "start_time": 2876.582042,
+      "end_time": 2881.3785,
+      "avg_importance": 0.205144
+    },
+    {
+      "segment_id": 376,
+      "scene_count": 1,
+      "start_scene_id": 450,
+      "end_scene_id": 450,
+      "start_time": 2881.3785,
+      "end_time": 2883.547333,
+      "avg_importance": 0.266414
+    },
+    {
+      "segment_id": 377,
+      "scene_count": 1,
+      "start_scene_id": 451,
+      "end_scene_id": 451,
+      "start_time": 2883.547333,
+      "end_time": 2894.558333,
+      "avg_importance": 0.216787
+    },
+    {
+      "segment_id": 378,
+      "scene_count": 1,
+      "start_scene_id": 452,
+      "end_scene_id": 452,
+      "start_time": 2894.558333,
+      "end_time": 2958.246958,
+      "avg_importance": 0.252701
+    },
+    {
+      "segment_id": 379,
+      "scene_count": 1,
+      "start_scene_id": 453,
+      "end_scene_id": 453,
+      "start_time": 2958.246958,
+      "end_time": 3020.100417,
+      "avg_importance": 0.224738
+    },
+    {
+      "segment_id": 380,
+      "scene_count": 1,
+      "start_scene_id": 454,
+      "end_scene_id": 454,
+      "start_time": 3020.100417,
+      "end_time": 3022.477792,
+      "avg_importance": 0.252873
+    },
+    {
+      "segment_id": 381,
+      "scene_count": 1,
+      "start_scene_id": 455,
+      "end_scene_id": 455,
+      "start_time": 3022.477792,
+      "end_time": 3033.5305,
+      "avg_importance": 0.244893
+    },
+    {
+      "segment_id": 382,
+      "scene_count": 1,
+      "start_scene_id": 456,
+      "end_scene_id": 456,
+      "start_time": 3033.5305,
+      "end_time": 3036.5335,
+      "avg_importance": 0.185139
+    },
+    {
+      "segment_id": 383,
+      "scene_count": 1,
+      "start_scene_id": 457,
+      "end_scene_id": 457,
+      "start_time": 3036.5335,
+      "end_time": 3038.702333,
+      "avg_importance": 0.293882
+    },
+    {
+      "segment_id": 384,
+      "scene_count": 1,
+      "start_scene_id": 458,
+      "end_scene_id": 458,
+      "start_time": 3038.702333,
+      "end_time": 3050.839458,
+      "avg_importance": 0.289015
+    },
+    {
+      "segment_id": 385,
+      "scene_count": 1,
+      "start_scene_id": 459,
+      "end_scene_id": 459,
+      "start_time": 3050.839458,
+      "end_time": 3092.631208,
+      "avg_importance": 0.293305
+    },
+    {
+      "segment_id": 386,
+      "scene_count": 1,
+      "start_scene_id": 460,
+      "end_scene_id": 460,
+      "start_time": 3092.631208,
+      "end_time": 3106.394958,
+      "avg_importance": 0.195879
+    },
+    {
+      "segment_id": 387,
+      "scene_count": 1,
+      "start_scene_id": 461,
+      "end_scene_id": 461,
+      "start_time": 3106.394958,
+      "end_time": 3111.316542,
+      "avg_importance": 0.342693
+    },
+    {
+      "segment_id": 388,
+      "scene_count": 1,
+      "start_scene_id": 462,
+      "end_scene_id": 462,
+      "start_time": 3111.316542,
+      "end_time": 3134.005875,
+      "avg_importance": 0.226283
+    },
+    {
+      "segment_id": 389,
+      "scene_count": 1,
+      "start_scene_id": 463,
+      "end_scene_id": 463,
+      "start_time": 3134.005875,
+      "end_time": 3137.509375,
+      "avg_importance": 0.25028
+    },
+    {
+      "segment_id": 390,
+      "scene_count": 1,
+      "start_scene_id": 464,
+      "end_scene_id": 464,
+      "start_time": 3137.509375,
+      "end_time": 3144.516375,
+      "avg_importance": 0.202302
+    },
+    {
+      "segment_id": 391,
+      "scene_count": 3,
+      "start_scene_id": 465,
+      "end_scene_id": 467,
+      "start_time": 3144.516375,
+      "end_time": 3173.837333,
+      "avg_importance": 0.137863
+    },
+    {
+      "segment_id": 392,
+      "scene_count": 1,
+      "start_scene_id": 468,
+      "end_scene_id": 468,
+      "start_time": 3173.837333,
+      "end_time": 3176.42325,
+      "avg_importance": 0.152318
+    },
+    {
+      "segment_id": 393,
+      "scene_count": 1,
+      "start_scene_id": 469,
+      "end_scene_id": 469,
+      "start_time": 3176.42325,
+      "end_time": 3179.885042,
+      "avg_importance": 0.19083
+    },
+    {
+      "segment_id": 394,
+      "scene_count": 2,
+      "start_scene_id": 470,
+      "end_scene_id": 471,
+      "start_time": 3179.885042,
+      "end_time": 3194.149292,
+      "avg_importance": 0.169298
+    },
+    {
+      "segment_id": 395,
+      "scene_count": 2,
+      "start_scene_id": 472,
+      "end_scene_id": 473,
+      "start_time": 3194.149292,
+      "end_time": 3218.757208,
+      "avg_importance": 0.201437
+    },
+    {
+      "segment_id": 396,
+      "scene_count": 1,
+      "start_scene_id": 474,
+      "end_scene_id": 474,
+      "start_time": 3218.757208,
+      "end_time": 3258.713792,
+      "avg_importance": 0.295709
+    },
+    {
+      "segment_id": 397,
+      "scene_count": 1,
+      "start_scene_id": 475,
+      "end_scene_id": 475,
+      "start_time": 3258.713792,
+      "end_time": 3270.600667,
+      "avg_importance": 0.292325
+    },
+    {
+      "segment_id": 398,
+      "scene_count": 1,
+      "start_scene_id": 476,
+      "end_scene_id": 476,
+      "start_time": 3270.600667,
+      "end_time": 3275.397125,
+      "avg_importance": 0.165571
+    },
+    {
+      "segment_id": 399,
+      "scene_count": 1,
+      "start_scene_id": 477,
+      "end_scene_id": 477,
+      "start_time": 3275.397125,
+      "end_time": 3278.52525,
+      "avg_importance": 0.154373
+    },
+    {
+      "segment_id": 400,
+      "scene_count": 1,
+      "start_scene_id": 478,
+      "end_scene_id": 478,
+      "start_time": 3278.52525,
+      "end_time": 3283.947333,
+      "avg_importance": 0.233374
+    },
+    {
+      "segment_id": 401,
+      "scene_count": 1,
+      "start_scene_id": 479,
+      "end_scene_id": 479,
+      "start_time": 3283.947333,
+      "end_time": 3286.074458,
+      "avg_importance": 0.219236
+    },
+    {
+      "segment_id": 402,
+      "scene_count": 1,
+      "start_scene_id": 480,
+      "end_scene_id": 480,
+      "start_time": 3286.074458,
+      "end_time": 3292.706083,
+      "avg_importance": 0.288124
+    },
+    {
+      "segment_id": 403,
+      "scene_count": 1,
+      "start_scene_id": 481,
+      "end_scene_id": 481,
+      "start_time": 3292.706083,
+      "end_time": 3304.217583,
+      "avg_importance": 0.251423
+    },
+    {
+      "segment_id": 404,
+      "scene_count": 1,
+      "start_scene_id": 482,
+      "end_scene_id": 482,
+      "start_time": 3304.217583,
+      "end_time": 3306.428125,
+      "avg_importance": 0.229602
+    },
+    {
+      "segment_id": 405,
+      "scene_count": 1,
+      "start_scene_id": 483,
+      "end_scene_id": 483,
+      "start_time": 3306.428125,
+      "end_time": 3312.642667,
+      "avg_importance": 0.211951
+    },
+    {
+      "segment_id": 406,
+      "scene_count": 1,
+      "start_scene_id": 484,
+      "end_scene_id": 484,
+      "start_time": 3312.642667,
+      "end_time": 3315.937625,
+      "avg_importance": 0.456656
+    },
+    {
+      "segment_id": 407,
+      "scene_count": 1,
+      "start_scene_id": 485,
+      "end_scene_id": 485,
+      "start_time": 3315.937625,
+      "end_time": 3320.150167,
+      "avg_importance": 0.43332
+    },
+    {
+      "segment_id": 408,
+      "scene_count": 1,
+      "start_scene_id": 486,
+      "end_scene_id": 486,
+      "start_time": 3320.150167,
+      "end_time": 3321.609958,
+      "avg_importance": 0.315908
+    },
+    {
+      "segment_id": 409,
+      "scene_count": 1,
+      "start_scene_id": 487,
+      "end_scene_id": 487,
+      "start_time": 3321.609958,
+      "end_time": 3324.8215,
+      "avg_importance": 0.171703
+    },
+    {
+      "segment_id": 410,
+      "scene_count": 1,
+      "start_scene_id": 488,
+      "end_scene_id": 488,
+      "start_time": 3324.8215,
+      "end_time": 3331.953625,
+      "avg_importance": 0.295023
+    },
+    {
+      "segment_id": 411,
+      "scene_count": 1,
+      "start_scene_id": 489,
+      "end_scene_id": 489,
+      "start_time": 3331.953625,
+      "end_time": 3335.58225,
+      "avg_importance": 0.395844
+    },
+    {
+      "segment_id": 412,
+      "scene_count": 1,
+      "start_scene_id": 490,
+      "end_scene_id": 490,
+      "start_time": 3335.58225,
+      "end_time": 3337.58425,
+      "avg_importance": 0.305616
+    },
+    {
+      "segment_id": 413,
+      "scene_count": 3,
+      "start_scene_id": 491,
+      "end_scene_id": 493,
+      "start_time": 3337.58425,
+      "end_time": 3351.514833,
+      "avg_importance": 0.158416
+    },
+    {
+      "segment_id": 414,
+      "scene_count": 1,
+      "start_scene_id": 494,
+      "end_scene_id": 494,
+      "start_time": 3351.514833,
+      "end_time": 3354.184167,
+      "avg_importance": 0.254527
+    },
+    {
+      "segment_id": 415,
+      "scene_count": 1,
+      "start_scene_id": 495,
+      "end_scene_id": 495,
+      "start_time": 3354.184167,
+      "end_time": 3369.991625,
+      "avg_importance": 0.308719
+    },
+    {
+      "segment_id": 416,
+      "scene_count": 1,
+      "start_scene_id": 496,
+      "end_scene_id": 496,
+      "start_time": 3369.991625,
+      "end_time": 3372.952917,
+      "avg_importance": 0.234055
+    },
+    {
+      "segment_id": 417,
+      "scene_count": 1,
+      "start_scene_id": 497,
+      "end_scene_id": 497,
+      "start_time": 3372.952917,
+      "end_time": 3374.954917,
+      "avg_importance": 0.317285
+    },
+    {
+      "segment_id": 418,
+      "scene_count": 1,
+      "start_scene_id": 498,
+      "end_scene_id": 498,
+      "start_time": 3374.954917,
+      "end_time": 3378.208167,
+      "avg_importance": 0.185467
+    },
+    {
+      "segment_id": 419,
+      "scene_count": 1,
+      "start_scene_id": 499,
+      "end_scene_id": 499,
+      "start_time": 3378.208167,
+      "end_time": 3380.12675,
+      "avg_importance": 0.063213
+    },
+    {
+      "segment_id": 420,
+      "scene_count": 1,
+      "start_scene_id": 500,
+      "end_scene_id": 500,
+      "start_time": 3380.12675,
+      "end_time": 3382.337292,
+      "avg_importance": 0.128403
+    },
+    {
+      "segment_id": 421,
+      "scene_count": 1,
+      "start_scene_id": 501,
+      "end_scene_id": 501,
+      "start_time": 3382.337292,
+      "end_time": 3383.338292,
+      "avg_importance": 0.083128
+    },
+    {
+      "segment_id": 422,
+      "scene_count": 2,
+      "start_scene_id": 502,
+      "end_scene_id": 503,
+      "start_time": 3383.338292,
+      "end_time": 3387.008625,
+      "avg_importance": 0.093302
+    },
+    {
+      "segment_id": 423,
+      "scene_count": 1,
+      "start_scene_id": 504,
+      "end_scene_id": 504,
+      "start_time": 3387.008625,
+      "end_time": 3395.350292,
+      "avg_importance": 0.242004
+    },
+    {
+      "segment_id": 424,
+      "scene_count": 1,
+      "start_scene_id": 505,
+      "end_scene_id": 505,
+      "start_time": 3395.350292,
+      "end_time": 3400.397,
+      "avg_importance": 0.297759
+    },
+    {
+      "segment_id": 425,
+      "scene_count": 1,
+      "start_scene_id": 506,
+      "end_scene_id": 506,
+      "start_time": 3400.397,
+      "end_time": 3404.15075,
+      "avg_importance": 0.311488
+    },
+    {
+      "segment_id": 426,
+      "scene_count": 1,
+      "start_scene_id": 507,
+      "end_scene_id": 507,
+      "start_time": 3404.15075,
+      "end_time": 3406.986917,
+      "avg_importance": 0.165449
+    },
+    {
+      "segment_id": 427,
+      "scene_count": 1,
+      "start_scene_id": 508,
+      "end_scene_id": 508,
+      "start_time": 3406.986917,
+      "end_time": 3409.9065,
+      "avg_importance": 0.211892
+    },
+    {
+      "segment_id": 428,
+      "scene_count": 1,
+      "start_scene_id": 509,
+      "end_scene_id": 509,
+      "start_time": 3409.9065,
+      "end_time": 3413.743667,
+      "avg_importance": 0.316125
+    },
+    {
+      "segment_id": 429,
+      "scene_count": 1,
+      "start_scene_id": 510,
+      "end_scene_id": 510,
+      "start_time": 3413.743667,
+      "end_time": 3424.67125,
+      "avg_importance": 0.263634
+    },
+    {
+      "segment_id": 430,
+      "scene_count": 1,
+      "start_scene_id": 511,
+      "end_scene_id": 511,
+      "start_time": 3424.67125,
+      "end_time": 3427.67425,
+      "avg_importance": 0.280939
+    },
+    {
+      "segment_id": 431,
+      "scene_count": 1,
+      "start_scene_id": 512,
+      "end_scene_id": 512,
+      "start_time": 3427.67425,
+      "end_time": 3458.621833,
+      "avg_importance": 0.28768
+    },
+    {
+      "segment_id": 432,
+      "scene_count": 1,
+      "start_scene_id": 513,
+      "end_scene_id": 513,
+      "start_time": 3458.621833,
+      "end_time": 3473.928792,
+      "avg_importance": 0.237272
+    },
+    {
+      "segment_id": 433,
+      "scene_count": 1,
+      "start_scene_id": 514,
+      "end_scene_id": 514,
+      "start_time": 3473.928792,
+      "end_time": 3479.934792,
+      "avg_importance": 0.324151
+    },
+    {
+      "segment_id": 434,
+      "scene_count": 1,
+      "start_scene_id": 515,
+      "end_scene_id": 515,
+      "start_time": 3479.934792,
+      "end_time": 3481.936792,
+      "avg_importance": 0.335812
+    },
+    {
+      "segment_id": 435,
+      "scene_count": 1,
+      "start_scene_id": 516,
+      "end_scene_id": 516,
+      "start_time": 3481.936792,
+      "end_time": 3483.646833,
+      "avg_importance": 0.186086
+    },
+    {
+      "segment_id": 436,
+      "scene_count": 1,
+      "start_scene_id": 517,
+      "end_scene_id": 517,
+      "start_time": 3483.646833,
+      "end_time": 3485.940792,
+      "avg_importance": 0.151963
+    },
+    {
+      "segment_id": 437,
+      "scene_count": 1,
+      "start_scene_id": 518,
+      "end_scene_id": 518,
+      "start_time": 3485.940792,
+      "end_time": 3496.868375,
+      "avg_importance": 0.317691
+    },
+    {
+      "segment_id": 438,
+      "scene_count": 1,
+      "start_scene_id": 519,
+      "end_scene_id": 519,
+      "start_time": 3496.868375,
+      "end_time": 3500.955792,
+      "avg_importance": 0.127198
+    },
+    {
+      "segment_id": 439,
+      "scene_count": 1,
+      "start_scene_id": 520,
+      "end_scene_id": 520,
+      "start_time": 3500.955792,
+      "end_time": 3504.709542,
+      "avg_importance": 0.221486
+    },
+    {
+      "segment_id": 440,
+      "scene_count": 1,
+      "start_scene_id": 521,
+      "end_scene_id": 521,
+      "start_time": 3504.709542,
+      "end_time": 3507.879375,
+      "avg_importance": 0.142199
+    },
+    {
+      "segment_id": 441,
+      "scene_count": 1,
+      "start_scene_id": 522,
+      "end_scene_id": 522,
+      "start_time": 3507.879375,
+      "end_time": 3510.298458,
+      "avg_importance": 0.364448
+    },
+    {
+      "segment_id": 442,
+      "scene_count": 1,
+      "start_scene_id": 523,
+      "end_scene_id": 523,
+      "start_time": 3510.298458,
+      "end_time": 3512.509,
+      "avg_importance": 0.155057
+    },
+    {
+      "segment_id": 443,
+      "scene_count": 2,
+      "start_scene_id": 524,
+      "end_scene_id": 525,
+      "start_time": 3512.509,
+      "end_time": 3553.29975,
+      "avg_importance": 0.092853
+    },
+    {
+      "segment_id": 444,
+      "scene_count": 1,
+      "start_scene_id": 526,
+      "end_scene_id": 526,
+      "start_time": 3553.29975,
+      "end_time": 3601.180917,
+      "avg_importance": 0.263926
+    },
+    {
+      "segment_id": 445,
+      "scene_count": 1,
+      "start_scene_id": 527,
+      "end_scene_id": 527,
+      "start_time": 3601.180917,
+      "end_time": 3632.1285,
+      "avg_importance": 0.406353
+    },
+    {
+      "segment_id": 446,
+      "scene_count": 1,
+      "start_scene_id": 528,
+      "end_scene_id": 528,
+      "start_time": 3632.1285,
+      "end_time": 3652.065083,
+      "avg_importance": 0.575763
+    },
+    {
+      "segment_id": 447,
+      "scene_count": 1,
+      "start_scene_id": 529,
+      "end_scene_id": 529,
+      "start_time": 3652.065083,
+      "end_time": 3675.713708,
+      "avg_importance": 0.384472
+    },
+    {
+      "segment_id": 448,
+      "scene_count": 1,
+      "start_scene_id": 530,
+      "end_scene_id": 530,
+      "start_time": 3675.713708,
+      "end_time": 3692.480458,
+      "avg_importance": 0.25931
+    },
+    {
+      "segment_id": 449,
+      "scene_count": 1,
+      "start_scene_id": 531,
+      "end_scene_id": 531,
+      "start_time": 3692.480458,
+      "end_time": 3702.365333,
+      "avg_importance": 0.353736
+    },
+    {
+      "segment_id": 450,
+      "scene_count": 1,
+      "start_scene_id": 532,
+      "end_scene_id": 532,
+      "start_time": 3702.365333,
+      "end_time": 3703.44975,
+      "avg_importance": 0.273674
+    },
+    {
+      "segment_id": 451,
+      "scene_count": 1,
+      "start_scene_id": 533,
+      "end_scene_id": 533,
+      "start_time": 3703.44975,
+      "end_time": 3705.034667,
+      "avg_importance": 0.166744
+    },
+    {
+      "segment_id": 452,
+      "scene_count": 1,
+      "start_scene_id": 534,
+      "end_scene_id": 534,
+      "start_time": 3705.034667,
+      "end_time": 3706.285917,
+      "avg_importance": 0.206373
+    },
+    {
+      "segment_id": 453,
+      "scene_count": 1,
+      "start_scene_id": 535,
+      "end_scene_id": 535,
+      "start_time": 3706.285917,
+      "end_time": 3712.375333,
+      "avg_importance": 0.119366
+    },
+    {
+      "segment_id": 454,
+      "scene_count": 1,
+      "start_scene_id": 536,
+      "end_scene_id": 536,
+      "start_time": 3712.375333,
+      "end_time": 3716.671292,
+      "avg_importance": 0.283529
+    },
+    {
+      "segment_id": 455,
+      "scene_count": 1,
+      "start_scene_id": 537,
+      "end_scene_id": 537,
+      "start_time": 3716.671292,
+      "end_time": 3719.006958,
+      "avg_importance": 0.260481
+    },
+    {
+      "segment_id": 456,
+      "scene_count": 1,
+      "start_scene_id": 538,
+      "end_scene_id": 538,
+      "start_time": 3719.006958,
+      "end_time": 3721.676292,
+      "avg_importance": 0.164728
+    },
+    {
+      "segment_id": 457,
+      "scene_count": 1,
+      "start_scene_id": 539,
+      "end_scene_id": 539,
+      "start_time": 3721.676292,
+      "end_time": 3729.183792,
+      "avg_importance": 0.091265
+    },
+    {
+      "segment_id": 458,
+      "scene_count": 1,
+      "start_scene_id": 540,
+      "end_scene_id": 540,
+      "start_time": 3729.183792,
+      "end_time": 3735.565167,
+      "avg_importance": 0.208185
+    },
+    {
+      "segment_id": 459,
+      "scene_count": 1,
+      "start_scene_id": 541,
+      "end_scene_id": 541,
+      "start_time": 3735.565167,
+      "end_time": 3741.779708,
+      "avg_importance": 0.384797
+    },
+    {
+      "segment_id": 460,
+      "scene_count": 1,
+      "start_scene_id": 542,
+      "end_scene_id": 542,
+      "start_time": 3741.779708,
+      "end_time": 3766.804708,
+      "avg_importance": 0.313307
+    },
+    {
+      "segment_id": 461,
+      "scene_count": 1,
+      "start_scene_id": 543,
+      "end_scene_id": 543,
+      "start_time": 3766.804708,
+      "end_time": 3782.361917,
+      "avg_importance": 0.300744
+    },
+    {
+      "segment_id": 462,
+      "scene_count": 1,
+      "start_scene_id": 544,
+      "end_scene_id": 544,
+      "start_time": 3782.361917,
+      "end_time": 3794.707583,
+      "avg_importance": 0.469476
+    },
+    {
+      "segment_id": 463,
+      "scene_count": 1,
+      "start_scene_id": 545,
+      "end_scene_id": 545,
+      "start_time": 3794.707583,
+      "end_time": 3797.376917,
+      "avg_importance": 0.438092
+    },
+    {
+      "segment_id": 464,
+      "scene_count": 1,
+      "start_scene_id": 546,
+      "end_scene_id": 546,
+      "start_time": 3797.376917,
+      "end_time": 3800.963833,
+      "avg_importance": 0.25703
+    },
+    {
+      "segment_id": 465,
+      "scene_count": 1,
+      "start_scene_id": 547,
+      "end_scene_id": 547,
+      "start_time": 3800.963833,
+      "end_time": 3802.965833,
+      "avg_importance": 0.152527
+    },
+    {
+      "segment_id": 466,
+      "scene_count": 1,
+      "start_scene_id": 548,
+      "end_scene_id": 548,
+      "start_time": 3802.965833,
+      "end_time": 3806.177375,
+      "avg_importance": 0.248165
+    },
+    {
+      "segment_id": 467,
+      "scene_count": 1,
+      "start_scene_id": 549,
+      "end_scene_id": 549,
+      "start_time": 3806.177375,
+      "end_time": 3821.943125,
+      "avg_importance": 0.488981
+    },
+    {
+      "segment_id": 468,
+      "scene_count": 1,
+      "start_scene_id": 550,
+      "end_scene_id": 550,
+      "start_time": 3821.943125,
+      "end_time": 3826.07225,
+      "avg_importance": 0.316048
+    },
+    {
+      "segment_id": 469,
+      "scene_count": 1,
+      "start_scene_id": 551,
+      "end_scene_id": 551,
+      "start_time": 3826.07225,
+      "end_time": 3828.282792,
+      "avg_importance": 0.311358
+    },
+    {
+      "segment_id": 470,
+      "scene_count": 1,
+      "start_scene_id": 552,
+      "end_scene_id": 552,
+      "start_time": 3828.282792,
+      "end_time": 3830.409917,
+      "avg_importance": 0.364528
+    },
+    {
+      "segment_id": 471,
+      "scene_count": 1,
+      "start_scene_id": 553,
+      "end_scene_id": 553,
+      "start_time": 3830.409917,
+      "end_time": 3832.411917,
+      "avg_importance": 0.275737
+    },
+    {
+      "segment_id": 472,
+      "scene_count": 1,
+      "start_scene_id": 554,
+      "end_scene_id": 554,
+      "start_time": 3832.411917,
+      "end_time": 3833.83,
+      "avg_importance": 0.118156
+    },
+    {
+      "segment_id": 473,
+      "scene_count": 1,
+      "start_scene_id": 555,
+      "end_scene_id": 555,
+      "start_time": 3833.83,
+      "end_time": 3836.833,
+      "avg_importance": 0.39363
+    },
+    {
+      "segment_id": 474,
+      "scene_count": 1,
+      "start_scene_id": 556,
+      "end_scene_id": 556,
+      "start_time": 3836.833,
+      "end_time": 3838.835,
+      "avg_importance": 0.164427
+    },
+    {
+      "segment_id": 475,
+      "scene_count": 1,
+      "start_scene_id": 557,
+      "end_scene_id": 557,
+      "start_time": 3838.835,
+      "end_time": 3842.880708,
+      "avg_importance": 0.325178
+    },
+    {
+      "segment_id": 476,
+      "scene_count": 1,
+      "start_scene_id": 558,
+      "end_scene_id": 558,
+      "start_time": 3842.880708,
+      "end_time": 3845.758583,
+      "avg_importance": 0.198584
+    },
+    {
+      "segment_id": 477,
+      "scene_count": 1,
+      "start_scene_id": 559,
+      "end_scene_id": 559,
+      "start_time": 3845.758583,
+      "end_time": 3847.802292,
+      "avg_importance": 0.409225
+    },
+    {
+      "segment_id": 478,
+      "scene_count": 1,
+      "start_scene_id": 560,
+      "end_scene_id": 560,
+      "start_time": 3847.802292,
+      "end_time": 3850.555042,
+      "avg_importance": 0.203772
+    },
+    {
+      "segment_id": 479,
+      "scene_count": 1,
+      "start_scene_id": 561,
+      "end_scene_id": 561,
+      "start_time": 3850.555042,
+      "end_time": 3853.808292,
+      "avg_importance": 0.2143
+    },
+    {
+      "segment_id": 480,
+      "scene_count": 1,
+      "start_scene_id": 562,
+      "end_scene_id": 562,
+      "start_time": 3853.808292,
+      "end_time": 3858.521333,
+      "avg_importance": 0.332831
+    },
+    {
+      "segment_id": 481,
+      "scene_count": 1,
+      "start_scene_id": 563,
+      "end_scene_id": 563,
+      "start_time": 3858.521333,
+      "end_time": 3863.025833,
+      "avg_importance": 0.304608
+    },
+    {
+      "segment_id": 482,
+      "scene_count": 1,
+      "start_scene_id": 564,
+      "end_scene_id": 564,
+      "start_time": 3863.025833,
+      "end_time": 3864.902708,
+      "avg_importance": 0.349446
+    },
+    {
+      "segment_id": 483,
+      "scene_count": 1,
+      "start_scene_id": 565,
+      "end_scene_id": 565,
+      "start_time": 3864.902708,
+      "end_time": 3866.737875,
+      "avg_importance": 0.197974
+    },
+    {
+      "segment_id": 484,
+      "scene_count": 1,
+      "start_scene_id": 566,
+      "end_scene_id": 566,
+      "start_time": 3866.737875,
+      "end_time": 3868.823292,
+      "avg_importance": 0.272702
+    },
+    {
+      "segment_id": 485,
+      "scene_count": 1,
+      "start_scene_id": 567,
+      "end_scene_id": 567,
+      "start_time": 3868.823292,
+      "end_time": 3870.741875,
+      "avg_importance": 0.365708
+    },
+    {
+      "segment_id": 486,
+      "scene_count": 1,
+      "start_scene_id": 568,
+      "end_scene_id": 568,
+      "start_time": 3870.741875,
+      "end_time": 3875.830292,
+      "avg_importance": 0.149582
+    },
+    {
+      "segment_id": 487,
+      "scene_count": 1,
+      "start_scene_id": 569,
+      "end_scene_id": 569,
+      "start_time": 3875.830292,
+      "end_time": 3878.457917,
+      "avg_importance": 0.169457
+    },
+    {
+      "segment_id": 488,
+      "scene_count": 1,
+      "start_scene_id": 570,
+      "end_scene_id": 570,
+      "start_time": 3878.457917,
+      "end_time": 3880.042833,
+      "avg_importance": 0.314171
+    },
+    {
+      "segment_id": 489,
+      "scene_count": 1,
+      "start_scene_id": 571,
+      "end_scene_id": 571,
+      "start_time": 3880.042833,
+      "end_time": 3882.461917,
+      "avg_importance": 0.213719
+    },
+    {
+      "segment_id": 490,
+      "scene_count": 1,
+      "start_scene_id": 572,
+      "end_scene_id": 572,
+      "start_time": 3882.461917,
+      "end_time": 3884.3805,
+      "avg_importance": 0.28591
+    },
+    {
+      "segment_id": 491,
+      "scene_count": 1,
+      "start_scene_id": 573,
+      "end_scene_id": 573,
+      "start_time": 3884.3805,
+      "end_time": 3886.757875,
+      "avg_importance": 0.317422
+    },
+    {
+      "segment_id": 492,
+      "scene_count": 1,
+      "start_scene_id": 574,
+      "end_scene_id": 574,
+      "start_time": 3886.757875,
+      "end_time": 3888.342792,
+      "avg_importance": 0.313793
+    },
+    {
+      "segment_id": 493,
+      "scene_count": 1,
+      "start_scene_id": 575,
+      "end_scene_id": 575,
+      "start_time": 3888.342792,
+      "end_time": 3891.095542,
+      "avg_importance": 0.118403
+    },
+    {
+      "segment_id": 494,
+      "scene_count": 1,
+      "start_scene_id": 576,
+      "end_scene_id": 576,
+      "start_time": 3891.095542,
+      "end_time": 3891.971417,
+      "avg_importance": 0.271084
+    },
+    {
+      "segment_id": 495,
+      "scene_count": 1,
+      "start_scene_id": 577,
+      "end_scene_id": 577,
+      "start_time": 3891.971417,
+      "end_time": 3893.931708,
+      "avg_importance": 0.279257
+    },
+    {
+      "segment_id": 496,
+      "scene_count": 1,
+      "start_scene_id": 578,
+      "end_scene_id": 578,
+      "start_time": 3893.931708,
+      "end_time": 3895.892,
+      "avg_importance": 0.297371
+    },
+    {
+      "segment_id": 497,
+      "scene_count": 1,
+      "start_scene_id": 579,
+      "end_scene_id": 579,
+      "start_time": 3895.892,
+      "end_time": 3898.14425,
+      "avg_importance": 0.133586
+    },
+    {
+      "segment_id": 498,
+      "scene_count": 1,
+      "start_scene_id": 580,
+      "end_scene_id": 580,
+      "start_time": 3898.14425,
+      "end_time": 3901.981417,
+      "avg_importance": 0.335613
+    },
+    {
+      "segment_id": 499,
+      "scene_count": 1,
+      "start_scene_id": 581,
+      "end_scene_id": 581,
+      "start_time": 3901.981417,
+      "end_time": 3906.485917,
+      "avg_importance": 0.546371
+    },
+    {
+      "segment_id": 500,
+      "scene_count": 1,
+      "start_scene_id": 582,
+      "end_scene_id": 582,
+      "start_time": 3906.485917,
+      "end_time": 3922.501917,
+      "avg_importance": 0.271566
+    },
+    {
+      "segment_id": 501,
+      "scene_count": 3,
+      "start_scene_id": 583,
+      "end_scene_id": 585,
+      "start_time": 3922.501917,
+      "end_time": 3934.931,
+      "avg_importance": 0.166713
+    },
+    {
+      "segment_id": 502,
+      "scene_count": 1,
+      "start_scene_id": 586,
+      "end_scene_id": 586,
+      "start_time": 3934.931,
+      "end_time": 3937.4335,
+      "avg_importance": 0.297449
+    },
+    {
+      "segment_id": 503,
+      "scene_count": 1,
+      "start_scene_id": 587,
+      "end_scene_id": 587,
+      "start_time": 3937.4335,
+      "end_time": 3943.522917,
+      "avg_importance": 0.080675
+    },
+    {
+      "segment_id": 504,
+      "scene_count": 1,
+      "start_scene_id": 588,
+      "end_scene_id": 588,
+      "start_time": 3943.522917,
+      "end_time": 3946.859583,
+      "avg_importance": 0.135959
+    },
+    {
+      "segment_id": 505,
+      "scene_count": 1,
+      "start_scene_id": 589,
+      "end_scene_id": 589,
+      "start_time": 3946.859583,
+      "end_time": 3956.744458,
+      "avg_importance": 0.163611
+    },
+    {
+      "segment_id": 506,
+      "scene_count": 1,
+      "start_scene_id": 590,
+      "end_scene_id": 590,
+      "start_time": 3956.744458,
+      "end_time": 3962.124833,
+      "avg_importance": 0.3526
+    },
+    {
+      "segment_id": 507,
+      "scene_count": 1,
+      "start_scene_id": 591,
+      "end_scene_id": 591,
+      "start_time": 3962.124833,
+      "end_time": 3964.21025,
+      "avg_importance": 0.416175
+    },
+    {
+      "segment_id": 508,
+      "scene_count": 1,
+      "start_scene_id": 592,
+      "end_scene_id": 592,
+      "start_time": 3964.21025,
+      "end_time": 3972.343375,
+      "avg_importance": 0.230702
+    },
+    {
+      "segment_id": 509,
+      "scene_count": 1,
+      "start_scene_id": 593,
+      "end_scene_id": 593,
+      "start_time": 3972.343375,
+      "end_time": 3973.552917,
+      "avg_importance": 0.323283
+    },
+    {
+      "segment_id": 510,
+      "scene_count": 2,
+      "start_scene_id": 594,
+      "end_scene_id": 595,
+      "start_time": 3973.552917,
+      "end_time": 3976.555917,
+      "avg_importance": 0.179926
+    },
+    {
+      "segment_id": 511,
+      "scene_count": 1,
+      "start_scene_id": 596,
+      "end_scene_id": 596,
+      "start_time": 3976.555917,
+      "end_time": 3981.268958,
+      "avg_importance": 0.306106
+    },
+    {
+      "segment_id": 512,
+      "scene_count": 1,
+      "start_scene_id": 597,
+      "end_scene_id": 597,
+      "start_time": 3981.268958,
+      "end_time": 3985.439792,
+      "avg_importance": 0.229727
+    },
+    {
+      "segment_id": 513,
+      "scene_count": 1,
+      "start_scene_id": 598,
+      "end_scene_id": 598,
+      "start_time": 3985.439792,
+      "end_time": 3987.775458,
+      "avg_importance": 0.24184
+    },
+    {
+      "segment_id": 514,
+      "scene_count": 2,
+      "start_scene_id": 599,
+      "end_scene_id": 600,
+      "start_time": 3987.775458,
+      "end_time": 3993.447792,
+      "avg_importance": 0.168026
+    },
+    {
+      "segment_id": 515,
+      "scene_count": 1,
+      "start_scene_id": 601,
+      "end_scene_id": 601,
+      "start_time": 3993.447792,
+      "end_time": 3995.116125,
+      "avg_importance": 0.336234
+    },
+    {
+      "segment_id": 516,
+      "scene_count": 2,
+      "start_scene_id": 602,
+      "end_scene_id": 603,
+      "start_time": 3995.116125,
+      "end_time": 3998.536208,
+      "avg_importance": 0.108491
+    },
+    {
+      "segment_id": 517,
+      "scene_count": 1,
+      "start_scene_id": 604,
+      "end_scene_id": 604,
+      "start_time": 3998.536208,
+      "end_time": 3999.161833,
+      "avg_importance": 0.194324
+    },
+    {
+      "segment_id": 518,
+      "scene_count": 1,
+      "start_scene_id": 605,
+      "end_scene_id": 605,
+      "start_time": 3999.161833,
+      "end_time": 3999.829167,
+      "avg_importance": 0.081389
+    },
+    {
+      "segment_id": 519,
+      "scene_count": 1,
+      "start_scene_id": 606,
+      "end_scene_id": 606,
+      "start_time": 3999.829167,
+      "end_time": 4002.164833,
+      "avg_importance": 0.186418
+    },
+    {
+      "segment_id": 520,
+      "scene_count": 3,
+      "start_scene_id": 607,
+      "end_scene_id": 609,
+      "start_time": 4002.164833,
+      "end_time": 4011.298958,
+      "avg_importance": 0.105254
+    },
+    {
+      "segment_id": 521,
+      "scene_count": 2,
+      "start_scene_id": 610,
+      "end_scene_id": 611,
+      "start_time": 4011.298958,
+      "end_time": 4015.094417,
+      "avg_importance": 0.076574
+    },
+    {
+      "segment_id": 522,
+      "scene_count": 1,
+      "start_scene_id": 612,
+      "end_scene_id": 612,
+      "start_time": 4015.094417,
+      "end_time": 4017.972292,
+      "avg_importance": 0.127358
+    },
+    {
+      "segment_id": 523,
+      "scene_count": 1,
+      "start_scene_id": 613,
+      "end_scene_id": 613,
+      "start_time": 4017.972292,
+      "end_time": 4018.889875,
+      "avg_importance": 0.350784
+    },
+    {
+      "segment_id": 524,
+      "scene_count": 1,
+      "start_scene_id": 614,
+      "end_scene_id": 614,
+      "start_time": 4018.889875,
+      "end_time": 4023.477792,
+      "avg_importance": 0.091811
+    },
+    {
+      "segment_id": 525,
+      "scene_count": 1,
+      "start_scene_id": 615,
+      "end_scene_id": 615,
+      "start_time": 4023.477792,
+      "end_time": 4025.730042,
+      "avg_importance": 0.121925
+    },
+    {
+      "segment_id": 526,
+      "scene_count": 1,
+      "start_scene_id": 616,
+      "end_scene_id": 616,
+      "start_time": 4025.730042,
+      "end_time": 4030.317958,
+      "avg_importance": 0.088793
+    },
+    {
+      "segment_id": 527,
+      "scene_count": 1,
+      "start_scene_id": 617,
+      "end_scene_id": 617,
+      "start_time": 4030.317958,
+      "end_time": 4031.235542,
+      "avg_importance": 0.153627
+    },
+    {
+      "segment_id": 528,
+      "scene_count": 2,
+      "start_scene_id": 618,
+      "end_scene_id": 619,
+      "start_time": 4031.235542,
+      "end_time": 4033.487792,
+      "avg_importance": 0.171959
+    },
+    {
+      "segment_id": 529,
+      "scene_count": 1,
+      "start_scene_id": 620,
+      "end_scene_id": 620,
+      "start_time": 4033.487792,
+      "end_time": 4034.905875,
+      "avg_importance": 0.14147
+    },
+    {
+      "segment_id": 530,
+      "scene_count": 2,
+      "start_scene_id": 621,
+      "end_scene_id": 622,
+      "start_time": 4034.905875,
+      "end_time": 4051.505792,
+      "avg_importance": 0.088726
+    },
+    {
+      "segment_id": 531,
+      "scene_count": 1,
+      "start_scene_id": 623,
+      "end_scene_id": 623,
+      "start_time": 4051.505792,
+      "end_time": 4059.597208,
+      "avg_importance": 0.327741
+    },
+    {
+      "segment_id": 532,
+      "scene_count": 1,
+      "start_scene_id": 624,
+      "end_scene_id": 624,
+      "start_time": 4059.597208,
+      "end_time": 4084.872458,
+      "avg_importance": 0.185214
+    },
+    {
+      "segment_id": 533,
+      "scene_count": 1,
+      "start_scene_id": 625,
+      "end_scene_id": 625,
+      "start_time": 4084.872458,
+      "end_time": 4091.378958,
+      "avg_importance": 0.369911
+    },
+    {
+      "segment_id": 534,
+      "scene_count": 1,
+      "start_scene_id": 626,
+      "end_scene_id": 626,
+      "start_time": 4091.378958,
+      "end_time": 4094.799042,
+      "avg_importance": 0.25572
+    },
+    {
+      "segment_id": 535,
+      "scene_count": 1,
+      "start_scene_id": 627,
+      "end_scene_id": 627,
+      "start_time": 4094.799042,
+      "end_time": 4098.135708,
+      "avg_importance": 0.164663
+    },
+    {
+      "segment_id": 536,
+      "scene_count": 3,
+      "start_scene_id": 628,
+      "end_scene_id": 630,
+      "start_time": 4098.135708,
+      "end_time": 4106.769333,
+      "avg_importance": 0.110965
+    },
+    {
+      "segment_id": 537,
+      "scene_count": 1,
+      "start_scene_id": 631,
+      "end_scene_id": 631,
+      "start_time": 4106.769333,
+      "end_time": 4109.85575,
+      "avg_importance": 0.303677
+    },
+    {
+      "segment_id": 538,
+      "scene_count": 2,
+      "start_scene_id": 632,
+      "end_scene_id": 633,
+      "start_time": 4109.85575,
+      "end_time": 4125.913458,
+      "avg_importance": 0.137806
+    },
+    {
+      "segment_id": 539,
+      "scene_count": 1,
+      "start_scene_id": 634,
+      "end_scene_id": 634,
+      "start_time": 4125.913458,
+      "end_time": 4126.831042,
+      "avg_importance": 0.403982
+    },
+    {
+      "segment_id": 540,
+      "scene_count": 1,
+      "start_scene_id": 635,
+      "end_scene_id": 635,
+      "start_time": 4126.831042,
+      "end_time": 4128.666208,
+      "avg_importance": 0.399089
+    },
+    {
+      "segment_id": 541,
+      "scene_count": 1,
+      "start_scene_id": 636,
+      "end_scene_id": 636,
+      "start_time": 4128.666208,
+      "end_time": 4129.750625,
+      "avg_importance": 0.375342
+    },
+    {
+      "segment_id": 542,
+      "scene_count": 1,
+      "start_scene_id": 637,
+      "end_scene_id": 637,
+      "start_time": 4129.750625,
+      "end_time": 4130.37625,
+      "avg_importance": 0.156683
+    },
+    {
+      "segment_id": 543,
+      "scene_count": 1,
+      "start_scene_id": 638,
+      "end_scene_id": 638,
+      "start_time": 4130.37625,
+      "end_time": 4132.962167,
+      "avg_importance": 0.265204
+    },
+    {
+      "segment_id": 544,
+      "scene_count": 1,
+      "start_scene_id": 639,
+      "end_scene_id": 639,
+      "start_time": 4132.962167,
+      "end_time": 4133.963167,
+      "avg_importance": 0.105386
+    },
+    {
+      "segment_id": 545,
+      "scene_count": 1,
+      "start_scene_id": 640,
+      "end_scene_id": 640,
+      "start_time": 4133.963167,
+      "end_time": 4135.422958,
+      "avg_importance": 0.30585
+    },
+    {
+      "segment_id": 546,
+      "scene_count": 1,
+      "start_scene_id": 641,
+      "end_scene_id": 641,
+      "start_time": 4135.422958,
+      "end_time": 4138.676208,
+      "avg_importance": 0.315641
+    },
+    {
+      "segment_id": 547,
+      "scene_count": 1,
+      "start_scene_id": 642,
+      "end_scene_id": 642,
+      "start_time": 4138.676208,
+      "end_time": 4142.221417,
+      "avg_importance": 0.280283
+    },
+    {
+      "segment_id": 548,
+      "scene_count": 1,
+      "start_scene_id": 643,
+      "end_scene_id": 643,
+      "start_time": 4142.221417,
+      "end_time": 4144.306833,
+      "avg_importance": 0.195411
+    },
+    {
+      "segment_id": 549,
+      "scene_count": 1,
+      "start_scene_id": 644,
+      "end_scene_id": 644,
+      "start_time": 4144.306833,
+      "end_time": 4145.850042,
+      "avg_importance": 0.311965
+    },
+    {
+      "segment_id": 550,
+      "scene_count": 1,
+      "start_scene_id": 645,
+      "end_scene_id": 645,
+      "start_time": 4145.850042,
+      "end_time": 4147.351542,
+      "avg_importance": 0.262468
+    },
+    {
+      "segment_id": 551,
+      "scene_count": 1,
+      "start_scene_id": 646,
+      "end_scene_id": 646,
+      "start_time": 4147.351542,
+      "end_time": 4149.562083,
+      "avg_importance": 0.240702
+    },
+    {
+      "segment_id": 552,
+      "scene_count": 1,
+      "start_scene_id": 647,
+      "end_scene_id": 647,
+      "start_time": 4149.562083,
+      "end_time": 4153.607792,
+      "avg_importance": 0.273525
+    },
+    {
+      "segment_id": 553,
+      "scene_count": 1,
+      "start_scene_id": 648,
+      "end_scene_id": 648,
+      "start_time": 4153.607792,
+      "end_time": 4154.567083,
+      "avg_importance": 0.254495
+    },
+    {
+      "segment_id": 554,
+      "scene_count": 1,
+      "start_scene_id": 649,
+      "end_scene_id": 649,
+      "start_time": 4154.567083,
+      "end_time": 4165.744917,
+      "avg_importance": 0.179457
+    },
+    {
+      "segment_id": 555,
+      "scene_count": 1,
+      "start_scene_id": 650,
+      "end_scene_id": 650,
+      "start_time": 4165.744917,
+      "end_time": 4166.954458,
+      "avg_importance": 0.151529
+    },
+    {
+      "segment_id": 556,
+      "scene_count": 1,
+      "start_scene_id": 651,
+      "end_scene_id": 651,
+      "start_time": 4166.954458,
+      "end_time": 4169.707208,
+      "avg_importance": 0.270369
+    },
+    {
+      "segment_id": 557,
+      "scene_count": 1,
+      "start_scene_id": 652,
+      "end_scene_id": 652,
+      "start_time": 4169.707208,
+      "end_time": 4175.42125,
+      "avg_importance": 0.23818
+    },
+    {
+      "segment_id": 558,
+      "scene_count": 1,
+      "start_scene_id": 653,
+      "end_scene_id": 653,
+      "start_time": 4175.42125,
+      "end_time": 4208.95475,
+      "avg_importance": 0.275463
+    },
+    {
+      "segment_id": 559,
+      "scene_count": 1,
+      "start_scene_id": 654,
+      "end_scene_id": 654,
+      "start_time": 4208.95475,
+      "end_time": 4215.419542,
+      "avg_importance": 0.544048
+    },
+    {
+      "segment_id": 560,
+      "scene_count": 1,
+      "start_scene_id": 655,
+      "end_scene_id": 655,
+      "start_time": 4215.419542,
+      "end_time": 4254.583667,
+      "avg_importance": 0.459529
+    },
+    {
+      "segment_id": 561,
+      "scene_count": 1,
+      "start_scene_id": 656,
+      "end_scene_id": 656,
+      "start_time": 4254.583667,
+      "end_time": 4273.686083,
+      "avg_importance": 0.287868
+    },
+    {
+      "segment_id": 562,
+      "scene_count": 1,
+      "start_scene_id": 657,
+      "end_scene_id": 657,
+      "start_time": 4273.686083,
+      "end_time": 4282.611667,
+      "avg_importance": 0.205319
+    },
+    {
+      "segment_id": 563,
+      "scene_count": 1,
+      "start_scene_id": 658,
+      "end_scene_id": 658,
+      "start_time": 4282.611667,
+      "end_time": 4287.53325,
+      "avg_importance": 0.27072
+    },
+    {
+      "segment_id": 564,
+      "scene_count": 1,
+      "start_scene_id": 659,
+      "end_scene_id": 659,
+      "start_time": 4287.53325,
+      "end_time": 4298.752792,
+      "avg_importance": 0.186133
+    },
+    {
+      "segment_id": 565,
+      "scene_count": 1,
+      "start_scene_id": 660,
+      "end_scene_id": 660,
+      "start_time": 4298.752792,
+      "end_time": 4306.677375,
+      "avg_importance": 0.20787
+    },
+    {
+      "segment_id": 566,
+      "scene_count": 5,
+      "start_scene_id": 661,
+      "end_scene_id": 665,
+      "start_time": 4306.677375,
+      "end_time": 4323.319,
+      "avg_importance": 0.094036
+    },
+    {
+      "segment_id": 567,
+      "scene_count": 1,
+      "start_scene_id": 666,
+      "end_scene_id": 666,
+      "start_time": 4323.319,
+      "end_time": 4328.532542,
+      "avg_importance": 0.16477
+    },
+    {
+      "segment_id": 568,
+      "scene_count": 2,
+      "start_scene_id": 667,
+      "end_scene_id": 668,
+      "start_time": 4328.532542,
+      "end_time": 4336.373708,
+      "avg_importance": 0.12863
+    },
+    {
+      "segment_id": 569,
+      "scene_count": 1,
+      "start_scene_id": 669,
+      "end_scene_id": 669,
+      "start_time": 4336.373708,
+      "end_time": 4338.58425,
+      "avg_importance": 0.125018
+    },
+    {
+      "segment_id": 570,
+      "scene_count": 1,
+      "start_scene_id": 670,
+      "end_scene_id": 670,
+      "start_time": 4338.58425,
+      "end_time": 4343.630958,
+      "avg_importance": 0.353347
+    },
+    {
+      "segment_id": 571,
+      "scene_count": 1,
+      "start_scene_id": 671,
+      "end_scene_id": 671,
+      "start_time": 4343.630958,
+      "end_time": 4374.036333,
+      "avg_importance": 0.238162
+    },
+    {
+      "segment_id": 572,
+      "scene_count": 1,
+      "start_scene_id": 672,
+      "end_scene_id": 672,
+      "start_time": 4374.036333,
+      "end_time": 4386.215167,
+      "avg_importance": 0.42185
+    },
+    {
+      "segment_id": 573,
+      "scene_count": 1,
+      "start_scene_id": 673,
+      "end_scene_id": 673,
+      "start_time": 4386.215167,
+      "end_time": 4392.805083,
+      "avg_importance": 0.447806
+    },
+    {
+      "segment_id": 574,
+      "scene_count": 1,
+      "start_scene_id": 674,
+      "end_scene_id": 674,
+      "start_time": 4392.805083,
+      "end_time": 4395.64125,
+      "avg_importance": 0.242113
+    },
+    {
+      "segment_id": 575,
+      "scene_count": 1,
+      "start_scene_id": 675,
+      "end_scene_id": 675,
+      "start_time": 4395.64125,
+      "end_time": 4404.566833,
+      "avg_importance": 0.413375
+    },
+    {
+      "segment_id": 576,
+      "scene_count": 1,
+      "start_scene_id": 676,
+      "end_scene_id": 676,
+      "start_time": 4404.566833,
+      "end_time": 4416.120042,
+      "avg_importance": 0.231351
+    },
+    {
+      "segment_id": 577,
+      "scene_count": 1,
+      "start_scene_id": 677,
+      "end_scene_id": 677,
+      "start_time": 4416.120042,
+      "end_time": 4419.289875,
+      "avg_importance": 0.384124
+    },
+    {
+      "segment_id": 578,
+      "scene_count": 1,
+      "start_scene_id": 678,
+      "end_scene_id": 678,
+      "start_time": 4419.289875,
+      "end_time": 4422.334583,
+      "avg_importance": 0.361618
+    },
+    {
+      "segment_id": 579,
+      "scene_count": 2,
+      "start_scene_id": 679,
+      "end_scene_id": 680,
+      "start_time": 4422.334583,
+      "end_time": 4430.17575,
+      "avg_importance": 0.151195
+    },
+    {
+      "segment_id": 580,
+      "scene_count": 1,
+      "start_scene_id": 681,
+      "end_scene_id": 681,
+      "start_time": 4430.17575,
+      "end_time": 4433.17875,
+      "avg_importance": 0.330925
+    },
+    {
+      "segment_id": 581,
+      "scene_count": 1,
+      "start_scene_id": 682,
+      "end_scene_id": 682,
+      "start_time": 4433.17875,
+      "end_time": 4434.9305,
+      "avg_importance": 0.055914
+    },
+    {
+      "segment_id": 582,
+      "scene_count": 1,
+      "start_scene_id": 683,
+      "end_scene_id": 683,
+      "start_time": 4434.9305,
+      "end_time": 4440.561125,
+      "avg_importance": 0.087358
+    },
+    {
+      "segment_id": 583,
+      "scene_count": 1,
+      "start_scene_id": 684,
+      "end_scene_id": 684,
+      "start_time": 4440.561125,
+      "end_time": 4448.277167,
+      "avg_importance": 0.374523
+    },
+    {
+      "segment_id": 584,
+      "scene_count": 1,
+      "start_scene_id": 685,
+      "end_scene_id": 685,
+      "start_time": 4448.277167,
+      "end_time": 4453.991208,
+      "avg_importance": 0.119637
+    },
+    {
+      "segment_id": 585,
+      "scene_count": 4,
+      "start_scene_id": 686,
+      "end_scene_id": 689,
+      "start_time": 4453.991208,
+      "end_time": 4476.555417,
+      "avg_importance": 0.128051
+    },
+    {
+      "segment_id": 586,
+      "scene_count": 1,
+      "start_scene_id": 690,
+      "end_scene_id": 690,
+      "start_time": 4476.555417,
+      "end_time": 4483.020208,
+      "avg_importance": 0.218275
+    },
+    {
+      "segment_id": 587,
+      "scene_count": 1,
+      "start_scene_id": 691,
+      "end_scene_id": 691,
+      "start_time": 4483.020208,
+      "end_time": 4484.48,
+      "avg_importance": 0.196977
+    },
+    {
+      "segment_id": 588,
+      "scene_count": 1,
+      "start_scene_id": 692,
+      "end_scene_id": 692,
+      "start_time": 4484.48,
+      "end_time": 4495.491,
+      "avg_importance": 0.253062
+    },
+    {
+      "segment_id": 589,
+      "scene_count": 1,
+      "start_scene_id": 693,
+      "end_scene_id": 693,
+      "start_time": 4495.491,
+      "end_time": 4505.626125,
+      "avg_importance": 0.412027
+    },
+    {
+      "segment_id": 590,
+      "scene_count": 1,
+      "start_scene_id": 694,
+      "end_scene_id": 694,
+      "start_time": 4505.626125,
+      "end_time": 4510.506,
+      "avg_importance": 0.382472
+    },
+    {
+      "segment_id": 591,
+      "scene_count": 1,
+      "start_scene_id": 695,
+      "end_scene_id": 695,
+      "start_time": 4510.506,
+      "end_time": 4530.651125,
+      "avg_importance": 0.367952
+    },
+    {
+      "segment_id": 592,
+      "scene_count": 1,
+      "start_scene_id": 696,
+      "end_scene_id": 696,
+      "start_time": 4530.651125,
+      "end_time": 4535.239042,
+      "avg_importance": 0.370511
+    },
+    {
+      "segment_id": 593,
+      "scene_count": 2,
+      "start_scene_id": 697,
+      "end_scene_id": 698,
+      "start_time": 4535.239042,
+      "end_time": 4548.460583,
+      "avg_importance": 0.177541
+    },
+    {
+      "segment_id": 594,
+      "scene_count": 1,
+      "start_scene_id": 699,
+      "end_scene_id": 699,
+      "start_time": 4548.460583,
+      "end_time": 4550.254042,
+      "avg_importance": 0.238893
+    },
+    {
+      "segment_id": 595,
+      "scene_count": 1,
+      "start_scene_id": 700,
+      "end_scene_id": 700,
+      "start_time": 4550.254042,
+      "end_time": 4553.006792,
+      "avg_importance": 0.176825
+    },
+    {
+      "segment_id": 596,
+      "scene_count": 1,
+      "start_scene_id": 701,
+      "end_scene_id": 701,
+      "start_time": 4553.006792,
+      "end_time": 4555.008792,
+      "avg_importance": 0.133289
+    },
+    {
+      "segment_id": 597,
+      "scene_count": 1,
+      "start_scene_id": 702,
+      "end_scene_id": 702,
+      "start_time": 4555.008792,
+      "end_time": 4557.135917,
+      "avg_importance": 0.113057
+    },
+    {
+      "segment_id": 598,
+      "scene_count": 1,
+      "start_scene_id": 703,
+      "end_scene_id": 703,
+      "start_time": 4557.135917,
+      "end_time": 4559.80525,
+      "avg_importance": 0.100663
+    },
+    {
+      "segment_id": 599,
+      "scene_count": 1,
+      "start_scene_id": 704,
+      "end_scene_id": 704,
+      "start_time": 4559.80525,
+      "end_time": 4566.144917,
+      "avg_importance": 0.059979
+    },
+    {
+      "segment_id": 600,
+      "scene_count": 1,
+      "start_scene_id": 705,
+      "end_scene_id": 705,
+      "start_time": 4566.144917,
+      "end_time": 4568.480583,
+      "avg_importance": 0.156272
+    },
+    {
+      "segment_id": 601,
+      "scene_count": 1,
+      "start_scene_id": 706,
+      "end_scene_id": 706,
+      "start_time": 4568.480583,
+      "end_time": 4571.483583,
+      "avg_importance": 0.065991
+    },
+    {
+      "segment_id": 602,
+      "scene_count": 1,
+      "start_scene_id": 707,
+      "end_scene_id": 707,
+      "start_time": 4571.483583,
+      "end_time": 4577.364458,
+      "avg_importance": 0.109446
+    },
+    {
+      "segment_id": 603,
+      "scene_count": 2,
+      "start_scene_id": 708,
+      "end_scene_id": 709,
+      "start_time": 4577.364458,
+      "end_time": 4584.454875,
+      "avg_importance": 0.072841
+    },
+    {
+      "segment_id": 604,
+      "scene_count": 1,
+      "start_scene_id": 710,
+      "end_scene_id": 710,
+      "start_time": 4584.454875,
+      "end_time": 4606.85225,
+      "avg_importance": 0.086224
+    },
+    {
+      "segment_id": 605,
+      "scene_count": 1,
+      "start_scene_id": 711,
+      "end_scene_id": 711,
+      "start_time": 4606.85225,
+      "end_time": 4609.813542,
+      "avg_importance": 0.076726
+    },
+    {
+      "segment_id": 606,
+      "scene_count": 1,
+      "start_scene_id": 712,
+      "end_scene_id": 712,
+      "start_time": 4609.813542,
+      "end_time": 4616.612,
+      "avg_importance": 0.074332
+    },
+    {
+      "segment_id": 607,
+      "scene_count": 1,
+      "start_scene_id": 713,
+      "end_scene_id": 713,
+      "start_time": 4616.612,
+      "end_time": 4621.86725,
+      "avg_importance": 0.033516
+    },
+    {
+      "segment_id": 608,
+      "scene_count": 1,
+      "start_scene_id": 714,
+      "end_scene_id": 714,
+      "start_time": 4621.86725,
+      "end_time": 4626.622,
+      "avg_importance": 0.308027
+    },
+    {
+      "segment_id": 609,
+      "scene_count": 1,
+      "start_scene_id": 715,
+      "end_scene_id": 715,
+      "start_time": 4626.622,
+      "end_time": 4634.087792,
+      "avg_importance": 0.256605
+    },
+    {
+      "segment_id": 610,
+      "scene_count": 1,
+      "start_scene_id": 716,
+      "end_scene_id": 716,
+      "start_time": 4634.087792,
+      "end_time": 4636.506875,
+      "avg_importance": 0.200687
+    },
+    {
+      "segment_id": 611,
+      "scene_count": 2,
+      "start_scene_id": 717,
+      "end_scene_id": 718,
+      "start_time": 4636.506875,
+      "end_time": 4647.517875,
+      "avg_importance": 0.118573
+    },
+    {
+      "segment_id": 612,
+      "scene_count": 1,
+      "start_scene_id": 719,
+      "end_scene_id": 719,
+      "start_time": 4647.517875,
+      "end_time": 4649.853542,
+      "avg_importance": 0.201691
+    },
+    {
+      "segment_id": 613,
+      "scene_count": 1,
+      "start_scene_id": 720,
+      "end_scene_id": 720,
+      "start_time": 4649.853542,
+      "end_time": 4657.486167,
+      "avg_importance": 0.170516
+    },
+    {
+      "segment_id": 614,
+      "scene_count": 1,
+      "start_scene_id": 721,
+      "end_scene_id": 721,
+      "start_time": 4657.486167,
+      "end_time": 4673.669,
+      "avg_importance": 0.240415
+    },
+    {
+      "segment_id": 615,
+      "scene_count": 1,
+      "start_scene_id": 722,
+      "end_scene_id": 722,
+      "start_time": 4673.669,
+      "end_time": 4684.1795,
+      "avg_importance": 0.352073
+    },
+    {
+      "segment_id": 616,
+      "scene_count": 1,
+      "start_scene_id": 723,
+      "end_scene_id": 723,
+      "start_time": 4684.1795,
+      "end_time": 4689.017667,
+      "avg_importance": 0.358192
+    },
+    {
+      "segment_id": 617,
+      "scene_count": 1,
+      "start_scene_id": 724,
+      "end_scene_id": 724,
+      "start_time": 4689.017667,
+      "end_time": 4692.1875,
+      "avg_importance": 0.489924
+    },
+    {
+      "segment_id": 618,
+      "scene_count": 1,
+      "start_scene_id": 725,
+      "end_scene_id": 725,
+      "start_time": 4692.1875,
+      "end_time": 4705.575875,
+      "avg_importance": 0.287843
+    },
+    {
+      "segment_id": 619,
+      "scene_count": 1,
+      "start_scene_id": 726,
+      "end_scene_id": 726,
+      "start_time": 4705.575875,
+      "end_time": 4711.415042,
+      "avg_importance": 0.323459
+    },
+    {
+      "segment_id": 620,
+      "scene_count": 1,
+      "start_scene_id": 727,
+      "end_scene_id": 727,
+      "start_time": 4711.415042,
+      "end_time": 4732.519458,
+      "avg_importance": 0.322276
+    },
+    {
+      "segment_id": 621,
+      "scene_count": 1,
+      "start_scene_id": 728,
+      "end_scene_id": 728,
+      "start_time": 4732.519458,
+      "end_time": 4735.48075,
+      "avg_importance": 0.23919
+    },
+    {
+      "segment_id": 622,
+      "scene_count": 3,
+      "start_scene_id": 729,
+      "end_scene_id": 731,
+      "start_time": 4735.48075,
+      "end_time": 4745.741,
+      "avg_importance": 0.152905
+    },
+    {
+      "segment_id": 623,
+      "scene_count": 1,
+      "start_scene_id": 732,
+      "end_scene_id": 732,
+      "start_time": 4745.741,
+      "end_time": 4761.757,
+      "avg_importance": 0.239253
+    },
+    {
+      "segment_id": 624,
+      "scene_count": 1,
+      "start_scene_id": 733,
+      "end_scene_id": 733,
+      "start_time": 4761.757,
+      "end_time": 4764.2595,
+      "avg_importance": 0.255345
+    },
+    {
+      "segment_id": 625,
+      "scene_count": 1,
+      "start_scene_id": 734,
+      "end_scene_id": 734,
+      "start_time": 4764.2595,
+      "end_time": 4766.344917,
+      "avg_importance": 0.355757
+    },
+    {
+      "segment_id": 626,
+      "scene_count": 1,
+      "start_scene_id": 735,
+      "end_scene_id": 735,
+      "start_time": 4766.344917,
+      "end_time": 4769.055958,
+      "avg_importance": 0.080821
+    },
+    {
+      "segment_id": 627,
+      "scene_count": 1,
+      "start_scene_id": 736,
+      "end_scene_id": 736,
+      "start_time": 4769.055958,
+      "end_time": 4775.979542,
+      "avg_importance": 0.153739
+    },
+    {
+      "segment_id": 628,
+      "scene_count": 1,
+      "start_scene_id": 737,
+      "end_scene_id": 737,
+      "start_time": 4775.979542,
+      "end_time": 4778.315208,
+      "avg_importance": 0.377853
+    },
+    {
+      "segment_id": 629,
+      "scene_count": 1,
+      "start_scene_id": 738,
+      "end_scene_id": 738,
+      "start_time": 4778.315208,
+      "end_time": 4782.2775,
+      "avg_importance": 0.367152
+    },
+    {
+      "segment_id": 630,
+      "scene_count": 1,
+      "start_scene_id": 739,
+      "end_scene_id": 739,
+      "start_time": 4782.2775,
+      "end_time": 4799.836708,
+      "avg_importance": 0.431452
+    },
+    {
+      "segment_id": 631,
+      "scene_count": 1,
+      "start_scene_id": 740,
+      "end_scene_id": 740,
+      "start_time": 4799.836708,
+      "end_time": 4802.923125,
+      "avg_importance": 0.287457
+    },
+    {
+      "segment_id": 632,
+      "scene_count": 2,
+      "start_scene_id": 741,
+      "end_scene_id": 742,
+      "start_time": 4802.923125,
+      "end_time": 4807.260792,
+      "avg_importance": 0.236327
+    },
+    {
+      "segment_id": 633,
+      "scene_count": 1,
+      "start_scene_id": 743,
+      "end_scene_id": 743,
+      "start_time": 4807.260792,
+      "end_time": 4809.763292,
+      "avg_importance": 0.280941
+    },
+    {
+      "segment_id": 634,
+      "scene_count": 1,
+      "start_scene_id": 744,
+      "end_scene_id": 744,
+      "start_time": 4809.763292,
+      "end_time": 4811.765292,
+      "avg_importance": 0.326061
+    },
+    {
+      "segment_id": 635,
+      "scene_count": 1,
+      "start_scene_id": 745,
+      "end_scene_id": 745,
+      "start_time": 4811.765292,
+      "end_time": 4839.543042,
+      "avg_importance": 0.276326
+    },
+    {
+      "segment_id": 636,
+      "scene_count": 1,
+      "start_scene_id": 746,
+      "end_scene_id": 746,
+      "start_time": 4839.543042,
+      "end_time": 4860.564042,
+      "avg_importance": 0.353333
+    },
+    {
+      "segment_id": 637,
+      "scene_count": 1,
+      "start_scene_id": 747,
+      "end_scene_id": 747,
+      "start_time": 4860.564042,
+      "end_time": 4876.496625,
+      "avg_importance": 0.28674
+    },
+    {
+      "segment_id": 638,
+      "scene_count": 1,
+      "start_scene_id": 748,
+      "end_scene_id": 748,
+      "start_time": 4876.496625,
+      "end_time": 4880.292083,
+      "avg_importance": 0.295828
+    },
+    {
+      "segment_id": 639,
+      "scene_count": 1,
+      "start_scene_id": 749,
+      "end_scene_id": 749,
+      "start_time": 4880.292083,
+      "end_time": 4884.212667,
+      "avg_importance": 0.235766
+    },
+    {
+      "segment_id": 640,
+      "scene_count": 1,
+      "start_scene_id": 750,
+      "end_scene_id": 750,
+      "start_time": 4884.212667,
+      "end_time": 4886.590042,
+      "avg_importance": 0.295212
+    },
+    {
+      "segment_id": 641,
+      "scene_count": 1,
+      "start_scene_id": 751,
+      "end_scene_id": 751,
+      "start_time": 4886.590042,
+      "end_time": 4891.761875,
+      "avg_importance": 0.265798
+    },
+    {
+      "segment_id": 642,
+      "scene_count": 1,
+      "start_scene_id": 752,
+      "end_scene_id": 752,
+      "start_time": 4891.761875,
+      "end_time": 4893.471917,
+      "avg_importance": 0.261914
+    },
+    {
+      "segment_id": 643,
+      "scene_count": 1,
+      "start_scene_id": 753,
+      "end_scene_id": 753,
+      "start_time": 4893.471917,
+      "end_time": 4896.683458,
+      "avg_importance": 0.305258
+    },
+    {
+      "segment_id": 644,
+      "scene_count": 1,
+      "start_scene_id": 754,
+      "end_scene_id": 754,
+      "start_time": 4896.683458,
+      "end_time": 4907.319083,
+      "avg_importance": 0.250453
+    },
+    {
+      "segment_id": 645,
+      "scene_count": 1,
+      "start_scene_id": 755,
+      "end_scene_id": 755,
+      "start_time": 4907.319083,
+      "end_time": 4913.950708,
+      "avg_importance": 0.162972
+    },
+    {
+      "segment_id": 646,
+      "scene_count": 1,
+      "start_scene_id": 756,
+      "end_scene_id": 756,
+      "start_time": 4913.950708,
+      "end_time": 4915.994417,
+      "avg_importance": 0.295075
+    },
+    {
+      "segment_id": 647,
+      "scene_count": 1,
+      "start_scene_id": 757,
+      "end_scene_id": 757,
+      "start_time": 4915.994417,
+      "end_time": 4917.66275,
+      "avg_importance": 0.303762
+    },
+    {
+      "segment_id": 648,
+      "scene_count": 1,
+      "start_scene_id": 758,
+      "end_scene_id": 758,
+      "start_time": 4917.66275,
+      "end_time": 4919.956708,
+      "avg_importance": 0.356915
+    },
+    {
+      "segment_id": 649,
+      "scene_count": 1,
+      "start_scene_id": 759,
+      "end_scene_id": 759,
+      "start_time": 4919.956708,
+      "end_time": 4921.958708,
+      "avg_importance": 0.186414
+    },
+    {
+      "segment_id": 650,
+      "scene_count": 1,
+      "start_scene_id": 760,
+      "end_scene_id": 760,
+      "start_time": 4921.958708,
+      "end_time": 4924.502917,
+      "avg_importance": 0.224977
+    },
+    {
+      "segment_id": 651,
+      "scene_count": 1,
+      "start_scene_id": 761,
+      "end_scene_id": 761,
+      "start_time": 4924.502917,
+      "end_time": 4926.296375,
+      "avg_importance": 0.159281
+    },
+    {
+      "segment_id": 652,
+      "scene_count": 1,
+      "start_scene_id": 762,
+      "end_scene_id": 762,
+      "start_time": 4926.296375,
+      "end_time": 4927.339083,
+      "avg_importance": 0.279698
+    },
+    {
+      "segment_id": 653,
+      "scene_count": 1,
+      "start_scene_id": 763,
+      "end_scene_id": 763,
+      "start_time": 4927.339083,
+      "end_time": 4933.595333,
+      "avg_importance": 0.175739
+    },
+    {
+      "segment_id": 654,
+      "scene_count": 1,
+      "start_scene_id": 764,
+      "end_scene_id": 764,
+      "start_time": 4933.595333,
+      "end_time": 4991.319667,
+      "avg_importance": 0.240095
+    },
+    {
+      "segment_id": 655,
+      "scene_count": 1,
+      "start_scene_id": 765,
+      "end_scene_id": 765,
+      "start_time": 4991.319667,
+      "end_time": 4995.907583,
+      "avg_importance": 0.155876
+    },
+    {
+      "segment_id": 656,
+      "scene_count": 1,
+      "start_scene_id": 766,
+      "end_scene_id": 766,
+      "start_time": 4995.907583,
+      "end_time": 5003.623625,
+      "avg_importance": 0.185156
+    },
+    {
+      "segment_id": 657,
+      "scene_count": 1,
+      "start_scene_id": 767,
+      "end_scene_id": 767,
+      "start_time": 5003.623625,
+      "end_time": 5014.676333,
+      "avg_importance": 0.164045
+    },
+    {
+      "segment_id": 658,
+      "scene_count": 1,
+      "start_scene_id": 768,
+      "end_scene_id": 768,
+      "start_time": 5014.676333,
+      "end_time": 5025.061708,
+      "avg_importance": 0.256937
+    },
+    {
+      "segment_id": 659,
+      "scene_count": 1,
+      "start_scene_id": 769,
+      "end_scene_id": 769,
+      "start_time": 5025.061708,
+      "end_time": 5028.815458,
+      "avg_importance": 0.322082
+    },
+    {
+      "segment_id": 660,
+      "scene_count": 1,
+      "start_scene_id": 770,
+      "end_scene_id": 770,
+      "start_time": 5028.815458,
+      "end_time": 5033.486792,
+      "avg_importance": 0.215711
+    },
+    {
+      "segment_id": 661,
+      "scene_count": 1,
+      "start_scene_id": 771,
+      "end_scene_id": 771,
+      "start_time": 5033.486792,
+      "end_time": 5035.613917,
+      "avg_importance": 0.197548
+    },
+    {
+      "segment_id": 662,
+      "scene_count": 1,
+      "start_scene_id": 772,
+      "end_scene_id": 772,
+      "start_time": 5035.613917,
+      "end_time": 5037.032,
+      "avg_importance": 0.267201
+    },
+    {
+      "segment_id": 663,
+      "scene_count": 1,
+      "start_scene_id": 773,
+      "end_scene_id": 773,
+      "start_time": 5037.032,
+      "end_time": 5039.242542,
+      "avg_importance": 0.059453
+    },
+    {
+      "segment_id": 664,
+      "scene_count": 1,
+      "start_scene_id": 774,
+      "end_scene_id": 774,
+      "start_time": 5039.242542,
+      "end_time": 5041.703333,
+      "avg_importance": 0.234354
+    },
+    {
+      "segment_id": 665,
+      "scene_count": 1,
+      "start_scene_id": 775,
+      "end_scene_id": 775,
+      "start_time": 5041.703333,
+      "end_time": 5057.927875,
+      "avg_importance": 0.249662
+    },
+    {
+      "segment_id": 666,
+      "scene_count": 1,
+      "start_scene_id": 776,
+      "end_scene_id": 776,
+      "start_time": 5057.927875,
+      "end_time": 5066.936875,
+      "avg_importance": 0.181837
+    },
+    {
+      "segment_id": 667,
+      "scene_count": 1,
+      "start_scene_id": 777,
+      "end_scene_id": 777,
+      "start_time": 5066.936875,
+      "end_time": 5069.731333,
+      "avg_importance": 0.212367
+    },
+    {
+      "segment_id": 668,
+      "scene_count": 1,
+      "start_scene_id": 778,
+      "end_scene_id": 778,
+      "start_time": 5069.731333,
+      "end_time": 5072.692625,
+      "avg_importance": 0.186517
+    },
+    {
+      "segment_id": 669,
+      "scene_count": 1,
+      "start_scene_id": 779,
+      "end_scene_id": 779,
+      "start_time": 5072.692625,
+      "end_time": 5076.029292,
+      "avg_importance": 0.231926
+    },
+    {
+      "segment_id": 670,
+      "scene_count": 1,
+      "start_scene_id": 780,
+      "end_scene_id": 780,
+      "start_time": 5076.029292,
+      "end_time": 5079.157417,
+      "avg_importance": 0.298855
+    },
+    {
+      "segment_id": 671,
+      "scene_count": 1,
+      "start_scene_id": 781,
+      "end_scene_id": 781,
+      "start_time": 5079.157417,
+      "end_time": 5082.160417,
+      "avg_importance": 0.277844
+    },
+    {
+      "segment_id": 672,
+      "scene_count": 1,
+      "start_scene_id": 782,
+      "end_scene_id": 782,
+      "start_time": 5082.160417,
+      "end_time": 5086.039292,
+      "avg_importance": 0.116173
+    },
+    {
+      "segment_id": 673,
+      "scene_count": 1,
+      "start_scene_id": 783,
+      "end_scene_id": 783,
+      "start_time": 5086.039292,
+      "end_time": 5091.211125,
+      "avg_importance": 0.225028
+    },
+    {
+      "segment_id": 674,
+      "scene_count": 1,
+      "start_scene_id": 784,
+      "end_scene_id": 784,
+      "start_time": 5091.211125,
+      "end_time": 5101.471375,
+      "avg_importance": 0.224857
+    },
+    {
+      "segment_id": 675,
+      "scene_count": 1,
+      "start_scene_id": 785,
+      "end_scene_id": 785,
+      "start_time": 5101.471375,
+      "end_time": 5115.36025,
+      "avg_importance": 0.227108
+    },
+    {
+      "segment_id": 676,
+      "scene_count": 1,
+      "start_scene_id": 786,
+      "end_scene_id": 786,
+      "start_time": 5115.36025,
+      "end_time": 5117.237125,
+      "avg_importance": 0.26836
+    },
+    {
+      "segment_id": 677,
+      "scene_count": 1,
+      "start_scene_id": 787,
+      "end_scene_id": 787,
+      "start_time": 5117.237125,
+      "end_time": 5118.822042,
+      "avg_importance": 0.196018
+    },
+    {
+      "segment_id": 678,
+      "scene_count": 1,
+      "start_scene_id": 788,
+      "end_scene_id": 788,
+      "start_time": 5118.822042,
+      "end_time": 5122.075292,
+      "avg_importance": 0.142781
+    },
+    {
+      "segment_id": 679,
+      "scene_count": 1,
+      "start_scene_id": 789,
+      "end_scene_id": 789,
+      "start_time": 5122.075292,
+      "end_time": 5124.661208,
+      "avg_importance": 0.220322
+    },
+    {
+      "segment_id": 680,
+      "scene_count": 1,
+      "start_scene_id": 790,
+      "end_scene_id": 790,
+      "start_time": 5124.661208,
+      "end_time": 5126.412958,
+      "avg_importance": 0.237433
+    },
+    {
+      "segment_id": 681,
+      "scene_count": 2,
+      "start_scene_id": 791,
+      "end_scene_id": 792,
+      "start_time": 5126.412958,
+      "end_time": 5134.087292,
+      "avg_importance": 0.154109
+    },
+    {
+      "segment_id": 682,
+      "scene_count": 1,
+      "start_scene_id": 793,
+      "end_scene_id": 793,
+      "start_time": 5134.087292,
+      "end_time": 5135.338542,
+      "avg_importance": 0.218335
+    },
+    {
+      "segment_id": 683,
+      "scene_count": 1,
+      "start_scene_id": 794,
+      "end_scene_id": 794,
+      "start_time": 5135.338542,
+      "end_time": 5137.757625,
+      "avg_importance": 0.154926
+    },
+    {
+      "segment_id": 684,
+      "scene_count": 1,
+      "start_scene_id": 795,
+      "end_scene_id": 795,
+      "start_time": 5137.757625,
+      "end_time": 5153.231417,
+      "avg_importance": 0.213101
+    },
+    {
+      "segment_id": 685,
+      "scene_count": 1,
+      "start_scene_id": 796,
+      "end_scene_id": 796,
+      "start_time": 5153.231417,
+      "end_time": 5158.111292,
+      "avg_importance": 0.347604
+    },
+    {
+      "segment_id": 686,
+      "scene_count": 1,
+      "start_scene_id": 797,
+      "end_scene_id": 797,
+      "start_time": 5158.111292,
+      "end_time": 5164.993167,
+      "avg_importance": 0.302059
+    },
+    {
+      "segment_id": 687,
+      "scene_count": 1,
+      "start_scene_id": 798,
+      "end_scene_id": 798,
+      "start_time": 5164.993167,
+      "end_time": 5166.536375,
+      "avg_importance": 0.289113
+    },
+    {
+      "segment_id": 688,
+      "scene_count": 1,
+      "start_scene_id": 799,
+      "end_scene_id": 799,
+      "start_time": 5166.536375,
+      "end_time": 5170.081583,
+      "avg_importance": 0.215832
+    },
+    {
+      "segment_id": 689,
+      "scene_count": 1,
+      "start_scene_id": 800,
+      "end_scene_id": 800,
+      "start_time": 5170.081583,
+      "end_time": 5175.211708,
+      "avg_importance": 0.242224
+    },
+    {
+      "segment_id": 690,
+      "scene_count": 2,
+      "start_scene_id": 801,
+      "end_scene_id": 802,
+      "start_time": 5175.211708,
+      "end_time": 5181.467958,
+      "avg_importance": 0.168236
+    },
+    {
+      "segment_id": 691,
+      "scene_count": 1,
+      "start_scene_id": 803,
+      "end_scene_id": 803,
+      "start_time": 5181.467958,
+      "end_time": 5182.844333,
+      "avg_importance": 0.240094
+    },
+    {
+      "segment_id": 692,
+      "scene_count": 1,
+      "start_scene_id": 804,
+      "end_scene_id": 804,
+      "start_time": 5182.844333,
+      "end_time": 5202.322125,
+      "avg_importance": 0.25943
+    },
+    {
+      "segment_id": 693,
+      "scene_count": 1,
+      "start_scene_id": 805,
+      "end_scene_id": 805,
+      "start_time": 5202.322125,
+      "end_time": 5233.47825,
+      "avg_importance": 0.483802
+    },
+    {
+      "segment_id": 694,
+      "scene_count": 1,
+      "start_scene_id": 806,
+      "end_scene_id": 806,
+      "start_time": 5233.47825,
+      "end_time": 5242.695792,
+      "avg_importance": 0.286547
+    },
+    {
+      "segment_id": 695,
+      "scene_count": 1,
+      "start_scene_id": 807,
+      "end_scene_id": 807,
+      "start_time": 5242.695792,
+      "end_time": 5246.950042,
+      "avg_importance": 0.287346
+    },
+    {
+      "segment_id": 696,
+      "scene_count": 1,
+      "start_scene_id": 808,
+      "end_scene_id": 808,
+      "start_time": 5246.950042,
+      "end_time": 5256.542958,
+      "avg_importance": 0.339865
+    },
+    {
+      "segment_id": 697,
+      "scene_count": 1,
+      "start_scene_id": 809,
+      "end_scene_id": 809,
+      "start_time": 5256.542958,
+      "end_time": 5271.224292,
+      "avg_importance": 0.338625
+    },
+    {
+      "segment_id": 698,
+      "scene_count": 1,
+      "start_scene_id": 810,
+      "end_scene_id": 810,
+      "start_time": 5271.224292,
+      "end_time": 5274.227292,
+      "avg_importance": 0.267411
+    },
+    {
+      "segment_id": 699,
+      "scene_count": 1,
+      "start_scene_id": 811,
+      "end_scene_id": 811,
+      "start_time": 5274.227292,
+      "end_time": 5280.942333,
+      "avg_importance": 0.393143
+    },
+    {
+      "segment_id": 700,
+      "scene_count": 1,
+      "start_scene_id": 812,
+      "end_scene_id": 812,
+      "start_time": 5280.942333,
+      "end_time": 5288.574958,
+      "avg_importance": 0.285448
+    },
+    {
+      "segment_id": 701,
+      "scene_count": 2,
+      "start_scene_id": 813,
+      "end_scene_id": 814,
+      "start_time": 5288.574958,
+      "end_time": 5294.205583,
+      "avg_importance": 0.144546
+    },
+    {
+      "segment_id": 702,
+      "scene_count": 1,
+      "start_scene_id": 815,
+      "end_scene_id": 815,
+      "start_time": 5294.205583,
+      "end_time": 5296.082458,
+      "avg_importance": 0.135149
+    },
+    {
+      "segment_id": 703,
+      "scene_count": 1,
+      "start_scene_id": 816,
+      "end_scene_id": 816,
+      "start_time": 5296.082458,
+      "end_time": 5297.959333,
+      "avg_importance": 0.153093
+    },
+    {
+      "segment_id": 704,
+      "scene_count": 1,
+      "start_scene_id": 817,
+      "end_scene_id": 817,
+      "start_time": 5297.959333,
+      "end_time": 5314.600958,
+      "avg_importance": 0.125711
+    },
+    {
+      "segment_id": 705,
+      "scene_count": 1,
+      "start_scene_id": 818,
+      "end_scene_id": 818,
+      "start_time": 5314.600958,
+      "end_time": 5316.227583,
+      "avg_importance": 0.31579
+    },
+    {
+      "segment_id": 706,
+      "scene_count": 1,
+      "start_scene_id": 819,
+      "end_scene_id": 819,
+      "start_time": 5316.227583,
+      "end_time": 5320.606958,
+      "avg_importance": 0.175533
+    },
+    {
+      "segment_id": 707,
+      "scene_count": 1,
+      "start_scene_id": 820,
+      "end_scene_id": 820,
+      "start_time": 5320.606958,
+      "end_time": 5324.235583,
+      "avg_importance": 0.175753
+    },
+    {
+      "segment_id": 708,
+      "scene_count": 1,
+      "start_scene_id": 821,
+      "end_scene_id": 821,
+      "start_time": 5324.235583,
+      "end_time": 5332.035042,
+      "avg_importance": 0.143542
+    },
+    {
+      "segment_id": 709,
+      "scene_count": 1,
+      "start_scene_id": 822,
+      "end_scene_id": 822,
+      "start_time": 5332.035042,
+      "end_time": 5335.538542,
+      "avg_importance": 0.232483
+    },
+    {
+      "segment_id": 710,
+      "scene_count": 1,
+      "start_scene_id": 823,
+      "end_scene_id": 823,
+      "start_time": 5335.538542,
+      "end_time": 5345.173167,
+      "avg_importance": 0.076629
+    },
+    {
+      "segment_id": 711,
+      "scene_count": 1,
+      "start_scene_id": 824,
+      "end_scene_id": 824,
+      "start_time": 5345.173167,
+      "end_time": 5348.718375,
+      "avg_importance": 0.466925
+    },
+    {
+      "segment_id": 712,
+      "scene_count": 1,
+      "start_scene_id": 825,
+      "end_scene_id": 825,
+      "start_time": 5348.718375,
+      "end_time": 5354.307292,
+      "avg_importance": 0.382698
+    },
+    {
+      "segment_id": 713,
+      "scene_count": 1,
+      "start_scene_id": 826,
+      "end_scene_id": 826,
+      "start_time": 5354.307292,
+      "end_time": 5356.684667,
+      "avg_importance": 0.334935
+    },
+    {
+      "segment_id": 714,
+      "scene_count": 1,
+      "start_scene_id": 827,
+      "end_scene_id": 827,
+      "start_time": 5356.684667,
+      "end_time": 5361.10575,
+      "avg_importance": 0.4494
+    },
+    {
+      "segment_id": 715,
+      "scene_count": 2,
+      "start_scene_id": 828,
+      "end_scene_id": 829,
+      "start_time": 5361.10575,
+      "end_time": 5368.363,
+      "avg_importance": 0.150523
+    },
+    {
+      "segment_id": 716,
+      "scene_count": 1,
+      "start_scene_id": 830,
+      "end_scene_id": 830,
+      "start_time": 5368.363,
+      "end_time": 5371.11575,
+      "avg_importance": 0.258464
+    },
+    {
+      "segment_id": 717,
+      "scene_count": 3,
+      "start_scene_id": 831,
+      "end_scene_id": 833,
+      "start_time": 5371.11575,
+      "end_time": 5378.8735,
+      "avg_importance": 0.134069
+    },
+    {
+      "segment_id": 718,
+      "scene_count": 1,
+      "start_scene_id": 834,
+      "end_scene_id": 834,
+      "start_time": 5378.8735,
+      "end_time": 5430.383292,
+      "avg_importance": 0.171321
+    },
+    {
+      "segment_id": 719,
+      "scene_count": 1,
+      "start_scene_id": 835,
+      "end_scene_id": 835,
+      "start_time": 5430.383292,
+      "end_time": 5433.67825,
+      "avg_importance": 0.341866
+    },
+    {
+      "segment_id": 720,
+      "scene_count": 1,
+      "start_scene_id": 836,
+      "end_scene_id": 836,
+      "start_time": 5433.67825,
+      "end_time": 5437.223458,
+      "avg_importance": 0.22458
+    },
+    {
+      "segment_id": 721,
+      "scene_count": 1,
+      "start_scene_id": 837,
+      "end_scene_id": 837,
+      "start_time": 5437.223458,
+      "end_time": 5438.266167,
+      "avg_importance": 0.244604
+    },
+    {
+      "segment_id": 722,
+      "scene_count": 1,
+      "start_scene_id": 838,
+      "end_scene_id": 838,
+      "start_time": 5438.266167,
+      "end_time": 5440.476708,
+      "avg_importance": 0.290698
+    },
+    {
+      "segment_id": 723,
+      "scene_count": 3,
+      "start_scene_id": 839,
+      "end_scene_id": 841,
+      "start_time": 5440.476708,
+      "end_time": 5461.372583,
+      "avg_importance": 0.06477
+    },
+    {
+      "segment_id": 724,
+      "scene_count": 1,
+      "start_scene_id": 842,
+      "end_scene_id": 842,
+      "start_time": 5461.372583,
+      "end_time": 5463.458,
+      "avg_importance": 0.466339
+    },
+    {
+      "segment_id": 725,
+      "scene_count": 1,
+      "start_scene_id": 843,
+      "end_scene_id": 843,
+      "start_time": 5463.458,
+      "end_time": 5476.429292,
+      "avg_importance": 0.349342
+    },
+    {
+      "segment_id": 726,
+      "scene_count": 1,
+      "start_scene_id": 844,
+      "end_scene_id": 844,
+      "start_time": 5476.429292,
+      "end_time": 5487.9825,
+      "avg_importance": 0.293279
+    },
+    {
+      "segment_id": 727,
+      "scene_count": 1,
+      "start_scene_id": 845,
+      "end_scene_id": 845,
+      "start_time": 5487.9825,
+      "end_time": 5491.819667,
+      "avg_importance": 0.23847
+    },
+    {
+      "segment_id": 728,
+      "scene_count": 1,
+      "start_scene_id": 846,
+      "end_scene_id": 846,
+      "start_time": 5491.819667,
+      "end_time": 5496.324167,
+      "avg_importance": 0.247031
+    },
+    {
+      "segment_id": 729,
+      "scene_count": 2,
+      "start_scene_id": 847,
+      "end_scene_id": 848,
+      "start_time": 5496.324167,
+      "end_time": 5504.165333,
+      "avg_importance": 0.100901
+    },
+    {
+      "segment_id": 730,
+      "scene_count": 1,
+      "start_scene_id": 849,
+      "end_scene_id": 849,
+      "start_time": 5504.165333,
+      "end_time": 5508.75325,
+      "avg_importance": 0.170267
+    },
+    {
+      "segment_id": 731,
+      "scene_count": 1,
+      "start_scene_id": 850,
+      "end_scene_id": 850,
+      "start_time": 5508.75325,
+      "end_time": 5514.467292,
+      "avg_importance": 0.137348
+    },
+    {
+      "segment_id": 732,
+      "scene_count": 1,
+      "start_scene_id": 851,
+      "end_scene_id": 851,
+      "start_time": 5514.467292,
+      "end_time": 5521.474292,
+      "avg_importance": 0.343927
+    },
+    {
+      "segment_id": 733,
+      "scene_count": 1,
+      "start_scene_id": 852,
+      "end_scene_id": 852,
+      "start_time": 5521.474292,
+      "end_time": 5526.479292,
+      "avg_importance": 0.129789
+    },
+    {
+      "segment_id": 734,
+      "scene_count": 1,
+      "start_scene_id": 853,
+      "end_scene_id": 853,
+      "start_time": 5526.479292,
+      "end_time": 5529.524,
+      "avg_importance": 0.079557
+    },
+    {
+      "segment_id": 735,
+      "scene_count": 1,
+      "start_scene_id": 854,
+      "end_scene_id": 854,
+      "start_time": 5529.524,
+      "end_time": 5531.192333,
+      "avg_importance": 0.130168
+    },
+    {
+      "segment_id": 736,
+      "scene_count": 1,
+      "start_scene_id": 855,
+      "end_scene_id": 855,
+      "start_time": 5531.192333,
+      "end_time": 5534.77925,
+      "avg_importance": 0.1781
+    },
+    {
+      "segment_id": 737,
+      "scene_count": 1,
+      "start_scene_id": 856,
+      "end_scene_id": 856,
+      "start_time": 5534.77925,
+      "end_time": 5537.323458,
+      "avg_importance": 0.220543
+    },
+    {
+      "segment_id": 738,
+      "scene_count": 1,
+      "start_scene_id": 857,
+      "end_scene_id": 857,
+      "start_time": 5537.323458,
+      "end_time": 5542.119917,
+      "avg_importance": 0.302031
+    },
+    {
+      "segment_id": 739,
+      "scene_count": 1,
+      "start_scene_id": 858,
+      "end_scene_id": 858,
+      "start_time": 5542.119917,
+      "end_time": 5684.011667,
+      "avg_importance": 0.371877
+    },
+    {
+      "segment_id": 740,
+      "scene_count": 2,
+      "start_scene_id": 859,
+      "end_scene_id": 860,
+      "start_time": 5684.011667,
+      "end_time": 5686.138792,
+      "avg_importance": 0.339907
+    },
+    {
+      "segment_id": 741,
+      "scene_count": 1,
+      "start_scene_id": 861,
+      "end_scene_id": 861,
+      "start_time": 5686.138792,
+      "end_time": 5713.124083,
+      "avg_importance": 0.230549
+    },
+    {
+      "segment_id": 742,
+      "scene_count": 1,
+      "start_scene_id": 862,
+      "end_scene_id": 862,
+      "start_time": 5713.124083,
+      "end_time": 5714.875833,
+      "avg_importance": 0.259711
+    },
+    {
+      "segment_id": 743,
+      "scene_count": 1,
+      "start_scene_id": 863,
+      "end_scene_id": 863,
+      "start_time": 5714.875833,
+      "end_time": 5715.543167,
+      "avg_importance": 0.256555
+    },
+    {
+      "segment_id": 744,
+      "scene_count": 1,
+      "start_scene_id": 864,
+      "end_scene_id": 864,
+      "start_time": 5715.543167,
+      "end_time": 5739.650583,
+      "avg_importance": 0.336462
+    },
+    {
+      "segment_id": 745,
+      "scene_count": 1,
+      "start_scene_id": 865,
+      "end_scene_id": 865,
+      "start_time": 5739.650583,
+      "end_time": 5740.317917,
+      "avg_importance": 0.278697
+    },
+    {
+      "segment_id": 746,
+      "scene_count": 1,
+      "start_scene_id": 866,
+      "end_scene_id": 866,
+      "start_time": 5740.317917,
+      "end_time": 5766.886125,
+      "avg_importance": 0.155665
+    },
+    {
+      "segment_id": 747,
+      "scene_count": 2,
+      "start_scene_id": 867,
+      "end_scene_id": 868,
+      "start_time": 5766.886125,
+      "end_time": 5789.617167,
+      "avg_importance": 0.182365
+    },
+    {
+      "segment_id": 748,
+      "scene_count": 1,
+      "start_scene_id": 869,
+      "end_scene_id": 869,
+      "start_time": 5789.617167,
+      "end_time": 5790.2845,
+      "avg_importance": 0.19853
+    },
+    {
+      "segment_id": 749,
+      "scene_count": 1,
+      "start_scene_id": 870,
+      "end_scene_id": 870,
+      "start_time": 5790.2845,
+      "end_time": 5799.585458,
+      "avg_importance": 0.152313
+    },
+    {
+      "segment_id": 750,
+      "scene_count": 1,
+      "start_scene_id": 871,
+      "end_scene_id": 871,
+      "start_time": 5799.585458,
+      "end_time": 5800.252792,
+      "avg_importance": 0.406785
+    },
+    {
+      "segment_id": 751,
+      "scene_count": 1,
+      "start_scene_id": 872,
+      "end_scene_id": 872,
+      "start_time": 5800.252792,
+      "end_time": 5818.896417,
+      "avg_importance": 0.409592
+    },
+    {
+      "segment_id": 752,
+      "scene_count": 1,
+      "start_scene_id": 873,
+      "end_scene_id": 873,
+      "start_time": 5818.896417,
+      "end_time": 5819.56375,
+      "avg_importance": 0.245642
+    },
+    {
+      "segment_id": 753,
+      "scene_count": 1,
+      "start_scene_id": 874,
+      "end_scene_id": 874,
+      "start_time": 5819.56375,
+      "end_time": 5845.548042,
+      "avg_importance": 0.31352
+    },
+    {
+      "segment_id": 754,
+      "scene_count": 1,
+      "start_scene_id": 875,
+      "end_scene_id": 875,
+      "start_time": 5845.548042,
+      "end_time": 5856.392208333334,
+      "avg_importance": 0.554905
+    }
+  ],
+  "identity_reconciliation": {
+    "enabled": false
+  }
+}

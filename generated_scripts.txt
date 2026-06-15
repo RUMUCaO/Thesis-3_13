@@ -1,282 +1,320 @@
-SCENE 0 | 0.000s - 19.019s
-ACTION: No content available.
+SCENE 0 | 0.000s - 8.175s
+CAST: 10
+ACTION: No content provided. Dialogue trace: Here we go. One, two, one, two, three.
+10: Here we go.
 
-SCENE 1 | 19.019s - 22.022s
-ACTION: A Mad Chance/Jaret Entertainment production production
+SCENE 1 | 8.175s - 78.870s
+CAST: 10, 15, 13, 8
+ACTION: A blue circle with the text 'TOUCHSTONE PICTURES' below it. display; view Relation: branding Dialogue trace: One, two, one, two, three. One, two, one, two, three. We're the band. One week since you looked at me. I can't do the size of the nine ring. Five days until after me and the thing. Get back together, come back and see me. Three days until the living room. I realized I saw my father couldn't tell you. Yesterday, you'd forgiven me. But in a stupid two days till I say I'm sorry. I'm holding them one more time to look wink. As I wink, you stop the thing. You'll think you're looking at Aquaman. I summon fish to the dish although I like the shallots. I like the sushi because it's an empathize to find them. I like the savvy when I bust wine. Big like the ammar because I'm all about value. But the cat first kept the man hits. You try to match wits. You try to homie but a bust through. You're gonna make a big and take a big out like a singin' Lincoln. Chicken like vanilla is the finest of the flavors. You're gonna see the show because then you know the vertical is gonna come because it's dangerous. You're like a satellite. You're like a satellite.
+10: One, two, one, two, three.
+NARRATOR: One, two, one, two, three. We're the band. One week since you looked at me. I can't do the size of the nine ring. Five days until after me and the thing. Get back together, come back and see me. Three days until the living room. I realized I saw my father couldn't tell you. Yesterday, you'd forgiven me. But in a stupid two days till I say I'm sorry. I'm holding them one more time to look wink. As I wink, you stop the thing. You'll think you're looking at Aquaman.
+15: I summon fish to the dish although I like the shallots. I like the sushi because it's an empathize to find them. I like the savvy when I bust wine. Big like the ammar because I'm all about value. But the cat first kept the man hits. You try to match wits. You try to homie but a bust through.
+NARRATOR: You're gonna make a big and take a big out like a singin' Lincoln. Chicken like vanilla is the finest of the flavors. You're gonna see the show because then you know the vertical
+13: is gonna come because it's dangerous. You're like a satellite.
+8: You're like a satellite.
 
-SCENE 3 | 26.026s - 27.027s
-ACTION: A cityscape with a prominent skyscraper and surrounding buildings. pan; zoom Relation: cityscape
+SCENE 2 | 78.870s - 81.665s
+ACTION: A woman is sitting in a red car, holding the steering wheel. sitting; holding steering wheel Relation: in car
 
-SCENE 5 | 76.076s - 79.079s
-ACTION: A woman is driving a red car. driving Relation: in car
+SCENE 3 | 81.665s - 85.502s
+ACTION: A young woman looks over her shoulder in a car. looks over shoulder; sits in car Relation: in car
 
-SCENE 7 | 82.082s - 86.086s
-ACTION: A young woman with curly hair looks over her shoulder in a car. looks over her shoulder; sits in a car Relation: in a car
+SCENE 5 | 88.130s - 106.606s
+ACTION: Cars and pedestrians on a street. Cars driving; Pedestrians walking Relation: Cars and pedestrians coexist on the street. Dialogue trace: I'll be right with you.
+NARRATOR: I'll be right with you.
 
-SCENE 8 | 86.086s - 89.089s
-ACTION: KAT is discussing a past event with someone, mentioning that she was merely a spectator. continuing Relation: interested
+SCENE 6 | 106.606s - 110.861s
+ACTION: Students walking in front of a brick building. walking; looking Relation: interaction
 
-SCENE 9 | 89.089s - 107.107s
-ACTION: People playing hockey on roller blades in a public space. Roller blades; Hockey Relation: Playing
+SCENE 7 | 110.861s - 112.279s
+ACTION: A person with curly hair is standing in front of a brick building with a poster. Standing; Posing Relation: Neutral
 
-SCENE 13 | 116.116s - 125.125s
-ACTION: Dialogue trace: I'll start with
-NARRATOR: I'll start with
+SCENE 14 | 126.084s - 132.591s
+CAST: 23
+ACTION: A computer screen displaying a text about a sexual act. Scroll; Read Relation: Sexual content Dialogue trace: So Cameron, here you go.
+23: So Cameron, here you go.
 
-SCENE 14 | 125.125s - 127.127s
-ACTION: A woman is sitting at a desk with a computer, smiling. sitting; smiling Relation: neutral
+SCENE 40 | 344.469s - 354.854s
+CAST: 12, 22
+ACTION: Students are walking in a classroom. walking; carrying books Relation: in classroom Dialogue trace: Okay then, what did everyone think of The Son Also Rises? I loved it.
+12: Okay then, what did everyone think of The Son Also Rises?
+22: I loved it.
 
-SCENE 31 | 207.207s - 210.210s
-ACTION: A woman sits at a desk with text overlay. sitting; typing Relation: in office
+SCENE 97 | 551.217s - 552.218s
+ACTION: People are walking in a park. walking; talking Relation: proximity
 
-SCENE 77 | 551.551s - 557.557s
-ACTION: Blurred image of people in a room. Standing; Talking Relation: Indeterminate Dialogue trace: favorite.
-NARRATOR: favorite.
+SCENE 102 | 647.355s - 654.112s
+CAST: 13
+ACTION: People walking and biking on a sidewalk and street. walking; biking Relation: coexistence Dialogue trace: Hey! Your little Rambo look is out, Kat. Didn't she read last month's Cosmo?
+13: Hey! Your little Rambo look is out, Kat. Didn't she read last month's Cosmo?
 
-SCENE 80 | 654.654s - 656.656s
-ACTION: A man in a purple shirt is sitting in a convertible car. sitting; holding steering wheel Relation: in car Dialogue trace: you read last month's Cosmo? Run
-NARRATOR: read last month's Cosmo? Run
+SCENE 114 | 695.612s - 700.283s
+CAST: 14
+ACTION: A person on a motorcycle with a basket and a bag is next to a red car. parked; next to Relation: adjacent Dialogue trace: You okay? Yeah. Just a minor encounter with the shrew.
+14: You okay? Yeah. Just a minor encounter with the shrew.
 
-SCENE 83 | 660.660s - 661.661s
-ACTION: A CAMERON is standing next to a red car with a license plate. Standing next to a car; Observing the car Relation: adjacent Dialogue trace: I know you
-NARRATOR: I know you
+SCENE 117 | 718.468s - 719.719s
+ACTION: [No transcript or scene description available]
 
-SCENE 90 | 695.695s - 700.700s
-ACTION: People are playing street hockey in a parking lot. playing street hockey; sweeping Relation: co-located Dialogue trace: okay? Yeah.
-NARRATOR: okay? Yeah.
+SCENE 127 | 738.321s - 754.128s
+CAST: 8
+ACTION: Person adjusts helmet with plants on it. Adjusts helmet; Adjusts plant Relation: Person interacting with helmet. Dialogue trace: Yeah, woo! Yeah!
+8: Yeah, woo!
 
-SCENE 91 | 700.700s - 715.715s
-ACTION: Two characters discuss a minor encounter with a sister. Discuss encounter; Stay cool Relation: Friendly Dialogue trace: Yeah. Just a minor encounter with the shrew. It's your girlfriend's sister. Wait, that's Bianca's sister? The mueling, rampalian wretch herself. Stay cool, bro. Yeah, see you later.
-NARRATOR: Yeah.
-NARRATOR: Just a minor encounter with the shrew.
-NARRATOR: It's your girlfriend's sister.
-NARRATOR: Wait, that's Bianca's sister? The mueling, rampalian wretch herself.
-NARRATOR: Stay cool, bro. Yeah, see you later.
+SCENE 128 | 754.128s - 790.164s
+ACTION: A suburban neighborhood with houses, a car, and a person walking. Car is parked; Person is walking Relation: Suburban residential area Dialogue trace: Yeah! Don't tell me you can't see Why it makes me feel so real
+NARRATOR: Yeah!
+NARRATOR: Don't tell me you can't see Why it makes me feel so real
 
-SCENE 93 | 716.716s - 719.719s
-ACTION: A man on a motorcycle is stopped by a car in a parking lot. stopped by car; parking lot Relation: interaction
+SCENE 158 | 951.284s - 980.730s
+CAST: 6, 14
+ACTION: Person is reading a book. turning pages; explaining Relation: reading Dialogue trace: I'm sorry. Hi. Couldn't this quick, Roxanne, Corinne and Andrew Jarrett are having an incredibly horrendous public break up on the quad. Again. Oh, yeah. Um, okay. I thought that we'd, um, start with pronunciation. If that's all right with you. Not the hacking and gagging and spitting part, please.
+NARRATOR: I'm sorry.
+6: Hi. Couldn't this quick, Roxanne, Corinne and Andrew Jarrett are having an incredibly horrendous public break up on the quad. Again.
+14: Oh, yeah. Um, okay. I thought that we'd, um, start with pronunciation. If that's all right with you.
+6: Not the hacking and gagging and spitting part, please.
 
-SCENE 130 | 951.951s - 954.954s
-ACTION: Person reading a book. turning pages; reading Relation: reading
+SCENE 186 | 1108.190s - 1111.485s
+ACTION: [No transcript or scene description available]
 
-SCENE 152 | 1075.074s - 1084.083s
-ACTION: A brick building with windows and a wall in the foreground. Capture the image Relation: Foreground wall is in front of the building. Dialogue trace: Now, I have gathered a group of guys. Couldn't be more perfect. Paduous, finest.
-NARRATOR: Now, I have gathered a group of guys. Couldn't be more perfect. Paduous, finest.
+SCENE 204 | 1175.007s - 1176.550s
+ACTION: Person holding a book titled 'French for Daily Life' while another person uses a tool on it. holding book; using tool Relation: interaction
 
-SCENE 154 | 1095.094s - 1108.107s
-ACTION: A character asks if there are sheep. speaking Dialogue trace: I'd never been that ripped. Maybe if we were the last two people alive, there were no sheep. Are there sheep?
-NARRATOR: I'd never been that ripped.
-NARRATOR: Maybe if we were the last two people alive,
-NARRATOR: there were no sheep.
-NARRATOR: Are there sheep?
+SCENE 209 | 1183.933s - 1207.415s
+CAST: 15, 14
+ACTION: A person is holding a toothbrush and toothpaste. holding a toothbrush; holding toothpaste Relation: related Dialogue trace: How do we get him to date Kat? I don't know. I mean, uh, we could pay him, but we don't have any money. Yeah, well what we need is a backer. What's that? Someone with money who's stupid.
+15: How do we get him to date Kat?
+14: I don't know. I mean, uh, we could pay him, but we don't have any money.
+15: Yeah, well what we need is a backer. What's that? Someone with money who's stupid.
 
-SCENE 163 | 1161.160s - 1173.172s
-ACTION: Students work in a workshop setting, engaging in various crafts and projects. working on crafts; soldering Relation: collaborative learning environment
+SCENE 230 | 1314.396s - 1331.080s
+CAST: 3, 8
+ACTION: Four boys are standing outside a building with golf clubs and bags. Standing; Holding golf clubs Relation: Together Dialogue trace: Now remember, guys. Rip it. And? Rip it. Rip it.
+3: Now remember, guys. Rip it.
+8: And?
+3: Rip it.
+NARRATOR: Rip it.
 
-SCENE 181 | 1314.313s - 1315.314s
-ACTION: A blurred image of a window with a view of trees and water. Focus on the window frame; Adjust camera angle Relation: Blurred
+SCENE 231 | 1331.080s - 1344.093s
+CAST: 13
+ACTION: People are playing soccer on a field. running; sitting Relation: playing Dialogue trace: Hey, how you doing? I had some great duck last night.
+13: Hey, how you doing?
+13: I had some great duck last night.
 
-SCENE 182 | 1315.314s - 1324.323s
-ACTION: CAMERON instructs a CAMERON to rip a golf ball. Instructs; Rips Relation: Teacher-Student Dialogue trace: Now remember, guys. Rip it. And? Rip it.
-NARRATOR: Now remember, guys.
-NARRATOR: Rip it. And? Rip it.
+SCENE 261 | 1503.127s - 1524.982s
+CAST: 6, 4
+ACTION: A person is styling hair in front of a mirror. Styling hair; Looking in mirror Relation: Hair styling activity Dialogue trace: Have you ever considered a new look? I mean, seriously, you could have some definite potential buried under all this hostility. I'm not hostile. I'm annoyed. Why don't you try being nice? People wouldn't know what to think. You forget. I don't care what people think. Yes, you do.
+6: Have you ever considered a new look? I mean, seriously, you could have some definite potential buried under all this hostility. I'm not hostile. I'm annoyed. Why don't you try being nice? People wouldn't know what to think.
+4: You forget. I don't care what people think. Yes, you do.
 
-SCENE 189 | 1352.351s - 1354.353s
-ACTION: A girl in a yellow sports jersey stands with her arms crossed. Standing; Crossing arms Relation: Playing sports Dialogue trace: Yeah. That's
-NARRATOR: Yeah.
-NARRATOR: That's
+SCENE 312 | 1731.480s - 1797.045s
+CAST: 15, 14, 10, 11
+ACTION: People working in a workshop. working; looking Relation: cooperation Dialogue trace: Go. How will you go? I'm on the floor. We know what you're trying to do with Kat Stratford. Is that right? And what do you plan to do about it? Help you out. Why's that? Uh, the situation is, my man Cameron here has a major Jones for Bianca Stratford. What is it with this chick? She have bear-flavored nipples? Hey, I, uh, I think I speak correctly when I say that Cameron's love is pure. Pure than say Joey Donners? Look, I'm in on this for the cash. Donna can plow wherever he wants. Okay, there will be no plowing. Patrick, uh, Pat, let me explain something to you here. Uh, we set this whole thing up so Cameron can get the girl. Cameron, Joey's just a pawn.
+15: Go. How will you go? I'm on the floor.
+NARRATOR: We know what you're trying to do with Kat Stratford.
+14: Is that right?
+10: And what do you plan to do about it? Help you out. Why's that?
+15: Uh, the situation is, my man Cameron here has a major Jones for Bianca Stratford. What is it with this chick?
+11: She have bear-flavored nipples?
+15: Hey, I, uh, I think I speak correctly when I say that Cameron's love is pure. Pure than say Joey Donners? Look, I'm in on this for the cash. Donna can plow wherever he wants.
+14: Okay, there will be no plowing.
+15: Patrick, uh, Pat, let me explain something to you here. Uh, we set this whole thing up so Cameron can get the girl. Cameron, Joey's just a pawn.
 
-SCENE 198 | 1389.388s - 1390.389s
-ACTION: Soccer players in yellow and blue uniforms are on a field. running; kicking Relation: playing
+SCENE 320 | 1849.348s - 1866.406s
+CAST: 13
+ACTION: People are throwing yellow papers in a spiral staircase. throwing; watching Relation: interaction Dialogue trace: Okay, this is really important, okay?
+13: Okay, this is really important, okay?
 
-SCENE 214 | 1503.502s - 1531.530s
-ACTION: CAMERON bends over in front of a mirror in a room with a table and lamp. bends over; looks in mirror Relation: interaction Dialogue trace: Have you ever considered a new look? I mean, seriously, you could have some definite potential buried under all this hostility. I'm not hostile. I'm annoyed. Why don't you try being nice? People wouldn't know what to think. You forget. I don't care what people think. Yes, you do. No, I don't. You don't always have to be who they want you to be, you know.
-NARRATOR: Have you ever considered a new look? I mean, seriously, you could have some definite potential buried under all this hostility.
-NARRATOR: I'm not hostile.
-NARRATOR: I'm annoyed. Why don't you try being nice?
-NARRATOR: People wouldn't know what to think.
-NARRATOR: You forget. I don't care what people think. Yes, you do.
-NARRATOR: No, I don't.
-NARRATOR: You don't always have to be who they want you to be, you know.
+SCENE 333 | 1913.495s - 1921.545s
+CAST: 14, 5
+ACTION: A bridge with cars driving on it, surrounded by trees and buildings in the background. driving; passing Relation: cityscape Dialogue trace: So, uh, have you heard about Bogey Lowenstein's party? Yes, and I really, really, really want to go.
+14: So, uh, have you heard about Bogey Lowenstein's party?
+5: Yes, and I really, really, really want to go.
 
-SCENE 220 | 1574.573s - 1580.579s
-ACTION: Dialogue trace: Not a big talk, huh? Depends on the topic. My Fenders don't really whip me into a verbal frenzy. You're
-NARRATOR: Not a big talk, huh?
-NARRATOR: Depends on the topic. My Fenders don't really whip me into a verbal frenzy. You're
+SCENE 341 | 1966.298s - 1979.311s
+CAST: 6
+ACTION: Person is opening a drawer. Opening drawer; Removing items Relation: Drawer is open. Dialogue trace: Okay, here we go. Class schedule, reading list, Facebook, concert tickets, and concert tickets.
+6: Okay, here we go. Class schedule, reading list, Facebook, concert tickets, and concert tickets.
 
-SCENE 222 | 1597.596s - 1612.611s
-ACTION: A man and woman are standing next to a car. The man is speaking to the woman. standing; speaking Relation: interaction Dialogue trace: baby. What is it, asshole day? You mind? Not at all.
-NARRATOR: baby. What is it, asshole day?
-NARRATOR: You mind? Not at all.
+SCENE 342 | 1979.311s - 1982.439s
+ACTION: A person walks in a room with a bed, posters, and an easel. Walks; Looks Relation: In a bedroom
 
-SCENE 229 | 1625.624s - 1629.628s
-ACTION: Walter says 'Whoops.' Walter says 'Whoops.' Relation: Walter is speaking. Dialogue trace: Whoops.
-NARRATOR: Whoops.
+SCENE 343 | 1982.439s - 1986.276s
+CAST: 6, 14
+ACTION: A person is searching through a drawer in a cluttered room. searching; looking Relation: in a room with posters and items on the walls. Dialogue trace: Aha! Black panties. What does that tell us?
+6: Aha! Black panties.
+14: What does that tell us?
 
-SCENE 249 | 1832.831s - 1837.836s
-ACTION: Dialogue trace: this is going to be some party.
-NARRATOR: this is going to be some party.
+SCENE 353 | 2017.140s - 2023.188s
+ACTION: Nighttime scene of a bar with motorcycles parked outside. Motorcycles parked; People standing Relation: Nighttime
 
-SCENE 252 | 1849.848s - 1866.865s
-ACTION: People are throwing yellow papers in a stairwell. throwing; walking Relation: interaction Dialogue trace: Okay, now
-NARRATOR: Okay,
-NARRATOR: now
+SCENE 376 | 2209.999s - 2212.001s
+ACTION: A band performs on stage with a singer and musicians. singing; playing instruments Relation: concert
 
-SCENE 262 | 1913.912s - 1921.920s
-ACTION: A bridge with traffic and a city skyline in the background. cross the bridge; drive on the bridge Relation: cityscape Dialogue trace: Have you heard about Buggie Lowenstein's party? Yes.
-NARRATOR: Have you heard about Buggie Lowenstein's party?
-NARRATOR: Yes.
+SCENE 404 | 2393.766s - 2398.187s
+CAST: 2, 6
+ACTION: People in a room, one in red dress laughing. hugging; laughing Relation: interaction Dialogue trace: It's starting. It's just a party, Daddy.
+2: It's starting.
+6: It's just a party, Daddy.
 
-SCENE 274 | 2018.016s - 2034.032s
-ACTION: Nighttime scene with motorcycles parked outside a building. Motorcycles parked; People standing Relation: parked Dialogue trace: OK. Nice bike. Yeah, you think so?
-NARRATOR: OK. Nice bike. Yeah, you think so?
+SCENE 411 | 2447.445s - 2449.405s
+ACTION: A woman in a red dress and beige vest stands in a doorway, looking away. standing; looking away Relation: neutral
 
-SCENE 316 | 2337.335s - 2339.337s
-ACTION: A man in a sweater vest and button-up shirt is speaking indoors. speaking Relation: neutral Dialogue trace: Otherwise known as an orgy?
-NARRATOR: Otherwise known as an orgy?
+SCENE 414 | 2500.999s - 2517.807s
+ACTION: A yellow flyer for a free beer party is lying on the grass. Pick up the flyer; Read the flyer Relation: on the ground
 
-SCENE 324 | 2452.450s - 2501.499s
-ACTION: Patrick asks Michael for a compliment on his appearance. Michael compliments Patrick's appearance; Patrick asks for a second opinion Relation: Michael is being sarcastic. Dialogue trace: says that I was right that she didn't wear the Kenneth Coles with that dress because she thought that, you know, it was a mixing genres, right? And the fact that I noticed, and this is a direct quote, listen, really meant something. You told me that part already. Well, I've been thinking about it. You stopped being so self-involved for one minute. How do I look? You look like my great-uncle, Milton. You think I should lose the tie? Yeah. Maybe you're right. I'm just so nervous. I'm, you know, and I'm also very excited. I'm nervous, I'm excited. It's all very mixed up. I don't know, I don't know. Okay, all right, just calm, calm down, all right? Shh. The last party I went to was a chucky cheese. You want to talk about some fun? That's a good
-NARRATOR: says that I was right that she didn't wear the Kenneth Coles with that dress because she thought that, you know, it was a
-NARRATOR: mixing genres, right? And the fact that I noticed, and this is a direct quote, listen,
-NARRATOR: really meant something. You told me that part already.
-NARRATOR: Well, I've been thinking about it. You stopped being so self-involved for one minute.
-NARRATOR: How do I look?
-NARRATOR: You look like my great-uncle, Milton.
-NARRATOR: You think I should lose the tie? Yeah. Maybe you're right.
-NARRATOR: I'm just so nervous. I'm, you know, and I'm also very excited. I'm nervous, I'm excited. It's all very mixed up. I don't know, I don't know. Okay, all right, just calm, calm down, all right? Shh. The last party I went to was a chucky cheese.
-NARRATOR: You want to talk about some fun? That's a good
+SCENE 416 | 2520.935s - 2541.456s
+CAST: 3
+ACTION: A wooden box contains various cigars. Open the box; Select a cigar Relation: closed Dialogue trace: Now remember, guys, don't touch anything. Okay. Oh! What did I tell you? Oh. Must be Nigel with the brie. Oh! Oh, my God! Oh!
+3: Now remember, guys, don't touch anything. Okay. Oh! What did I tell you? Oh. Must be Nigel with the brie.
+3: Oh! Oh, my God! Oh!
 
-SCENE 325 | 2501.499s - 2502.500s
-ACTION: Dialogue trace: thing.
-NARRATOR: thing.
+SCENE 435 | 2786.659s - 2805.428s
+CAST: 16
+ACTION: Person holding a crystal vase with intricate patterns. holding; displaying Relation: close-up Dialogue trace: Oh!
+16: Oh!
 
-SCENE 329 | 2519.517s - 2535.533s
-ACTION: A wooden box contains various cigars with different labels. Open the box; Select a cigar Relation: cigars in a box Dialogue trace: Now remember guys, don't touch anything. What did I tell you? Must be Nigel with the brie.
-NARRATOR: Now remember guys, don't touch anything. What did I tell you?
-NARRATOR: Must be Nigel with the brie.
+SCENE 461 | 3106.395s - 3111.317s
+ACTION: Two individuals are in a car at night. driving; passenger Relation: passenger and driver
 
-SCENE 359 | 2764.762s - 2786.784s
-ACTION: A hand is holding a can of Budweiser beer above two other cans. holding; stacking Relation: in hand Dialogue trace: You see what I did there? Uh-huh. That was underwear. I'll show you the bathing suit on again. Do you see the difference? All right, I'll show you. Oh!
-NARRATOR: You see what I did there?
-NARRATOR: Uh-huh. That was underwear. I'll show you the bathing suit on again.
-NARRATOR: Do you see the difference? All right, I'll show you. Oh!
+SCENE 484 | 3312.643s - 3315.938s
+CAST: 25
+ACTION: Classroom scene with students and teacher Students are talking; Teacher is observing Relation: Students and teacher are in a classroom setting Dialogue trace: God's me, lady. You sway to the rhythm of me.
+25: God's me, lady.
+25: You sway to the rhythm of me.
 
-SCENE 400 | 3322.319s - 3332.329s
-ACTION: CAMERON in a classroom setting, standing in front of desks. Standing; Observing Relation: Teacher and students Dialogue trace: But how is everybody's weekend? Oh, I don't know. Maybe we should ask Cat. Unless
-NARRATOR: But how is everybody's weekend? Oh, I don't know. Maybe we should ask Cat.
-NARRATOR: Unless
+SCENE 522 | 3507.879s - 3510.298s
+ACTION: A group of female soccer players in yellow and blue uniforms are standing on a field. Standing; Waiting Relation: Team
 
-SCENE 418 | 3459.456s - 3474.471s
-ACTION: Students are playing a game on a sports field. running; throwing Relation: students playing Dialogue trace: What did you do to her? I didn't do anything. She would have been too drunk to remember. But the plan was working. What do you care? I thought you wanted out.
-NARRATOR: What did you do to her?
-NARRATOR: I didn't do anything. She would have been too drunk to remember. But the plan was working. What do you care? I thought you wanted out.
+SCENE 528 | 3632.128s - 3652.065s
+CAST: 27
+ACTION: A guitar store sign with a guitar and the text 'Gil's Music'. Enter store; Purchase guitar Relation: store sign Dialogue trace: I have a lover.
+27: I have a lover.
 
-SCENE 431 | 3517.514s - 3553.550s
-ACTION: Two characters discuss an antiquated mating ritual. mentioning a dress; mentioning a band Relation: disagreement Dialogue trace: Hey, can you even imagine who the hell would go to that antiquated mating ritual? I would, but I don't have a thing. Do you really want to get all dressed up so some Dracar Noir wearing dexter with a boner can fill you up while you're forced to listen to a band that by definition blows? Oh, right. Oh, right. We won't go. Now look, I've got a dress in the way. You're looking at this from entirely the wrong perspective. You're making a mistake. Oh, goodie! Something new and different for us.
-NARRATOR: Hey,
-NARRATOR: can you even imagine who the hell would go to that antiquated mating ritual? I would, but I don't have a thing. Do you really want to get all dressed up so some Dracar Noir wearing dexter with a boner can fill you up while you're forced to listen to a band that by definition blows? Oh, right. Oh, right. We won't go. Now look, I've got a dress in the way. You're looking at this from entirely the wrong perspective. You're making a mistake.
-NARRATOR: Oh, goodie! Something new and different for us.
+SCENE 654 | 4208.955s - 4215.420s
+ACTION: A suburban house with a man mowing the lawn. mowing the lawn; driving a car Relation: neighborhood
 
-SCENE 489 | 3956.953s - 3962.959s
-ACTION: Students sit at desks in a classroom setting. Sitting; Writing Relation: Detention Dialogue trace: Mr. Chapin, can I
-NARRATOR: Mr. Chapin,
-NARRATOR: can I
+SCENE 655 | 4215.420s - 4254.584s
+CAST: 11, 4
+ACTION: A green SUV is parked on a suburban street. parked Relation: static Dialogue trace: No, none of that stuff is true. What's your name? I'm a roofer. A dead guy in the pocket. The duck. He deserved it and he tried to grope me in the lunch line. Fair enough. The accent. I lived in Australia until I was ten. With the pygmies? Close. Where were you last year? I know the porn career is a lie. I'm sorry.
+11: No, none of that stuff is true. What's your name? I'm a roofer. A dead guy in the pocket. The duck.
+4: He deserved it and he tried to grope me in the lunch line. Fair enough.
+11: The accent. I lived in Australia until I was ten. With the pygmies? Close.
+4: Where were you last year? I know the porn career is a lie. I'm sorry.
 
-SCENE 512 | 4060.056s - 4085.081s
-ACTION: A boat is sailing on a body of water with a marina and buildings in the background. sailing; passing Relation: proximity Dialogue trace: OK. Hi. I can't thank you enough for helping me sneak out of detention. Very cool. No problem. I thought for sure I was busted when I was climbing out that window. I tell you. So how did you keep him distracted? I dazzled him with my wits. So what's your excuse? For? For acting the way we do.
-NARRATOR: Hi.
-NARRATOR: I can't thank you enough for helping me sneak out of detention. Very cool. No problem. I thought for sure I was busted when I was climbing out that window. I tell you. So how did you keep him distracted?
-NARRATOR: I dazzled him with my wits.
-NARRATOR: So what's your excuse?
-NARRATOR: For? For acting the way we do.
+SCENE 672 | 4374.036s - 4386.215s
+ACTION: A young man reads a book in a library. reads book; turns page Relation: in library
 
-SCENE 541 | 4216.212s - 4255.251s
-ACTION: A green SUV is parked on a street in front of houses. parked Relation: static Dialogue trace: That stuff is true. State trooper. Fallacy. A dead guy in the parking lot. Rumor. The duck. You're safe. I'll be rich with balls. Fact. But he deserved it, and he tried to grope me in the lunch line. Fair enough. The accent. It's real. I, uh, lived in Australia until I was 10. With the pygmies? Close. With my mom. Where were you last year? I know the porn career is a lie. Do you?
-NARRATOR: That stuff is true.
-NARRATOR: State trooper. Fallacy. A dead guy in the parking lot. Rumor.
-NARRATOR: The duck. You're safe. I'll be rich with balls. Fact. But he deserved it, and he tried to grope me in the lunch line. Fair enough.
-NARRATOR: The accent. It's real.
-NARRATOR: I, uh, lived in Australia until I was 10.
-NARRATOR: With the pygmies?
-NARRATOR: Close.
-NARRATOR: With my mom.
-NARRATOR: Where were you last year? I know the porn career is a lie. Do you?
+SCENE 675 | 4395.641s - 4404.567s
+CAST: 8, 2
+ACTION: A man is exercising on a machine. holding; exercising Relation: engaged Dialogue trace: Good. Daddy. Hi, honey. I'd like to discuss tomorrow night with you.
+8: Good.
+2: Daddy.
+NARRATOR: Hi, honey.
+2: I'd like to discuss tomorrow night with you.
 
-SCENE 556 | 4344.340s - 4386.382s
-ACTION: A boy offers a girl a parsnip in a library. offers parsnip; dialogue Relation: friendly Dialogue trace: Oui, je vous offre un navet. Pas de tout. Où est le crayon de mon oncle? Je ne sais pas. Peut-être dans ton truc de coup. Wait a minute. That's not on this play. Laisse-toi te demander en question, Cameron. Comme vous demanderez, tu te sortis avec toi.
-NARRATOR: Oui, je vous offre un navet. Pas de tout.
-NARRATOR: Où est le crayon de mon oncle?
-NARRATOR: Je ne sais pas. Peut-être dans ton truc de coup.
-NARRATOR: Wait a minute. That's not on this play.
-NARRATOR: Laisse-toi te demander en question, Cameron. Comme vous demanderez, tu te sortis avec toi.
+SCENE 695 | 4510.506s - 4530.651s
+CAST: 4
+ACTION: A girl is lying on a bed with a floral bedspread, watching TV. Lying on bed; Watching TV Relation: Relaxed Dialogue trace: Listen, I know... I know you hate having to sit at home because I'm not Susie High School. Like you care. I do care. But I'm a firm believer in doing something for your own reasons and not someone else's.
+4: Listen, I know...
+4: I know you hate having to sit at home because I'm not Susie High School. Like you care. I do care. But I'm a firm believer in doing something for your own reasons and not someone else's.
 
-SCENE 557 | 4386.382s - 4393.389s
-ACTION: A note asking someone to join them at the prom is attached to a dress. Read the note; Decide on a response
+SCENE 722 | 4673.669s - 4684.180s
+CAST: 0
+ACTION: A woman looks out of a window. looks out; holds window Relation: observing Dialogue trace: I'm sorry, I'm sorry. Oh, oh, oh. And ladies with thinning hair of all spots, GLH solves the problem instantly.
+0: I'm sorry, I'm sorry. Oh, oh, oh. And ladies with thinning hair of all spots, GLH solves the problem instantly.
 
-SCENE 560 | 4405.401s - 4416.412s
-ACTION: CAMERON lying on exercise mat next to exercise bike on deck. lying down; resting Relation: relaxed Dialogue trace: Now, as you know, it's the prom.
-NARRATOR: Now, as you know, it's the prom.
+SCENE 739 | 4782.278s - 4799.837s
+CAST: 8
+ACTION: People in formal attire at a party with colorful lights. dancing; talking Relation: social gathering Dialogue trace: I said I want you to know about it now. Whoa, I want you to know. I said I want you to know.
+8: I said I want you to know about it now. Whoa, I want you to know. I said I want you to know.
 
-SCENE 573 | 4496.492s - 4506.502s
-ACTION: Two men in uniform are shown on a TV screen. Watch TV Relation: Neutral Dialogue trace: of love across this nation worldwide. Believe it. This is the true story. The real world.
-NARRATOR: of love across this nation worldwide. Believe it.
-NARRATOR: This is the true story. The real world.
+SCENE 796 | 5153.231s - 5158.111s
+CAST: 11
+ACTION: Dialogue trace: Would you give me a chance to...
+11: Would you give me a chance to...
 
-SCENE 586 | 4684.680s - 4686.682s
-ACTION: A woman leans against a tree in a garden. leaning; resting Relation: relaxed Dialogue trace: cover-up.
-NARRATOR: cover-up.
+SCENE 805 | 5202.322s - 5233.478s
+CAST: 22, 6
+ACTION: Dialogue trace: Hey, what? Thanks. So you sure you don't want to go sailing with us? It'll be fun. No, I'm fine. Look, I don't know if I ever thanked you for going last night,
+22: Hey, what?
+6: Thanks.
+6: So you sure you don't want to go sailing with us? It'll be fun. No, I'm fine.
+6: Look, I don't know if I ever thanked you for going last night,
 
-SCENE 591 | 4732.728s - 4733.729s
-ACTION: A young man in a tuxedo looks through a doorway. looks; through Dialogue trace: Hi.
-NARRATOR: Hi.
+SCENE 809 | 5256.543s - 5271.224s
+CAST: 1, 2, 4
+ACTION: Three people are standing outside a building, with greenery in the foreground. Standing; Observing Relation: Together Dialogue trace: Shit, shit. I hope so. Where's your sister going? She's meeting some bikers. Big ones, full of sperm. Funny.
+NARRATOR: Shit, shit.
+1: I hope so.
+NARRATOR: Where's your sister going?
+2: She's meeting some bikers.
+4: Big ones, full of sperm. Funny.
 
-SCENE 600 | 4782.778s - 4786.782s
-ACTION: A man is speaking to another person. speaking Dialogue trace: I want you
-NARRATOR: I want you
+SCENE 811 | 5274.227s - 5280.942s
+CAST: 2
+ACTION: A man in a beige shirt stands outdoors, looking serious. standing; looking Relation: neutral Dialogue trace: So, tell me about this dance. Was it hoppin'? Parts of it. Which parts?
+2: So, tell me about this dance. Was it hoppin'? Parts of it. Which parts?
 
-SCENE 657 | 5203.198s - 5234.229s
-ACTION: Dialogue trace: Are you sure you don't want to go sailing with us? It'll be fun. No, I'm fine.
-NARRATOR: Are you sure you don't want to go sailing with us? It'll be fun.
-NARRATOR: No, I'm fine.
+SCENE 825 | 5348.718s - 5354.307s
+CAST: 12
+ACTION: A teacher stands at a desk in front of a classroom with students. teaching; lecturing Relation: classroom setting Dialogue trace: All right. I assume everyone has found time to complete their poem. Except for Mr. Donna, who has an excuse.
+12: All right. I assume everyone has found time to complete their poem. Except for Mr. Donna, who has an excuse.
 
-SCENE 663 | 5345.340s - 5349.344s
-ACTION: A courtyard with people and tables in front of a large brick building. People walking and sitting; Tables and chairs arranged Relation: Building and courtyard interaction
+SCENE 835 | 5430.383s - 5433.678s
+ACTION: A person with long, curly hair is sitting with their hands clasped under their chin. sitting; clasping hands Relation: neutral
 
-SCENE 664 | 5349.344s - 5355.350s
-ACTION: Mr. Donna has not completed their poem. Mr. Donna has not completed their poem Relation: Mr. Donna is a student in the class. Dialogue trace: Everyone has found time to complete their poem, except for Mr. Donna, who
-NARRATOR: Everyone has found time to complete their poem, except for Mr. Donna,
-NARRATOR: who
+SCENE 843 | 5463.458s - 5476.429s
+CAST: 11, 4
+ACTION: A woman looks into the back seat of a car. looks; into Relation: in car Dialogue trace: Nice, huh? Offender strat? Is it for me?
+11: Nice, huh?
+4: Offender strat? Is it for me?
 
-SCENE 666 | 5357.352s - 5361.356s
-ACTION: SPEAKER_01 asks Chef to remove his glasses. ask; remove Relation: request Dialogue trace: Chef, lose the glasses.
-NARRATOR: Chef,
-NARRATOR: lose the glasses.
+SCENE 851 | 5514.467s - 5521.474s
+CAST: 4, 11
+ACTION: A man and woman kiss in a parking lot. kiss Relation: romantic Dialogue trace: You can't just buy me a guitar every time you screw up, you know. Yeah, I know.
+4: You can't just buy me a guitar every time you screw up, you know.
+11: Yeah, I know.
 
-SCENE 683 | 5685.680s - 5712.707s
-ACTION: Dialogue trace: I know everyone digs your sister and all, but she's without. You know? You're not as vile as I thought you were.
-NARRATOR: I
-NARRATOR: know everyone digs your sister and all, but
-NARRATOR: she's without.
-NARRATOR: You know?
-NARRATOR: You're not as vile as I thought you were.
+SCENE 858 | 5542.120s - 5684.012s
+CAST: 8
+ACTION: Two people hug in a car's open door. hug; stand Relation: emotional Dialogue trace: If you say that you love me... Oh, do not, do not, do not see me crying. Oh, do not, do not, do not see me crying. Feeling all along with that friend you don't even feel like dying. Oh, do not, do not, do not see me crying. I want you, I want you. I need you to meet me. I love you to love me. I'm begging you to beg me. Shine all around shoes, put on a brand new shirt. I could own an earthenwork if you say that you love me. Do not, do not, do not see me crying. Oh, do not, do not, do not see me crying. Feeling all along with that friend you don't even feel like dying. Oh, do not, do not, do not see me crying. I want you, I want you. Feeling all along with that friend you don't even feel like dying. Oh, do not, do not, do not see me crying. I want you, I want you. I need you to meet me. I love you to love me. I'm begging you to beg me. I want you to meet me. Shine all around shoes, put on a brand new shirt. I need you to beg me. I want you to want me. I want you to want me.
+8: If you say that you love me... Oh, do not, do not, do not see me crying. Oh, do not, do not, do not see me crying.
+8: Feeling all along with that friend you don't even feel like dying. Oh, do not, do not, do not see me crying.
+8: I want you, I want you. I need you to meet me.
+8: I love you to love me. I'm begging you to beg me. Shine all around shoes, put on a brand new shirt. I could own an earthenwork if you say that you love me. Do not, do not, do not see me crying. Oh, do not, do not, do not see me crying.
+8: Feeling all along with that friend you don't even feel like dying. Oh, do not, do not, do not see me crying.
+8: I want you, I want you.
+8: Feeling all along with that friend you don't even feel like dying. Oh, do not, do not, do not see me crying.
+8: I want you, I want you. I need you to meet me. I love you to love me.
+8: I'm begging you to beg me. I want you to meet me. Shine all around shoes, put on a brand new shirt. I need you to beg me. I want you to want me. I want you to want me.
 
-SCENE 685 | 5715.710s - 5739.734s
-ACTION: Dialogue trace: No, I'm really looking forward to doing it. Go see Ms. Perky. What? Go, Perky's! Go, now. Once again, Perky's now is the second one. Perky's now, Perky's now! Right away, right away. Now, Perky's! Hey, hey, hey. Now, Perky's, Perky's now. Begin the shot. Perk, oh.
-NARRATOR: No, I'm really looking forward to doing it. Go see Ms. Perky. What? Go, Perky's! Go, now. Once again, Perky's now is the second one. Perky's now, Perky's now! Right away, right away. Now, Perky's! Hey, hey, hey. Now, Perky's, Perky's now. Begin the shot. Perk, oh.
+SCENE 859 | 5684.012s - 5685.471s
+ACTION: Credits for various roles in a production, including choreographer, associate choreographer, and scenic artist. list; display Relation: production credits
 
-SCENE 697 | 5800.795s - 5819.814s
-ACTION: A couple is kissing in a scene. kissing Relation: romantic Dialogue trace: Could I get a prophylactic? A prophylactic?
-NARRATOR: Could I get a prophylactic?
-NARRATOR: A prophylactic?
+SCENE 864 | 5715.543s - 5739.651s
+CAST: 12, 4, 25
+ACTION: A classroom scene with students and a teacher. The teacher is addressing the class.; Students are listening attentively. Relation: teacher-student interaction Dialogue trace: He just messed with me, aren't you? No, I'm really looking forward to doing it. Go see Miss Perky. What? Go, Perky's. Go, now. Once again, Perky's now is the second one. Perky's now, Perky's now. Right away, right away. Now, Perky's. Hey, hey, hey. Now, Perky's. Perky's now. Begin a shot. Perk, oh.
+12: He just messed with me, aren't you?
+4: No, I'm really looking forward to doing it.
+12: Go see Miss Perky. What? Go, Perky's. Go, now.
+25: Once again, Perky's now is the second one.
+12: Perky's now, Perky's now.
+25: Right away, right away.
+12: Now, Perky's.
+25: Hey, hey, hey.
+12: Now, Perky's. Perky's now. Begin a shot.
+25: Perk, oh.
 
-SCENE 698 | 5819.814s - 5827.822s
-ACTION: A character is expressing their feelings about being set up. expressing feelings; questioning Relation: confused Dialogue trace: How did you set me up like that? Oh, God, I just wanted to... To completely damage me? To send me to therapy forever? What? No, I
-NARRATOR: How did you set me up like that?
-NARRATOR: Oh, God, I just wanted to... To completely damage me? To send me to therapy forever? What? No, I
+SCENE 871 | 5799.585s - 5800.253s
+ACTION: Three people are in a car at night, smiling. smiling Relation: in a car
 
-SCENE 701 | 5839.834s - 5841.836s
-ACTION: No content available.
+SCENE 872 | 5800.253s - 5818.896s
+CAST: 15, 0
+ACTION: A couple is kissing in a hallway. kissing Relation: romantic Dialogue trace: Could I get a prophylactic? A prophylactic? Ah!
+15: Could I get a prophylactic?
+15: A prophylactic?
+0: Ah!
 
-SCENE 703 | 5845.840s - 5849.844s
-ACTION: A bright light with the words 'Touchstone Pictures' in blue text. Light up; Display Relation: Brand Logo
+SCENE 875 | 5845.548s - 5856.392s
+ACTION: A bright light with the text 'TOUCHSTONE PICTURES' below it. Illuminate; Display Relation: Brand Logo

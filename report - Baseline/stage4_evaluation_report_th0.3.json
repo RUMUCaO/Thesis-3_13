@@ -1,0 +1,119 @@
+{
+  "threshold": 0.3,
+  "counts": {
+    "generated_scenes": 60,
+    "reference_scenes": 99,
+    "matched_scenes": 53
+  },
+  "Multimodal Semantic Similarity": {
+    "Multimodal Semantic Similarity": 0.47375449931846475
+  },
+  "Weak Event Alignment": {
+    "consensus_score": 0.49383778870105743
+  },
+  "dtw_distance": 0.3793700009396991,
+  "np_metric": 0.02358490566037736,
+  "matched_pairs": [
+    {
+      "generated_scene_id": 0,
+      "reference_scene_id": 94,
+      "similarity": 0.43510258197784424
+    },
+    {
+      "generated_scene_id": 1,
+      "reference_scene_id": 46,
+      "similarity": 0.555260181427002
+    },
+    {
+      "generated_scene_id": 6,
+      "reference_scene_id": 12,
+      "similarity": 0.45175063610076904
+    },
+    {
+      "generated_scene_id": 7,
+      "reference_scene_id": 1,
+      "similarity": 0.32572853565216064
+    },
+    {
+      "generated_scene_id": 9,
+      "reference_scene_id": 69,
+      "similarity": 0.5617880821228027
+    },
+    {
+      "generated_scene_id": 14,
+      "reference_scene_id": 60,
+      "similarity": 0.5831791162490845
+    },
+    {
+      "generated_scene_id": 40,
+      "reference_scene_id": 80,
+      "similarity": 0.3984057307243347
+    },
+    {
+      "generated_scene_id": 97,
+      "reference_scene_id": 97,
+      "similarity": 0.6624447107315063
+    },
+    {
+      "generated_scene_id": 102,
+      "reference_scene_id": 36,
+      "similarity": 0.5030670762062073
+    },
+    {
+      "generated_scene_id": 114,
+      "reference_scene_id": 93,
+      "similarity": 0.3838116526603699
+    },
+    {
+      "generated_scene_id": 117,
+      "reference_scene_id": 13,
+      "similarity": 0.3873489797115326
+    },
+    {
+      "generated_scene_id": 127,
+      "reference_scene_id": 78,
+      "similarity": 0.32935231924057007
+    },
+    {
+      "generated_scene_id": 128,
+      "reference_scene_id": 28,
+      "similarity": 0.40472573041915894
+    },
+    {
+      "generated_scene_id": 158,
+      "reference_scene_id": 15,
+      "similarity": 0.4639441668987274
+    },
+    {
+      "generated_scene_id": 204,
+      "reference_scene_id": 49,
+      "similarity": 0.41734403371810913
+    },
+    {
+      "generated_scene_id": 230,
+      "reference_scene_id": 3,
+      "similarity": 0.4091041088104248
+    },
+    {
+      "generated_scene_id": 231,
+      "reference_scene_id": 53,
+      "similarity": 0.5062031149864197
+    },
+    {
+      "generated_scene_id": 261,
+      "reference_scene_id": 37,
+      "similarity": 0.6003105640411377
+    },
+    {
+      "generated_scene_id": 312,
+      "reference_scene_id": 31,
+      "similarity": 0.7168176770210266
+    },
+    {
+      "generated_scene_id": 320,
+      "reference_scene_id": 29,
+      "similarity": 0.5417004823684692
+    }
+  ],
+  "order_correlation": 0.1854539590388647
+}

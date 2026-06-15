@@ -1,0 +1,5363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Knowledge Graph Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            color-scheme: light;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            height: 100vh;
+            transition: grid-template-columns 0.3s ease;
+        }
+
+        .layout.sidebar-collapsed {
+            grid-template-columns: 0px 1fr;
+        }
+
+        .layout.sidebar-disabled {
+            grid-template-columns: 1fr;
+            width: 100%;
+        }
+
+        .layout.sidebar-disabled .main {
+            width: 100vw !important;
+        }
+
+        .layout.sidebar-disabled .tab-panel {
+            padding: 0 !important;
+            width: 100vw !important;
+        }
+
+        .layout.sidebar-disabled .network-panel {
+            width: 100vw !important;
+            height: 100vh !important;
+            border-radius: 0;
+            border: none;
+            max-width: none !important;
+        }
+
+        .layout.sidebar-disabled #networkCanvas {
+            width: 100vw !important;
+            height: 100vh !important;
+            max-width: none !important;
+        }
+
+        /* Force canvas to take full iframe space */
+        canvas#networkCanvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .sidebar {
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            padding: 24px 24px 16px;
+            overflow-y: auto;
+            transition: width 0.3s ease, opacity 0.3s ease;
+            display: block; /* Visible in standalone mode */
+        }
+
+        .sidebar.collapsed {
+            width: 0;
+            padding: 24px 0 16px;
+            overflow: hidden;
+            opacity: 0;
+        }
+
+        .sidebar h1 {
+            margin: 0 0 8px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .sidebar p {
+            margin: 0 0 20px;
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .section {
+            margin-bottom: 24px;
+        }
+
+        .section h2 {
+            font-size: 1rem;
+            margin: 0 0 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #1e293b;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5f5;
+            border-radius: 10px;
+            font-size: 0.95rem;
+        }
+
+        .search-hint {
+            margin-top: 6px;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .list-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 10px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .list-item strong {
+            font-weight: 600;
+        }
+
+        .cluster-item,
+        .relation-item {
+            border-left: 4px solid transparent;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .cluster-item:hover,
+        .relation-item:hover {
+            background: #e2e8f0;
+        }
+
+        .cluster-item.active,
+        .relation-item.active {
+            transform: translateX(4px);
+            background: #e2e8f0;
+        }
+
+        .cluster-item .meta,
+        .relation-item .meta {
+            font-size: 0.8rem;
+            color: #475569;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .tab-bar {
+            display: flex;
+            gap: 8px;
+            padding: 16px 20px 0;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .tab {
+            border: none;
+            background: #e2e8f0;
+            color: #1e293b;
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .tab.active {
+            background: #1d4ed8;
+            color: #ffffff;
+        }
+
+        .sidebar-toggle {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: none; /* Hidden when sidebar is disabled */
+        }
+
+        .sidebar-toggle:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .sidebar-toggle::before {
+            content: '☰';
+            margin-right: 6px;
+        }
+
+        .sidebar-toggle.collapsed::before {
+            content: '☰';
+        }
+
+        .tab-panel {
+            flex: 1;
+            display: none;
+            padding: 16px 20px;
+            overflow: hidden;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .network-panel {
+            height: calc(100vh - 74px);
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+        }
+
+        #networkCanvas {
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            border-radius: 16px;
+        }
+
+        #networkCanvas {
+            cursor: grab;
+        }
+
+        #networkCanvas:active {
+            cursor: grabbing;
+        }
+
+        .selection-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 0.9rem;
+        }
+
+        .selection-card h3 {
+            margin: 0 0 8px;
+            font-size: 1rem;
+        }
+
+        .selection-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .selection-card li {
+            margin-bottom: 4px;
+            color: #475569;
+        }
+
+        .table-container {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            height: calc(100vh - 90px);
+            overflow: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: #f8fafc;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 2px 10px;
+            border-radius: 999px;
+            background: #e2e8f0;
+            font-size: 0.75rem;
+            color: #0f172a;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: #475569;
+        }
+
+        .legend-swatch {
+            width: 12px;
+            height: 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(15, 23, 42, 0.25);
+        }
+
+
+        /* Mobile/narrow iframe handling - when sidebar is disabled, use full space */
+        @media (max-width: 800px) {
+            .layout:not(.sidebar-disabled) {
+                grid-template-columns: 1fr;
+            }
+
+            .layout:not(.sidebar-disabled) .sidebar {
+                height: 280px;
+                border-right: none;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            .layout:not(.sidebar-disabled) .main {
+                height: calc(100vh - 280px);
+            }
+
+            /* When sidebar is disabled (iframe mode), ensure full viewport usage */
+            .layout.sidebar-disabled .main {
+                width: 100% !important;
+                height: 100vh !important;
+            }
+
+            .layout.sidebar-disabled .tab-panel {
+                padding: 0 !important;
+                width: 100% !important;
+                height: 100vh !important;
+            }
+
+            .layout.sidebar-disabled .network-panel {
+                width: 100% !important;
+                height: 100vh !important;
+                border-radius: 0 !important;
+                border: none !important;
+                max-width: none !important;
+            }
+
+            .layout.sidebar-disabled #networkCanvas {
+                width: 100% !important;
+                height: 100vh !important;
+                max-width: none !important;
+            }
+
+            /* Ensure iframe canvas takes full space on mobile */
+            canvas#networkCanvas {
+                width: 100% !important;
+                height: 100% !important;
+                min-width: 100% !important;
+                min-height: 100% !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <h1>Knowledge Graph Explorer</h1>
+            <p>Search, highlight, and inspect entities and relations to understand how the graph fits together.</p>
+            <div class="stats-grid" id="statsGrid"></div>
+            <div class="section">
+                <h2>Search</h2>
+                <input id="searchInput" class="search-input" type="text" placeholder="Search for entities or
+                    relations" />
+                <div class="search-hint">Matches are highlighted. Press Escape to clear.</div>
+            </div>
+            <div class="section" id="selectionSection">
+                <h2>Selection</h2>
+                <div id="selectionDetails" class="selection-card">Click a node or relation in the network to inspect
+                    details.</div>
+            </div>
+            <div class="section">
+                <h2>Entity Clusters</h2>
+                <div id="clusterList" class="list"></div>
+            </div>
+            <div class="section">
+                <h2>Top Entities</h2>
+                <div id="topEntities" class="list"></div>
+            </div>
+            <div class="section">
+                <h2>Top Relations</h2>
+                <div id="topRelations" class="list"></div>
+            </div>
+        </aside>
+        <main class="main">
+            <button class="sidebar-toggle" id="sidebarToggle" title="Toggle sidebar"></button>
+            <div class="tab-bar" style="padding-bottom: 10px; display: none;">
+                <button class="tab active" data-tab="network">Network</button>
+                <!-- <button class="tab" data-tab="relations">Relations</button>
+                <button class="tab" data-tab="insights">Insights</button> -->
+            </div>
+            <section id="network" class="tab-panel active">
+                <div class="network-panel">
+                    <canvas id="networkCanvas"></canvas>
+                </div>
+            </section>
+            <!-- <section id="relations" class="tab-panel">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Relation</th>
+                                <th>Object</th>
+                            </tr>
+                        </thead>
+                        <tbody id="relationsTable"></tbody>
+                    </table>
+                </div>
+            </section>
+            <section id="insights" class="tab-panel">
+                <div class="table-container" style="padding: 20px;">
+                    <div id="insightsContent"></div>
+                </div>
+            </section> -->
+        </main>
+    </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script id="viz-data" type="application/json">
+{
+  "nodes": [
+    {
+      "id": "Andrew Jarrett",
+      "label": "Andrew Jarrett",
+      "cluster": null,
+      "color": "#e7a932",
+      "degree": 2,
+      "indegree": 1,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 22,
+      "neighbors": [
+        "Roxanne"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e21"
+        ],
+        "outgoing": [
+          "e20"
+        ]
+      }
+    },
+    {
+      "id": "Aquaman",
+      "label": "Aquaman",
+      "cluster": null,
+      "color": "#70e7e6",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Australia",
+      "label": "Australia",
+      "cluster": null,
+      "color": "#9d4ae3",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Bogey"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e37"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "bar",
+      "label": "bar",
+      "cluster": null,
+      "color": "#ea584d",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "motorcycles"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e45"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Bianca",
+      "label": "Bianca",
+      "cluster": null,
+      "color": "#36eec5",
+      "degree": 11,
+      "indegree": 6,
+      "outdegree": 5,
+      "isRepresentative": false,
+      "radius": 34,
+      "neighbors": [
+        "bikers",
+        "Bogey",
+        "Cameron",
+        "Miss Perky",
+        "Nearby",
+        "offender strat",
+        "Susie High School",
+        "the duck"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e14",
+          "e25",
+          "e40",
+          "e55",
+          "e65",
+          "e66"
+        ],
+        "outgoing": [
+          "e0",
+          "e2",
+          "e16",
+          "e34",
+          "e60"
+        ]
+      }
+    },
+    {
+      "id": "bikers",
+      "label": "bikers",
+      "cluster": null,
+      "color": "#ad47d7",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Bianca"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e16"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "black panties",
+      "label": "black panties",
+      "cluster": null,
+      "color": "#3d39dc",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Nearby"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e24"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Blaise",
+      "label": "Blaise",
+      "cluster": null,
+      "color": "#82d637",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "blue vein",
+      "label": "blue vein",
+      "cluster": null,
+      "color": "#5947dd",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "frog illustrations"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e27"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Bogey",
+      "label": "Bogey",
+      "cluster": null,
+      "color": "#521fd3",
+      "degree": 4,
+      "indegree": 1,
+      "outdegree": 3,
+      "isRepresentative": false,
+      "radius": 26,
+      "neighbors": [
+        "Australia",
+        "Bianca",
+        "roofer"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e0"
+        ],
+        "outgoing": [
+          "e33",
+          "e37",
+          "e55"
+        ]
+      }
+    },
+    {
+      "id": "Bogey Lowenstein",
+      "label": "Bogey Lowenstein",
+      "cluster": null,
+      "color": "#7b46da",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "book",
+      "label": "book",
+      "cluster": null,
+      "color": "#92d81a",
+      "degree": 1,
+      "indegree": 0,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "library"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e38"
+        ]
+      }
+    },
+    {
+      "id": "brie",
+      "label": "brie",
+      "cluster": null,
+      "color": "#23d7a2",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Nigel"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e8"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "briefcase",
+      "label": "briefcase",
+      "cluster": null,
+      "color": "#7ccbda",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Bruce",
+      "label": "Bruce",
+      "cluster": null,
+      "color": "#e4827a",
+      "degree": 3,
+      "indegree": 1,
+      "outdegree": 2,
+      "isRepresentative": false,
+      "radius": 24,
+      "neighbors": [
+        "Nearby",
+        "The Son Also Rises"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e69"
+        ],
+        "outgoing": [
+          "e32",
+          "e39"
+        ]
+      }
+    },
+    {
+      "id": "buildings",
+      "label": "buildings",
+      "cluster": null,
+      "color": "#b759de",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "calculator",
+      "label": "calculator",
+      "cluster": null,
+      "color": "#d86878",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Nearby"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e56"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Cameron",
+      "label": "Cameron",
+      "cluster": null,
+      "color": "#71dc99",
+      "degree": 4,
+      "indegree": 1,
+      "outdegree": 3,
+      "isRepresentative": false,
+      "radius": 26,
+      "neighbors": [
+        "Bianca",
+        "Joey Donners",
+        "prophylactic"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e60"
+        ],
+        "outgoing": [
+          "e5",
+          "e40",
+          "e67"
+        ]
+      }
+    },
+    {
+      "id": "car",
+      "label": "car",
+      "cluster": null,
+      "color": "#b440c9",
+      "degree": 2,
+      "indegree": 2,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 22,
+      "neighbors": [
+        "driver",
+        "suburban neighborhood"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e10",
+          "e17"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "cigars",
+      "label": "cigars",
+      "cluster": null,
+      "color": "#ece165",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "wooden box"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e13"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "class schedule",
+      "label": "class schedule",
+      "cluster": null,
+      "color": "#7b2fbc",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Nearby"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e50"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Clem",
+      "label": "Clem",
+      "cluster": null,
+      "color": "#62ec62",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "computer",
+      "label": "computer",
+      "cluster": null,
+      "color": "#80cf3f",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Patrick"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e70"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "concert tickets",
+      "label": "concert tickets",
+      "cluster": null,
+      "color": "#d66e9a",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Nearby"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e51"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Corinne",
+      "label": "Corinne",
+      "cluster": null,
+      "color": "#86eb62",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Cosmo",
+      "label": "Cosmo",
+      "cluster": null,
+      "color": "#37edd6",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Joey"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e41"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "crystal vase",
+      "label": "crystal vase",
+      "cluster": null,
+      "color": "#ec9d73",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Derek"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e29"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Daddy",
+      "label": "Daddy",
+      "cluster": null,
+      "color": "#985df1",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Scurvy"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e9"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "dance",
+      "label": "dance",
+      "cluster": null,
+      "color": "#70ed85",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Scurvy"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e4"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "dance event",
+      "label": "dance event",
+      "cluster": null,
+      "color": "#e78d17",
+      "degree": 2,
+      "indegree": 1,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 22,
+      "neighbors": [
+        "Derek",
+        "formal attire"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e7"
+        ],
+        "outgoing": [
+          "e26"
+        ]
+      }
+    },
+    {
+      "id": "dead guy in the pocket",
+      "label": "dead guy in the pocket",
+      "cluster": null,
+      "color": "#1f86e5",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Derek",
+      "label": "Derek",
+      "cluster": null,
+      "color": "#d87451",
+      "degree": 4,
+      "indegree": 1,
+      "outdegree": 3,
+      "isRepresentative": false,
+      "radius": 26,
+      "neighbors": [
+        "crystal vase",
+        "dance event",
+        "helmet with plants",
+        "Trevor"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e31"
+        ],
+        "outgoing": [
+          "e7",
+          "e29",
+          "e73"
+        ]
+      }
+    },
+    {
+      "id": "desk",
+      "label": "desk",
+      "cluster": null,
+      "color": "#d7715d",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Patrick"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e62"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "doorway",
+      "label": "doorway",
+      "cluster": null,
+      "color": "#2ee79b",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "pregnant woman"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e64"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "drink",
+      "label": "drink",
+      "cluster": null,
+      "color": "#e268f1",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "driver",
+      "label": "driver",
+      "cluster": null,
+      "color": "#32b698",
+      "degree": 1,
+      "indegree": 0,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "car"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e17"
+        ]
+      }
+    },
+    {
+      "id": "driveway",
+      "label": "driveway",
+      "cluster": null,
+      "color": "#cdd152",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "suburban neighborhood"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e11"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Facebook",
+      "label": "Facebook",
+      "cluster": null,
+      "color": "#3cdfa4",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Nearby"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e52"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "female singer",
+      "label": "female singer",
+      "cluster": null,
+      "color": "#2ed219",
+      "degree": 2,
+      "indegree": 0,
+      "outdegree": 2,
+      "isRepresentative": false,
+      "radius": 22,
+      "neighbors": [
+        "stage",
+        "the band"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e35",
+          "e47"
+        ]
+      }
+    },
+    {
+      "id": "female soccer players",
+      "label": "female soccer players",
+      "cluster": null,
+      "color": "#e72cb9",
+      "degree": 1,
+      "indegree": 0,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "yellow and blue uniforms"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e72"
+        ]
+      }
+    },
+    {
+      "id": "field",
+      "label": "field",
+      "cluster": null,
+      "color": "#78d03d",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "formal attire",
+      "label": "formal attire",
+      "cluster": null,
+      "color": "#52e643",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "dance event"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e26"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "frog illustrations",
+      "label": "frog illustrations",
+      "cluster": null,
+      "color": "#2bc9d7",
+      "degree": 2,
+      "indegree": 0,
+      "outdegree": 2,
+      "isRepresentative": false,
+      "radius": 22,
+      "neighbors": [
+        "blue vein",
+        "internal organs"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e27",
+          "e28"
+        ]
+      }
+    },
+    {
+      "id": "Gil's Music",
+      "label": "Gil's Music",
+      "cluster": null,
+      "color": "#5cd4d5",
+      "degree": 2,
+      "indegree": 1,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 22,
+      "neighbors": [
+        "guitars",
+        "Walter"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e22"
+        ],
+        "outgoing": [
+          "e61"
+        ]
+      }
+    },
+    {
+      "id": "GLH",
+      "label": "GLH",
+      "cluster": null,
+      "color": "#9e30e3",
+      "degree": 1,
+      "indegree": 0,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "thinning hair"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e63"
+        ]
+      }
+    },
+    {
+      "id": "golf club",
+      "label": "golf club",
+      "cluster": null,
+      "color": "#9edf7b",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "green SUV",
+      "label": "green SUV",
+      "cluster": null,
+      "color": "#36c472",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "group of people",
+      "label": "group of people",
+      "cluster": null,
+      "color": "#e4df62",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "guitars",
+      "label": "guitars",
+      "cluster": null,
+      "color": "#5c6ae9",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Gil's Music"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e61"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "helmet with plants",
+      "label": "helmet with plants",
+      "cluster": null,
+      "color": "#6edb6e",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Derek"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e73"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "hockey",
+      "label": "hockey",
+      "cluster": null,
+      "color": "#d97318",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "houses",
+      "label": "houses",
+      "cluster": null,
+      "color": "#7ce13f",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "suburban neighborhood"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e12"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "internal organs",
+      "label": "internal organs",
+      "cluster": null,
+      "color": "#294ed6",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "frog illustrations"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e28"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Jaret Entertainment",
+      "label": "Jaret Entertainment",
+      "cluster": null,
+      "color": "#52b2e9",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Joey",
+      "label": "Joey",
+      "cluster": null,
+      "color": "#cde180",
+      "degree": 6,
+      "indegree": 0,
+      "outdegree": 6,
+      "isRepresentative": false,
+      "radius": 30,
+      "neighbors": [
+        "Cosmo",
+        "Kat",
+        "large white house",
+        "Rambo",
+        "the duck",
+        "track"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e18",
+          "e41",
+          "e42",
+          "e59",
+          "e68",
+          "e71"
+        ]
+      }
+    },
+    {
+      "id": "Joey Donners",
+      "label": "Joey Donners",
+      "cluster": null,
+      "color": "#779bdd",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Cameron"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e67"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Kat",
+      "label": "Kat",
+      "cluster": null,
+      "color": "#c725e9",
+      "degree": 2,
+      "indegree": 2,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 22,
+      "neighbors": [
+        "Joey",
+        "Narrator"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e43",
+          "e68"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "large white house",
+      "label": "large white house",
+      "cluster": null,
+      "color": "#e5682a",
+      "degree": 2,
+      "indegree": 2,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 22,
+      "neighbors": [
+        "Joey",
+        "red car"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e46",
+          "e71"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "library",
+      "label": "library",
+      "cluster": null,
+      "color": "#c3376b",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "book"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e38"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Lincoln",
+      "label": "Lincoln",
+      "cluster": null,
+      "color": "#6c36bd",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "lunch line",
+      "label": "lunch line",
+      "cluster": null,
+      "color": "#8767ed",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Mad Chance",
+      "label": "Mad Chance",
+      "cluster": null,
+      "color": "#96ea13",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "male guitarist",
+      "label": "male guitarist",
+      "cluster": null,
+      "color": "#a0df72",
+      "degree": 2,
+      "indegree": 0,
+      "outdegree": 2,
+      "isRepresentative": false,
+      "radius": 22,
+      "neighbors": [
+        "stage",
+        "the band"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e36",
+          "e48"
+        ]
+      }
+    },
+    {
+      "id": "Mandelia",
+      "label": "Mandelia",
+      "cluster": null,
+      "color": "#efac5c",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Michael",
+      "label": "Michael",
+      "cluster": null,
+      "color": "#e45ed9",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Miss Perky",
+      "label": "Miss Perky",
+      "cluster": null,
+      "color": "#da7bc7",
+      "degree": 1,
+      "indegree": 0,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Bianca"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e65"
+        ]
+      }
+    },
+    {
+      "id": "motorcycle",
+      "label": "motorcycle",
+      "cluster": null,
+      "color": "#43d863",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Pepe"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e58"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "motorcycles",
+      "label": "motorcycles",
+      "cluster": null,
+      "color": "#e3ba74",
+      "degree": 1,
+      "indegree": 0,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "bar"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e45"
+        ]
+      }
+    },
+    {
+      "id": "Mr. Donna",
+      "label": "Mr. Donna",
+      "cluster": null,
+      "color": "#54a8cf",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Patrick"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e44"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Narrator",
+      "label": "Narrator",
+      "cluster": null,
+      "color": "#54e2eb",
+      "degree": 1,
+      "indegree": 0,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Kat"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e43"
+        ]
+      }
+    },
+    {
+      "id": "Nearby",
+      "label": "Nearby",
+      "cluster": null,
+      "color": "#7bec1f",
+      "degree": 13,
+      "indegree": 2,
+      "outdegree": 11,
+      "isRepresentative": false,
+      "radius": 34,
+      "neighbors": [
+        "Bianca",
+        "black panties",
+        "Bruce",
+        "calculator",
+        "class schedule",
+        "concert tickets",
+        "Facebook",
+        "Pepe",
+        "reading list",
+        "sailing"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e32",
+          "e54"
+        ],
+        "outgoing": [
+          "e14",
+          "e15",
+          "e24",
+          "e30",
+          "e50",
+          "e51",
+          "e52",
+          "e53",
+          "e56",
+          "e66",
+          "e69"
+        ]
+      }
+    },
+    {
+      "id": "Nigel",
+      "label": "Nigel",
+      "cluster": null,
+      "color": "#e1ed27",
+      "degree": 2,
+      "indegree": 1,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 22,
+      "neighbors": [
+        "brie",
+        "Trevor"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e23"
+        ],
+        "outgoing": [
+          "e8"
+        ]
+      }
+    },
+    {
+      "id": "night",
+      "label": "night",
+      "cluster": null,
+      "color": "#3d66d9",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "offender strat",
+      "label": "offender strat",
+      "cluster": null,
+      "color": "#18dbb0",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Bianca"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e2"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "office",
+      "label": "office",
+      "cluster": null,
+      "color": "#70d526",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "passenger seat",
+      "label": "passenger seat",
+      "cluster": null,
+      "color": "#5fe965",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Pat",
+      "label": "Pat",
+      "cluster": null,
+      "color": "#df2e36",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Patrick",
+      "label": "Patrick",
+      "cluster": null,
+      "color": "#da78bb",
+      "degree": 5,
+      "indegree": 0,
+      "outdegree": 5,
+      "isRepresentative": false,
+      "radius": 28,
+      "neighbors": [
+        "computer",
+        "desk",
+        "Mr. Donna",
+        "poem assignment",
+        "The Son Also Rises"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e3",
+          "e6",
+          "e44",
+          "e62",
+          "e70"
+        ]
+      }
+    },
+    {
+      "id": "Pepe",
+      "label": "Pepe",
+      "cluster": null,
+      "color": "#57ed6c",
+      "degree": 6,
+      "indegree": 2,
+      "outdegree": 4,
+      "isRepresentative": false,
+      "radius": 30,
+      "neighbors": [
+        "motorcycle",
+        "Nearby",
+        "the shrew",
+        "Walter"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e30",
+          "e57"
+        ],
+        "outgoing": [
+          "e1",
+          "e19",
+          "e54",
+          "e58"
+        ]
+      }
+    },
+    {
+      "id": "poem assignment",
+      "label": "poem assignment",
+      "cluster": null,
+      "color": "#e3531a",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Patrick"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e6"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "porn career",
+      "label": "porn career",
+      "cluster": null,
+      "color": "#e69d71",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "pregnant woman",
+      "label": "pregnant woman",
+      "cluster": null,
+      "color": "#e6416c",
+      "degree": 1,
+      "indegree": 0,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "doorway"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e64"
+        ]
+      }
+    },
+    {
+      "id": "prophylactic",
+      "label": "prophylactic",
+      "cluster": null,
+      "color": "#dc36e6",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Cameron"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e5"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "public space",
+      "label": "public space",
+      "cluster": null,
+      "color": "#d67241",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "pygmies",
+      "label": "pygmies",
+      "cluster": null,
+      "color": "#63edd4",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "quad",
+      "label": "quad",
+      "cluster": null,
+      "color": "#74d9ce",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Rambo",
+      "label": "Rambo",
+      "cluster": null,
+      "color": "#6dcf5a",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Joey"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e42"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "reading list",
+      "label": "reading list",
+      "cluster": null,
+      "color": "#acc82c",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Nearby"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e53"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "red car",
+      "label": "red car",
+      "cluster": null,
+      "color": "#28d481",
+      "degree": 1,
+      "indegree": 0,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "large white house"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e46"
+        ]
+      }
+    },
+    {
+      "id": "roller blades",
+      "label": "roller blades",
+      "cluster": null,
+      "color": "#e49961",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "roofer",
+      "label": "roofer",
+      "cluster": null,
+      "color": "#e5757f",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Bogey"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e33"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Roxanne",
+      "label": "Roxanne",
+      "cluster": null,
+      "color": "#501de2",
+      "degree": 2,
+      "indegree": 1,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 22,
+      "neighbors": [
+        "Andrew Jarrett"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e20"
+        ],
+        "outgoing": [
+          "e21"
+        ]
+      }
+    },
+    {
+      "id": "sailing",
+      "label": "sailing",
+      "cluster": null,
+      "color": "#2983df",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Nearby"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e15"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "satellite",
+      "label": "satellite",
+      "cluster": null,
+      "color": "#efd166",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Scurvy",
+      "label": "Scurvy",
+      "cluster": null,
+      "color": "#37e0e6",
+      "degree": 2,
+      "indegree": 0,
+      "outdegree": 2,
+      "isRepresentative": false,
+      "radius": 22,
+      "neighbors": [
+        "Daddy",
+        "dance"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e4",
+          "e9"
+        ]
+      }
+    },
+    {
+      "id": "skyscraper",
+      "label": "skyscraper",
+      "cluster": null,
+      "color": "#df8d77",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "spiral staircase",
+      "label": "spiral staircase",
+      "cluster": null,
+      "color": "#c9e74e",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "stage",
+      "label": "stage",
+      "cluster": null,
+      "color": "#d5438e",
+      "degree": 3,
+      "indegree": 3,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 24,
+      "neighbors": [
+        "female singer",
+        "male guitarist",
+        "the band"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e47",
+          "e48",
+          "e49"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "students",
+      "label": "students",
+      "cluster": null,
+      "color": "#9add4b",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "suburban neighborhood",
+      "label": "suburban neighborhood",
+      "cluster": null,
+      "color": "#7ae4b3",
+      "degree": 3,
+      "indegree": 0,
+      "outdegree": 3,
+      "isRepresentative": false,
+      "radius": 24,
+      "neighbors": [
+        "car",
+        "driveway",
+        "houses"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e10",
+          "e11",
+          "e12"
+        ]
+      }
+    },
+    {
+      "id": "Susie High School",
+      "label": "Susie High School",
+      "cluster": null,
+      "color": "#a77fe2",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Bianca"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e34"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "teacher",
+      "label": "teacher",
+      "cluster": null,
+      "color": "#c065e6",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "the band",
+      "label": "the band",
+      "cluster": null,
+      "color": "#2cded8",
+      "degree": 3,
+      "indegree": 2,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 24,
+      "neighbors": [
+        "female singer",
+        "male guitarist",
+        "stage"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e35",
+          "e36"
+        ],
+        "outgoing": [
+          "e49"
+        ]
+      }
+    },
+    {
+      "id": "the duck",
+      "label": "the duck",
+      "cluster": null,
+      "color": "#32e9e7",
+      "degree": 2,
+      "indegree": 1,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 22,
+      "neighbors": [
+        "Bianca",
+        "Joey"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e18"
+        ],
+        "outgoing": [
+          "e25"
+        ]
+      }
+    },
+    {
+      "id": "the shrew",
+      "label": "the shrew",
+      "cluster": null,
+      "color": "#55e15f",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Pepe"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e19"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "The Son Also Rises",
+      "label": "The Son Also Rises",
+      "cluster": null,
+      "color": "#da495a",
+      "degree": 2,
+      "indegree": 2,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 22,
+      "neighbors": [
+        "Bruce",
+        "Patrick"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e3",
+          "e39"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "thinning hair",
+      "label": "thinning hair",
+      "cluster": null,
+      "color": "#e3a658",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "GLH"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e63"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Touchstone Pictures",
+      "label": "Touchstone Pictures",
+      "cluster": null,
+      "color": "#d63bed",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "track",
+      "label": "track",
+      "cluster": null,
+      "color": "#c48625",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "Joey"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e59"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "Trevor",
+      "label": "Trevor",
+      "cluster": null,
+      "color": "#e54f61",
+      "degree": 2,
+      "indegree": 0,
+      "outdegree": 2,
+      "isRepresentative": false,
+      "radius": 22,
+      "neighbors": [
+        "Derek",
+        "Nigel"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e23",
+          "e31"
+        ]
+      }
+    },
+    {
+      "id": "Walter",
+      "label": "Walter",
+      "cluster": null,
+      "color": "#d37b13",
+      "degree": 3,
+      "indegree": 1,
+      "outdegree": 2,
+      "isRepresentative": false,
+      "radius": 24,
+      "neighbors": [
+        "Gil's Music",
+        "Pepe"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e1"
+        ],
+        "outgoing": [
+          "e22",
+          "e57"
+        ]
+      }
+    },
+    {
+      "id": "wooden box",
+      "label": "wooden box",
+      "cluster": null,
+      "color": "#90e65c",
+      "degree": 1,
+      "indegree": 0,
+      "outdegree": 1,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "cigars"
+      ],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": [
+          "e13"
+        ]
+      }
+    },
+    {
+      "id": "yellow and blue uniforms",
+      "label": "yellow and blue uniforms",
+      "cluster": null,
+      "color": "#ef427f",
+      "degree": 1,
+      "indegree": 1,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 20,
+      "neighbors": [
+        "female soccer players"
+      ],
+      "edgeIds": {
+        "incoming": [
+          "e72"
+        ],
+        "outgoing": []
+      }
+    },
+    {
+      "id": "yellow leaves",
+      "label": "yellow leaves",
+      "cluster": null,
+      "color": "#d65e4e",
+      "degree": 0,
+      "indegree": 0,
+      "outdegree": 0,
+      "isRepresentative": false,
+      "radius": 18,
+      "neighbors": [],
+      "edgeIds": {
+        "incoming": [],
+        "outgoing": []
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e0",
+      "source": "Bianca",
+      "target": "Bogey",
+      "predicate": "apologizes to",
+      "cluster": null,
+      "color": "#ca1b5d",
+      "tooltip": "Bianca —apologizes to→ Bogey"
+    },
+    {
+      "id": "e1",
+      "source": "Pepe",
+      "target": "Walter",
+      "predicate": "asks",
+      "cluster": null,
+      "color": "#dcb754",
+      "tooltip": "Pepe —asks→ Walter"
+    },
+    {
+      "id": "e2",
+      "source": "Bianca",
+      "target": "offender strat",
+      "predicate": "asks about",
+      "cluster": null,
+      "color": "#3472c7",
+      "tooltip": "Bianca —asks about→ offender strat"
+    },
+    {
+      "id": "e3",
+      "source": "Patrick",
+      "target": "The Son Also Rises",
+      "predicate": "asks about",
+      "cluster": null,
+      "color": "#3472c7",
+      "tooltip": "Patrick —asks about→ The Son Also Rises"
+    },
+    {
+      "id": "e4",
+      "source": "Scurvy",
+      "target": "dance",
+      "predicate": "asks about",
+      "cluster": null,
+      "color": "#3472c7",
+      "tooltip": "Scurvy —asks about→ dance"
+    },
+    {
+      "id": "e5",
+      "source": "Cameron",
+      "target": "prophylactic",
+      "predicate": "asks for",
+      "cluster": null,
+      "color": "#1ad758",
+      "tooltip": "Cameron —asks for→ prophylactic"
+    },
+    {
+      "id": "e6",
+      "source": "Patrick",
+      "target": "poem assignment",
+      "predicate": "assigns",
+      "cluster": null,
+      "color": "#69aae1",
+      "tooltip": "Patrick —assigns→ poem assignment"
+    },
+    {
+      "id": "e7",
+      "source": "Derek",
+      "target": "dance event",
+      "predicate": "attends",
+      "cluster": null,
+      "color": "#c0ee45",
+      "tooltip": "Derek —attends→ dance event"
+    },
+    {
+      "id": "e8",
+      "source": "Nigel",
+      "target": "brie",
+      "predicate": "brings",
+      "cluster": null,
+      "color": "#56e2e7",
+      "tooltip": "Nigel —brings→ brie"
+    },
+    {
+      "id": "e9",
+      "source": "Scurvy",
+      "target": "Daddy",
+      "predicate": "calls",
+      "cluster": null,
+      "color": "#d26c55",
+      "tooltip": "Scurvy —calls→ Daddy"
+    },
+    {
+      "id": "e10",
+      "source": "suburban neighborhood",
+      "target": "car",
+      "predicate": "contains",
+      "cluster": null,
+      "color": "#6ca6dd",
+      "tooltip": "suburban neighborhood —contains→ car"
+    },
+    {
+      "id": "e11",
+      "source": "suburban neighborhood",
+      "target": "driveway",
+      "predicate": "contains",
+      "cluster": null,
+      "color": "#6ca6dd",
+      "tooltip": "suburban neighborhood —contains→ driveway"
+    },
+    {
+      "id": "e12",
+      "source": "suburban neighborhood",
+      "target": "houses",
+      "predicate": "contains",
+      "cluster": null,
+      "color": "#6ca6dd",
+      "tooltip": "suburban neighborhood —contains→ houses"
+    },
+    {
+      "id": "e13",
+      "source": "wooden box",
+      "target": "cigars",
+      "predicate": "contains",
+      "cluster": null,
+      "color": "#6ca6dd",
+      "tooltip": "wooden box —contains→ cigars"
+    },
+    {
+      "id": "e14",
+      "source": "Nearby",
+      "target": "Bianca",
+      "predicate": "contradicts",
+      "cluster": null,
+      "color": "#4747ef",
+      "tooltip": "Nearby —contradicts→ Bianca"
+    },
+    {
+      "id": "e15",
+      "source": "Nearby",
+      "target": "sailing",
+      "predicate": "declines",
+      "cluster": null,
+      "color": "#d7e137",
+      "tooltip": "Nearby —declines→ sailing"
+    },
+    {
+      "id": "e16",
+      "source": "Bianca",
+      "target": "bikers",
+      "predicate": "describes",
+      "cluster": null,
+      "color": "#bdb234",
+      "tooltip": "Bianca —describes→ bikers"
+    },
+    {
+      "id": "e17",
+      "source": "driver",
+      "target": "car",
+      "predicate": "drives",
+      "cluster": null,
+      "color": "#6edae4",
+      "tooltip": "driver —drives→ car"
+    },
+    {
+      "id": "e18",
+      "source": "Joey",
+      "target": "the duck",
+      "predicate": "eats",
+      "cluster": null,
+      "color": "#ef5aae",
+      "tooltip": "Joey —eats→ the duck"
+    },
+    {
+      "id": "e19",
+      "source": "Pepe",
+      "target": "the shrew",
+      "predicate": "encounters",
+      "cluster": null,
+      "color": "#5bd152",
+      "tooltip": "Pepe —encounters→ the shrew"
+    },
+    {
+      "id": "e20",
+      "source": "Andrew Jarrett",
+      "target": "Roxanne",
+      "predicate": "ends relationship with",
+      "cluster": null,
+      "color": "#4fda3d",
+      "tooltip": "Andrew Jarrett —ends relationship with→ Roxanne"
+    },
+    {
+      "id": "e21",
+      "source": "Roxanne",
+      "target": "Andrew Jarrett",
+      "predicate": "ends relationship with",
+      "cluster": null,
+      "color": "#4fda3d",
+      "tooltip": "Roxanne —ends relationship with→ Andrew Jarrett"
+    },
+    {
+      "id": "e22",
+      "source": "Walter",
+      "target": "Gil's Music",
+      "predicate": "enters",
+      "cluster": null,
+      "color": "#33c19b",
+      "tooltip": "Walter —enters→ Gil's Music"
+    },
+    {
+      "id": "e23",
+      "source": "Trevor",
+      "target": "Nigel",
+      "predicate": "expects",
+      "cluster": null,
+      "color": "#d0a957",
+      "tooltip": "Trevor —expects→ Nigel"
+    },
+    {
+      "id": "e24",
+      "source": "Nearby",
+      "target": "black panties",
+      "predicate": "finds",
+      "cluster": null,
+      "color": "#67d4ac",
+      "tooltip": "Nearby —finds→ black panties"
+    },
+    {
+      "id": "e25",
+      "source": "the duck",
+      "target": "Bianca",
+      "predicate": "gropes",
+      "cluster": null,
+      "color": "#e65c69",
+      "tooltip": "the duck —gropes→ Bianca"
+    },
+    {
+      "id": "e26",
+      "source": "dance event",
+      "target": "formal attire",
+      "predicate": "has",
+      "cluster": null,
+      "color": "#e1ce4f",
+      "tooltip": "dance event —has→ formal attire"
+    },
+    {
+      "id": "e27",
+      "source": "frog illustrations",
+      "target": "blue vein",
+      "predicate": "have",
+      "cluster": null,
+      "color": "#cc23b2",
+      "tooltip": "frog illustrations —have→ blue vein"
+    },
+    {
+      "id": "e28",
+      "source": "frog illustrations",
+      "target": "internal organs",
+      "predicate": "have",
+      "cluster": null,
+      "color": "#cc23b2",
+      "tooltip": "frog illustrations —have→ internal organs"
+    },
+    {
+      "id": "e29",
+      "source": "Derek",
+      "target": "crystal vase",
+      "predicate": "holds",
+      "cluster": null,
+      "color": "#399deb",
+      "tooltip": "Derek —holds→ crystal vase"
+    },
+    {
+      "id": "e30",
+      "source": "Nearby",
+      "target": "Pepe",
+      "predicate": "informs",
+      "cluster": null,
+      "color": "#30b5d1",
+      "tooltip": "Nearby —informs→ Pepe"
+    },
+    {
+      "id": "e31",
+      "source": "Trevor",
+      "target": "Derek",
+      "predicate": "instructs",
+      "cluster": null,
+      "color": "#de7f6d",
+      "tooltip": "Trevor —instructs→ Derek"
+    },
+    {
+      "id": "e32",
+      "source": "Bruce",
+      "target": "Nearby",
+      "predicate": "invites",
+      "cluster": null,
+      "color": "#377ddd",
+      "tooltip": "Bruce —invites→ Nearby"
+    },
+    {
+      "id": "e33",
+      "source": "Bogey",
+      "target": "roofer",
+      "predicate": "is",
+      "cluster": null,
+      "color": "#592ae1",
+      "tooltip": "Bogey —is→ roofer"
+    },
+    {
+      "id": "e34",
+      "source": "Bianca",
+      "target": "Susie High School",
+      "predicate": "is not",
+      "cluster": null,
+      "color": "#2fd818",
+      "tooltip": "Bianca —is not→ Susie High School"
+    },
+    {
+      "id": "e35",
+      "source": "female singer",
+      "target": "the band",
+      "predicate": "is part of",
+      "cluster": null,
+      "color": "#2553c9",
+      "tooltip": "female singer —is part of→ the band"
+    },
+    {
+      "id": "e36",
+      "source": "male guitarist",
+      "target": "the band",
+      "predicate": "is part of",
+      "cluster": null,
+      "color": "#2553c9",
+      "tooltip": "male guitarist —is part of→ the band"
+    },
+    {
+      "id": "e37",
+      "source": "Bogey",
+      "target": "Australia",
+      "predicate": "lived in",
+      "cluster": null,
+      "color": "#52ef68",
+      "tooltip": "Bogey —lived in→ Australia"
+    },
+    {
+      "id": "e38",
+      "source": "book",
+      "target": "library",
+      "predicate": "located in",
+      "cluster": null,
+      "color": "#eb4c4c",
+      "tooltip": "book —located in→ library"
+    },
+    {
+      "id": "e39",
+      "source": "Bruce",
+      "target": "The Son Also Rises",
+      "predicate": "loves",
+      "cluster": null,
+      "color": "#27e06d",
+      "tooltip": "Bruce —loves→ The Son Also Rises"
+    },
+    {
+      "id": "e40",
+      "source": "Cameron",
+      "target": "Bianca",
+      "predicate": "loves",
+      "cluster": null,
+      "color": "#27e06d",
+      "tooltip": "Cameron —loves→ Bianca"
+    },
+    {
+      "id": "e41",
+      "source": "Joey",
+      "target": "Cosmo",
+      "predicate": "mentions",
+      "cluster": null,
+      "color": "#6eef89",
+      "tooltip": "Joey —mentions→ Cosmo"
+    },
+    {
+      "id": "e42",
+      "source": "Joey",
+      "target": "Rambo",
+      "predicate": "mentions",
+      "cluster": null,
+      "color": "#6eef89",
+      "tooltip": "Joey —mentions→ Rambo"
+    },
+    {
+      "id": "e43",
+      "source": "Narrator",
+      "target": "Kat",
+      "predicate": "mentions",
+      "cluster": null,
+      "color": "#6eef89",
+      "tooltip": "Narrator —mentions→ Kat"
+    },
+    {
+      "id": "e44",
+      "source": "Patrick",
+      "target": "Mr. Donna",
+      "predicate": "mentions",
+      "cluster": null,
+      "color": "#6eef89",
+      "tooltip": "Patrick —mentions→ Mr. Donna"
+    },
+    {
+      "id": "e45",
+      "source": "motorcycles",
+      "target": "bar",
+      "predicate": "parked at",
+      "cluster": null,
+      "color": "#bdc83c",
+      "tooltip": "motorcycles —parked at→ bar"
+    },
+    {
+      "id": "e46",
+      "source": "red car",
+      "target": "large white house",
+      "predicate": "parked in front of",
+      "cluster": null,
+      "color": "#1d76e4",
+      "tooltip": "red car —parked in front of→ large white house"
+    },
+    {
+      "id": "e47",
+      "source": "female singer",
+      "target": "stage",
+      "predicate": "performs on",
+      "cluster": null,
+      "color": "#46a9ef",
+      "tooltip": "female singer —performs on→ stage"
+    },
+    {
+      "id": "e48",
+      "source": "male guitarist",
+      "target": "stage",
+      "predicate": "performs on",
+      "cluster": null,
+      "color": "#46a9ef",
+      "tooltip": "male guitarist —performs on→ stage"
+    },
+    {
+      "id": "e49",
+      "source": "the band",
+      "target": "stage",
+      "predicate": "performs on",
+      "cluster": null,
+      "color": "#46a9ef",
+      "tooltip": "the band —performs on→ stage"
+    },
+    {
+      "id": "e50",
+      "source": "Nearby",
+      "target": "class schedule",
+      "predicate": "possesses",
+      "cluster": null,
+      "color": "#4fec3a",
+      "tooltip": "Nearby —possesses→ class schedule"
+    },
+    {
+      "id": "e51",
+      "source": "Nearby",
+      "target": "concert tickets",
+      "predicate": "possesses",
+      "cluster": null,
+      "color": "#4fec3a",
+      "tooltip": "Nearby —possesses→ concert tickets"
+    },
+    {
+      "id": "e52",
+      "source": "Nearby",
+      "target": "Facebook",
+      "predicate": "possesses",
+      "cluster": null,
+      "color": "#4fec3a",
+      "tooltip": "Nearby —possesses→ Facebook"
+    },
+    {
+      "id": "e53",
+      "source": "Nearby",
+      "target": "reading list",
+      "predicate": "possesses",
+      "cluster": null,
+      "color": "#4fec3a",
+      "tooltip": "Nearby —possesses→ reading list"
+    },
+    {
+      "id": "e54",
+      "source": "Pepe",
+      "target": "Nearby",
+      "predicate": "questions",
+      "cluster": null,
+      "color": "#da1628",
+      "tooltip": "Pepe —questions→ Nearby"
+    },
+    {
+      "id": "e55",
+      "source": "Bogey",
+      "target": "Bianca",
+      "predicate": "questions about",
+      "cluster": null,
+      "color": "#67da5e",
+      "tooltip": "Bogey —questions about→ Bianca"
+    },
+    {
+      "id": "e56",
+      "source": "Nearby",
+      "target": "calculator",
+      "predicate": "reaches for",
+      "cluster": null,
+      "color": "#7ecddb",
+      "tooltip": "Nearby —reaches for→ calculator"
+    },
+    {
+      "id": "e57",
+      "source": "Walter",
+      "target": "Pepe",
+      "predicate": "responds to",
+      "cluster": null,
+      "color": "#d64c59",
+      "tooltip": "Walter —responds to→ Pepe"
+    },
+    {
+      "id": "e58",
+      "source": "Pepe",
+      "target": "motorcycle",
+      "predicate": "rides",
+      "cluster": null,
+      "color": "#b1f156",
+      "tooltip": "Pepe —rides→ motorcycle"
+    },
+    {
+      "id": "e59",
+      "source": "Joey",
+      "target": "track",
+      "predicate": "runs on",
+      "cluster": null,
+      "color": "#52e0c4",
+      "tooltip": "Joey —runs on→ track"
+    },
+    {
+      "id": "e60",
+      "source": "Bianca",
+      "target": "Cameron",
+      "predicate": "screams at",
+      "cluster": null,
+      "color": "#45db1c",
+      "tooltip": "Bianca —screams at→ Cameron"
+    },
+    {
+      "id": "e61",
+      "source": "Gil's Music",
+      "target": "guitars",
+      "predicate": "sells",
+      "cluster": null,
+      "color": "#2d34b9",
+      "tooltip": "Gil's Music —sells→ guitars"
+    },
+    {
+      "id": "e62",
+      "source": "Patrick",
+      "target": "desk",
+      "predicate": "sits at",
+      "cluster": null,
+      "color": "#2689e6",
+      "tooltip": "Patrick —sits at→ desk"
+    },
+    {
+      "id": "e63",
+      "source": "GLH",
+      "target": "thinning hair",
+      "predicate": "solves",
+      "cluster": null,
+      "color": "#bde25a",
+      "tooltip": "GLH —solves→ thinning hair"
+    },
+    {
+      "id": "e64",
+      "source": "pregnant woman",
+      "target": "doorway",
+      "predicate": "stands in",
+      "cluster": null,
+      "color": "#cc2373",
+      "tooltip": "pregnant woman —stands in→ doorway"
+    },
+    {
+      "id": "e65",
+      "source": "Miss Perky",
+      "target": "Bianca",
+      "predicate": "stares at",
+      "cluster": null,
+      "color": "#5519cf",
+      "tooltip": "Miss Perky —stares at→ Bianca"
+    },
+    {
+      "id": "e66",
+      "source": "Nearby",
+      "target": "Bianca",
+      "predicate": "suggests new look to",
+      "cluster": null,
+      "color": "#e6525d",
+      "tooltip": "Nearby —suggests new look to→ Bianca"
+    },
+    {
+      "id": "e67",
+      "source": "Cameron",
+      "target": "Joey Donners",
+      "predicate": "talks about",
+      "cluster": null,
+      "color": "#82d5db",
+      "tooltip": "Cameron —talks about→ Joey Donners"
+    },
+    {
+      "id": "e68",
+      "source": "Joey",
+      "target": "Kat",
+      "predicate": "talks to",
+      "cluster": null,
+      "color": "#61b732",
+      "tooltip": "Joey —talks to→ Kat"
+    },
+    {
+      "id": "e69",
+      "source": "Nearby",
+      "target": "Bruce",
+      "predicate": "thanks",
+      "cluster": null,
+      "color": "#df2dd9",
+      "tooltip": "Nearby —thanks→ Bruce"
+    },
+    {
+      "id": "e70",
+      "source": "Patrick",
+      "target": "computer",
+      "predicate": "uses",
+      "cluster": null,
+      "color": "#d271e1",
+      "tooltip": "Patrick —uses→ computer"
+    },
+    {
+      "id": "e71",
+      "source": "Joey",
+      "target": "large white house",
+      "predicate": "walks near",
+      "cluster": null,
+      "color": "#a44edf",
+      "tooltip": "Joey —walks near→ large white house"
+    },
+    {
+      "id": "e72",
+      "source": "female soccer players",
+      "target": "yellow and blue uniforms",
+      "predicate": "wear",
+      "cluster": null,
+      "color": "#e227a6",
+      "tooltip": "female soccer players —wear→ yellow and blue uniforms"
+    },
+    {
+      "id": "e73",
+      "source": "Derek",
+      "target": "helmet with plants",
+      "predicate": "wears",
+      "cluster": null,
+      "color": "#ce6eee",
+      "tooltip": "Derek —wears→ helmet with plants"
+    }
+  ],
+  "clusters": [],
+  "edgeClusters": [],
+  "topEntities": [
+    {
+      "label": "Nearby",
+      "degree": 13,
+      "indegree": 2,
+      "outdegree": 11,
+      "cluster": null
+    },
+    {
+      "label": "Bianca",
+      "degree": 11,
+      "indegree": 6,
+      "outdegree": 5,
+      "cluster": null
+    },
+    {
+      "label": "Joey",
+      "degree": 6,
+      "indegree": 0,
+      "outdegree": 6,
+      "cluster": null
+    },
+    {
+      "label": "Pepe",
+      "degree": 6,
+      "indegree": 2,
+      "outdegree": 4,
+      "cluster": null
+    },
+    {
+      "label": "Patrick",
+      "degree": 5,
+      "indegree": 0,
+      "outdegree": 5,
+      "cluster": null
+    },
+    {
+      "label": "Bogey",
+      "degree": 4,
+      "indegree": 1,
+      "outdegree": 3,
+      "cluster": null
+    },
+    {
+      "label": "Cameron",
+      "degree": 4,
+      "indegree": 1,
+      "outdegree": 3,
+      "cluster": null
+    },
+    {
+      "label": "Derek",
+      "degree": 4,
+      "indegree": 1,
+      "outdegree": 3,
+      "cluster": null
+    },
+    {
+      "label": "Bruce",
+      "degree": 3,
+      "indegree": 1,
+      "outdegree": 2,
+      "cluster": null
+    },
+    {
+      "label": "stage",
+      "degree": 3,
+      "indegree": 3,
+      "outdegree": 0,
+      "cluster": null
+    }
+  ],
+  "topRelations": [
+    {
+      "predicate": "contains",
+      "count": 4,
+      "cluster": null,
+      "color": "#6ca6dd"
+    },
+    {
+      "predicate": "mentions",
+      "count": 4,
+      "cluster": null,
+      "color": "#6eef89"
+    },
+    {
+      "predicate": "possesses",
+      "count": 4,
+      "cluster": null,
+      "color": "#4fec3a"
+    },
+    {
+      "predicate": "asks about",
+      "count": 3,
+      "cluster": null,
+      "color": "#3472c7"
+    },
+    {
+      "predicate": "performs on",
+      "count": 3,
+      "cluster": null,
+      "color": "#46a9ef"
+    },
+    {
+      "predicate": "ends relationship with",
+      "count": 2,
+      "cluster": null,
+      "color": "#4fda3d"
+    },
+    {
+      "predicate": "have",
+      "count": 2,
+      "cluster": null,
+      "color": "#cc23b2"
+    },
+    {
+      "predicate": "is part of",
+      "count": 2,
+      "cluster": null,
+      "color": "#2553c9"
+    },
+    {
+      "predicate": "loves",
+      "count": 2,
+      "cluster": null,
+      "color": "#27e06d"
+    },
+    {
+      "predicate": "apologizes to",
+      "count": 1,
+      "cluster": null,
+      "color": "#ca1b5d"
+    }
+  ],
+  "stats": {
+    "entities": 114,
+    "relations": 74,
+    "relationTypes": 57,
+    "entityClusters": 0,
+    "edgeClusters": 0,
+    "isolatedEntities": 36,
+    "components": 49,
+    "averageDegree": 1.3,
+    "density": 0.006
+  },
+  "isolatedEntities": [
+    "Aquaman",
+    "Blaise",
+    "Bogey Lowenstein",
+    "briefcase",
+    "buildings",
+    "Clem",
+    "Corinne",
+    "dead guy in the pocket",
+    "drink",
+    "field",
+    "golf club",
+    "green SUV",
+    "group of people",
+    "hockey",
+    "Jaret Entertainment",
+    "Lincoln",
+    "lunch line",
+    "Mad Chance",
+    "Mandelia",
+    "Michael",
+    "night",
+    "office",
+    "passenger seat",
+    "Pat",
+    "porn career",
+    "public space",
+    "pygmies",
+    "quad",
+    "roller blades",
+    "satellite",
+    "skyscraper",
+    "spiral staircase",
+    "students",
+    "teacher",
+    "Touchstone Pictures",
+    "yellow leaves"
+  ],
+  "components": [
+    {
+      "size": 41,
+      "members": [
+        "Australia",
+        "Bianca",
+        "bikers",
+        "black panties",
+        "Bogey",
+        "Bruce",
+        "calculator",
+        "Cameron",
+        "class schedule",
+        "computer",
+        "concert tickets",
+        "Cosmo",
+        "desk",
+        "Facebook",
+        "Gil's Music",
+        "guitars",
+        "Joey",
+        "Joey Donners",
+        "Kat",
+        "large white house",
+        "Miss Perky",
+        "motorcycle",
+        "Mr. Donna",
+        "Narrator",
+        "Nearby",
+        "offender strat",
+        "Patrick",
+        "Pepe",
+        "poem assignment",
+        "prophylactic",
+        "Rambo",
+        "reading list",
+        "red car",
+        "roofer",
+        "sailing",
+        "Susie High School",
+        "the duck",
+        "the shrew",
+        "The Son Also Rises",
+        "track",
+        "Walter"
+      ]
+    },
+    {
+      "size": 8,
+      "members": [
+        "brie",
+        "crystal vase",
+        "dance event",
+        "Derek",
+        "formal attire",
+        "helmet with plants",
+        "Nigel",
+        "Trevor"
+      ]
+    },
+    {
+      "size": 5,
+      "members": [
+        "car",
+        "driver",
+        "driveway",
+        "houses",
+        "suburban neighborhood"
+      ]
+    },
+    {
+      "size": 4,
+      "members": [
+        "female singer",
+        "male guitarist",
+        "stage",
+        "the band"
+      ]
+    },
+    {
+      "size": 3,
+      "members": [
+        "Daddy",
+        "dance",
+        "Scurvy"
+      ]
+    },
+    {
+      "size": 3,
+      "members": [
+        "blue vein",
+        "frog illustrations",
+        "internal organs"
+      ]
+    },
+    {
+      "size": 2,
+      "members": [
+        "Andrew Jarrett",
+        "Roxanne"
+      ]
+    },
+    {
+      "size": 2,
+      "members": [
+        "GLH",
+        "thinning hair"
+      ]
+    },
+    {
+      "size": 2,
+      "members": [
+        "bar",
+        "motorcycles"
+      ]
+    },
+    {
+      "size": 2,
+      "members": [
+        "book",
+        "library"
+      ]
+    },
+    {
+      "size": 2,
+      "members": [
+        "cigars",
+        "wooden box"
+      ]
+    },
+    {
+      "size": 2,
+      "members": [
+        "doorway",
+        "pregnant woman"
+      ]
+    },
+    {
+      "size": 2,
+      "members": [
+        "female soccer players",
+        "yellow and blue uniforms"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "Aquaman"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "Blaise"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "Bogey Lowenstein"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "Clem"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "Corinne"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "Jaret Entertainment"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "Lincoln"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "Mad Chance"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "Mandelia"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "Michael"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "Pat"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "Touchstone Pictures"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "briefcase"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "buildings"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "dead guy in the pocket"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "drink"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "field"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "golf club"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "green SUV"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "group of people"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "hockey"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "lunch line"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "night"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "office"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "passenger seat"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "porn career"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "public space"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "pygmies"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "quad"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "roller blades"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "satellite"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "skyscraper"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "spiral staircase"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "students"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "teacher"
+      ]
+    },
+    {
+      "size": 1,
+      "members": [
+        "yellow leaves"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "source": "Bianca",
+      "predicate": "apologizes to",
+      "target": "Bogey",
+      "edgeId": "e0",
+      "color": "#ca1b5d"
+    },
+    {
+      "source": "Pepe",
+      "predicate": "asks",
+      "target": "Walter",
+      "edgeId": "e1",
+      "color": "#dcb754"
+    },
+    {
+      "source": "Bianca",
+      "predicate": "asks about",
+      "target": "offender strat",
+      "edgeId": "e2",
+      "color": "#3472c7"
+    },
+    {
+      "source": "Patrick",
+      "predicate": "asks about",
+      "target": "The Son Also Rises",
+      "edgeId": "e3",
+      "color": "#3472c7"
+    },
+    {
+      "source": "Scurvy",
+      "predicate": "asks about",
+      "target": "dance",
+      "edgeId": "e4",
+      "color": "#3472c7"
+    },
+    {
+      "source": "Cameron",
+      "predicate": "asks for",
+      "target": "prophylactic",
+      "edgeId": "e5",
+      "color": "#1ad758"
+    },
+    {
+      "source": "Patrick",
+      "predicate": "assigns",
+      "target": "poem assignment",
+      "edgeId": "e6",
+      "color": "#69aae1"
+    },
+    {
+      "source": "Derek",
+      "predicate": "attends",
+      "target": "dance event",
+      "edgeId": "e7",
+      "color": "#c0ee45"
+    },
+    {
+      "source": "Nigel",
+      "predicate": "brings",
+      "target": "brie",
+      "edgeId": "e8",
+      "color": "#56e2e7"
+    },
+    {
+      "source": "Scurvy",
+      "predicate": "calls",
+      "target": "Daddy",
+      "edgeId": "e9",
+      "color": "#d26c55"
+    },
+    {
+      "source": "suburban neighborhood",
+      "predicate": "contains",
+      "target": "car",
+      "edgeId": "e10",
+      "color": "#6ca6dd"
+    },
+    {
+      "source": "suburban neighborhood",
+      "predicate": "contains",
+      "target": "driveway",
+      "edgeId": "e11",
+      "color": "#6ca6dd"
+    },
+    {
+      "source": "suburban neighborhood",
+      "predicate": "contains",
+      "target": "houses",
+      "edgeId": "e12",
+      "color": "#6ca6dd"
+    },
+    {
+      "source": "wooden box",
+      "predicate": "contains",
+      "target": "cigars",
+      "edgeId": "e13",
+      "color": "#6ca6dd"
+    },
+    {
+      "source": "Nearby",
+      "predicate": "contradicts",
+      "target": "Bianca",
+      "edgeId": "e14",
+      "color": "#4747ef"
+    },
+    {
+      "source": "Nearby",
+      "predicate": "declines",
+      "target": "sailing",
+      "edgeId": "e15",
+      "color": "#d7e137"
+    },
+    {
+      "source": "Bianca",
+      "predicate": "describes",
+      "target": "bikers",
+      "edgeId": "e16",
+      "color": "#bdb234"
+    },
+    {
+      "source": "driver",
+      "predicate": "drives",
+      "target": "car",
+      "edgeId": "e17",
+      "color": "#6edae4"
+    },
+    {
+      "source": "Joey",
+      "predicate": "eats",
+      "target": "the duck",
+      "edgeId": "e18",
+      "color": "#ef5aae"
+    },
+    {
+      "source": "Pepe",
+      "predicate": "encounters",
+      "target": "the shrew",
+      "edgeId": "e19",
+      "color": "#5bd152"
+    },
+    {
+      "source": "Andrew Jarrett",
+      "predicate": "ends relationship with",
+      "target": "Roxanne",
+      "edgeId": "e20",
+      "color": "#4fda3d"
+    },
+    {
+      "source": "Roxanne",
+      "predicate": "ends relationship with",
+      "target": "Andrew Jarrett",
+      "edgeId": "e21",
+      "color": "#4fda3d"
+    },
+    {
+      "source": "Walter",
+      "predicate": "enters",
+      "target": "Gil's Music",
+      "edgeId": "e22",
+      "color": "#33c19b"
+    },
+    {
+      "source": "Trevor",
+      "predicate": "expects",
+      "target": "Nigel",
+      "edgeId": "e23",
+      "color": "#d0a957"
+    },
+    {
+      "source": "Nearby",
+      "predicate": "finds",
+      "target": "black panties",
+      "edgeId": "e24",
+      "color": "#67d4ac"
+    },
+    {
+      "source": "the duck",
+      "predicate": "gropes",
+      "target": "Bianca",
+      "edgeId": "e25",
+      "color": "#e65c69"
+    },
+    {
+      "source": "dance event",
+      "predicate": "has",
+      "target": "formal attire",
+      "edgeId": "e26",
+      "color": "#e1ce4f"
+    },
+    {
+      "source": "frog illustrations",
+      "predicate": "have",
+      "target": "blue vein",
+      "edgeId": "e27",
+      "color": "#cc23b2"
+    },
+    {
+      "source": "frog illustrations",
+      "predicate": "have",
+      "target": "internal organs",
+      "edgeId": "e28",
+      "color": "#cc23b2"
+    },
+    {
+      "source": "Derek",
+      "predicate": "holds",
+      "target": "crystal vase",
+      "edgeId": "e29",
+      "color": "#399deb"
+    },
+    {
+      "source": "Nearby",
+      "predicate": "informs",
+      "target": "Pepe",
+      "edgeId": "e30",
+      "color": "#30b5d1"
+    },
+    {
+      "source": "Trevor",
+      "predicate": "instructs",
+      "target": "Derek",
+      "edgeId": "e31",
+      "color": "#de7f6d"
+    },
+    {
+      "source": "Bruce",
+      "predicate": "invites",
+      "target": "Nearby",
+      "edgeId": "e32",
+      "color": "#377ddd"
+    },
+    {
+      "source": "Bogey",
+      "predicate": "is",
+      "target": "roofer",
+      "edgeId": "e33",
+      "color": "#592ae1"
+    },
+    {
+      "source": "Bianca",
+      "predicate": "is not",
+      "target": "Susie High School",
+      "edgeId": "e34",
+      "color": "#2fd818"
+    },
+    {
+      "source": "female singer",
+      "predicate": "is part of",
+      "target": "the band",
+      "edgeId": "e35",
+      "color": "#2553c9"
+    },
+    {
+      "source": "male guitarist",
+      "predicate": "is part of",
+      "target": "the band",
+      "edgeId": "e36",
+      "color": "#2553c9"
+    },
+    {
+      "source": "Bogey",
+      "predicate": "lived in",
+      "target": "Australia",
+      "edgeId": "e37",
+      "color": "#52ef68"
+    },
+    {
+      "source": "book",
+      "predicate": "located in",
+      "target": "library",
+      "edgeId": "e38",
+      "color": "#eb4c4c"
+    },
+    {
+      "source": "Bruce",
+      "predicate": "loves",
+      "target": "The Son Also Rises",
+      "edgeId": "e39",
+      "color": "#27e06d"
+    },
+    {
+      "source": "Cameron",
+      "predicate": "loves",
+      "target": "Bianca",
+      "edgeId": "e40",
+      "color": "#27e06d"
+    },
+    {
+      "source": "Joey",
+      "predicate": "mentions",
+      "target": "Cosmo",
+      "edgeId": "e41",
+      "color": "#6eef89"
+    },
+    {
+      "source": "Joey",
+      "predicate": "mentions",
+      "target": "Rambo",
+      "edgeId": "e42",
+      "color": "#6eef89"
+    },
+    {
+      "source": "Narrator",
+      "predicate": "mentions",
+      "target": "Kat",
+      "edgeId": "e43",
+      "color": "#6eef89"
+    },
+    {
+      "source": "Patrick",
+      "predicate": "mentions",
+      "target": "Mr. Donna",
+      "edgeId": "e44",
+      "color": "#6eef89"
+    },
+    {
+      "source": "motorcycles",
+      "predicate": "parked at",
+      "target": "bar",
+      "edgeId": "e45",
+      "color": "#bdc83c"
+    },
+    {
+      "source": "red car",
+      "predicate": "parked in front of",
+      "target": "large white house",
+      "edgeId": "e46",
+      "color": "#1d76e4"
+    },
+    {
+      "source": "female singer",
+      "predicate": "performs on",
+      "target": "stage",
+      "edgeId": "e47",
+      "color": "#46a9ef"
+    },
+    {
+      "source": "male guitarist",
+      "predicate": "performs on",
+      "target": "stage",
+      "edgeId": "e48",
+      "color": "#46a9ef"
+    },
+    {
+      "source": "the band",
+      "predicate": "performs on",
+      "target": "stage",
+      "edgeId": "e49",
+      "color": "#46a9ef"
+    },
+    {
+      "source": "Nearby",
+      "predicate": "possesses",
+      "target": "class schedule",
+      "edgeId": "e50",
+      "color": "#4fec3a"
+    },
+    {
+      "source": "Nearby",
+      "predicate": "possesses",
+      "target": "concert tickets",
+      "edgeId": "e51",
+      "color": "#4fec3a"
+    },
+    {
+      "source": "Nearby",
+      "predicate": "possesses",
+      "target": "Facebook",
+      "edgeId": "e52",
+      "color": "#4fec3a"
+    },
+    {
+      "source": "Nearby",
+      "predicate": "possesses",
+      "target": "reading list",
+      "edgeId": "e53",
+      "color": "#4fec3a"
+    },
+    {
+      "source": "Pepe",
+      "predicate": "questions",
+      "target": "Nearby",
+      "edgeId": "e54",
+      "color": "#da1628"
+    },
+    {
+      "source": "Bogey",
+      "predicate": "questions about",
+      "target": "Bianca",
+      "edgeId": "e55",
+      "color": "#67da5e"
+    },
+    {
+      "source": "Nearby",
+      "predicate": "reaches for",
+      "target": "calculator",
+      "edgeId": "e56",
+      "color": "#7ecddb"
+    },
+    {
+      "source": "Walter",
+      "predicate": "responds to",
+      "target": "Pepe",
+      "edgeId": "e57",
+      "color": "#d64c59"
+    },
+    {
+      "source": "Pepe",
+      "predicate": "rides",
+      "target": "motorcycle",
+      "edgeId": "e58",
+      "color": "#b1f156"
+    },
+    {
+      "source": "Joey",
+      "predicate": "runs on",
+      "target": "track",
+      "edgeId": "e59",
+      "color": "#52e0c4"
+    },
+    {
+      "source": "Bianca",
+      "predicate": "screams at",
+      "target": "Cameron",
+      "edgeId": "e60",
+      "color": "#45db1c"
+    },
+    {
+      "source": "Gil's Music",
+      "predicate": "sells",
+      "target": "guitars",
+      "edgeId": "e61",
+      "color": "#2d34b9"
+    },
+    {
+      "source": "Patrick",
+      "predicate": "sits at",
+      "target": "desk",
+      "edgeId": "e62",
+      "color": "#2689e6"
+    },
+    {
+      "source": "GLH",
+      "predicate": "solves",
+      "target": "thinning hair",
+      "edgeId": "e63",
+      "color": "#bde25a"
+    },
+    {
+      "source": "pregnant woman",
+      "predicate": "stands in",
+      "target": "doorway",
+      "edgeId": "e64",
+      "color": "#cc2373"
+    },
+    {
+      "source": "Miss Perky",
+      "predicate": "stares at",
+      "target": "Bianca",
+      "edgeId": "e65",
+      "color": "#5519cf"
+    },
+    {
+      "source": "Nearby",
+      "predicate": "suggests new look to",
+      "target": "Bianca",
+      "edgeId": "e66",
+      "color": "#e6525d"
+    },
+    {
+      "source": "Cameron",
+      "predicate": "talks about",
+      "target": "Joey Donners",
+      "edgeId": "e67",
+      "color": "#82d5db"
+    },
+    {
+      "source": "Joey",
+      "predicate": "talks to",
+      "target": "Kat",
+      "edgeId": "e68",
+      "color": "#61b732"
+    },
+    {
+      "source": "Nearby",
+      "predicate": "thanks",
+      "target": "Bruce",
+      "edgeId": "e69",
+      "color": "#df2dd9"
+    },
+    {
+      "source": "Patrick",
+      "predicate": "uses",
+      "target": "computer",
+      "edgeId": "e70",
+      "color": "#d271e1"
+    },
+    {
+      "source": "Joey",
+      "predicate": "walks near",
+      "target": "large white house",
+      "edgeId": "e71",
+      "color": "#a44edf"
+    },
+    {
+      "source": "female soccer players",
+      "predicate": "wear",
+      "target": "yellow and blue uniforms",
+      "edgeId": "e72",
+      "color": "#e227a6"
+    },
+    {
+      "source": "Derek",
+      "predicate": "wears",
+      "target": "helmet with plants",
+      "edgeId": "e73",
+      "color": "#ce6eee"
+    }
+  ]
+}
+    </script>
+    <script>
+        (function () {
+            console.log('[iframe] Script starting - mobile check:', window.innerWidth <= 768);
+            console.log('[iframe] User agent:', navigator.userAgent);
+
+            const dataElement = document.getElementById('viz-data');
+            if (!dataElement) {
+                console.error('[iframe] viz-data element not found!');
+                return;
+            }
+
+            let vizData;
+            try {
+                vizData = JSON.parse(dataElement.textContent);
+                console.log('[iframe] Data parsed successfully:', vizData.nodes?.length, 'nodes');
+            } catch (e) {
+                console.error('[iframe] Failed to parse data:', e);
+                return;
+            }
+
+            const state = {
+                activeElement: null,
+                focusCluster: null,
+                focusPredicate: null,
+                searchTerm: '',
+                sidebarCollapsed: false,
+                sidebarDisabled: false
+            };
+
+            const nodeById = Object.fromEntries(vizData.nodes.map(node => [node.id, node]));
+            const edgeById = Object.fromEntries(vizData.edges.map(edge => [edge.id, edge]));
+            const clusterById = Object.fromEntries(vizData.clusters.map(cluster => [cluster.id, cluster]));
+            const edgesByPredicate = {};
+            vizData.edges.forEach(edge => {
+                if (!edgesByPredicate[edge.predicate]) {
+                    edgesByPredicate[edge.predicate] = [];
+                }
+                edgesByPredicate[edge.predicate].push(edge.id);
+            });
+
+            const nodesByCluster = {};
+            vizData.clusters.forEach(cluster => {
+                cluster.members.forEach(member => {
+                    if (!nodesByCluster[cluster.id]) {
+                        nodesByCluster[cluster.id] = new Set();
+                    }
+                    nodesByCluster[cluster.id].add(member);
+                });
+            });
+
+            function renderStats() {
+                const grid = document.getElementById('statsGrid');
+                const stats = vizData.stats;
+                const entries = [
+                    { label: 'Entities', value: stats.entities },
+                    { label: 'Relations', value: stats.relations },
+                    { label: 'Relation types', value: stats.relationTypes },
+                    { label: 'Entity clusters', value: stats.entityClusters },
+                    { label: 'Edge clusters', value: stats.edgeClusters },
+                    { label: 'Isolated entities', value: stats.isolatedEntities },
+                    { label: 'Components', value: stats.components },
+                    { label: 'Average degree', value: stats.averageDegree }
+                ];
+                grid.innerHTML = entries
+                    .map(entry => `
+                        <div class="stat-card">
+                            <div class="stat-value">${entry.value}</div>
+                            <div>${entry.label}</div>
+                        </div>
+                    `)
+                    .join('');
+            }
+
+            function renderTopLists() {
+                const topEntitiesContainer = document.getElementById('topEntities');
+                const topRelationsContainer = document.getElementById('topRelations');
+
+                const entityItems = vizData.topEntities.map(item => {
+                    const clusterLabel = item.cluster ? `${item.cluster}` : 'Unclustered';
+                    return `
+                        <div class="list-item">
+                            <div>
+                                <strong>${item.label}</strong>
+                                <div class="meta">Cluster: ${clusterLabel}</div>
+                            </div>
+                            <div>${item.degree}</div>
+                        </div>
+                    `;
+                });
+                topEntitiesContainer.innerHTML = entityItems.join('') || '<div class="meta">No entities</div>';
+
+                const relationItems = vizData.topRelations.map(item => `
+                    <div class="list-item relation-item" data-predicate="${item.predicate}">
+                        <div>
+                            <strong>${item.predicate}</strong>
+                            <div class="meta">${item.count} relations</div>
+                        </div>
+                        <div class="pill" style="background: ${item.color}1a; border: 1px solid ${item.color};">${item.count}</div>
+                    </div>
+                `);
+                topRelationsContainer.innerHTML = relationItems.join('') || '<div class="meta">No relations</div>';
+            }
+
+            function renderClusters() {
+                const container = document.getElementById('clusterList');
+                if (!vizData.clusters.length) {
+                    container.innerHTML = '<div class="meta">No cluster information provided.</div>';
+                    return;
+                }
+                container.innerHTML = vizData.clusters
+                    .map(cluster => `
+                        <button class="list-item cluster-item" data-cluster="${cluster.id}" style="border-left-color: ${cluster.color};">
+                            <div>
+                                <strong>${cluster.label}</strong>
+                                <div class="meta">${cluster.size} members</div>
+                            </div>
+                            <span class="legend-swatch" style="background: ${cluster.color};"></span>
+                        </button>
+                    `)
+                    .join('');
+            }
+
+            // function renderRelationsTable() {
+            //     const tbody = document.getElementById('relationsTable');
+            //     tbody.innerHTML = vizData.relations
+            //         .map(rel => `
+            //             <tr data-edge="${rel.edgeId}">
+            //                 <td>${rel.source}</td>
+            //                 <td><span class="pill" style="border: 1px solid ${rel.color}; background: ${rel.color}1a;">${rel.predicate}</span></td>
+            //                 <td>${rel.target}</td>
+            //             </tr>
+            //         `)
+            //         .join('');
+            // }
+
+            // function renderInsights() {
+            //     const insights = document.getElementById('insightsContent');
+            //     const clusters = vizData.clusters
+            //         .map(cluster => `
+            //             <div class="list-item" style="border-left: 4px solid ${cluster.color};">
+            //                 <div>
+            //                     <strong>${cluster.label}</strong>
+            //                     <div class="meta">Members: ${cluster.members.join(', ')}</div>
+            //                 </div>
+            //                 <div>${cluster.size}</div>
+            //             </div>
+            //         `)
+            //         .join('');
+
+            //     const components = vizData.components
+            //         .map((component, index) => `
+            //             <div class="list-item">
+            //                 <div>
+            //                     <strong>Component ${index + 1}</strong>
+            //                     <div class="meta">${component.members.join(', ')}</div>
+            //                 </div>
+            //                 <div>${component.size}</div>
+            //             </div>
+            //         `)
+            //         .join('');
+
+            //     const isolates = vizData.isolatedEntities.length
+            //         ? vizData.isolatedEntities.join(', ')
+            //         : 'None';
+
+            //     insights.innerHTML = `
+            //         <div class="section">
+            //             <h2>Clusters</h2>
+            //             <div class="list">${clusters || '<div class="meta">No clusters</div>'}</div>
+            //         </div>
+            //         <div class="section">
+            //             <h2>Connected components</h2>
+            //             <div class="list">${components || '<div class="meta">Single connected component</div>'}</div>
+            //         </div>
+            //         <div class="section">
+            //             <h2>Isolated entities</h2>
+            //             <div class="meta">${isolates}</div>
+            //         </div>
+            //     `;
+            // }
+
+            function setActiveElement(element) {
+                state.activeElement = element;
+                renderSelectionDetails();
+                updateHighlights();
+
+                // Notify parent about selection change
+                if (window.parent !== window && state.sidebarDisabled) {
+                    const selection = element ? {
+                        type: element.type,
+                        id: element.id,
+                        ...getElementDetails(element)
+                    } : null;
+                    window.parent.postMessage({
+                        type: 'selectionChanged',
+                        selection: selection
+                    }, '*');
+                }
+            }
+
+            function getElementDetails(element) {
+                if (!element) return {};
+
+                if (element.type === 'node') {
+                    const node = nodeById[element.id];
+                    return {
+                        label: node.label,
+                        cluster: node.cluster,
+                        degree: node.degree,
+                        indegree: node.indegree,
+                        outdegree: node.outdegree,
+                        neighbors: node.neighbors
+                    };
+                } else if (element.type === 'edge') {
+                    const edge = edgeById[element.id];
+                    return {
+                        source: edge.source,
+                        target: edge.target,
+                        predicate: edge.predicate,
+                        cluster: edge.cluster
+                    };
+                }
+                return {};
+            }
+
+            function clearActiveElement() {
+                state.activeElement = null;
+                renderSelectionDetails();
+                updateHighlights();
+            }
+
+            function renderSelectionDetails() {
+                const panel = document.getElementById('selectionDetails');
+                const active = state.activeElement;
+                if (!active) {
+                    panel.innerHTML = 'Click a node or relation in the network to inspect details.';
+                    return;
+                }
+
+                if (active.type === 'node') {
+                    const node = nodeById[active.id];
+                    const cluster = node.cluster ? `Cluster: ${node.cluster}` : 'Unclustered';
+                    const neighbors = node.neighbors.length ? node.neighbors.join(', ') : 'None';
+                    panel.innerHTML = `
+                        <h3>${node.label}</h3>
+                        <ul>
+                            <li>${cluster}</li>
+                            <li>Total degree: ${node.degree}</li>
+                            <li>Outgoing: ${node.outdegree}</li>
+                            <li>Incoming: ${node.indegree}</li>
+                            <li>Neighbors: ${neighbors}</li>
+                        </ul>
+                    `;
+                } else if (active.type === 'edge') {
+                    const edge = edgeById[active.id];
+                    const cluster = edge.cluster ? `Cluster: ${edge.cluster}` : 'Unclustered';
+                    panel.innerHTML = `
+                        <h3>${edge.source} → ${edge.target}</h3>
+                        <ul>
+                            <li>Relation: ${edge.predicate}</li>
+                            <li>${cluster}</li>
+                        </ul>
+                    `;
+                }
+            }
+
+            function toggleClusterFocus(clusterId) {
+                if (state.focusCluster === clusterId) {
+                    state.focusCluster = null;
+                } else {
+                    state.focusCluster = clusterId;
+                }
+                updateActiveButtons();
+                updateHighlights();
+            }
+
+            function togglePredicateFocus(predicate) {
+                if (state.focusPredicate === predicate) {
+                    state.focusPredicate = null;
+                } else {
+                    state.focusPredicate = predicate;
+                }
+                updateActiveButtons();
+                updateHighlights();
+            }
+
+            function updateActiveButtons() {
+                document.querySelectorAll('.cluster-item').forEach(item => {
+                    const clusterId = item.getAttribute('data-cluster');
+                    item.classList.toggle('active', state.focusCluster === clusterId);
+                });
+                document.querySelectorAll('.relation-item').forEach(item => {
+                    const predicate = item.getAttribute('data-predicate');
+                    item.classList.toggle('active', state.focusPredicate === predicate);
+                });
+            }
+
+            // Canvas-based network visualization
+            let canvas, ctx, transform, simulation;
+            let nodes, edges;
+            let highlightedNodes = new Set();
+            let highlightedEdges = new Set();
+            let isFiltering = false;
+
+            function createNetwork() {
+                console.log('[iframe] createNetwork starting...');
+
+                if (typeof d3 === 'undefined') {
+                    console.error('[iframe] D3.js not loaded!');
+                    return;
+                }
+                console.log('[iframe] D3.js version:', d3.version);
+
+                canvas = document.getElementById('networkCanvas');
+                if (!canvas) {
+                    console.error('[iframe] Canvas element not found!');
+                    return;
+                }
+
+                ctx = canvas.getContext('2d');
+                if (!ctx) {
+                    console.error('[iframe] Canvas context not available!');
+                    return;
+                }
+
+                // Force a layout recalculation to ensure proper sizing
+                canvas.offsetHeight; // Trigger reflow
+
+                // Set canvas size with device pixel ratio for crisp rendering
+                const rect = canvas.getBoundingClientRect();
+                console.log('[iframe] Canvas rect:', rect.width, 'x', rect.height);
+
+                // Ensure minimum size for mobile/narrow viewports
+                const width = Math.max(rect.width, 320);
+                const height = Math.max(rect.height, 200);
+
+                const dpr = window.devicePixelRatio || 1;
+                canvas.width = width * dpr;
+                canvas.height = height * dpr;
+                ctx.scale(dpr, dpr);
+                canvas.style.width = width + 'px';
+                canvas.style.height = height + 'px';
+
+                // Initialize transform for zooming/panning
+                transform = d3.zoomIdentity;
+
+                // Clone data for simulation
+                nodes = vizData.nodes.map(node => ({ ...node }));
+                edges = vizData.edges.map(edge => ({ ...edge }));
+
+                // Create D3 force simulation
+                simulation = d3
+                    .forceSimulation(nodes)
+                    .force('link', d3.forceLink(edges).id(d => d.id).distance(120).strength(0.3))
+                    .force('charge', d3.forceManyBody().strength(-280))
+                    .force('center', d3.forceCenter(width / 2, height / 2))
+                    .force('collision', d3.forceCollide().radius(d => d.radius + 12));
+
+                // Set up zoom behavior
+                const zoom = d3.zoom()
+                    .scaleExtent([0.25, 3])
+                    .on('zoom', (event) => {
+                        transform = event.transform;
+                        render();
+                    });
+
+                d3.select(canvas).call(zoom);
+
+                // Mouse interaction handling
+                let draggedNode = null;
+                let mouseX, mouseY;
+
+                function getMousePos(event) {
+                    const rect = canvas.getBoundingClientRect();
+                    return {
+                        x: (event.clientX - rect.left - transform.x) / transform.k,
+                        y: (event.clientY - rect.top - transform.y) / transform.k
+                    };
+                }
+
+                function findNode(x, y) {
+                    for (let i = nodes.length - 1; i >= 0; i--) {
+                        const node = nodes[i];
+                        const dx = x - node.x;
+                        const dy = y - node.y;
+                        if (dx * dx + dy * dy < node.radius * node.radius) {
+                            return node;
+                        }
+                    }
+                    return null;
+                }
+
+                function findEdge(x, y) {
+                    for (let i = edges.length - 1; i >= 0; i--) {
+                        const edge = edges[i];
+                        if (!edge.source || !edge.target) continue;
+
+                        // Check if click is near the edge line
+                        const dx = edge.target.x - edge.source.x;
+                        const dy = edge.target.y - edge.source.y;
+                        const length = Math.sqrt(dx * dx + dy * dy);
+                        if (length === 0) continue;
+
+                        const dot = ((x - edge.source.x) * dx + (y - edge.source.y) * dy) / (length * length);
+                        if (dot < 0 || dot > 1) continue;
+
+                        const projX = edge.source.x + dot * dx;
+                        const projY = edge.source.y + dot * dy;
+                        const distSq = (x - projX) * (x - projX) + (y - projY) * (y - projY);
+
+                        if (distSq < 25) { // 5px threshold
+                            return edge;
+                        }
+                    }
+                    return null;
+                }
+
+                canvas.addEventListener('mousedown', (event) => {
+                    const pos = getMousePos(event);
+                    mouseX = pos.x;
+                    mouseY = pos.y;
+                    draggedNode = findNode(pos.x, pos.y);
+
+                    if (draggedNode) {
+                        simulation.alphaTarget(0.3).restart();
+                        draggedNode.fx = draggedNode.x;
+                        draggedNode.fy = draggedNode.y;
+                        canvas.style.cursor = 'grabbing';
+                    }
+                });
+
+                canvas.addEventListener('mousemove', (event) => {
+                    const pos = getMousePos(event);
+
+                    if (draggedNode) {
+                        draggedNode.fx = pos.x;
+                        draggedNode.fy = pos.y;
+                    } else {
+                        // Update cursor based on what's under mouse
+                        const node = findNode(pos.x, pos.y);
+                        const edge = findEdge(pos.x, pos.y);
+                        canvas.style.cursor = (node || edge) ? 'pointer' : 'grab';
+                    }
+                });
+
+                canvas.addEventListener('mouseup', (event) => {
+                    if (draggedNode) {
+                        simulation.alphaTarget(0);
+                        draggedNode.fx = null;
+                        draggedNode.fy = null;
+                        draggedNode = null;
+                        canvas.style.cursor = 'grab';
+                    }
+                });
+
+                canvas.addEventListener('click', (event) => {
+                    const pos = getMousePos(event);
+                    const node = findNode(pos.x, pos.y);
+                    const edge = findEdge(pos.x, pos.y);
+
+                    if (node) {
+                        setActiveElement({ type: 'node', id: node.id });
+                    } else if (edge) {
+                        setActiveElement({ type: 'edge', id: edge.id });
+                    } else {
+                        clearActiveElement();
+                    }
+                });
+
+                // Animation loop
+                simulation.on('tick', () => {
+                    render();
+                });
+
+                // Handle window resize
+                window.addEventListener('resize', resizeCanvas);
+
+                render();
+            }
+
+            function resizeCanvas() {
+                if (!canvas || !ctx) return;
+
+                // Force canvas to take full container size
+                if (state.sidebarDisabled) {
+                    canvas.style.width = '100%';
+                    canvas.style.height = '100%';
+                }
+
+                const rect = canvas.getBoundingClientRect();
+                console.log('Canvas resize - rect:', rect.width, 'x', rect.height);
+
+                // Ensure minimum size for mobile
+                const width = Math.max(rect.width, 320);
+                const height = Math.max(rect.height, 200);
+
+                const dpr = window.devicePixelRatio || 1;
+                canvas.width = width * dpr;
+                canvas.height = height * dpr;
+                ctx.scale(dpr, dpr);
+                canvas.style.width = width + 'px';
+                canvas.style.height = height + 'px';
+
+                // Update simulation center
+                if (simulation) {
+                    simulation.force('center', d3.forceCenter(width / 2, height / 2));
+                    simulation.alpha(0.3).restart();
+                }
+
+                render();
+            }
+
+
+            function render() {
+                if (!ctx || !canvas) return;
+
+                // Clear canvas
+                ctx.clearRect(0, 0, canvas.width / (window.devicePixelRatio || 1),
+                             canvas.height / (window.devicePixelRatio || 1));
+
+                // Apply transform
+                ctx.save();
+                ctx.translate(transform.x, transform.y);
+                ctx.scale(transform.k, transform.k);
+
+                // Set text properties
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.font = '12px Inter, system-ui, sans-serif';
+
+                // Draw edges first
+                edges.forEach(edge => {
+                    if (!edge.source || !edge.target) return;
+
+                    const isHighlighted = highlightedEdges.has(edge.id);
+                    const isDimmed = isFiltering && !isHighlighted;
+
+                    // Calculate edge endpoints accounting for node radius
+                    const dx = edge.target.x - edge.source.x;
+                    const dy = edge.target.y - edge.source.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy) || 1;
+                    const normX = dx / distance;
+                    const normY = dy / distance;
+
+                    const sourcePadding = edge.source.radius + 2;
+                    const targetPadding = edge.target.radius + 8;
+                    const sourceX = edge.source.x + normX * sourcePadding;
+                    const sourceY = edge.source.y + normY * sourcePadding;
+                    const targetX = edge.target.x - normX * targetPadding;
+                    const targetY = edge.target.y - normY * targetPadding;
+
+                    // Draw edge line
+                    ctx.strokeStyle = edge.color;
+                    ctx.globalAlpha = isDimmed ? 0.15 : (isHighlighted ? 1.0 : 0.55);
+                    ctx.lineWidth = 1.4;
+                    ctx.beginPath();
+                    ctx.moveTo(sourceX, sourceY);
+                    ctx.lineTo(targetX, targetY);
+                    ctx.stroke();
+
+                    // Draw arrowhead
+                    const arrowLength = 10;
+                    const arrowWidth = 5;
+                    const angle = Math.atan2(dy, dx);
+
+                    ctx.fillStyle = '#94a3b8';
+                    ctx.beginPath();
+                    ctx.moveTo(targetX, targetY);
+                    ctx.lineTo(
+                        targetX - arrowLength * Math.cos(angle - arrowWidth * Math.PI / 180),
+                        targetY - arrowLength * Math.sin(angle - arrowWidth * Math.PI / 180)
+                    );
+                    ctx.lineTo(
+                        targetX - arrowLength * Math.cos(angle + arrowWidth * Math.PI / 180),
+                        targetY - arrowLength * Math.sin(angle + arrowWidth * Math.PI / 180)
+                    );
+                    ctx.closePath();
+                    ctx.fill();
+
+                    // Draw edge label if zoom level is appropriate
+                    if (transform.k > 0.8) {
+                        const labelX = (sourceX + targetX) / 2;
+                        const labelY = (sourceY + targetY) / 2;
+
+                        ctx.fillStyle = isDimmed ? 'rgba(30, 41, 59, 0.15)' : 'rgba(30, 41, 59, 0.8)';
+                        ctx.font = '10px Inter, system-ui, sans-serif';
+                        ctx.fillText(edge.predicate, labelX, labelY);
+                    }
+                });
+
+                // Draw nodes
+                nodes.forEach(node => {
+                    const isHighlighted = highlightedNodes.has(node.id);
+                    const isDimmed = isFiltering && !isHighlighted;
+
+                    // Draw node circle
+                    ctx.fillStyle = node.color;
+                    ctx.globalAlpha = isDimmed ? 0.15 : 1.0;
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.radius, 0, 2 * Math.PI);
+                    ctx.fill();
+
+                    // Draw node border
+                    ctx.strokeStyle = '#0f172a';
+                    ctx.lineWidth = isHighlighted ? 2.4 : 1.2;
+                    ctx.stroke();
+
+                    // Draw node label
+                    if (transform.k > 0.5) {
+                        ctx.fillStyle = isDimmed ? 'rgba(15, 23, 42, 0.15)' : '#0f172a';
+                        ctx.font = '12px Inter, system-ui, sans-serif';
+                        ctx.fillText(node.label, node.x, node.y + node.radius + 14);
+                    }
+                });
+
+                ctx.restore();
+                ctx.globalAlpha = 1.0;
+            }
+
+            function updateHighlights() {
+                // Clear previous highlights
+                highlightedNodes.clear();
+                highlightedEdges.clear();
+                isFiltering = false;
+
+                const addNode = id => {
+                    if (id) {
+                        highlightedNodes.add(id);
+                    }
+                };
+                const addEdge = id => {
+                    if (id) {
+                        highlightedEdges.add(id);
+                    }
+                };
+
+                if (state.activeElement) {
+                    isFiltering = true;
+                    if (state.activeElement.type === 'node') {
+                        const node = nodeById[state.activeElement.id];
+                        addNode(node.id);
+                        node.neighbors.forEach(addNode);
+                        (node.edgeIds.outgoing || []).forEach(addEdge);
+                        (node.edgeIds.incoming || []).forEach(addEdge);
+                    } else if (state.activeElement.type === 'edge') {
+                        const edge = edgeById[state.activeElement.id];
+                        addEdge(edge.id);
+                        addNode(edge.source);
+                        addNode(edge.target);
+                    }
+                }
+
+                if (state.focusCluster && nodesByCluster[state.focusCluster]) {
+                    isFiltering = true;
+                    nodesByCluster[state.focusCluster].forEach(addNode);
+                    vizData.edges.forEach(edge => {
+                        if (
+                            nodesByCluster[state.focusCluster].has(edge.source) &&
+                            nodesByCluster[state.focusCluster].has(edge.target)
+                        ) {
+                            addEdge(edge.id);
+                        }
+                    });
+                }
+
+                if (state.focusPredicate && edgesByPredicate[state.focusPredicate]) {
+                    isFiltering = true;
+                    edgesByPredicate[state.focusPredicate].forEach(edgeId => {
+                        addEdge(edgeId);
+                        const edge = edgeById[edgeId];
+                        addNode(edge.source);
+                        addNode(edge.target);
+                    });
+                }
+
+                if (state.searchTerm) {
+                    const term = state.searchTerm.toLowerCase();
+                    isFiltering = true;
+                    vizData.nodes.forEach(node => {
+                        if (node.label.toLowerCase().includes(term)) {
+                            addNode(node.id);
+                            node.neighbors.forEach(addNode);
+                        }
+                    });
+                    vizData.edges.forEach(edge => {
+                        if (edge.predicate.toLowerCase().includes(term)) {
+                            addEdge(edge.id);
+                            addNode(edge.source);
+                            addNode(edge.target);
+                        }
+                    });
+                }
+
+                // Trigger re-render with updated highlights
+                render();
+            }
+
+            function toggleSidebar() {
+                if (state.sidebarDisabled) return;
+
+                state.sidebarCollapsed = !state.sidebarCollapsed;
+                const layout = document.querySelector('.layout');
+                const sidebar = document.querySelector('.sidebar');
+                const toggleButton = document.getElementById('sidebarToggle');
+
+                layout.classList.toggle('sidebar-collapsed', state.sidebarCollapsed);
+                sidebar.classList.toggle('collapsed', state.sidebarCollapsed);
+                toggleButton.classList.toggle('collapsed', state.sidebarCollapsed);
+
+                // Trigger canvas resize when sidebar toggles
+                setTimeout(() => {
+                    resizeCanvas();
+                }, 300); // Wait for transition to complete
+            }
+
+            function disableSidebar() {
+                state.sidebarDisabled = true;
+
+                const layout = document.querySelector('.layout');
+                const sidebar = document.querySelector('.sidebar');
+                const toggleButton = document.getElementById('sidebarToggle');
+                const main = document.querySelector('.main');
+                const tabPanel = document.querySelector('.tab-panel');
+                const networkPanel = document.querySelector('.network-panel');
+
+                layout.classList.add('sidebar-disabled');
+                sidebar.style.display = 'none';
+                toggleButton.style.display = 'none';
+
+                // Force styles directly for iframe context
+                main.style.width = '100%';
+                main.style.height = '100vh';
+                tabPanel.style.padding = '0';
+                tabPanel.style.width = '100%';
+                tabPanel.style.height = '100vh';
+                networkPanel.style.width = '100%';
+                networkPanel.style.height = '100vh';
+                networkPanel.style.borderRadius = '0';
+                networkPanel.style.border = 'none';
+
+                console.log('Sidebar disabled, forcing full width styles');
+
+                // Multiple resize attempts with forced reflow
+                setTimeout(() => {
+                    canvas.offsetHeight; // Trigger reflow
+                    console.log('First resize attempt after 200ms');
+                    resizeCanvas();
+                }, 200);
+
+                setTimeout(() => {
+                    canvas.offsetHeight; // Trigger reflow
+                    console.log('Second resize attempt after 500ms');
+                    resizeCanvas();
+                }, 500);
+
+                setTimeout(() => {
+                    canvas.offsetHeight; // Trigger reflow
+                    console.log('Final resize attempt after 800ms');
+                    resizeCanvas();
+                }, 800);
+
+                // Notify parent about graph data
+                if (window.parent !== window) {
+                    window.parent.postMessage({
+                        type: 'graphDataReady',
+                        data: vizData
+                    }, '*');
+                }
+            }
+
+            function bindInteractions() {
+                document.querySelectorAll('.cluster-item').forEach(item => {
+                    item.addEventListener('click', () => toggleClusterFocus(item.getAttribute('data-cluster')));
+                });
+
+                document.querySelectorAll('.relation-item').forEach(item => {
+                    item.addEventListener('click', () => togglePredicateFocus(item.getAttribute('data-predicate')));
+                });
+
+                // document.getElementById('relationsTable').addEventListener('click', event => {
+                //     const row = event.target.closest('tr');
+                //     if (!row) {
+                //         return;
+                //     }
+                //     const edgeId = row.getAttribute('data-edge');
+                //     if (edgeId) {
+                //         setActiveElement({ type: 'edge', id: edgeId });
+                //     }
+                // });
+
+                const searchInput = document.getElementById('searchInput');
+                searchInput.addEventListener('input', () => {
+                    state.searchTerm = searchInput.value.trim();
+                    updateHighlights();
+
+                    // Notify parent about search change
+                    if (window.parent !== window && state.sidebarDisabled) {
+                        window.parent.postMessage({
+                            type: 'searchChanged',
+                            searchTerm: state.searchTerm
+                        }, '*');
+                    }
+                });
+                searchInput.addEventListener('keydown', event => {
+                    if (event.key === 'Escape') {
+                        searchInput.value = '';
+                        state.searchTerm = '';
+                        updateHighlights();
+                    }
+                });
+
+                document.querySelectorAll('.tab').forEach(tab => {
+                    tab.addEventListener('click', event => {
+                        const target = event.currentTarget;
+                        document.querySelectorAll('.tab').forEach(button => button.classList.remove('active'));
+                        target.classList.add('active');
+                        const tabId = target.getAttribute('data-tab');
+                        document.querySelectorAll('.tab-panel').forEach(panel => {
+                            panel.classList.toggle('active', panel.id === tabId);
+                        });
+                    });
+                });
+
+                document.getElementById('sidebarToggle').addEventListener('click', toggleSidebar);
+
+                // Listen for messages from parent
+                window.addEventListener('message', (event) => {
+                    if (event.data.type === 'disableInternalSidebar') {
+                        disableSidebar();
+                    } else if (event.data.type === 'search') {
+                        state.searchTerm = event.data.term || '';
+                        updateHighlights();
+                    } else if (event.data.type === 'focusCluster') {
+                        toggleClusterFocus(event.data.clusterId);
+                    } else if (event.data.type === 'focusPredicate') {
+                        togglePredicateFocus(event.data.predicate);
+                    }
+                });
+
+            }
+
+            renderStats();
+            renderTopLists();
+            renderClusters();
+            // renderRelationsTable();
+            // renderInsights();
+
+            // Delay network creation to ensure proper layout
+            setTimeout(() => {
+                createNetwork();
+                bindInteractions();
+            }, 100);
+        })();
+    </script>
+</body>
+
+</html>
