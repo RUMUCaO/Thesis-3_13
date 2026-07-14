@@ -26,11 +26,7 @@ from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Tupl
 import numpy as np
 from sentence_transformers import SentenceTransformer
 import numpy as np
-
-try:
-	from scipy.optimize import linear_sum_assignment
-except Exception:  # pragma: no cover - optional dependency
-	linear_sum_assignment = None
+from scipy.optimize import linear_sum_assignment
  
 # Global model (loaded only once)
 _SBERT_MODEL = None
@@ -299,7 +295,7 @@ def positional_index_map(records: Sequence[SceneRecord]) -> Dict[int, float]:
 	return {record.scene_id: index / total for index, record in enumerate(ordered)}
 
 
-def match_scene_pairs(
+def match_scene_pairs_greedy(
 	generated: Sequence[SceneRecord],
 	reference: Sequence[SceneRecord],
 	similarity_fn: Callable[[SceneRecord, SceneRecord], float],
@@ -333,6 +329,69 @@ def match_scene_pairs(
 
 	matches.sort(key=lambda item: item[0].scene_id)
 	return matches
+
+
+def match_scene_pairs(
+    generated: Sequence[SceneRecord],
+    reference: Sequence[SceneRecord],
+    similarity_fn: Callable[[SceneRecord, SceneRecord], float],
+    threshold: float = 0.0,
+    one_to_one: bool = True,
+) -> List[Tuple[SceneRecord, SceneRecord, float]]:
+    if not generated or not reference:
+        return []
+
+    n_gen = len(generated)
+    n_ref = len(reference)
+
+# Use the Hungarian algorithm for optimal one-to-one matching (only if scipy is available and one_to_one is True)
+    if one_to_one and linear_sum_assignment is not None:
+# Constructing a similarity matrix
+        sim_matrix = np.zeros((n_gen, n_ref))
+        for i, g_scene in enumerate(generated):
+            for j, r_scene in enumerate(reference):
+                sim_matrix[i, j] = similarity_fn(g_scene, r_scene)
+
+# The Hungarian algorithm finds the minimum cost, where cost = -similarity (maximizing total similarity).
+        cost_matrix = -sim_matrix
+        row_ind, col_ind = linear_sum_assignment(cost_matrix)
+
+        matches = []
+        for i, j in zip(row_ind, col_ind):
+            score = sim_matrix[i, j]
+            if score >= threshold:
+                matches.append((generated[i], reference[j], score))
+        # Sort by generated scene ID to ensure stable output
+        matches.sort(key=lambda m: m[0].scene_id)
+        print("Hungarian algorithm used for optimal matching.")
+        return matches
+    else:
+        print("Using greedy matching as fallback.")
+# Fallback Solution: Greedy Matching (Maintaining Original Logic)
+        candidates: List[Tuple[float, int, int]] = []
+        for g_index, g_scene in enumerate(generated):
+            for r_index, r_scene in enumerate(reference):
+                score = similarity_fn(g_scene, r_scene)
+                if score >= threshold:
+                    candidates.append((score, g_index, r_index))
+
+        candidates.sort(reverse=True)
+        used_generated: set[int] = set()
+        used_reference: set[int] = set()
+        matches: List[Tuple[SceneRecord, SceneRecord, float]] = []
+
+        for score, g_index, r_index in candidates:
+            if g_index in used_generated:
+                continue
+            if one_to_one and r_index in used_reference:
+                continue
+            used_generated.add(g_index)
+            if one_to_one:
+                used_reference.add(r_index)
+            matches.append((generated[g_index], reference[r_index], score))
+
+        matches.sort(key=lambda item: item[0].scene_id)
+    return matches
 
 def scene_similarity(g_scene: SceneRecord, r_scene: SceneRecord, _idf=None) -> float:
     """
@@ -556,7 +615,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--corpus", type=Path, default=None, help="Optional corpus JSON for perplexity estimation.")
     parser.add_argument("--output", type=Path, default=Path("report/stage4_evaluation_report.json"), help="Output JSON report path.")
     parser.add_argument("--print", dest="print_report", action="store_true", help="Print the report to stdout.")
-    parser.add_argument("--threshold", type=float, default=0.7, help="Similarity threshold for greedy matching (default: 0.6)")
+    parser.add_argument("--threshold", type=float, default=0.6, help="Similarity threshold for greedy matching (default: 0.6)")
     return parser.parse_args()
 
 def main() -> None:

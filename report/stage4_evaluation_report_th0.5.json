@@ -1,0 +1,39 @@
+{
+  "threshold": 0.5,
+  "counts": {
+    "generated_scenes": 60,
+    "reference_scenes": 94,
+    "matched_scenes": 4
+  },
+  "Multimodal Semantic Similarity": {
+    "Multimodal Semantic Similarity": 0.529166966676712
+  },
+  "Weak Event Alignment": {
+    "consensus_score": 0.411504864692688
+  },
+  "dtw_distance": 0.4190409102737178,
+  "np_metric": 0.027777777777777776,
+  "matched_pairs": [
+    {
+      "generated_scene_id": 440,
+      "reference_scene_id": 7,
+      "similarity": 0.5229701995849609
+    },
+    {
+      "generated_scene_id": 695,
+      "reference_scene_id": 0,
+      "similarity": 0.557343602180481
+    },
+    {
+      "generated_scene_id": 1365,
+      "reference_scene_id": 62,
+      "similarity": 0.5146685242652893
+    },
+    {
+      "generated_scene_id": 1516,
+      "reference_scene_id": 70,
+      "similarity": 0.5216855406761169
+    }
+  ],
+  "order_correlation": 0.7999999999999999
+}

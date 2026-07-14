@@ -495,7 +495,7 @@ def render_report(candidates: list[dict[str, Any]], title: str, script_character
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--candidates", default="candidates.json", help="path to candidates.json")
-    parser.add_argument("--video", default="PW.mp4", help="optional video path to extract missing frames")
+    parser.add_argument("--video", default="THE7YI.mp4", help="optional video path to extract missing frames")
     parser.add_argument("--script", default="script_structured.json", help="optional script JSON for draggable character names")
     parser.add_argument("--out", default="report/reference_candidates.html", help="output HTML report")
     parser.add_argument("--csv", default="report/reference_candidates.csv", help="output CSV report")

@@ -1,414 +1,225 @@
 [
   {
-    "cluster": 4840,
-    "character_id": "PRETTY WOMAN",
+    "cluster": 2371,
+    "character_id": "Husbands remain behind to attend to business",
     "character_ids": [
-      "PRETTY WOMAN"
+      "Husbands remain behind to attend to business",
+      "I'm just trying not to smoke. The theory is"
     ],
-    "suggested_character_id": "PRETTY WOMAN",
+    "suggested_character_id": "Husbands remain behind to attend to business",
     "suggested_character_ids": [
-      "PRETTY WOMAN"
+      "Husbands remain behind to attend to business",
+      "I'm just trying not to smoke. The theory is"
     ],
     "character_id_source": "auto_suggested",
-    "start": 4739.067666666666,
-    "end": 4815.477333333333,
-    "duration": 76.40966666666736,
+    "start": 3388.3849999999998,
+    "end": 3503.4999999999995,
+    "duration": 115.11499999999978,
     "num_samples": 0,
-    "dominant_share": 0.4138710634344108,
-    "purity": 0.9114785992217732,
-    "rank_score": 36.8946982311683,
+    "dominant_share": 0.6472060548147532,
+    "purity": 0.6851706719017944,
+    "rank_score": 73.77782206337692,
     "passes_thresholds": false,
     "speaker_overlaps": {
-      "9": 31.623750000002474,
-      "16": 1.4006250000002183,
-      "25": 1.6706250000006548
+      "5": 74.50312500000018,
+      "17": 34.233468750000156
     },
-    "representative_frame": "assets/cluster_4840.jpg"
+    "representative_frame": "assets/cluster_2371.jpg"
   },
   {
-    "cluster": 1143,
+    "cluster": 2191,
+    "character_id": "Chapter six",
+    "character_ids": [
+      "Chapter six",
+      "Formatted for MAXQDA auto-coding"
+    ],
+    "suggested_character_id": "Chapter six",
+    "suggested_character_ids": [
+      "Chapter six",
+      "Formatted for MAXQDA auto-coding"
+    ],
+    "character_id_source": "auto_suggested",
+    "start": 2602.6,
+    "end": 2672.0026666666663,
+    "duration": 69.40266666666639,
+    "num_samples": 0,
+    "dominant_share": 0.549024293014696,
+    "purity": 0.9608510638297716,
+    "rank_score": 55.148272894667876,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "14": 1.5525000000006912,
+      "17": 38.10375000000113
+    },
+    "representative_frame": "assets/cluster_2191.jpg"
+  },
+  {
+    "cluster": 1575,
+    "character_id": "Night. Good night",
+    "character_ids": [
+      "Night. Good night",
+      "darling. Chapter three",
+      "THE SEVEN YEAR ITCH",
+      "You don't realize this about women and me"
+    ],
+    "suggested_character_id": "Night. Good night, darling. Chapter three",
+    "suggested_character_ids": [
+      "Night. Good night, darling. Chapter three",
+      "THE SEVEN YEAR ITCH",
+      "You don't realize this about women and me"
+    ],
+    "character_id_source": "auto_suggested",
+    "start": 436.76966666666664,
+    "end": 511.8446666666666,
+    "duration": 75.07499999999999,
+    "num_samples": 0,
+    "dominant_share": 0.6536463536463536,
+    "purity": 0.9113130680037598,
+    "rank_score": 41.94297910483526,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "12": 49.07249999999999,
+      "16": 1.2487500000000296,
+      "17": 3.526875000000018
+    },
+    "representative_frame": "assets/cluster_1575.jpg"
+  },
+  {
+    "cluster": 2447,
     "character_id": null,
     "character_ids": [],
     "suggested_character_id": null,
     "suggested_character_ids": [],
     "character_id_source": "unassigned",
-    "start": 764.0966666666666,
-    "end": 831.4973333333332,
+    "start": 3702.6989999999996,
+    "end": 3770.433333333333,
+    "duration": 67.73433333333332,
+    "num_samples": 0,
+    "dominant_share": 0.5919450008120132,
+    "purity": 0.7904191616766458,
+    "rank_score": 35.72702565457373,
+    "passes_thresholds": false,
+    "speaker_overlaps": {
+      "8": 9.011250000000473,
+      "13": 1.6199999999998909,
+      "17": 40.095000000001164
+    },
+    "representative_frame": "assets/cluster_2447.jpg"
+  },
+  {
+    "cluster": 1689,
+    "character_id": null,
+    "character_ids": [],
+    "suggested_character_id": null,
+    "suggested_character_ids": [],
+    "character_id_source": "unassigned",
+    "start": 795.795,
+    "end": 863.1956666666666,
     "duration": 67.40066666666667,
     "num_samples": 0,
-    "dominant_share": 0.40384429926508986,
-    "purity": 0.6785864535128355,
-    "rank_score": 29.564352997372755,
+    "dominant_share": 0.32322566047813545,
+    "purity": 0.6586734693877582,
+    "rank_score": 26.472397347689135,
     "passes_thresholds": false,
     "speaker_overlaps": {
-      "8": 0.6243749999998727,
-      "9": 27.2193749999999,
-      "25": 12.268124999999827
+      "11": 5.838749999999891,
+      "17": 21.785624999999982,
+      "22": 5.450624999999945
     },
-    "representative_frame": "assets/cluster_1143.jpg"
+    "representative_frame": "assets/cluster_1689.jpg"
   },
   {
-    "cluster": 1762,
+    "cluster": 2218,
     "character_id": null,
     "character_ids": [],
     "suggested_character_id": null,
     "suggested_character_ids": [],
     "character_id_source": "unassigned",
-    "start": 1962.2936666666665,
-    "end": 2012.3436666666664,
-    "duration": 50.049999999999955,
+    "start": 2720.0506666666665,
+    "end": 2782.4463333333333,
+    "duration": 62.395666666666784,
     "num_samples": 0,
-    "dominant_share": 0.37835060772560153,
-    "purity": 0.5899398312314774,
-    "rank_score": 24.844987545250273,
+    "dominant_share": 0.3545618819682996,
+    "purity": 0.604147465437796,
+    "rank_score": 22.038470961992047,
     "passes_thresholds": false,
     "speaker_overlaps": {
-      "9": 18.93644791666634,
-      "25": 13.162500000000364
+      "16": 1.3837499999999636,
+      "17": 22.123125000000073,
+      "27": 13.1118749999996
     },
-    "representative_frame": "assets/cluster_1762.jpg"
+    "representative_frame": "assets/cluster_2218.jpg"
   },
   {
-    "cluster": 2400,
+    "cluster": 2577,
     "character_id": null,
     "character_ids": [],
     "suggested_character_id": null,
     "suggested_character_ids": [],
     "character_id_source": "unassigned",
-    "start": 2736.0666666666666,
-    "end": 2771.4353333333333,
-    "duration": 35.36866666666674,
+    "start": 4061.390666666666,
+    "end": 4175.504666666667,
+    "duration": 114.11400000000049,
     "num_samples": 0,
-    "dominant_share": 0.7011482032118753,
-    "purity": 0.9110092276748659,
-    "rank_score": 24.682790471839247,
+    "dominant_share": 0.48725945107521135,
+    "purity": 0.8385336853209303,
+    "rank_score": 17.59326010224566,
     "passes_thresholds": false,
     "speaker_overlaps": {
-      "25": 24.798677083333132,
-      "26": 1.899302083334078,
-      "27": 0.5231250000006185
+      "10": 2.8768229166644232,
+      "14": 2.53125,
+      "17": 55.60312499999691,
+      "18": 2.0587500000001455,
+      "28": 3.2399999999997817
     },
-    "representative_frame": "assets/cluster_2400.jpg"
+    "representative_frame": "assets/cluster_2577.jpg"
   },
   {
-    "cluster": 5316,
+    "cluster": 2462,
     "character_id": null,
     "character_ids": [],
     "suggested_character_id": null,
     "suggested_character_ids": [],
     "character_id_source": "unassigned",
-    "start": 5673.668,
-    "end": 5722.383333333333,
-    "duration": 48.71533333333355,
+    "start": 3767.7639999999997,
+    "end": 3899.8959999999997,
+    "duration": 132.13200000000006,
     "num_samples": 0,
-    "dominant_share": 0.2549505289230947,
-    "purity": 0.8793309438469855,
-    "rank_score": 23.912458971767414,
+    "dominant_share": 0.4514805743498741,
+    "purity": 0.6213821005097145,
+    "rank_score": 13.706516648744282,
     "passes_thresholds": false,
     "speaker_overlaps": {
-      "9": 1.7043750000011642,
-      "25": 12.419999999998254
+      "0": 0.6750000000001819,
+      "8": 59.65503124999759,
+      "13": 1.6199999999998909,
+      "17": 27.65812499999811,
+      "22": 6.395625000000109
     },
-    "representative_frame": "assets/cluster_5316.jpg"
+    "representative_frame": "assets/cluster_2462.jpg"
   },
   {
-    "cluster": 5569,
+    "cluster": 2109,
     "character_id": null,
     "character_ids": [],
     "suggested_character_id": null,
     "suggested_character_ids": [],
     "character_id_source": "unassigned",
-    "start": 6161.488666666666,
-    "end": 6198.859333333333,
-    "duration": 37.37066666666669,
+    "start": 2199.864333333333,
+    "end": 2290.9553333333333,
+    "duration": 91.09100000000035,
     "num_samples": 0,
-    "dominant_share": 0.40956253567858153,
-    "purity": 0.845293569431472,
-    "rank_score": 23.710720270556756,
+    "dominant_share": 0.505929510050394,
+    "purity": 0.8216004813477885,
+    "rank_score": 12.843911702198225,
     "passes_thresholds": false,
     "speaker_overlaps": {
-      "9": 2.8012500000004366,
-      "26": 15.305624999999054
+      "10": 1.4512499999991633,
+      "14": 1.3837499999999636,
+      "17": 6.4293750000006185,
+      "25": 0.7424999999993815,
+      "27": 46.08562500000062
     },
-    "representative_frame": "assets/cluster_5569.jpg"
-  },
-  {
-    "cluster": 5055,
-    "character_id": null,
-    "character_ids": [],
-    "suggested_character_id": null,
-    "suggested_character_ids": [],
-    "character_id_source": "unassigned",
-    "start": 5058.053,
-    "end": 5118.112999999999,
-    "duration": 60.05999999999949,
-    "num_samples": 0,
-    "dominant_share": 0.29164585414592686,
-    "purity": 0.6971121558092865,
-    "rank_score": 23.43690334512143,
-    "passes_thresholds": false,
-    "speaker_overlaps": {
-      "9": 6.969375000000582,
-      "10": 0.6412500000005821,
-      "25": 17.51625000000422
-    },
-    "representative_frame": "assets/cluster_5055.jpg"
-  },
-  {
-    "cluster": 1301,
-    "character_id": null,
-    "character_ids": [],
-    "suggested_character_id": null,
-    "suggested_character_ids": [],
-    "character_id_source": "unassigned",
-    "start": 1055.0539999999999,
-    "end": 1092.091,
-    "duration": 37.037000000000035,
-    "num_samples": 0,
-    "dominant_share": 0.2861327861327819,
-    "purity": 0.8907801418439832,
-    "rank_score": 19.08805941208785,
-    "passes_thresholds": false,
-    "speaker_overlaps": {
-      "9": 10.597499999999854,
-      "25": 1.2993749999998272
-    },
-    "representative_frame": "assets/cluster_1301.jpg"
-  },
-  {
-    "cluster": 4660,
-    "character_id": null,
-    "character_ids": [],
-    "suggested_character_id": null,
-    "suggested_character_ids": [],
-    "character_id_source": "unassigned",
-    "start": 4430.759666666666,
-    "end": 4464.7936666666665,
-    "duration": 34.03400000000056,
-    "num_samples": 0,
-    "dominant_share": 0.3341878709525371,
-    "purity": 0.8362282878411234,
-    "rank_score": 17.88253621826056,
-    "passes_thresholds": false,
-    "speaker_overlaps": {
-      "9": 2.227500000000873,
-      "24": 11.373749999998836
-    },
-    "representative_frame": "assets/cluster_4660.jpg"
-  },
-  {
-    "cluster": 1216,
-    "character_id": null,
-    "character_ids": [],
-    "suggested_character_id": null,
-    "suggested_character_ids": [],
-    "character_id_source": "unassigned",
-    "start": 972.6383333333333,
-    "end": 1017.6833333333333,
-    "duration": 45.04499999999996,
-    "num_samples": 0,
-    "dominant_share": 0.3143106893106779,
-    "purity": 0.6394817073170661,
-    "rank_score": 17.21048872959971,
-    "passes_thresholds": false,
-    "speaker_overlaps": {
-      "7": 0.5231249999999363,
-      "9": 7.458750000000009,
-      "25": 14.158124999999472
-    },
-    "representative_frame": "assets/cluster_1216.jpg"
-  },
-  {
-    "cluster": 3099,
-    "character_id": null,
-    "character_ids": [],
-    "suggested_character_id": null,
-    "suggested_character_ids": [],
-    "character_id_source": "unassigned",
-    "start": 3694.357333333333,
-    "end": 3734.397333333333,
-    "duration": 40.039999999999964,
-    "num_samples": 0,
-    "dominant_share": 0.524709665334634,
-    "purity": 0.6955307262569579,
-    "rank_score": 16.83152693339817,
-    "passes_thresholds": false,
-    "speaker_overlaps": {
-      "14": 8.640000000000327,
-      "20": 0.5568750000002183,
-      "25": 21.009374999998727
-    },
-    "representative_frame": "assets/cluster_3099.jpg"
-  },
-  {
-    "cluster": 1158,
-    "character_id": null,
-    "character_ids": [],
-    "suggested_character_id": null,
-    "suggested_character_ids": [],
-    "character_id_source": "unassigned",
-    "start": 861.1936666666666,
-    "end": 895.5613333333333,
-    "duration": 34.367666666666764,
-    "num_samples": 0,
-    "dominant_share": 0.3063926364897354,
-    "purity": 0.7518072289156614,
-    "rank_score": 16.353308980028118,
-    "passes_thresholds": false,
-    "speaker_overlaps": {
-      "9": 3.4762500000001637,
-      "25": 10.530000000000427
-    },
-    "representative_frame": "assets/cluster_1158.jpg"
-  },
-  {
-    "cluster": 1430,
-    "character_id": null,
-    "character_ids": [],
-    "suggested_character_id": null,
-    "suggested_character_ids": [],
-    "character_id_source": "unassigned",
-    "start": 1291.6236666666666,
-    "end": 1329.328,
-    "duration": 37.70433333333335,
-    "num_samples": 0,
-    "dominant_share": 0.2631660375023119,
-    "purity": 0.7414880201765561,
-    "rank_score": 14.709636921098804,
-    "passes_thresholds": false,
-    "speaker_overlaps": {
-      "9": 9.922499999999673,
-      "23": 0.5737500000000182,
-      "25": 2.8856249999996635
-    },
-    "representative_frame": "assets/cluster_1430.jpg"
-  },
-  {
-    "cluster": 4651,
-    "character_id": null,
-    "character_ids": [],
-    "suggested_character_id": null,
-    "suggested_character_ids": [],
-    "character_id_source": "unassigned",
-    "start": 4429.091333333333,
-    "end": 4469.798666666667,
-    "duration": 40.707333333333736,
-    "num_samples": 0,
-    "dominant_share": 0.27940297407507386,
-    "purity": 0.7357091985210212,
-    "rank_score": 14.675990606532393,
-    "passes_thresholds": false,
-    "speaker_overlaps": {
-      "9": 2.227500000000873,
-      "24": 11.373749999998836,
-      "34": 1.8583229166679303
-    },
-    "representative_frame": "assets/cluster_4651.jpg"
-  },
-  {
-    "cluster": 4396,
-    "character_id": null,
-    "character_ids": [],
-    "suggested_character_id": null,
-    "suggested_character_ids": [],
-    "character_id_source": "unassigned",
-    "start": 4329.992333333333,
-    "end": 4367.696666666667,
-    "duration": 37.704333333334034,
-    "num_samples": 0,
-    "dominant_share": 0.3137404630766748,
-    "purity": 0.5699186991869126,
-    "rank_score": 13.516899179019266,
-    "passes_thresholds": false,
-    "speaker_overlaps": {
-      "9": 0.7931250000001455,
-      "24": 8.133750000000873,
-      "25": 11.829374999997526
-    },
-    "representative_frame": "assets/cluster_4396.jpg"
-  },
-  {
-    "cluster": 1748,
-    "character_id": null,
-    "character_ids": [],
-    "suggested_character_id": null,
-    "suggested_character_ids": [],
-    "character_id_source": "unassigned",
-    "start": 1895.8939999999998,
-    "end": 1930.5953333333332,
-    "duration": 34.70133333333342,
-    "num_samples": 0,
-    "dominant_share": 0.30441913855374736,
-    "purity": 0.6394279877425781,
-    "rank_score": 13.096780781209056,
-    "passes_thresholds": false,
-    "speaker_overlaps": {
-      "7": 1.9068750000001273,
-      "9": 4.050000000000182,
-      "25": 10.5637499999998
-    },
-    "representative_frame": "assets/cluster_1748.jpg"
-  },
-  {
-    "cluster": 4819,
-    "character_id": null,
-    "character_ids": [],
-    "suggested_character_id": null,
-    "suggested_character_ids": [],
-    "character_id_source": "unassigned",
-    "start": 4640.6359999999995,
-    "end": 4677.339333333333,
-    "duration": 36.70333333333383,
-    "num_samples": 0,
-    "dominant_share": 0.1650565343748012,
-    "purity": 1,
-    "rank_score": 7.689084375001086,
-    "passes_thresholds": false,
-    "speaker_overlaps": {
-      "25": 6.058125000003201
-    },
-    "representative_frame": "assets/cluster_4819.jpg"
-  },
-  {
-    "cluster": 5317,
-    "character_id": null,
-    "character_ids": [],
-    "suggested_character_id": null,
-    "suggested_character_ids": [],
-    "character_id_source": "unassigned",
-    "start": 5673.668,
-    "end": 5729.056666666666,
-    "duration": 55.38866666666672,
-    "num_samples": 0,
-    "dominant_share": 0.22423359772754187,
-    "purity": 0.8316384180790399,
-    "rank_score": 7.554030538910121,
-    "passes_thresholds": false,
-    "speaker_overlaps": {
-      "9": 2.514375000000655,
-      "25": 12.419999999998254
-    },
-    "representative_frame": "assets/cluster_5317.jpg"
-  },
-  {
-    "cluster": 3436,
-    "character_id": null,
-    "character_ids": [],
-    "suggested_character_id": null,
-    "suggested_character_ids": [],
-    "character_id_source": "unassigned",
-    "start": 4057.720333333333,
-    "end": 4116.112,
-    "duration": 58.39166666666688,
-    "num_samples": 0,
-    "dominant_share": 0.33523619237906077,
-    "purity": 0.5370370370370329,
-    "rank_score": 7.1523257263998925,
-    "passes_thresholds": false,
-    "speaker_overlaps": {
-      "9": 19.575000000000728,
-      "25": 16.87500000000091
-    },
-    "representative_frame": "assets/cluster_3436.jpg"
+    "representative_frame": "assets/cluster_2109.jpg"
   }
 ]

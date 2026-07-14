@@ -954,7 +954,7 @@ if __name__ == "__main__":
     import argparse
 
     p = argparse.ArgumentParser()
-    p.add_argument("--video", default="PW.mp4")
+    p.add_argument("--video", default="THEGRAD.mp4")
     p.add_argument("--out", default="whisperx_results.json")
     p.add_argument('--hf-token', default=os.environ.get('HF_TOKEN', None))
 

@@ -45,7 +45,7 @@ def repair_video_with_ffmpeg(input_path: Path, output_path: Path = None, crf: in
     try:
         subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         print("Repair complete")
-        return output_path
+        return output_path 
     except subprocess.CalledProcessError as e:
         print(f"Repair failed: {e}")
         raise
@@ -53,7 +53,7 @@ def repair_video_with_ffmpeg(input_path: Path, output_path: Path = None, crf: in
 # =========================
 # paths
 # =========================
-VIDEO_PATH = Path("PW.mp4")
+VIDEO_PATH = Path("THEGRAD.mp4")
 SCENE_JSON = Path("stage2_TransNetV2_scenes.json")
 SEMANTIC_JSON = Path("semantic_scenes.json")
 
@@ -83,7 +83,7 @@ def encode_image(img):
 # =========================
 whisper_model = whisper.load_model("base")
 
-def get_scenes_with_scenedetect(video_path: Path, threshold=30):
+def get_scenes_with_scenedetect(video_path: Path, threshold=15):
     """
     Use scenedetect to detect camera boundaries and return a list of scenes in a format compatible with TransNetV2.
 
@@ -94,11 +94,11 @@ def get_scenes_with_scenedetect(video_path: Path, threshold=30):
     scenes = []
     for i, (start_frame, end_frame) in enumerate(scene_list):
         scenes.append({
-            "scene_id": i,
+            "index": i,
             "start_frame": start_frame.frame_num,
             "end_frame": end_frame.frame_num,
-            "start_seconds": start_frame.get_seconds(),
-            "end_seconds": end_frame.get_seconds(),
+            "start": start_frame.get_seconds(),
+            "end": end_frame.get_seconds(),
         })
     return scenes
 
@@ -141,8 +141,8 @@ def multi_frame_embedding(video_path, scene, n=5):
     """
     ⭐ Key Upgrade: Scene-level embedding
     """
-    start = scene["start_seconds"]
-    end = scene["end_seconds"]
+    start = scene["start"]
+    end = scene["end"]
 
     ts = np.linspace(start, end, n)
 
@@ -178,6 +178,7 @@ def merge_scenes(scenes, visual_embs, audio_embs, alpha=0.7, threshold=0.75):
         v_sim = sim(visual_embs[i-1], visual_embs[i])
         a_sim = sim(audio_embs[i-1], audio_embs[i])
         score = alpha * v_sim + (1 - alpha) * a_sim
+        print(f"Pair {i-1}-{i} score: {score:.3f}")
         if score > threshold:
             cur.append(scenes[i])
         else:
@@ -186,12 +187,100 @@ def merge_scenes(scenes, visual_embs, audio_embs, alpha=0.7, threshold=0.75):
     groups.append(cur)
     return groups
 
+def merge_scenes_clustering(
+    scenes: List[Dict[str, Any]],
+    visual_embs: np.ndarray,     # shape (N, D)
+    audio_embs: np.ndarray,      # shape (N, D)
+    alpha: float = 0.7,
+    threshold: float = 0.85      # cosine distance threshold for stopping
+) -> List[List[Dict[str, Any]]]:
+    """
+    Agglomerative clustering with average linkage, restricted to merging only
+    temporally adjacent clusters. Uses a combined embedding (alpha * visual + (1-alpha) * audio)
+    and stops when the minimum average cosine distance between any adjacent pair exceeds `threshold`.
+
+    Parameters
+    ----------
+    scenes : list of dicts with at least "start", "end" keys.
+    visual_embs : (N, D) array, one visual embedding per scene.
+    audio_embs  : (N, D) array, one audio embedding per scene.
+    alpha       : weight for visual modality.
+    threshold   : cosine distance threshold (0..2). Default 0.85 corresponds to
+                  a cosine similarity of ~0.15.
+
+    Returns
+    -------
+    groups : list of list of scene dicts, each sublist a contiguous narrative segment.
+    """
+    n = len(scenes)
+    if n == 0:
+        return []
+
+    # ----- 1. Build combined modality embedding -----
+    # Normalise each modality embedding first (in case they aren't already)
+    def l2_normalise(arr):
+        norm = np.linalg.norm(arr, axis=1, keepdims=True)
+        norm[norm == 0] = 1e-12
+        return arr / norm
+
+    v_norm = l2_normalise(np.asarray(visual_embs, dtype=float))
+    a_norm = l2_normalise(np.asarray(audio_embs, dtype=float))
+    combined = alpha * v_norm + (1 - alpha) * a_norm
+    combined = l2_normalise(combined)          # keep on unit sphere
+
+    # ----- 2. Cosine distance matrix -----
+    # cosine_dist = 1 - dot(i,j)
+    sim = combined @ combined.T                # (N, N) similarity matrix
+    dist = 1.0 - sim                           # cosine distance matrix
+    np.fill_diagonal(dist, np.inf)             # ignore self-distance
+
+    # ----- 3. Cluster initialisation -----
+    # Each scene is a cluster; store its start index (inclusive) and end index (exclusive).
+    clusters = [{'start': i, 'end': i + 1} for i in range(n)]
+
+    # ----- 4. Function to compute average cosine distance between two clusters -----
+    def avg_dist(c1, c2):
+        """Average cosine distance between all elements of c1 and c2."""
+        slice_i = slice(c1['start'], c1['end'])
+        slice_j = slice(c2['start'], c2['end'])
+        # subset of the precomputed distance matrix
+        sub = dist[slice_i, slice_j]
+        return float(np.mean(sub))
+
+    # ----- 5. Iterative merging -----
+    while True:
+        # find the pair of adjacent clusters with smallest average distance
+        best_pair = None
+        best_dist = np.inf
+        for i in range(len(clusters) - 1):
+            d = avg_dist(clusters[i], clusters[i + 1])
+            if d < best_dist:
+                best_dist = d
+                best_pair = i
+
+        # stop if the best distance exceeds the threshold
+        if best_dist > threshold or best_pair is None:
+            break
+
+        # merge clusters[best_pair] and clusters[best_pair + 1]
+        left = clusters[best_pair]
+        right = clusters.pop(best_pair + 1)
+        left['end'] = right['end']            # extend the left cluster
+
+    # ----- 6. Convert cluster indices back to scene groups -----
+    groups = []
+    for cl in clusters:
+        group_scenes = scenes[cl['start']:cl['end']]
+        groups.append(group_scenes)
+
+    return groups
+
 def to_semantic(groups):
     return [
         {
             "index": i,
-            "start": g[0]["start_seconds"],
-            "end": g[-1]["end_seconds"],
+            "start": g[0]["start"],
+            "end": g[-1]["end"],
             "scene_count": len(g)
         }
         for i, g in enumerate(groups)
@@ -203,7 +292,7 @@ def to_semantic(groups):
 def main():
     print("Detecting scenes with scenedetect...")
     repaired_video_path = repair_video_with_ffmpeg(VIDEO_PATH)# Attempt to repair the video to avoid scene detection failures caused by decoding errors.
-    scenes = get_scenes_with_scenedetect(repaired_video_path, threshold=30)   # Adjustable
+    scenes = get_scenes_with_scenedetect(repaired_video_path, threshold=15)   # Adjustable
     if not scenes:
         print("No scenes detected, abort.")
         return
@@ -231,8 +320,8 @@ def main():
     audio_embs = []
 
     for s in scenes:
-        start = s["start_seconds"]
-        end = s["end_seconds"]
+        start = s["start"]
+        end = s["end"]
         if end - start < 0.5:   # For segments that are too short, directly assign the zero vector.
             audio_embs.append(np.zeros(512))
             continue
@@ -270,6 +359,7 @@ def main():
         
         # 7. Take the average of the time dimension as the fragment embedding
         emb = features.mean(dim=1).squeeze().cpu().numpy()  # shape (512,)
+        emb = emb / np.linalg.norm(emb)
         audio_embs.append(emb)
 
     # -------------------------

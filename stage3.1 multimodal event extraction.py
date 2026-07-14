@@ -12,7 +12,7 @@ from collections import OrderedDict, deque, Counter
 from PIL import Image
 from scipy.optimize import linear_sum_assignment
 
-from transformers import CLIPVisionModel98
+from transformers import CLIPVisionModel
 
 try:
     from transformers import Qwen2VLForConditionalGeneration
@@ -33,8 +33,7 @@ except Exception:
 # ----------------------------
 # CONFIG
 # ----------------------------
-VIDEO_PATH = "10THAU.mp4"
-SCENE_JSON_PATH = "semantic_scenes.json"
+VIDEO_PATH = "THEGRAD.mp4"
 RESULTS_JSON_PATH = "scene_level_results.json"
 SCORES_JSON_PATH = "scene_scores.json"
 SELECTION_SUMMARY_PATH = "scene_selection_summary.json"
@@ -491,16 +490,15 @@ def build_script_character_catalog(data):
                 groups[canon]["scene_ids"].add(scene_id)
 
         dialogue_blocks = scene.get("dialogue_blocks", []) or []
+            
         for block in dialogue_blocks:
-            if not isinstance(block, dict):
-                continue
-            canon = register_character(block.get("speaker"), source="dialogue_block")
-            if not canon:
-                continue
-            text = str(block.get("text", "")).strip()
-            if text:
-                groups[canon]["texts"].append(text)
-            groups[canon]["scene_ids"].add(scene_id)
+            speaker = block.get("speaker")
+            canon = normalize_identity_key(speaker)
+            if canon and canon in groups:
+                text = str(block.get("text", "")).strip()
+                if text:
+                    groups[canon]["texts"].append(text)
+                groups[canon]["scene_ids"].add(scene_id)
 
         action_blocks = scene.get("action_blocks", []) or []
         if isinstance(action_blocks, list):
@@ -1579,7 +1577,7 @@ def describe_scene(frames, scene_id, start, end):
     if rec_faces := ctx.get("face_clusters", []):
         context_lines.append("face_clusters: " + ", ".join(map(str, rec_faces[:6])))
     if rec_identity_ids := ctx.get("unified_character_ids", []):
-       context_lines.append("unified_character_ids: " + ", ".join(map(str, rec_identity_ids[:6])))
+        context_lines.append("unified_character_ids: " + ", ".join(map(str, rec_identity_ids[:6])))
         context_lines.append("prefer these character labels instead of generic person labels when describing visible people")
     if rec_script_hint := ctx.get("script_hint", ""):
         context_lines.append(f"script_hint: {rec_script_hint[:300]}")
@@ -1853,7 +1851,7 @@ def main():
         cached_desc = vlm_cache.get(scene_key)
         if cached_desc is not None:
             scene_stage_start = time.perf_counter()
-            #cached_desc = normalize_vlm_description(cached_desc, rec)
+            cached_desc = normalize_vlm_description(cached_desc, rec)
             vlm_cache[scene_key] = cached_desc
             desc = {
                 "scene_id": rec["scene_id"],
@@ -1869,17 +1867,17 @@ def main():
             log_timing(f"scene {rec['scene_id']} frame sampling", frame_start)
             infer_start = time.perf_counter()
             SCENE_CONTEXT.clear()
-            #SCENE_CONTEXT.update(
-            #    {
-            #        "transcript_text": rec.get("transcript_text", ""),
-            #        "speakers": rec.get("speakers", []),
-            #        "face_clusters": rec.get("face_clusters", []),
-            #        "unified_character_ids": rec.get("unified_character_ids", []),
-            #        "script_hint": rec.get("script_hint", ""),
-            #    }
-            #)
+            SCENE_CONTEXT.update(
+                {
+                    "transcript_text": rec.get("transcript_text", ""),
+                    "speakers": rec.get("speakers", []),
+                    "face_clusters": rec.get("face_clusters", []),
+                    "unified_character_ids": rec.get("unified_character_ids", []),
+                    "script_hint": rec.get("script_hint", ""),
+                }
+        )
             desc = describe_scene(frames, rec["scene_id"], rec["start"], rec["end"])
-            #desc["description"] = normalize_vlm_description(desc.get("description", {}), rec)
+            desc["description"] = normalize_vlm_description(desc.get("description", {}), rec)
             log_timing(f"scene {rec['scene_id']} VLM inference", infer_start)
             vlm_cache[scene_key] = desc["description"]
             log_timing(f"scene {rec['scene_id']} total VLM path", scene_stage_start)
