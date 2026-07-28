@@ -529,16 +529,29 @@ def compute_np_metric(
     gen_index_map = {s.scene_id: i for i, s in enumerate(generated)}
     ref_index_map = {s.scene_id: i for i, s in enumerate(reference)}
 
+    g2r: Dict[int, int] = {}
+    for g_scene, r_scene, _ in matches:
+        g_idx = gen_index_map.get(g_scene.scene_id)
+        r_idx = ref_index_map.get(r_scene.scene_id)
+        if g_idx is not None and r_idx is not None:
+            g2r[g_idx] = r_idx
+
     jaccards = []
     for g_scene, r_scene, _ in matches:
         g_idx = gen_index_map.get(g_scene.scene_id)
         r_idx = ref_index_map.get(r_scene.scene_id)
         if g_idx is None or r_idx is None:
             continue
-        set_g = gen_neighbors[g_idx]
+        # Project g's top-k neighbors into the reference index space;
+        # neighbors without a matched counterpart are dropped (they cannot
+        # be verified), which also prevents unmatched scenes from inflating
+        # the union.
+        set_g = {g2r[n] for n in gen_neighbors[g_idx] if n in g2r}
         set_r = ref_neighbors[r_idx]
         inter = len(set_g & set_r)
         union = len(set_g | set_r)
+        # If none of g's neighbors are matched, the neighborhood is
+        # considered not preserved (score 0 for this pair).
         jac = inter / union if union > 0 else 0.0
         jaccards.append(jac)
 
